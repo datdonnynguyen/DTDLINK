@@ -1,0 +1,72 @@
+{
+  "input": {
+    "columns": [
+      "url",
+      "type"
+    ],
+    "path": "/Users/okok/Documents/innovationproject cos30049/data/raw/malicious_phish.csv",
+    "rows": 651191,
+    "sha256_after": "d83ce942075dd63ed4d11560cfdcd9d512caa3d680e292f22cab484e8f074d01",
+    "sha256_before": "d83ce942075dd63ed4d11560cfdcd9d512caa3d680e292f22cab484e8f074d01",
+    "target_counts": {
+      "0": 428103,
+      "1": 223088
+    },
+    "type_counts": {
+      "benign": 428103,
+      "defacement": 96457,
+      "malware": 32520,
+      "phishing": 94111
+    }
+  },
+  "output": {
+    "cleaned_path": "/Users/okok/Documents/innovationproject cos30049/data/interim/malicious_phish_cleaned.csv",
+    "cleaned_sha256": "b717c3c8f3c802bbf975973cecabe82a703aeca7069389aacac579ff2aebe464",
+    "columns": [
+      "url",
+      "type",
+      "target"
+    ],
+    "conflicts_path": "/Users/okok/Documents/innovationproject cos30049/reports/cleaning/conflicting_records.csv",
+    "conflicts_sha256": "8f58754e0257304e377cf46ab44ee26c7a5461a4e48d9345f77765eaa000531a",
+    "rows": 641113,
+    "target_counts": {
+      "0": 428074,
+      "1": 213039
+    },
+    "type_counts": {
+      "benign": 428074,
+      "defacement": 95308,
+      "malware": 23645,
+      "phishing": 94086
+    },
+    "unique_urls": 641113
+  },
+  "rules": {
+    "edge_whitespace": {
+      "action": "trim",
+      "rows_after": 651191,
+      "urls_changed": 7
+    },
+    "exact_duplicates": {
+      "action": "keep_first_url_type_pair",
+      "rows_after": 641113,
+      "rows_removed": 10066
+    },
+    "label_conflicts": {
+      "action": "quarantine_all_rows",
+      "conflicting_urls": 6,
+      "rows_after": 651179,
+      "rows_removed": 12
+    },
+    "other_anomalies": {
+      "action": "retain",
+      "details": [
+        "Unicode",
+        "control characters",
+        "extreme length",
+        "diagnostic parse issues"
+      ]
+    }
+  }
+}

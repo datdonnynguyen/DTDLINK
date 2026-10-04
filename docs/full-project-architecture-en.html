@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DTDLINK · Complete Assignment 2 + 3 Architecture</title>
+<style>
+:root{--ink:#172c44;--muted:#52657b;--border:#cad5e1;--paper:#fff;--bg:#f5f7fb;--ml:#e9f2ff;--ml-line:#4679b5;--web:#f0ebff;--web-line:#8264bd;--api:#e5f4f0;--api-line:#488875;--data:#fff3db;--data-line:#a88437;--test:#f5edf1;--test-line:#9a6880}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}header,main,footer{max-width:1320px;margin:auto;padding:30px 36px}header{padding-top:46px;padding-bottom:10px}h1{font-size:36px;line-height:1.2;letter-spacing:-.035em;margin:12px 0 18px;font-weight:650}h2{font-size:25px;font-weight:600;margin:0 0 10px}h3{font-size:18px;font-weight:600;margin:0 0 10px}p{margin:8px 0 16px}a{color:#245e9f}code,pre{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}code{overflow-wrap:anywhere}pre{padding:14px;background:var(--bg);border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-size:12px}.intro,.caption{color:var(--muted);max-width:1130px}.caption{font-size:15px}.purpose,.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}.purpose{margin:22px 0}.purpose>div{border-left:3px solid var(--ml-line);padding:12px 18px;background:var(--paper)}.purpose>div:last-child{border-color:var(--web-line)}.purpose strong{display:block;margin-bottom:6px}.purpose p{margin:0}.menu{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.menu a,button{font:inherit;text-decoration:none;border:1px solid var(--border);background:var(--paper);border-radius:6px;padding:8px 12px;color:var(--ink);cursor:pointer}.menu a:hover,button:hover{background:var(--ml)}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.legend i{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid}.legend .ml{background:var(--ml);border-color:var(--ml-line)}.legend .web{background:var(--web);border-color:var(--web-line)}.legend .api{background:var(--api);border-color:var(--api-line)}.legend .data{background:var(--data);border-color:var(--data-line)}main{padding-top:10px}section{margin-bottom:44px;scroll-margin-top:24px}.section-head{display:flex;gap:14px;align-items:baseline}.num{font:500 18px ui-monospace,monospace;color:var(--ml-line)}.diagram{background:var(--paper);border:1px solid var(--border);border-radius:10px;overflow:auto;margin:16px 0}.diagram svg{display:block;width:100%;height:auto;min-width:1050px}.node rect{fill:var(--ml);stroke:var(--ml-line);stroke-width:1.2}.node.web rect{fill:var(--web);stroke:var(--web-line)}.node.api rect{fill:var(--api);stroke:var(--api-line)}.node.data rect{fill:var(--data);stroke:var(--data-line)}.node.test rect{fill:var(--test);stroke:var(--test-line)}.node text{fill:var(--ink);font-size:14px}.node .path{font:12px system-ui;fill:var(--muted)}.node .file{font:600 14px ui-monospace,monospace}.edge{fill:none;stroke:#647b91;stroke-width:1.5}.edge-label{font:12px system-ui;fill:#3a536a;paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round}.node-link:hover rect,.node-link:focus rect{stroke-width:2.8}.note{padding:14px 18px;border-left:3px solid var(--border);background:var(--paper);font-size:15px;margin:14px 0}.box{padding:20px;border:1px solid var(--border);background:var(--paper);border-radius:8px;min-width:0}.box ul{padding-left:20px}.box li+li{margin-top:6px}.small{font-size:13px;color:var(--muted)}.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0}.flow span{background:var(--paper);border:1px solid var(--border);border-radius:5px;padding:7px 12px}.catalog-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:20px 0}select{font:inherit;padding:8px;border:1px solid var(--border);background:var(--paper);border-radius:6px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--border)}th{font-weight:500;color:var(--muted)}td:first-child{width:30%;min-width:220px}tr:target{background:#e7effc}details summary{cursor:pointer;color:#245e9f}details li{margin:6px 0;font-size:13px}.source{display:block;font-size:11px;color:var(--muted);margin-top:6px}.tree{columns:2;column-gap:30px}.tree details{break-inside:avoid;margin-bottom:16px}.tree summary{font-weight:600}.tree a{text-decoration:none;font-size:13px}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--border)}.acceptance{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.acceptance>div{border-top:3px solid var(--border);padding-top:12px}.acceptance p{font-size:14px}
+.legend-help{margin:26px 0 18px}.legend-help h2{font-size:20px}.legend-help>p{font-size:14px;color:var(--muted)}.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;font-size:14px;color:var(--ink)}.legend-item{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start}.legend-item i{width:14px;height:14px;margin-top:5px}.legend-item strong{display:block;font-size:15px;margin-bottom:4px}.legend-item p{margin:0 0 5px}.legend-item code{font-size:12px;color:var(--muted)}.legend .test{background:var(--test);border-color:var(--test-line)}.reading-key{font-size:14px;padding:12px 0;border-top:1px solid var(--border);margin:20px 0 0}.diagram-guide{font-size:14px;padding:14px 18px;margin:0;border-bottom:1px solid var(--border);color:var(--muted)}.diagram-guide strong{color:var(--ink)}.node .step-badge{fill:var(--paper);stroke:var(--border);stroke-width:1}.node .step-number{font:600 12px ui-monospace,monospace;fill:var(--ink)}.node .step-title{font:600 12px system-ui;fill:var(--ink)}.node .step-note{font:12px system-ui;fill:#3a536a}.node .note-divider{stroke:var(--border);stroke-width:1}.node-link:hover .step-badge,.node-link:focus .step-badge{stroke-width:1}.diagram svg{min-width:1150px}
+.flow-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:22px 0}.flow-panel{min-width:0;align-self:start;scroll-margin-top:20px}.flow-panel.wide{grid-column:1/-1}.flow-panel h3{font-size:19px;margin:0 0 6px}.flow-panel>.caption{font-size:14px;min-height:44px}.flow-panel .diagram{margin:12px 0 0;border-radius:8px 8px 0 0}.flow-panel .diagram svg{min-width:540px}.flow-panel.wide .diagram svg{min-width:1120px}.flow-panel .step-note{font:13px system-ui;fill:#3a536a}.flow-panel .step-title{font:600 13px system-ui}.flow-panel .lane-title{font:600 17px system-ui;fill:var(--ink)}.flow-panel .lane-subtitle{font:13px system-ui;fill:var(--muted)}.flow-panel .lane-divider{stroke:var(--border);stroke-width:1}.flow-panel .edge-label{font-size:12px}.support-relations{padding:14px 18px;background:var(--paper);border:1px solid var(--border);border-top:0}.support-relations h4{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--muted)}.support-relations ul{padding:0;margin:0;list-style:none}.support-relations li{font-size:13px;padding:7px 0;overflow-wrap:anywhere}.support-relations li+li{border-top:1px solid var(--border)}.support-relations .relation-type{color:var(--muted)}.support-relations .file-role{display:block;margin-top:3px;color:var(--muted)}.handoff{margin:0;padding:12px 18px;background:var(--bg);border:1px solid var(--border);border-top:0;font-size:14px}.handoff strong{font-weight:600}.branch-heading{grid-column:1/-1;padding:14px 0 0;border-top:1px solid var(--border)}.branch-heading h3{margin:0 0 5px}.branch-heading p{font-size:14px;margin:0;color:var(--muted)}.flow-panel .step-badge{fill:var(--paper)!important;stroke:var(--border)!important}.flow-panel .node-link:hover .node-body,.flow-panel .node-link:focus .node-body{stroke-width:2.5}
+.flow-panel:not(.wide) .diagram svg{max-width:600px;margin:0 auto}
+.node .provenance{font:11px ui-monospace,monospace;fill:var(--muted)}.diagram-links{font-size:13px;margin:8px 0;color:var(--muted)}.diagram-links a{display:inline-block;margin:3px 8px 3px 0}
+@media(max-width:1100px){.flow-board{grid-template-columns:1fr}.flow-panel>.caption{min-height:0}}
+@media(max-width:800px){header,main,footer{padding:22px 16px}h1{font-size:29px}.purpose,.columns,.acceptance,.legend{grid-template-columns:1fr}.tree{columns:1}.menu a,button{min-height:44px}}
+@media print{.flow-board{display:block}.flow-panel{break-before:page}.flow-panel .diagram svg{min-width:0!important;max-height:175mm}.flow-panel.wide .diagram svg{max-height:183mm}.flow-panel>.caption{min-height:0}.support-relations,.handoff{font-size:11px}.support-relations li{font-size:11px}.branch-heading{break-after:avoid}}
+@media print{@page{size:A3 landscape;margin:12mm}body{background:white;font-size:12px}header,main,footer{max-width:none;padding:0}.menu,button,.catalog-controls{display:none}section{break-before:page}.diagram{border:0;overflow:visible;break-inside:avoid}.diagram svg{min-width:0;width:100%;max-height:199mm}h1{font-size:26px}h2{font-size:20px}.caption,.note{font-size:12px}tr{break-inside:avoid}.tree{columns:3}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.flow-board{display:block}.flow-panel{margin:18px 0}.flow-panel.wide .diagram svg{min-width:1440px}.support-relations{font-size:14px}.support-relations ul{columns:2;column-gap:32px}.support-relations li{break-inside:avoid}.legend-help{margin-top:18px}.legend-help summary{font-size:18px;font-weight:600}.node .step-title{font-size:12px}.node .provenance{font-size:10px}@media(max-width:700px){.support-relations ul{columns:1}}
+.flow-panel.wide .diagram svg{min-width:1200px;width:100%}.flow-panel .edge-label{font-size:14px}.flow-panel .node .step-note{font-size:14px}.flow-panel .node .path{font-size:13px}#overview-flow .diagram svg{min-width:850px;max-width:1100px;margin:auto}
+.walkthrough{max-width:1000px;margin:20px 0 30px;line-height:1.75}.walkthrough h3{margin-bottom:14px}.walkthrough p{margin:0 0 18px}.walkthrough .step-ref{font-weight:600;text-decoration-thickness:1px;text-underline-offset:3px}.walkthrough code{font-size:14px}.node:target .node-body{stroke:var(--ink);stroke-width:3}.reading-return{font-size:14px;margin:4px 0 12px}
+.walkthrough{max-width:920px}.walkthrough .step-ref{display:inline-block;margin-bottom:5px}.file-follow{display:block;margin-top:8px;color:var(--muted);font-size:14px;line-height:1.6}.file-follow code{font-size:13px}
+.numbered-reading{list-style:none;padding:0;margin:18px 0 28px}.numbered-reading li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;margin-bottom:16px}.numbered-reading li>p{margin:0}.numbered-reading .step-ref{font:600 14px/1.6 ui-monospace,monospace;margin:2px 0 0}.numbered-reading code{font-weight:600}.walkthrough{max-width:1000px}
+</style></head><body>
+<header id="top"><div class="eyebrow">DTDLINK / Complete target architecture / Assignment 2 + 3</div>
+<h1>How do all the files work together?</h1><p class="intro">The complete project architecture: A2 builds and evaluates a predictor; A3 lets users enter a URL, receive a result and inspect explanatory signals. This is a target design, not a progress tracker.</p>
+<div class="purpose"><div><strong>Assignment 2 · Build the ML capability</strong><p>Data → features → training + clustering → evaluation → model, evidence and report.</p></div><div><strong>Assignment 3 · Build the user experience</strong><p>React → FastAPI → A2 ML package → score, signals, Insights and testing.</p></div></div>
+<nav class="menu"><a href="#overview">01 Overview</a><a href="#ml">02 Assignment 2</a><a href="#web">03 Assignment 3</a><a href="#tests">04 Testing &amp; handover</a><a href="#files">File reference</a><a href="full-project-architecture.html" lang="vi">Tiếng Việt</a><button type="button" id="print">Print / save PDF</button></nav>
+<details class="legend-help"><summary>Legend: ML · Frontend · Backend · Data/models/documents · Tests</summary><p>Colours describe <strong>file roles</strong>, not completion or progress. Categories stay consistent across all diagrams.</p><div class="legend">
+<div class="legend-item"><i class="ml" aria-hidden="true"></i><div><strong>Blue · Shared ML — the processing code</strong><p>Machine learning Python modules prepare data, extract features and predict. Shared means A2 and A3 reuse the parser, feature extractor and predictor; it does not mean every training file runs on the website.</p><code>src/dtdlink_ml/ · notebooks/</code></div></div>
+<div class="legend-item"><i class="web" aria-hidden="true"></i><div><strong>Purple · Frontend — the browser interface</strong><p>The screens users interact with: URL input, navigation, results and charts. React sends requests to the backend and displays replies; it does not load the Python model itself.</p><code>frontend/src/pages/ · components/ · services/api.js</code></div></div>
+<div class="legend-item"><i class="api" aria-hidden="true"></i><div><strong>Green · Backend — request handling</strong><p>FastAPI receives URLs, validates data, calls ML and returns JSON. It loads the model once at startup and can run on the demo machine; it need not be an Internet-hosted service.</p><code>backend/app/routers/ · services/ · schemas/</code></div></div>
+<div class="legend-item"><i class="data" aria-hidden="true"></i><div><strong>Gold · Data, models and documents — the files used</strong><p>CSV stores data; <code>.joblib</code> stores a trained model; JSON stores settings/results; PDF/Markdown stores documents. Modules read, write or reference these files. This is not a database layer. Blue means processing code; gold means inputs and outputs.</p><code>data/ · models/ · reports/ · docs/ · root configuration files</code></div></div>
+<div class="legend-item"><i class="test" aria-hidden="true"></i><div><strong>Pink · Tests — checking correct behaviour</strong><p>Sample inputs and interactions check ML, API and UI results, errors and complete journeys. Tests verify the system; they are not steps in each user URL check.</p><code>tests/ · backend/tests/ · frontend/e2e/</code></div></div>
+</div></details><p class="reading-key"><strong>Four parts to learn:</strong> 01 the big picture → 02 how the model is created → 03 how the website uses it → 04 verification and handover. Each part has one connected diagram. Read downwards by number; A/B/C are branches, S is startup, I is Insights. Click a step number to find its node, or a node to inspect its file and relationships.</p>
+<p class="small">Evidence: reviewed source code, the A2 master plan and A1 scope/prototype. Extension filenames, routes and APIs are proposed designs. CODE = reviewed code/file evidence; PLAN = filename in the plan; DESIGN = architectural proposal. These labels describe sources, not progress. PLAN confirms the planned name, not an implemented interface or relationship.</p></header>
+<main><noscript>Enable JavaScript to view the diagrams. This file runs locally without Internet access or external libraries.</noscript>
+<section id="overview"><div class="section-head"><span class="num">01</span><h2>Whole-project overview</h2></div>
+<div class="walkthrough" id="overview-reading" aria-labelledby="overview-reading-title">
+<h3 id="overview-reading-title">Read by number: which file does what?</h3>
+<p>A2 creates the prediction model; A3 uses it to check user-submitted URLs. These steps match the overview diagram. Parts 02 and 03 expand the intermediate steps.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#overview-flow-step-1" aria-label="Go to step 1 in the diagram">1</a><p><code>malicious_phish.csv</code> contains the original URLs and known labels. This is the starting data for A2, not a trained model.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-2" aria-label="Go to step 2 in the diagram">2</a><p><code>feature_extraction.py</code> receives cleaned data and converts URL characteristics into numbers. These numbers become the inputs the model learns from.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-3" aria-label="Go to step 3 in the diagram">3</a><p><code>train_classifier.py</code> learns from train and compares models using validation. The selected model still needs final evaluation and packaging.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-4" aria-label="Go to step 4 in the diagram">4</a><p><code>final_pipeline.joblib</code> stores the trained model together with its fitted preprocessing. A3 reads this file to predict without learning again from scratch.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-5" aria-label="Go to step 5 in the diagram">5</a><p><code>CheckUrlPage.jsx</code> is where users enter a new URL and wait for results. This page does not run the Python model itself.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-6" aria-label="Go to step 6 in the diagram">6</a><p><code>api.js</code> sends the URL from the interface to the backend, which handles the work behind the website.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-7" aria-label="Go to step 7 in the diagram">7</a><p><code>routers/prediction.py</code> receives the request and passes processing to the model service. The service coordinates work; it is not the trained model itself.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-8" aria-label="Go to step 8 in the diagram">8</a><p><code>predict.py</code> uses the A2 feature rules and the loaded model to assess the new URL. The result travels back to the interface.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-9" aria-label="Go to step 9 in the diagram">9</a><p><code>ResultPanel.jsx</code> displays the result and warning signs. The result supports assessment; it does not guarantee that a URL is safe.</p></li>
+</ol>
+</div><div id="g-overview"></div></section>
+<section id="ml"><div class="section-head"><span class="num">02</span><h2>Assignment 2 — from data to the complete model</h2></div>
+<div class="walkthrough" id="ml-reading" aria-labelledby="ml-reading-title">
+<h3 id="ml-reading-title">A2 — follow the files step by step</h3>
+<p>Read from step 1 downwards. A/B/C indicate branches, not tasks that must execute one after another. This is the complete target architecture: CODE means reviewed evidence; PLAN/DESIGN means planned or proposed parts, not confirmed implementations.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#a2-flow-step-1" aria-label="Go to step 1 in the diagram">1</a><p><code>Basic_Datasets.zip</code> is the course-provided data package. It contains the URL-and-label table used to begin the research.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-2" aria-label="Go to step 2 in the diagram">2</a><p><code>data_audit.py</code> reads the ZIP, creates or verifies the raw copy, and checks for issues such as duplicates or conflicting labels. This identifies problems before cleaning.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-2a" aria-label="Go to step 2a in the diagram">2a</a><p><code>reports/audit/summary.json</code> stores the audit summary produced by <code>data_audit.py</code>. It is evidence for the report, not training input.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-3" aria-label="Go to step 3 in the diagram">3</a><p><code>malicious_phish.csv</code> preserves the original table for comparison. The next step, <code>data_cleaning.py</code>, reads it without overwriting the original.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-4" aria-label="Go to step 4 in the diagram">4</a><p><code>data_cleaning.py</code> trims whitespace, maps labels to the task target, quarantines conflicting records and removes duplicates. It produces a cleaned table for the next step.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-5" aria-label="Go to step 5 in the diagram">5</a><p><code>malicious_phish_cleaned.csv</code> stores the cleaned output. <code>feature_extraction.py</code> reads its URLs to calculate features.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-6" aria-label="Go to step 6 in the diagram">6</a><p><code>feature_extraction.py</code> converts URL characteristics into 36 numerical features. To do this, it calls <code>url_parser.py</code> at step 6a.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-6a" aria-label="Go to step 6a in the diagram">6a</a><p><code>url_parser.py</code> separates the URL into parts such as the domain and path, then returns them to <code>feature_extraction.py</code>. It analyses text without opening the destination website.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-7" aria-label="Go to step 7 in the diagram">7</a><p><code>url_features.csv</code> stores the calculated feature table with labels and reference information. Labels are the answers; they must not be mixed into the features the model sees.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-8" aria-label="Go to step 8 in the diagram">8</a><p><code>04_eda.ipynb</code> helps inspect and understand the feature table before splitting it. The notebook calls <code>data_loading.py</code> at step 8a instead of replacing reusable processing code.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-8a" aria-label="Go to step 8a in the diagram">8a</a><p><code>data_loading.py</code> reads the table, checks required columns, and separates features, labels and reference information. In this call it serves notebook exploration, not model training.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-9" aria-label="Go to step 9 in the diagram">9</a><p><code>data_splitting.py</code> divides the data into train, validation and test. URLs sharing a domain stay in one set so that related examples do not appear in both learning and evaluation.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10A" aria-label="Go to step 10A in the diagram">10A</a><p><code>train.csv</code> contains examples for model learning. The loader reads this file at step 11A.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10B" aria-label="Go to step 10B in the diagram">10B</a><p><code>validation.csv</code> contains examples for comparing models and selecting assessment thresholds. The loader reads it at step 11B; it is not merged into train.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10C" aria-label="Go to step 10C in the diagram">10C</a><p><code>test.csv</code> is reserved for final evaluation. It stays separate and is not used to select the model or thresholds.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11A" aria-label="Go to step 11A in the diagram">11A</a><p><code>data_loading.py</code> reads <code>train.csv</code>, separates numerical inputs from labels, and supplies preprocessing and training. The loader only reads and organizes data.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11B" aria-label="Go to step 11B in the diagram">11B</a><p><code>data_loading.py</code> reads <code>validation.csv</code> in the same way. <code>train_classifier.py</code> uses it for comparison and selection, not for fitting preprocessing rules.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11C" aria-label="Go to step 11C in the diagram">11C</a><p><code>data_loading.py</code> reads <code>test.csv</code> when final evaluation begins and supplies it to <code>evaluate.py</code>. The three loader boxes represent the same file used in three different contexts.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-12" aria-label="Go to step 12 in the diagram">12</a><p><code>preprocessing.py</code> prepares the numbers in the form the model needs. Transformation rules are learned from train; validation and test only reuse those rules. <code>train_classifier.py</code> coordinates this work.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-13" aria-label="Go to step 13 in the diagram">13</a><p><code>train_classifier.py</code> trains models on train and compares them on validation. It selects a model and thresholds, then saves the choices in the files at steps 14 and 14a.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-14" aria-label="Go to step 14 in the diagram">14</a><p><code>selected_pipeline.joblib</code> stores the selected model and fitted preprocessing. <code>evaluate.py</code> uses this existing pipeline on test without fitting it again.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-14a" aria-label="Go to step 14a in the diagram">14a</a><p><code>selection.json</code> records the chosen model, thresholds and when to report uncertainty. These decisions are locked before scoring on test.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15" aria-label="Go to step 15 in the diagram">15</a><p><code>evaluate.py</code> receives test from the loader, predicts with the selected model, and compares predictions with true labels. It records evaluation results without using test to adjust the model.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15a" aria-label="Go to step 15a in the diagram">15a</a><p><code>test_metrics.json</code> stores numerical test results. The report and Insights page use these figures to explain the research results.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15b" aria-label="Go to step 15b in the diagram">15b</a><p><code>error_analysis.csv</code> records incorrect predictions so the team can inspect model limitations. It is research error analysis, not a history of submitted user URLs.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-16" aria-label="Go to step 16 in the diagram">16</a><p><code>export_model.py</code> packages the selected model and the information needed to use it after evaluation. It saves the A3 handover bundle without retraining on test.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-17A" aria-label="Go to step 17A in the diagram">17A</a><p><code>final_pipeline.joblib</code> is the model bundle A3 loads and uses. It contains both fitted preprocessing and the predictor.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-17B" aria-label="Go to step 17B in the diagram">17B</a><p><code>model_metadata.json</code> records accompanying information such as feature order, version and score interpretation. A3 reads it to use the model correctly.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C1" aria-label="Go to step C1 in the diagram">C1</a><p><code>preprocessing.py</code> is also used separately for clustering. The caller first selects one class from train and removes the label from the features; this branch learns transformation rules only from that selected data.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C2" aria-label="Go to step C2 in the diagram">C2</a><p><code>cluster_urls.py</code> groups URLs with similar features. It helps explain URL patterns in the research, rather than predicting labels as the main branch does.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C3" aria-label="Go to step C3 in the diagram">C3</a><p><code>cluster_profiles.json</code> describes the groups, including their sizes and characteristics. It supports the report and Insights; the website does not recluster data for every URL check.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-18" aria-label="Go to step 18 in the diagram">18</a><p><code>export_insights.py</code> combines audit figures, model evaluation and cluster descriptions for the website. Its output is the file at step 19.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-19" aria-label="Go to step 19 in the diagram">19</a><p><code>reports/insights.json</code> contains aggregate figures for the Insights charts. A2 therefore hands over both a prediction model and statistics explaining the research.</p></li>
+</ol>
+</div><div id="g-ml"></div><div class="note">Use arrow labels to distinguish calls from data movement. A CSV does not execute Python. Test results do not feed back into model selection.</div></section>
+<section id="web"><div class="section-head"><span class="num">03</span><h2>Assignment 3 — from user action to results</h2></div>
+<div class="walkthrough" id="web-reading" aria-labelledby="web-reading-title">
+<h3 id="web-reading-title">A3 — follow one URL submission and its result</h3>
+<p>The frontend is the browser interface; the backend receives and coordinates requests; ML uses the model to predict. Read branch S first to understand model preparation, then steps 1–18. Branch I is the separate statistics page.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#a3-flow-step-S1" aria-label="Go to step S1 in the diagram">S1</a><p><code>backend/app/main.py</code> starts the backend and registers request endpoints. During startup it prepares the model service at S2.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S2" aria-label="Go to step S2 in the diagram">S2</a><p><code>model_service.py</code> keeps the model in memory and manages its use. It calls the bundle-loading part of <code>predict.py</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S3" aria-label="Go to step S3 in the diagram">S3</a><p><code>predict.py</code> reads the A2 model and accompanying information, then gives the loaded bundle to the service. Loading happens at startup; it is not training again for each request.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S4" aria-label="Go to step S4 in the diagram">S4</a><p><code>final_pipeline.joblib</code> provides the model learned in A2. It is a file to read, not Python code that executes by itself.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S5" aria-label="Go to step S5 in the diagram">S5</a><p><code>model_metadata.json</code> supplies feature order, version and assessment rules to check that the bundle can be used. Once ready, the service is reused at step 11.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-1" aria-label="Go to step 1 in the diagram">1</a><p><code>index.html</code> is the starting point when opening the website. It provides the application root and loads <code>main.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-2" aria-label="Go to step 2 in the diagram">2</a><p><code>main.jsx</code> mounts the React application and loads the root interface from <code>App.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-3" aria-label="Go to step 3 in the diagram">3</a><p><code>App.jsx</code> builds the shared application structure and uses <code>router.jsx</code> to choose the screen.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-4" aria-label="Go to step 4 in the diagram">4</a><p><code>router.jsx</code> selects a page from the URL, such as Check URL or Insights. It uses the shared <code>AppShell.jsx</code> layout.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5" aria-label="Go to step 5 in the diagram">5</a><p><code>AppShell.jsx</code> displays navigation and the common frame while its contents change with the selected page. Choosing Check URL displays <code>CheckUrlPage.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5a" aria-label="Go to step 5a in the diagram">5a</a><p><code>HowItWorksPage.jsx</code> explains usage and system limitations. Simply reading this page does not run the model.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5b" aria-label="Go to step 5b in the diagram">5b</a><p><code>InsightsPage.jsx</code> displays research statistics. Opening it follows the I1–I5 data-retrieval branch below.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-6" aria-label="Go to step 6 in the diagram">6</a><p><code>CheckUrlPage.jsx</code> arranges the input, loading state, results and errors. It displays <code>UrlForm.jsx</code> to collect the URL.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-7" aria-label="Go to step 7 in the diagram">7</a><p><code>UrlForm.jsx</code> receives the URL you type. Pressing Analyse passes that input to <code>useUrlCheck.js</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8" aria-label="Go to step 8 in the diagram">8</a><p><code>useUrlCheck.js</code> manages the check: it validates input, sends a request if valid, and tracks loading and results. It also handles reset and prevents stale results overwriting a newer submission.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8a" aria-label="Go to step 8a in the diagram">8a</a><p><code>validation.js</code> checks simple problems such as empty or overlong input. It returns its decision to the hook, which either calls the API or shows an error.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8b" aria-label="Go to step 8b in the diagram">8b</a><p><code>ErrorNotice.jsx</code> displays errors passed through the hook and Check URL page. It handles both input errors and backend-call failures.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-9" aria-label="Go to step 9 in the diagram">9</a><p><code>api.js</code> receives a valid URL and sends it to the backend through <code>POST /api/predict</code>. The interface shows a loading state while waiting.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10" aria-label="Go to step 10 in the diagram">10</a><p><code>routers/prediction.py</code> receives the backend request. The input must pass schema validation and a ready service must be obtained before processing.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10a" aria-label="Go to step 10a in the diagram">10a</a><p><code>schemas/prediction.py</code> defines the expected request and response structure. The backend still validates the request even if the frontend already checked it.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10b" aria-label="Go to step 10b in the diagram">10b</a><p><code>dependencies.py</code> retrieves the <code>model_service.py</code> instance prepared at startup. If it is not ready, the request must receive an error rather than a fabricated result.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-11" aria-label="Go to step 11 in the diagram">11</a><p><code>model_service.py</code> receives the URL and coordinates prediction and explanation with the loaded model. It calls <code>predict.py</code> without rerunning A2 training.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12" aria-label="Go to step 12 in the diagram">12</a><p><code>predict.py</code> must convert the new URL into the same kind of features used during training. It calls <code>feature_extraction.py</code>, then sends those numbers through the model for prediction.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12a" aria-label="Go to step 12a in the diagram">12a</a><p><code>feature_extraction.py</code> calculates features using the same A2 rules. It calls <code>url_parser.py</code> to obtain the URL structure.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12b" aria-label="Go to step 12b in the diagram">12b</a><p><code>url_parser.py</code> splits the URL and returns the parts to the feature extractor. The calculated features then return to <code>predict.py</code>; the destination website is not opened.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12c" aria-label="Go to step 12c in the diagram">12c</a><p><code>explain.py</code> is coordinated by the service to generate readable signals and highlight locations. These are observed signs, not automatic proof of why the model made its prediction.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-13" aria-label="Go to step 13 in the diagram">13</a><p><code>model_service.py</code> merges the prediction and explanations into one result. This is the same service as step 11, now preparing its reply.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-14" aria-label="Go to step 14 in the diagram">14</a><p><code>routers/prediction.py</code> receives the service result and returns it to the frontend in the agreed format. It does not need to echo the original URL.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-15" aria-label="Go to step 15 in the diagram">15</a><p><code>api.js</code> receives the backend reply and passes the result or error to <code>useUrlCheck.js</code>. This is the return direction of the request sent at step 9.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-16" aria-label="Go to step 16 in the diagram">16</a><p><code>useUrlCheck.js</code> ends the loading state and updates page state. <code>CheckUrlPage.jsx</code> uses that state to show either the result or an error.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-17" aria-label="Go to step 17 in the diagram">17</a><p><code>ResultPanel.jsx</code> receives data from the Check URL page and arranges three elements: the score, the signal list and the highlighted URL.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18A" aria-label="Go to step 18A in the diagram">18A</a><p><code>ScoreBadge.jsx</code> displays the score and a cautious assessment. Its wording must not guarantee that the URL is safe.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18B" aria-label="Go to step 18B in the diagram">18B</a><p><code>SignalList.jsx</code> displays signals so users can understand which observed URL characteristics deserve attention.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18C" aria-label="Go to step 18C in the diagram">18C</a><p><code>UrlHighlight.jsx</code> highlights relevant portions of the URL as text. It must not turn the input into executable content or automatically open it.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I1" aria-label="Go to step I1 in the diagram">I1</a><p><code>api.js</code> is called by <code>InsightsPage.jsx</code> to request statistics through <code>GET /api/insights</code>. This request does not submit a URL for checking.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I2" aria-label="Go to step I2 in the diagram">I2</a><p><code>routers/insights.py</code> receives the statistics request and calls <code>insights_service.py</code> to retrieve the figures.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I3" aria-label="Go to step I3 in the diagram">I3</a><p><code>insights_service.py</code> reads and validates the statistics file generated by A2. It does not calculate statistics from user scan history.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I4" aria-label="Go to step I4 in the diagram">I4</a><p><code>reports/insights.json</code> supplies aggregate data. It returns through the service, route and <code>api.js</code> to <code>InsightsPage.jsx</code>; the browser does not read the backend file directly.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I5" aria-label="Go to step I5 in the diagram">I5</a><p><code>InsightsCharts.jsx</code> receives the page data and draws the charts. This branch uses existing research results without retraining the model.</p></li>
+</ol>
+</div><div id="g-web"></div></section>
+<section id="tests"><div class="section-head"><span class="num">04</span><h2>Testing and handover documents</h2></div>
+<div class="walkthrough" id="tests-reading" aria-labelledby="tests-reading-title">
+<h3 id="tests-reading-title">Testing and handover — what does each file verify?</h3>
+<p>Rows 1–8 are independent checks, not a URL-processing sequence. test.csv assesses model prediction performance; the test files below check program behaviour. The diagram does not claim every proposed test has been implemented or passed.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#delivery-flow-step-1" aria-label="Go to step 1 in the diagram">1</a><p><code>test_data_cleaning.py</code> checks <code>data_cleaning.py</code>: whether fixtures are cleaned according to the rules, raw data remains unchanged, and repeated runs give consistent results.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-2" aria-label="Go to step 2 in the diagram">2</a><p><code>test_url_parser.py</code> checks <code>url_parser.py</code> with different URL types, including malformed input. Parsing should work correctly without Internet access.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-3" aria-label="Go to step 3 in the diagram">3</a><p><code>test_feature_extraction.py</code> checks <code>feature_extraction.py</code>: whether the expected columns exist and changing a label leaves the features unchanged. Labels must not become prediction inputs.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-4" aria-label="Go to step 4 in the diagram">4</a><p><code>test_data_splitting.py</code> checks <code>data_splitting.py</code>: sets must not share domains and the split must be reproducible.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-5" aria-label="Go to step 5 in the diagram">5</a><p><code>test_prediction.py</code> checks <code>predict.py</code>: a saved/reloaded model still works correctly, and processing raw URLs agrees with the prepared features.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-6" aria-label="Go to step 6 in the diagram">6</a><p><code>test_prediction_api.py</code> checks the backend app through <code>main.py</code>: valid requests, invalid inputs and model-not-ready cases must be handled correctly.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-7" aria-label="Go to step 7 in the diagram">7</a><p><code>CheckUrlPage.test.jsx</code> checks <code>CheckUrlPage.jsx</code>: loading, results, uncertainty, errors and reset should appear correctly.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-8" aria-label="Go to step 8 in the diagram">8</a><p><code>url-check.spec.js</code> tests the full website with user-like interactions. <code>main.jsx</code> is the application entry point; the test is not limited to that individual file.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-9" aria-label="Go to step 9 in the diagram">9</a><p><code>test_metrics.json</code> supplies test-set evaluation figures for the report. Error analysis and figures provide additional evidence for the conclusions.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-9a" aria-label="Go to step 9a in the diagram">9a</a><p><code>cluster_profiles.json</code> supplies group statistics and characteristics to explain clustering results in the report.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-10" aria-label="Go to step 10 in the diagram">10</a><p><code>assignment2-report.pdf</code> presents methods, results and limitations using this evidence. It explains the research rather than providing execution instructions.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-10a" aria-label="Go to step 10a in the diagram">10a</a><p><code>test-plan.md</code> records what to test, the procedure and actual results. Do not mark checks as passed if they have not been run.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-11" aria-label="Go to step 11 in the diagram">11</a><p><code>README.md</code> explains installation and how to rerun A2/A3, helping the recipient reproduce results and open the demo.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-11a" aria-label="Go to step 11a in the diagram">11a</a><p><code>deployment.md</code> explains frontend/backend startup, model paths and connections. The README links here for detailed demo instructions.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-12" aria-label="Go to step 12 in the diagram">12</a><p><code>meeting_minutes/*.md</code> records team decisions and contributions. It supports the contribution records.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-13" aria-label="Go to step 13 in the diagram">13</a><p><code>contribution-form.docx</code> summarizes contributions and follows the required template. The final A3 submission format still needs checking against the full specification.</p></li>
+</ol>
+</div><div id="g-tests"></div><div class="note"><a href="architecture-review.md">Review source evidence and document checks (Vietnamese)</a>. The catalog below is optional reference, not a fifth workflow stage.</div></section>
+<section id="files"><div class="section-head"><span class="num">↳</span><h2>File reference — not an execution step</h2></div><p class="caption">Dependency libraries, caches, build outputs and unrelated workshop materials are excluded. Catalog arrows describe target relationships; they do not claim all imports or APIs already exist.</p><details id="file-lookup"><summary>Open the catalog of 102 files / file groups and relationships</summary><div id="tree" class="tree"></div><div class="catalog-controls"><label for="group">File category</label><select id="group"><option value="all">All</option><option value="ml">ML + notebooks</option><option value="web">Frontend</option><option value="api">Backend</option><option value="data">Data / models / documents</option><option value="test">Tests</option></select><span class="small" id="count" aria-live="polite"></span></div><div class="table-wrap"><table><thead><tr><th>File</th><th>Role · inputs/outputs · callers and callees</th></tr></thead><tbody id="catalog"></tbody></table></div></details></section>
+</main><footer><p><strong>Design sources:</strong> reviewed Python source, notebooks and tests; ASSIGNMENT2_MASTER_PLAN.md; PROJECT_CONTEXT.md; and extracted A2/A1 specifications. The workspace A3 material does not contain the full rubric. Proposed routes, modules and APIs follow the scope/prototype and React–FastAPI integration plan, not verified detailed rubric requirements.</p><p><a href="full-project-architecture.html" lang="vi">Vietnamese edition</a> · <a href="technical-architecture-source-snapshot.html">Reviewed-source diagram (Vietnamese)</a> · English translation: 3 October 2026, based on the existing Vietnamese document; no new source audit implied. Offline, no CDN or data transmission. Documentation only: proposed application modules are not created.</p></footer>
+<script>
+(() => {
+'use strict';
+// id | path | short role | input | output | provenance | layer
+const raw=`audit|src/dtdlink_ml/data_audit.py|Audit and protect raw data|ZIP / raw CSV|Raw data + audit JSON/JSONL|CODE|ml
+clean|src/dtdlink_ml/data_cleaning.py|Cleaning and target mapping|url,type|Cleaned CSV + conflicts/audit|CODE|ml
+parser|src/dtdlink_ml/url_parser.py|Parse URL structure offline|Raw URL|ParsedURL + issues|CODE|ml
+features|src/dtdlink_ml/feature_extraction.py|Raw URL → 36 features|URL or cleaned CSV|Numeric dict / feature CSV|CODE|ml
+init|src/dtdlink_ml/__init__.py|Shared package marker|Python import|Namespace; currently only a docstring|CODE|ml
+config|src/dtdlink_ml/config.py|ML paths, seed and settings|Experiment settings|Configuration for new modules|PLAN|ml
+loading|src/dtdlink_ml/data_loading.py|Load tables; separate X/y/metadata|Feature or split CSV|Schema-aligned X, y and metadata|PLAN|ml
+split|src/dtdlink_ml/data_splitting.py|Domain-group split|Feature table + domain/target|Train/validation/test + manifest|PLAN|ml
+prep|src/dtdlink_ml/preprocessing.py|Shared preprocessing|X_train + schema|Train-fitted transform, saved with model|DESIGN|ml
+train|src/dtdlink_ml/train_classifier.py|Train, compare and select model|Train/validation + config|Selected pipeline + selection.json|PLAN|ml
+cluster|src/dtdlink_ml/cluster_urls.py|Within-class clustering|One train class; labels removed from features|Cluster model + profiles|PLAN|ml
+eval|src/dtdlink_ml/evaluate.py|Evaluation and error analysis|Selected model + locked test|Metrics, confusion matrix, FP/FN|PLAN|ml
+export|src/dtdlink_ml/export_model.py|Package model contract|Selected model + schema/policy|Final pipeline + metadata; never fit test|DESIGN|ml
+predict|src/dtdlink_ml/predict.py|Raw URL → assessment|URL + loaded model/metadata|Assessment, danger_score, features|PLAN|ml
+explain|src/dtdlink_ml/explain.py|Signals and highlights|Raw URL, ParsedURL, features|Heuristic signals + components/spans|DESIGN|ml
+analytics|src/dtdlink_ml/export_insights.py|Aggregate data for Insights|Audits + metrics + profiles|Versioned aggregate JSON; no raw URLs|DESIGN|ml
+extra|src/dtdlink_ml/integrate_sources.py|Optional source integration|Approved offline sources|Schema-aligned data + provenance|DESIGN|ml
+raw|data/raw/malicious_phish.csv|Original URLs and labels|CSV member from ZIP|Unmodified url,type|CODE|data
+archive|Week-08/Assessment/Basic_Datasets.zip|Course dataset source|Provided ZIP|CSV member read by data_audit.py|CODE|data
+conflicts|reports/cleaning/conflicting_records.csv|Quarantined records|data_cleaning.py|source_record_number,url,type,target; excluded from cleaned data|CODE|data
+auditdetails|reports/audit/{anomaly_records,conflict_records,duplicate_url_groups,examples}.jsonl|Detailed audit evidence|data_audit.py|Four JSONL files for inspecting research data|CODE|data
+cleaned|data/interim/malicious_phish_cleaned.csv|Cleaned dataset|Cleaning pipeline|url,type,target|CODE|data
+featurecsv|data/processed/url_features.csv|Feature table + metadata|Extractor|36 features + 6 metadata columns|CODE|data
+traincsv|data/processed/train.csv|Training set|Domain-group split|Train X/y + metadata|DESIGN|data
+valcsv|data/processed/validation.csv|Model/threshold selection set|Domain-group split|Validation X/y + metadata|DESIGN|data
+testcsv|data/processed/test.csv|Locked final test set|Domain-group split|Final evaluation input|DESIGN|data
+manifest|data/processed/split_manifest.json|Reproducible split record|Seed, groups, hashes|Evidence of no domain overlap|DESIGN|data
+selected|models/selected_pipeline.joblib|Selected pipeline|Training/validation|Train-fitted model + preprocessing|DESIGN|data
+selection|reports/tables/selection.json|Model and threshold decisions|Validation comparisons|Model/threshold/uncertain policy|DESIGN|data
+model|models/final_pipeline.joblib|Final inference pipeline|Model export|Bundle for predict.py|PLAN|data
+metadata|models/model_metadata.json|Schema, versions and score policy|Export + selection|Feature order, labels, threshold, hashes|PLAN|data
+cmodel|models/clustering_pipeline.joblib|A2 clustering model|cluster_urls.py|Research reproducibility; not per-request|DESIGN|data
+metrics|reports/tables/test_metrics.json|Final evaluation results|evaluate.py|Metrics and subgroup/confusion matrix|DESIGN|data
+errors|reports/tables/error_analysis.csv|A2 prediction errors|Held-out predictions|Research dataset FP/FN|DESIGN|data
+profiles|reports/tables/cluster_profiles.json|Cluster interpretation|cluster_urls.py|Feature differences + sizes/examples|DESIGN|data
+insightsdata|reports/insights.json|Website aggregate data|export_insights.py|Dataset/model/cluster aggregates|DESIGN|data
+auditout|reports/audit/summary.json|Raw dataset audit|data_audit.py|Counts, source, labels, diagnostics|CODE|data
+cleanout|reports/cleaning/cleaning_audit.json|Cleaning audit|data_cleaning.py|Rules, counts and hashes|CODE|data
+featureout|reports/features/feature_extraction_audit.json|Feature extraction audit|feature_extraction.py|Schema, counts, issues and hashes|CODE|data
+main|frontend/src/main.jsx|Mount React application|index.html root|App + CSS|DESIGN|web
+app|frontend/src/App.jsx|Application root and providers|Router + theme|Application tree|DESIGN|web
+router|frontend/src/router.jsx|Select page by route|Browser location|Check / Insights / HowItWorks|DESIGN|web
+shell|frontend/src/components/AppShell.jsx|Shared navigation and layout|Router outlet|Navigation + page content|DESIGN|web
+check|frontend/src/pages/CheckUrlPage.jsx|Enter URL and view results|Input + hook state|Form / loading / result / error|DESIGN|web
+form|frontend/src/components/UrlForm.jsx|URL input form|Text + validation errors|onSubmit(url), onReset()|DESIGN|web
+hook|frontend/src/hooks/useUrlCheck.js|Manage check state|Submit/reset|In-memory state + request cancellation|DESIGN|web
+validation|frontend/src/utils/validation.js|Quick input validation|Input text|Empty/length feedback|DESIGN|web
+client|frontend/src/services/api.js|API client|JSON body / API_BASE_URL|Response or sanitized error|DESIGN|web
+result|frontend/src/components/ResultPanel.jsx|Present prediction result|PredictionResponse + in-memory URL|Score, signals, highlights|DESIGN|web
+score|frontend/src/components/ScoreBadge.jsx|Score and cautious label|danger_score + assessment|Colour with text; no safety guarantee|DESIGN|web
+signals|frontend/src/components/SignalList.jsx|Explain observed signals|signals[]|Message and signal strength|DESIGN|web
+highlight|frontend/src/components/UrlHighlight.jsx|Highlight URL as text|URL + validated spans|Escaped text; no links/innerHTML|DESIGN|web
+errorui|frontend/src/components/ErrorNotice.jsx|Input/API error notice|Sanitized error|Accessible message and retry|DESIGN|web
+insightspage|frontend/src/pages/InsightsPage.jsx|A2 model statistics page|GET /api/insights|Charts + loading/error state|DESIGN|web
+charts|frontend/src/components/InsightsCharts.jsx|Interactive A2 charts|Aggregate metrics/cluster JSON|Charts + text alternatives|DESIGN|web
+how|frontend/src/pages/HowItWorksPage.jsx|Explain system operation|Static content / policy wording|Usage, limitations and privacy|DESIGN|web
+notfound|frontend/src/pages/NotFoundPage.jsx|Unknown-route page|Unknown route|Fallback + link to Check|DESIGN|web
+theme|frontend/src/theme.js|Theme and typography|A1 design tokens|Accessible theme|DESIGN|web
+css|frontend/src/styles.css|Responsive styles|CSS rules|375px, spacing, focus|DESIGN|web
+index|frontend/index.html|Browser entry point|Browser load|DOM root + main.jsx|DESIGN|web
+package|frontend/package.json|Frontend dependencies and scripts|Pinned package manifest|Dev/build/test toolchain|DESIGN|web
+vite|frontend/vite.config.js|Build and dev proxy|Frontend config|Bundle; loopback /api proxy|DESIGN|web
+feenv|frontend/.env.example|Example API address|Public environment config|API_BASE_URL; no secrets|DESIGN|web
+api-main|backend/app/main.py|FastAPI app and startup|Settings + trusted model|Routers; service loaded once|DESIGN|api
+api-config|backend/app/config.py|API paths and limits|Environment|Model paths, max input, origins|DESIGN|api
+api-schema|backend/app/schemas/prediction.py|Request/response schema|JSON body / result DTO|Validated input, sanitized output|DESIGN|api
+route-predict|backend/app/routers/prediction.py|POST /api/predict|Validated URL|PredictionResponse / errors|DESIGN|api
+service|backend/app/services/model_service.py|Model lifecycle and inference|Artifacts + URL|Predict + explain; ready state|DESIGN|api
+dependencies|backend/app/dependencies.py|Provide loaded service|app.state|Shared service or 503|DESIGN|api
+route-insights|backend/app/routers/insights.py|GET /api/insights|GET request|Aggregate response|DESIGN|api
+insights-service|backend/app/services/insights_service.py|Read analytics artifact|reports/insights.json|Validated aggregate DTO|DESIGN|api
+health|backend/app/routers/health.py|GET /api/health|App state|Ready + model_version|DESIGN|api
+be-req|backend/requirements.txt|Backend dependencies|FastAPI/Uvicorn + ML environment|Pinned runtime compatible with artifacts|DESIGN|api
+beenv|backend/.env.example|Example backend settings|Environment config|Trusted paths / limits / origins|DESIGN|api
+nb1|notebooks/01_data_audit.ipynb|Audit notebook|run_audit()|Audit evidence and checks|CODE|ml
+nb2|notebooks/02_cleaning.ipynb|Cleaning notebook|run_cleaning_pipeline()|Row counts / conflicts / hashes|CODE|ml
+nb3|notebooks/03_feature_exploration.ipynb|Explore feature meaning|Extractor / feature table|Examples, distributions, limitations|PLAN|ml
+nb4|notebooks/04_eda.ipynb|EDA and split checks|Feature table / split module|Figures + split review|PLAN|ml
+nb5|notebooks/05_classification.ipynb|Classification experiments|Training/evaluation modules|Model comparisons and metrics|PLAN|ml
+nb6|notebooks/06_clustering.ipynb|Clustering experiments|One class / clustering module|Cluster profiles and interpretation|PLAN|ml
+tclean|tests/test_data_cleaning.py|Cleaning tests|Fixtures|Contract, hash, repeatability|CODE|test
+tparse|tests/test_url_parser.py|Offline parser tests|URL fixtures|Malformed/IP/Unicode/scheme tests|CODE|test
+tfeature|tests/test_feature_extraction.py|Feature contract tests|URL/CSV fixtures|Schema, label invariance, 50 inputs|CODE|test
+tenv|tests/test_environment.py|Environment smoke tests|Dependencies + toy data|Imports and toy classifier check|CODE|test
+tsplit|tests/test_data_splitting.py|Data leakage tests|Synthetic domain groups|Zero overlap, determinism|PLAN|test
+tpredict|tests/test_prediction.py|Reload and inference tests|Fixture bundle + URLs|Raw/feature parity, policy, offline|PLAN|test
+tapi|backend/tests/test_prediction_api.py|API contract tests|Test client + fixture model|200/422/503, load once, privacy|DESIGN|test
+tinsights|backend/tests/test_insights_api.py|Analytics endpoint tests|Aggregate fixtures|Schema/version; no raw URLs|DESIGN|test
+tui|frontend/src/pages/CheckUrlPage.test.jsx|UI state tests|Mock API responses|States/reset/race/non-clickable URL|DESIGN|test
+te2e|frontend/e2e/url-check.spec.js|Website end-to-end tests|Local app + fixture model|Navigation, scan flow, offline policy|DESIGN|test
+requirements|requirements.txt|Pin ML dependencies|Manifest|Reproducible Python environment|CODE|data
+pyproject|pyproject.toml|Install shared package|src-layout metadata|Backend/CLI import the same dtdlink_ml|DESIGN|data
+environment|environment.yml|Conda setup for assessors|Pinned requirements.txt|Consistent Conda environment|DESIGN|data
+readme|README.md|Rerun A2 and A3|Verified procedure|Setup/preprocess/train/eval/predict/demo|CODE|data
+dictionary|docs/feature_dictionary.md|Feature definitions|Feature names/logic|Meaning, vocabulary, limitations|CODE|data
+decisions|docs/decisions.md|Technical decisions|Team and evidence|Scope/split/model/threshold rationale|CODE|data
+contract|docs/api-contract.md|Frontend–backend contract|Schema / client usage|Endpoints, errors, score and privacy|DESIGN|data
+testplan|docs/test-plan.md|Test criteria and evidence|A1 acceptance criteria|Traceability + test results|DESIGN|data
+deployment|docs/deployment.md|Local demo instructions|Environment/artifact paths|Startup/proxy/origin/privacy config|DESIGN|data
+report|reports/assignment2-report.pdf|Evidence-based A2 report|Metrics/profiles/figures/decisions|A2 PDF following the specification|PLAN|data
+minutes|docs/meeting_minutes/*.md|Team meeting minutes|Meetings / reviews|Traceable decisions and contributions|PLAN|data
+contribution|docs/contribution-form.docx|Contribution form|Individual contributions|Signed form following the template|PLAN|data`;
+const F={};raw.trim().split('\n').forEach(line=>{const[id,path,role,input,output,source,layer]=line.split('|');F[id]={id,path,role,input,output,source,layer};});
+// Caller -> callee or writer -> file. All relations describe the full target design.
+const textRelations=`audit|raw|write/verify file|CSV from ZIP
+audit|archive|read file|Read the specified CSV member in the ZIP
+audit|auditout|write file|Summary aggregate JSON
+audit|auditdetails|write file|Four JSONL evidence files
+clean|raw|read file|Raw fingerprint/schema
+clean|cleaned|write file|url,type,target
+clean|cleanout|write file|Rules/counts/hashes
+clean|conflicts|write file|Quarantine every conflicting-label row
+features|cleaned|read file|Stream each row
+features|parser|import / call|parse_url and ParsedURL
+features|featurecsv|write file|36 features + metadata
+features|featureout|write file|Schema/counts/issues
+split|featurecsv|read file|Group by registrable_domain
+split|traincsv|write file|Train groups
+split|valcsv|write file|Validation groups
+split|testcsv|write file|Held-out test
+split|manifest|write file|Seed/groups/hashes
+split|config|import|Paths/seed
+loading|featurecsv|read file|Feature table
+loading|traincsv|read file|Train X/y
+loading|valcsv|read file|Validation X/y
+loading|testcsv|read file|Test only during final evaluation
+loading|features|schema dependency|FEATURE_NAMES; labels/metadata stay out of X
+train|loading|import / call|Read train/validation
+train|prep|import / call|Fit preprocessing on train
+train|config|import|Seed/hyperparameters
+train|eval|import / call|Validation metrics helper
+train|selected|write file|Selected model
+train|selection|write file|Comparisons and policy
+cluster|loading|import / call|Load train; caller selects one class and removes labels from X
+cluster|prep|import / call|Clustering-appropriate scaling
+cluster|cmodel|write file|Clustering pipeline
+cluster|profiles|write file|Sizes/features/examples
+eval|selected|read file|Never retune on test
+eval|loading|import / call|Load test separately after model/policy are locked
+eval|selection|read file|Threshold/uncertain policy from validation
+eval|metrics|write file|Metrics/confusion matrix
+eval|errors|write file|FP/FN/subgroup
+export|selected|read file|Selected fitted pipeline
+export|selection|read file|Locked policy
+export|features|import|FEATURE_NAMES/schema
+export|model|write file|Deployable bundle
+export|metadata|write file|Schema/labels/versions/thresholds
+predict|features|import / call|extract_features(raw URL)
+predict|model|read file|Bundle loader at startup
+predict|metadata|read file|Validate schema + policy
+service|predict|import / call|Load bundle + inference
+service|explain|import / call|Describe signals/highlights
+explain|parser|import / call|Structure and explanation locations
+api-main|service|startup call|Load once into app.state
+api-main|api-config|import|Trusted paths/origins/limits
+api-main|route-predict|include_router|POST /api/predict
+api-main|route-insights|include_router|GET /api/insights
+api-main|health|include_router|GET /api/health
+route-predict|api-schema|validate / serialize|Request/response contract
+route-predict|dependencies|dependency injection|Get the ready service
+dependencies|service|return shared service|Read app.state; do not reload
+route-predict|service|call|analyze(url)
+health|dependencies|call|Check readiness
+route-insights|insights-service|call|Retrieve aggregate data
+insights-service|insightsdata|read file|No raw samples
+api-config|beenv|read configuration|Environment template
+analytics|auditout|read file|Dataset aggregates
+analytics|featureout|read file|Feature diagnostics
+analytics|metrics|read file|Final metrics
+analytics|profiles|read file|Cluster summaries
+analytics|insightsdata|write file|Aggregate JSON
+main|app|import / render|React root
+main|css|import|Responsive styles
+app|theme|import|UI theme
+app|router|render|Router provider
+router|shell|render|Shared layout
+shell|check|render Outlet|Router-selected /check page
+shell|insightspage|render Outlet|Router-selected /insights page
+shell|how|render Outlet|Router-selected /how-it-works page
+router|check|navigate / render|/check; / redirect
+router|insightspage|navigate / render|/insights
+router|how|navigate / render|/how-it-works
+router|notfound|render|Unknown route
+shell|router|navigate|Navigation selects route; no reverse import
+check|form|render|Input/actions
+check|hook|call hook|State/loading/error/result
+hook|validation|import / call|Empty/length UX checks
+hook|client|import / call|predict(url, AbortSignal)
+client|route-predict|API request / response|POST /api/predict
+client|route-insights|API request / response|GET /api/insights
+client|health|API request / response|GET /api/health
+client|feenv|read configuration|API_BASE_URL public config
+check|result|render|Success/uncertain
+check|errorui|render|Invalid input/API failure
+result|score|render|Score + cautious label
+result|signals|render|Signal descriptions
+result|highlight|render|Escaped non-clickable URL
+insightspage|client|call|getInsights()
+insightspage|charts|render|Aggregate charts
+how|check|navigate|CTA to /check
+notfound|check|navigate|Return to /check
+index|main|load module|Browser bootstrap
+vite|index|build / serve|Frontend entry
+package|vite|tooling|Dev/build scripts
+vite|api-main|proxy request|Dev /api → loopback backend
+be-req|requirements|environment dependency|Compatible ML runtime
+pyproject|init|package install|dtdlink_ml src layout
+environment|requirements|environment dependency|Conda references pinned pip dependencies
+nb1|audit|import / call|run_audit()
+nb2|clean|import / call|run_cleaning_pipeline()
+nb3|features|import / call|Feature meaning and examples
+nb4|loading|import / call|EDA inputs
+nb4|split|import / call|Create/check split
+nb5|train|import / call|Classification experiments
+nb5|eval|import / call|Metrics/evaluation
+nb6|cluster|import / call|Clustering experiments
+tclean|clean|import / test|Contracts/hashes/repeatability
+tparse|parser|import / test|Robustness/offline
+tfeature|features|import / test|Schema/label invariance
+tenv|requirements|verify dependencies|Toy data only
+tsplit|split|import / test|Zero overlap/determinism
+tpredict|predict|import / test|Reload/raw-feature parity
+tapi|api-main|test request|FastAPI test client
+tinsights|route-insights|test request|Aggregate API contract
+tui|check|render / test|UI states/reset/race
+te2e|main|browser test|Navigation/scan flow
+te2e|api-main|integration test|Local API + fixture model
+testplan|tapi|documents|Contract/privacy evidence
+testplan|te2e|documents|Acceptance evidence
+report|metrics|uses evidence|Final results
+report|errors|uses evidence|Failure modes/limitations
+report|profiles|uses evidence|Clustering interpretation
+report|dictionary|references|Feature rationale
+report|decisions|references|Method choices
+report|auditout|uses evidence|Data collection/audit
+report|cleanout|uses evidence|Cleaning/transformation
+readme|deployment|references|A3 startup
+readme|environment|documents setup|A2 reproducibility
+contract|api-schema|specifies|Server-side JSON contract
+contract|client|specifies|Frontend contract
+minutes|decisions|records|Team review/acknowledgement
+contribution|minutes|uses evidence|Member contributions
+extra|raw|optional integration|Offline source branch, provenance required`;
+const R=textRelations.trim().split('\n').map(l=>{const[a,b,type,note]=l.split('|');return{a,b,type,note};});
+// Learning layout: short top-down flows; support dependencies stay next to their flow.
+const ns='http://www.w3.org/2000/svg';
+const make=(tag,attrs={},text)=>{const el=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;};
+function wrap(s,len=46){const lines=[];let cur='';s.split(' ').forEach(word=>{if((cur+' '+word).trim().length>len&&cur){lines.push(cur);cur=word;}else cur=(cur+' '+word).trim();});if(cur)lines.push(cur);return lines;}
+function openFile(id){document.getElementById('file-lookup').open=true;document.getElementById('group').value='all';filter();document.querySelector('#file-'+id+' details').open=true;}
+function fileLink(id){const a=document.createElement('a'),parts=F[id].path.split('/'),name=parts.at(-1),ambiguous=Object.values(F).filter(f=>f.path.split('/').pop()===name).length>1;a.href='#file-'+id;a.textContent=ambiguous?parts.slice(-2).join('/'):name;a.setAttribute('aria-label',F[id].path+' — '+F[id].role);a.addEventListener('click',()=>openFile(id));return a;}
+const S=(id,step,action,note)=>({id,step,action,note});
+const N=(stage,x,y,w=360)=>({...stage,x,y,w,h:140});
+const E=(points,label,x,y,anchor='middle')=>({points,label,x,y,anchor});
+const boards={};['overview','ml','web','tests'].forEach(id=>{const el=document.getElementById('g-'+id);el.className='flow-board';boards[id]=el;});
+const appearances={};
+function heading(target,title,description){const h=document.createElement('div');h.className='branch-heading';const t=document.createElement('h3'),p=document.createElement('p');t.textContent=title;p.textContent=description;h.append(t,p);boards[target].append(h);}
+function panel(target,spec){
+ const p=document.createElement('article');p.className='flow-panel'+(spec.wide?' wide':'');p.id=spec.id;
+ const title=document.createElement('h3'),description=document.createElement('p');title.id=spec.id+'-title';title.textContent=spec.title;description.className='caption';description.textContent=spec.description;p.append(title,description);
+ const reading=document.createElement('p');reading.className='reading-return';const back=document.createElement('a');back.href='#'+target+'-reading';back.textContent="↑ Read the numbered explanation again";reading.append(back);p.append(reading);
+ const container=document.createElement('div');container.className='diagram';p.append(container);
+ const svg=make('svg',{viewBox:'0 0 '+spec.width+' '+spec.height,role:'img','aria-labelledby':title.id,'aria-describedby':spec.id+'-description'});
+ svg.append(make('title',{},spec.title),make('desc',{id:spec.id+'-description'},spec.description));
+ const defs=make('defs'),marker=make('marker',{id:spec.id+'-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto'});
+ marker.append(make('path',{d:'M0 0 L10 5 L0 10Z',fill:'#647b91'}));defs.append(marker);svg.append(defs);
+ (spec.lanes||[]).forEach(l=>{svg.append(make('text',{x:l.x,y:l.y,class:'lane-title'},l.title));if(l.note)svg.append(make('text',{x:l.x,y:l.y+24,class:'lane-subtitle'},l.note));});
+ (spec.dividers||[]).forEach(d=>svg.append(make('line',{class:'lane-divider',x1:d[0],y1:d[1],x2:d[2],y2:d[3]})));
+ spec.edges.forEach(e=>{const at=point=>spec.nodes.find(n=>point[0]>=n.x-.5&&point[0]<=n.x+n.w+.5&&point[1]>=n.y-.5&&point[1]<=n.y+n.h+.5),from=at(e.points[0]),to=at(e.points.at(-1));svg.append(make('polyline',{class:'edge',points:e.points.map(p=>p.join(',')).join(' '),'data-from':from?.id||'','data-to':to?.id||'','data-from-step':from?.step||'','data-to-step':to?.step||'','data-relation':e.label.replaceAll('|',' '),'marker-end':'url(#'+spec.id+'-arrow)'}));const t=make('text',{class:'edge-label',x:e.x,y:e.y,'text-anchor':e.anchor});e.label.split('|').forEach((line,i)=>t.append(make('tspan',{x:e.x,dy:i?16:0},line)));svg.append(t);});
+ spec.nodes.forEach(n=>{
+  const f=F[n.id];if(!f)throw new Error('Unknown diagram file: '+n.id);
+  if(!appearances[n.id])appearances[n.id]=[];if(!appearances[n.id].some(p=>p.id===spec.id))appearances[n.id].push({id:spec.id,title:spec.title});
+  const parts=f.path.split('/'),filename=parts.pop(),a=make('a',{href:'#file-'+n.id,class:'node-link','aria-label':n.step+' · '+n.action+' · '+f.path+'. '+n.note});
+  a.addEventListener('click',()=>openFile(n.id));
+  const g=make('g',{id:spec.id+'-step-'+n.step,class:'node '+f.layer,'data-step':n.step});
+  g.append(make('rect',{class:'node-body',x:n.x,y:n.y,width:n.w,height:n.h,rx:8}),make('rect',{class:'step-badge',x:n.x+14,y:n.y+11,width:39,height:25,rx:5}),make('text',{class:'step-number',x:n.x+33.5,y:n.y+28,'text-anchor':'middle'},n.step),make('text',{class:'step-title',x:n.x+63,y:n.y+28},n.action),make('text',{class:'path',x:n.x+14,y:n.y+53},parts.join('/')||'project root'),make('text',{class:'file',x:n.x+14,y:n.y+76},filename),make('line',{class:'note-divider',x1:n.x+14,x2:n.x+n.w-14,y1:n.y+88,y2:n.y+88}));
+  const lines=wrap(n.note);if(lines.length>2)throw new Error('Long note: '+spec.id+'/'+n.id);
+  lines.forEach((line,i)=>g.append(make('text',{class:'step-note',x:n.x+14,y:n.y+109+i*18},line)));a.append(g);svg.append(a);
+  g.append(make('text',{class:'provenance',x:n.x+n.w-14,y:n.y+28,'text-anchor':'end'},f.source));
+ });
+ container.append(svg);
+ if(spec.related?.length){
+  const block=document.createElement('div');block.className='support-relations';const h=document.createElement('h4');h.textContent="Supporting links — not the next execution step";block.append(h);
+  const list=document.createElement('ul');spec.related.forEach(([from,to,type,note])=>{const li=document.createElement('li'),relation=document.createElement('span'),role=document.createElement('span');relation.className='relation-type';relation.textContent=' — '+type+' → ';role.className='file-role';role.textContent=note||F[to].role;li.append(fileLink(from),relation,fileLink(to),role);list.append(li);});block.append(list);p.append(block);
+ }
+ if(spec.next?.length){
+  const footer=document.createElement('p');footer.className='handoff';const strong=document.createElement('strong');strong.textContent="Continue to: ";footer.append(strong);
+  spec.next.forEach(([id,label,via],i)=>{if(i)footer.append(document.createTextNode(' · '));const link=document.createElement('a');link.href='#'+id;link.textContent=label;footer.append(link,document.createTextNode(' — '+via));});p.append(footer);
+ }
+ boards[target].append(p);
+}
+function chain(target,spec){
+ const nodes=spec.steps.map((stage,i)=>N(stage,120,32+i*222));
+ if(spec.arrows.length!==nodes.length-1)throw new Error('Missing chain edge: '+spec.id);
+ const edges=nodes.slice(0,-1).map((n,i)=>E([[300,n.y+140],[300,nodes[i+1].y]],spec.arrows[i],316,n.y+175,'start'));
+ panel(target,{...spec,width:600,height:nodes.at(-1).y+172,nodes,edges});
+}
+function fan(target,spec){
+ const parent=N(spec.parent,440,34),children=spec.children.map((s,i)=>N(s,30+i*410,302));
+ const edges=children.map((n,i)=>E([[620,174],[620,236],[n.x+180,236],[n.x+180,302]],spec.arrows[i],n.x+180,274));
+ panel(target,{...spec,wide:true,width:1240,height:474,nodes:[parent,...children],edges});
+}
+
+// Four connected maps. Numbers are reading order, not project status.
+function map(target,id,title,description){
+ const nodes=[],edges=[],by={};
+ const add=(key,file,col,row,step,action,note)=>{const n=N(S(file,step,action,note),40+(target==='overview'&&col===2?1:col)*500,70+row*230);nodes.push(n);by[key]=n;return key;};
+ const link=(a,b,label,via)=>{const s=by[a],t=by[b];let points,x,y,anchor='middle';
+  if(via){points=via(s,t);const p=points[1],q=points[2]||points[1];x=(p[0]+q[0])/2;y=(p[1]+q[1])/2-12;}
+  else if(s.x===t.x){points=[[s.x+180,s.y+140],[t.x+180,t.y]];x=s.x+196;y=(s.y+140+t.y)/2;anchor='start';}
+  else if(s.y===t.y){const right=t.x>s.x;points=[[s.x+(right?360:0),s.y+70],[t.x+(right?0:360),t.y+70]];x=(points[0][0]+points[1][0])/2;y=s.y+48;}
+  else {const mid=s.y+185;points=[[s.x+180,s.y+140],[s.x+180,mid],[t.x+180,mid],[t.x+180,t.y]];x=(s.x+t.x)/2+180;y=mid-12;}
+  if(via && (x<100 || x>1350)){x=s.x+180;y=s.y+180;anchor='middle';}
+  if(label==='read metadata'){x=t.x+180;y=t.y-35;}
+  if(label==="reuse shared bundle"){x=1220;y=1450;}
+  if(label==='read selected model'){x=45;y=s.y+175;anchor='start';}
+  edges.push(E(points,label,x,y,anchor));
+ };
+ return {add,link,by,finish(related=[]){panel(target,{id,title,description,wide:true,width:target==='overview'?940:1440,height:Math.max(...nodes.map(n=>n.y))+180,nodes,edges,related});}};
+}
+
+{
+ const g=map('overview','overview-flow',"From research data to a usable product","Read the left column downwards, then follow the model to the right. A2 creates ML assets; A3 reuses them without training on user requests.");
+ g.add('data','raw',0,0,'1',"Input data","Original URLs and labels for the task.");
+ g.add('features','features',0,1,'2',"Create features","After cleaning, convert URLs into numbers.");
+ g.add('train','train',0,2,'3',"Train and select","Fit train; select on validation; test last.");
+ g.add('model','model',0,3,'4',"Hand over to A3","Fitted pipeline with accompanying metadata.");
+ g.add('check','check',2,0,'5',"User enters a URL","Frontend collects input and shows state.");
+ g.add('client','client',2,1,'6',"Send request","JSON sent to FastAPI over local HTTP.");
+ g.add('route','route-predict',2,2,'7',"Backend receives","Validate and call the model service.");
+ g.add('predict','predict',2,3,'8',"Run the A2 model","Use parser/features and the loaded bundle.");
+ g.add('result','result',2,4,'9',"Display results","Score, explanations and URL highlights.");
+ g.link('data','features','data flow |via cleaning');g.link('features','train','data flow |via split / loader');g.link('train','model','data flow |via evaluate / export');
+ g.link('check','client','call / URL');g.link('client','route','API request');g.link('route','predict','call via service');g.link('model','predict','data flow:|loaded model');g.link('predict','result','data flow |JSON via API + hook');g.finish();
+}
+{
+ const g=map('ml','a2-flow',"A2 — one pipeline from raw data to the model handover","The main path runs down the left. At step 10, follow each CSV to its loader. Validation selects the model; test is only for final evaluation. Clustering is independent. Data-flow arrows do not mean a data file calls a function.");
+ const rows=[['archive','archive','1',"Data source","ZIP containing the course CSV dataset."],['audit','audit','2',"Audit and protect raw","Check data, hashes and anomalies."],['raw','raw','3',"Unchanged raw data","Preserve original URLs and source labels."],['clean','clean','4',"Clean the data","Trim, map targets, quarantine, deduplicate."],['cleaned','cleaned','5',"Cleaned data","URL, type and target after cleaning."],['features','features','6',"Extract features","36 features; labels stay in metadata."],['fcsv','featurecsv','7',"Feature table","36 features and 6 metadata columns."],['eda','nb4','8',"Explore and inspect","EDA calls the loader before splitting."],['split','split','9','Split by domain',"Create 3 sets with no shared domains."],['trcsv','traincsv','10A',"Training set","Only this set fits the classifier."],['trload','loading','11A',"Load train","Separate X_train, y_train and metadata."],['prep','prep','12','Fit preprocessing',"Fit train; only transform validation."],['train','train','13',"Train and select","Compare LR/Decision Tree on validation."],['selected','selected','14',"Selected pipeline","Fitted preprocessing and classifier."],['eval','eval','15',"Final test","Transform/predict; no fitting or tuning."],['export','export','16',"Package handover","Save model/contract; never fit test."],['model','model','17A','Model inference',"A3 loads this once at startup."]];
+ rows.forEach((r,i)=>g.add(r[0],r[1],0,i,...r.slice(2)));
+ ['read ZIP','write / verify','read CSV','write CSV','read CSV','write CSV','data flow','call split','write CSV','read CSV','data flow: X_train','fitted transform','write pipeline','read / predict',"data flow: evaluation passed",'write joblib'].forEach((l,i)=>g.link(rows[i][0],rows[i+1][0],l));
+ g.add('parser','parser',1,5,'6a',"Parse URL","Offline; no target access or web lookup.");g.link('features','parser','import / call');
+ g.add('edaload','loading',1,7,'8a',"Load table for EDA","Check schema; separate X/y/metadata.");g.link('eda','edaload','import / call');
+ g.add('auditout','auditout',1,1,'2a',"Audit evidence","Counts, source, labels and diagnostics.");g.link('audit','auditout','write JSON');
+ g.add('vcsv','valcsv',1,9,'10B',"Selection set","Select model, threshold, uncertain policy.");g.add('tcsv','testcsv',2,9,'10C',"Final test set","Keep separate until choices are locked.");
+ g.link('split','vcsv','write validation');g.link('split','tcsv','write test');
+ g.add('vload','loading',1,10,'11B',"Load validation","X_val, y_val; never merge into train.");g.link('vcsv','vload','read CSV');
+ g.add('tload','loading',2,10,'11C',"Load final test","X_test, y_test only go to evaluation.");g.link('tcsv','tload','read CSV');
+ g.link('vload','train','data flow: validation', (s,t)=>[[s.x+180,s.y+140],[s.x+180,t.y+70],[t.x+360,t.y+70]]);
+ g.link('tload','eval','data flow: held-out test',(s,t)=>[[s.x+360,s.y+70],[1420,s.y+70],[1420,t.y-25],[t.x+300,t.y-25],[t.x+300,t.y]]);
+ g.add('selection','selection',1,13,'14a',"Lock decisions","Model, threshold and uncertain policy.");g.link('train','selection','write policy');g.link('selection','eval','read locked policy');
+ g.add('metadata','metadata',1,16,'17B',"Model contract",'Feature order, versions, labels, policy.');g.link('export','metadata','write JSON');
+ g.link('selected','export','read selected model',(s,t)=>[[s.x,s.y+70],[15,s.y+70],[15,t.y+70],[t.x,t.y+70]]);
+ g.link('selection','export','read policy',(s,t)=>[[s.x+360,s.y+70],[960,s.y+70],[960,t.y+70],[t.x+360,t.y+70]]);
+ g.add('errors','errors',1,14,'15b',"Error analysis","Save FP/FN to inspect model errors.");g.link('eval','errors','write CSV');
+ g.add('cprep','prep',2,11,'C1',"Clustering branch","Caller selects one train class; removes y.");
+ g.link('trload','cprep',"data flow: one train class");
+ g.add('cluster','cluster',2,12,'C2',"Find URL groups","Fit separate preprocessing on that class.");g.link('cprep','cluster','data flow: transformed X');
+ g.add('profiles','profiles',2,13,'C3',"Describe groups","Compare cluster features and sizes.");g.link('cluster','profiles','write profiles');
+ g.add('metrics','metrics',2,15,'15a',"Final metrics","Test results for the report and Insights.");g.link('eval','metrics','write metrics');
+ g.add('analytics','analytics',2,17,'18',"Build Insights data","Combine audit, metrics and profiles.");
+ g.link('metrics','analytics','read metrics');
+ g.link('profiles','analytics','read profiles',(s,t)=>[[s.x+360,s.y+70],[1405,s.y+70],[1405,t.y+70],[t.x+360,t.y+70]]);
+ g.add('insights','insightsdata',2,18,'19',"Statistics handover","Aggregate JSON; no user scan history.");g.link('analytics','insights','write JSON');
+ g.finish([['analytics','auditout','read file',"Audit summary is an aggregation input."],['cluster','cmodel','write file',"Save the clustering pipeline for reproducibility."],['eval','errors','write CSV',"Save FP/FN for error analysis."],['split','manifest','write file',"Seed, hashes and no-overlap evidence."],['clean','conflicts','write CSV',"Quarantine conflicting labels."],['nb1','audit','import / call',"Notebook records audit evidence."],['nb2','clean','import / call',"Notebook records cleaning evidence."],['nb3','features','import / call',"Explore feature rationale."],['nb5','train','import / call',"Classification experiment notebook."],['nb6','cluster','import / call',"Clustering experiment notebook."]]);
+}
+{
+ const g=map('web','a3-flow',"A3 — from opening the website to receiving results","Read down the centre. Other pages and Insights are on the left; startup, validation and explanations are on the right. Repeated filenames show the same file at different moments, not extra modules.");
+ const rows=[['index','index','1',"Open website","Create DOM root and load React entry."],['main','main','2','Mount React',"Import App and stylesheet."],['app','app','3',"Build application","Providers and navigation configuration."],['router','router','4',"Choose screen",'/check, /insights, /how-it-works.'],['shell','shell','5','Shared layout',"Navigation and outlet display the page."],['check','check','6',"URL checking page","Arrange form, state and results."],['form','form','7',"Enter and submit","Emit onSubmit(url) or reset."],['hook','hook','8',"Manage interaction",'Validate → loading → result / error.'],['client','client','9',"Send valid URL","POST /api/predict; sanitize errors."],['route','route-predict','10',"Receive API request","Schema checks input; get shared service."],['service','service','11',"Process request","Reuse loaded bundle; never retrain."],['predict','predict','12','Inference ML','Features → pipeline → score / assessment.'],['merged','service','13',"Combine results","Merge predictions with explanation signals."],['returnroute','route-predict','14',"Return response","Serialize PredictionResponse; no URL echo."],['returnclient','client','15',"Receive JSON","Response or sanitized 422 / 503 error."],['returnhook','hook','16',"Update state","Discard stale responses; stop loading."],['result','result','17',"Display results","Via CheckUrlPage: result or uncertain."]];
+ rows.forEach((r,i)=>g.add(r[0],r[1],1,i,...r.slice(2)));
+ ['import / render','import / render','import / render','render outlet','navigate / render','render','event / data flow',"call if valid",'API request','call','call','data flow: prediction','return DTO','API response','return data','state / render'].forEach((l,i)=>g.link(rows[i][0],rows[i+1][0],l));
+ g.add('how','how',0,4,'5a',"Help page","Usage, limitations and privacy.");g.link('shell','how','navigate');
+ g.add('ipage','insightspage',0,5,'5b','Insights page',"Request A2 research statistics.");g.link('shell','ipage','navigate');
+ g.add('iclient','client',0,6,'I1',"Request statistics","GET /api/insights; no submitted URL.");g.link('ipage','iclient','call');
+ g.add('iroute','route-insights',0,7,'I2','Endpoint Insights',"Return validated aggregate JSON.");g.link('iclient','iroute','API request');
+ g.add('iservice','insights-service',0,8,'I3',"Read A2 statistics","Read artifact; return data through API.");g.link('iroute','iservice','call');
+ g.add('idata','insightsdata',0,9,'I4',"Artifact from part 02","Contains no user scan history.");g.link('iservice','idata','read JSON');
+ g.add('charts','charts',0,10,'I5',"Display charts",'JSON → API → InsightsPage → charts.');g.link('idata','charts','data flow via API / page');
+ g.add('startup','api-main',2,0,'S1',"Start backend","Register routes; run lifespan once.");
+ g.add('loadservice','service',2,1,'S2',"Create shared service","Load bundle and check readiness.");g.link('startup','loadservice','startup call');
+ g.add('loadpredict','predict',2,2,'S3',"Load trusted bundle","Only team-produced model and metadata.");g.link('loadservice','loadpredict','call loader');
+ g.add('model','model',2,3,'S4',"Model from part 02","Fitted preprocessing and classifier.");g.link('loadpredict','model','read joblib');
+ g.add('metadata','metadata',2,4,'S5',"Contract from part 02","Schema, version and score policy.");g.link('loadpredict','metadata','read metadata',(s,t)=>[[s.x+360,s.y+70],[1405,s.y+70],[1405,t.y+70],[t.x+360,t.y+70]]);
+ g.add('validation','validation',2,7,'8a',"Frontend validation","Reject empty/overlong input before API.");g.link('hook','validation','import / call');
+ g.add('error','errorui',2,8,'8b',"Display error","Hook/page render input or API errors.");g.link('validation','error','data flow: invalid');g.link('client','error',"data flow: API error");
+ g.add('schema','api-schema',2,9,'10a',"Server validation","Request/response contract; error 422.");g.link('route','schema','import / validate');
+ g.add('deps','dependencies',2,10,'10b',"Get shared service","Return ready service or error 503.");g.link('route','deps','call dependency');g.link('deps','service','data flow: service');
+ g.add('features','features',0,11,'12a',"Reuse A2 features","Raw URL → schema-aligned numeric features.");g.link('predict','features','import / call');
+ g.add('parser','parser',0,12,'12b',"Shared parser","Parse offline and return ParsedURL.");g.link('features','parser','import / call');
+ g.add('explain','explain',2,11,'12c',"Create signals","Use URL, ParsedURL and features.");g.link('predict','explain','data flow |via service');g.link('explain','merged','data flow: signals');
+ g.link('loadservice','service',"reuse shared bundle",(s,t)=>[[s.x+360,s.y+70],[1420,s.y+70],[1420,t.y+185],[t.x+420,t.y+185],[t.x+420,t.y+70],[t.x+360,t.y+70]]);
+ g.add('score','score',0,17,'18A',"Score and assessment","Cautious label; no safety guarantee.");g.add('signals','signals',1,17,'18B',"Signal list","Explain observed warning signs.");g.add('highlight','highlight',2,17,'18C','Highlight URL',"Escaped text; never auto-open the URL.");
+ g.link('result','score','render');g.link('result','signals','render');g.link('result','highlight','render');
+ g.finish([['loadpredict','metadata','read file',"Loader checks metadata alongside the model."]].map(([a,b,t,n])=>[a==='loadpredict'?'predict':a,b,t,n]).concat([['route-predict','api-schema','serialize',"Responses also follow this schema."],['check','result','render',"Hook results become component props."],['hook','errorui','state / render',"Via CheckUrlPage, including input/API errors."],['main','css','import',"Responsive layout and keyboard focus."],['app','theme','import','Theme chung.'],['router','notfound','navigate','Fallback route.'],['api-main','health','register route',"Readiness for testing and demos."]]));
+}
+{
+ const g=map('tests','delivery-flow',"Testing and handover documents","Test rows are independent, not a required execution sequence. The bottom connects research evidence and reproducibility instructions to handover files.");
+ const tests=[['tclean','clean','1','Cleaning'],['tparse','parser','2','Parser offline'],['tfeature','features','3','Feature contract'],['tsplit','split','4',"No leakage"],['tpredict','predict','5','Reload / inference'],['tapi','api-main','6','API integration'],['tui','check','7',"UI states"],['te2e','main','8','End-to-end']];
+ tests.forEach(([a,b,s,label],i)=>{g.add(a,a,0,i,s,"Test "+label,"Use fixtures to check the relevant behaviour.");g.add(b,b,1,i,s+'a',"Component under test",F[b].role);g.link(a,b,'import / test');});
+ g.add('metrics','metrics',0,8,'9',"Model evidence","Metrics, error analysis and figures.");g.add('report','report',1,8,'10','Report Assignment 2',"Summarize methods, results and limitations.");g.link('metrics','report','data flow: evidence');
+ g.add('profiles','profiles',0,9,'9a',"Clustering evidence","Cluster profiles and research interpretation.");g.link('profiles','report','data flow: evidence',(s,t)=>[[s.x+360,s.y+70],[470,s.y+70],[470,t.y+70],[t.x,t.y+70]]);
+ g.add('readme','readme',1,10,'11',"Reproduction guide",'Setup → preprocess → train → eval → demo.');
+ g.add('deployment','deployment',2,10,'11a',"Run the A3 demo","Paths, proxy, origins and privacy.");g.link('readme','deployment','references');
+ g.add('testplan','testplan',2,8,'10a',"Test evidence","Record criteria, steps and actual results.");g.link('testplan','report','references');
+ g.add('minutes','minutes',0,11,'12',"Team minutes","Traceable decisions and contributions.");g.add('contribution','contribution',1,11,'13','Contribution form',"Summarize contributions; sign required form.");g.link('minutes','contribution','data flow: evidence');
+ g.finish([['report','auditout','uses evidence',"Data provenance and quality."],['report','cleanout','uses evidence',"Cleaning and record counts."],['report','dictionary','references',"Feature definitions."],['readme','environment','documents setup',"Reproducible environment."],['readme','model','documents usage',"Handover ZIP includes code, processed data and models."],['tinsights','route-insights','test request',"Aggregate schema; do not expose user URLs."]] );
+}
+
+const notes={loading:"The filename appears in the master plan, but the module was not present in the reviewed source. Loading/schema/X-y-metadata and callers are target designs. Do not confuse it with load_and_prepare_dataset() in data_cleaning.py, which handles raw input rather than split loading.",prep:"Proposed module centralizing preprocessing. Trainer/clustering orchestrate fitting on train (or one train class for clustering); validation/test/inference only transform. The loader does not call training itself.",clean:"Code order: trim → target mapping → quarantine conflicts → deduplicate. Hash raw data before and after.",parser:"ParsedURL has 18 fields. tldextract uses suffix_list_urls=(), fallback_to_snapshot=True, cache_dir=None.",features:"Only internal import is url_parser.py. Labels are copied into metadata, not used in feature calculations.",config:"New modules use shared configuration. This does not imply existing code already imports config.py.",train:"Logistic Regression and Decision Tree baselines; select model/threshold on validation, not test.",eval:"Training may call metric helpers on validation; final-evaluation CLI only reads the selected pipeline and locked test.",model:"The bundle contains fitted preprocessing and classifier. Load only team-produced artifacts with matching metadata.",metadata:"Feature order, label mapping, model/policy versions, threshold, uncertain band, hashes and dependency versions.",result:"Use cautious response wording; do not claim a URL is safe. Uncertain is a display state based on the evaluated policy.",service:"Load once at startup; fail readiness for schema/version mismatches. Never train during HTTP requests or log URL payloads.",explain:"Signals are observed evidence, not automatically model attribution. Map returned spans from analysis copies to raw text and check bounds.",insightsdata:"Only selected aggregate data; no raw samples or submitted URLs in the response.",extra:"Optional branch requiring rationale, provenance and scope agreement. No online enrichment during prediction.",readme:"Extend the existing README to cover both A2 and A3; this does not claim those instructions already exist."};
+const tbody=document.getElementById('catalog');Object.values(F).forEach(f=>{const tr=document.createElement('tr');tr.id='file-'+f.id;tr.dataset.layer=f.layer;const a=document.createElement('td'),c=document.createElement('code');c.textContent=f.path;a.append(c);const source=document.createElement('span');source.className='source';source.textContent=f.source+' · '+({CODE:"reviewed code/file evidence",PLAN:"filename in the master plan",DESIGN:"proposed architecture"}[f.source]);a.append(source);const b=document.createElement('td'),strong=document.createElement('strong');strong.textContent=f.role;b.append(strong);const io=document.createElement('p');io.textContent="Input: "+f.input+" → Output: "+f.output;b.append(io);const views=appearances[f.id];if(views?.length){const map=document.createElement('p');map.className='diagram-links';map.append(document.createTextNode("Shown in: "));views.forEach(view=>{const a=document.createElement('a');a.href='#'+view.id;a.textContent=view.title;map.append(a);});b.append(map);}if(notes[f.id]){const p=document.createElement('p');p.className='small';p.textContent=notes[f.id];b.append(p);}const d=document.createElement('details'),s=document.createElement('summary');s.textContent="View callers, callees and data exchanges";d.append(s);const ul=document.createElement('ul');R.filter(r=>r.a===f.id||r.b===f.id).forEach(r=>{const incoming=r.b===f.id,other=F[incoming?r.a:r.b];const li=document.createElement('li'),a=document.createElement('a');a.href='#file-'+other.id;a.textContent=other.path;a.addEventListener('click',()=>{document.getElementById('group').value='all';filter();});li.append(document.createTextNode(incoming?'← ':'→ '),a,document.createTextNode(' · '+r.type+' · '+r.note));ul.append(li);});d.append(ul);b.append(d);tr.append(a,b);tbody.append(tr);});
+const prefixes=['src/dtdlink_ml/','frontend/','backend/','data/','models/','notebooks/','tests/','reports/','docs/'];prefixes.forEach(prefix=>{const d=document.createElement('details'),s=document.createElement('summary'),ul=document.createElement('ul');s.textContent=prefix;d.append(s);Object.values(F).filter(f=>f.path.startsWith(prefix)).forEach(f=>{const li=document.createElement('li'),a=document.createElement('a');a.href='#file-'+f.id;a.textContent=f.path.slice(prefix.length);a.addEventListener('click',()=>{document.getElementById('group').value='all';filter();});li.append(a);ul.append(li);});d.append(ul);document.getElementById('tree').append(d);});
+function filter(){const group=document.getElementById('group').value;let n=0;document.querySelectorAll('#catalog tr').forEach(tr=>{tr.hidden=group!=='all'&&tr.dataset.layer!==group;if(!tr.hidden)n++;});document.getElementById('count').textContent=n+' / '+Object.keys(F).length+" files or file groups";}
+window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#file-'))document.getElementById('file-lookup').open=true;});
+if(location.hash.startsWith('#file-'))document.getElementById('file-lookup').open=true;
+document.getElementById('group').addEventListener('change',filter);document.getElementById('print').addEventListener('click',()=>{document.getElementById('file-lookup').open=true;document.getElementById('group').value='all';filter();window.print();});filter();
+})();
+</script></body></html>

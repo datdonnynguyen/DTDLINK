@@ -1,0 +1,13 @@
+model,source_type,rows,correct,missed_dangerous,false_alarms
+logistic_regression,benign,86400,76326,0,10074
+logistic_regression,phishing,18993,10841,8152,0
+logistic_regression,malware,4814,4554,260,0
+logistic_regression,defacement,19125,18652,473,0
+decision_tree,benign,86400,76205,0,10195
+decision_tree,phishing,18993,16879,2114,0
+decision_tree,malware,4814,4614,200,0
+decision_tree,defacement,19125,18835,290,0
+random_forest,benign,86400,79043,0,7357
+random_forest,phishing,18993,16667,2326,0
+random_forest,malware,4814,4617,197,0
+random_forest,defacement,19125,18890,235,0

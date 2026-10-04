@@ -1,0 +1,84 @@
+{
+  "decisions": {
+    "feature_removal": {
+      "reason": "correlation and class comparisons are diagnostic; removal requires validation evidence in Stage 5",
+      "status": "none in Stage 4"
+    },
+    "scaling": {
+      "fit_scope": "training rows only",
+      "implementation_stage": "Stage 5 model pipeline",
+      "status": "required for scale-sensitive models"
+    },
+    "test_set": {
+      "allowed_next_use": "one final evaluation in Stage 7",
+      "prohibited_uses": [
+        "feature selection",
+        "transformation fitting",
+        "model selection",
+        "hyperparameter tuning",
+        "threshold selection"
+      ],
+      "status": "locked"
+    },
+    "tld_frequency": {
+      "fit_scope": "training rows only if selected",
+      "status": "optional candidate; not created in Stage 4",
+      "unknown_value_rule": "must be documented before implementation"
+    }
+  },
+  "feature_schema_unchanged": true,
+  "metadata_excluded_from_numeric_model_input": [
+    "url",
+    "type",
+    "target",
+    "registrable_domain",
+    "tld",
+    "parse_issues"
+  ],
+  "model_input_features": [
+    "url_length",
+    "host_length",
+    "path_length",
+    "query_length",
+    "fragment_length",
+    "tld_length",
+    "dot_count",
+    "hyphen_count",
+    "digit_count",
+    "special_character_count",
+    "subdomain_count",
+    "path_segment_count",
+    "query_parameter_count",
+    "suspicious_term_count",
+    "brand_token_count",
+    "non_ascii_count",
+    "parse_issue_count",
+    "has_scheme",
+    "uses_https",
+    "has_explicit_port",
+    "has_nonstandard_port",
+    "has_ip_host",
+    "has_at_symbol",
+    "has_userinfo",
+    "has_suspicious_term",
+    "brand_in_subdomain",
+    "brand_in_userinfo",
+    "brand_in_path_or_query",
+    "has_unicode",
+    "has_confusable_unicode",
+    "has_percent_encoding",
+    "has_encoded_separator",
+    "has_control_character",
+    "host_has_punycode",
+    "has_unknown_tld",
+    "parse_ok"
+  ],
+  "training_observations": {
+    "constant_features": [
+      "brand_in_userinfo",
+      "has_confusable_unicode"
+    ],
+    "correlation_threshold": 0.85,
+    "high_correlation_pair_count": 3
+  }
+}

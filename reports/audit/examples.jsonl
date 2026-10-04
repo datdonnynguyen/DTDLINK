@@ -1,0 +1,12 @@
+{"record_number": 3, "label": "benign", "length_quantile": 0.25, "url": "bopsecrets.org/rexroth/cr/1.htm", "length": 31}
+{"record_number": 8, "label": "benign", "length_quantile": 0.5, "url": "yourbittorrent.com/?q=anthony-hamilton-soulife", "length": 46}
+{"record_number": 221, "label": "benign", "length_quantile": 0.75, "url": "elliscountydivorcelawyer.com/ellis-county-post-divorce-modification.htm", "length": 71}
+{"record_number": 69, "label": "defacement", "length_quantile": 0.25, "url": "http://www.musimagen.com/lista_socios.php?letra=\\303%91", "length": 55}
+{"record_number": 138, "label": "defacement", "length_quantile": 0.5, "url": "http://www.paoarapanui.cl/index.php?option=com_contact&view=contact&id=1&Itemid=6", "length": 81}
+{"record_number": 1616, "label": "defacement", "length_quantile": 0.75, "url": "http://gbcmonroe.org/index.php?option=com_jevents&task=week.listevents&year=2013&month=02&day=3&Itemid=67", "length": 105}
+{"record_number": 102868, "label": "malware", "length_quantile": 0.25, "url": "magedecorland.mediadevstaging.com", "length": 33}
+{"record_number": 1529, "label": "malware", "length_quantile": 0.5, "url": "socialsocietyedu.com/components/com_wa/config.bin", "length": 49}
+{"record_number": 441, "label": "malware", "length_quantile": 0.75, "url": "http://grasslandhotel.com.vn/index.php/component/djcatalog2/items/6-services", "length": 76}
+{"record_number": 503, "label": "phishing", "length_quantile": 0.25, "url": "ammmmazonm.temp.swtest.ru", "length": 25}
+{"record_number": 1304, "label": "phishing", "length_quantile": 0.5, "url": "prosdyuqnsdwxm.intend-incredible.ru", "length": 35}
+{"record_number": 875, "label": "phishing", "length_quantile": 0.75, "url": "account-security-centre20181712.000webhostapp.com", "length": 49}

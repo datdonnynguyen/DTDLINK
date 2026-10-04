@@ -1,0 +1,103 @@
+{
+  "feature_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
+  "manifest_sha256": "fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f",
+  "feature_names": [
+    "url_length",
+    "host_length",
+    "path_length",
+    "query_length",
+    "fragment_length",
+    "tld_length",
+    "dot_count",
+    "hyphen_count",
+    "digit_count",
+    "special_character_count",
+    "subdomain_count",
+    "path_segment_count",
+    "query_parameter_count",
+    "suspicious_term_count",
+    "brand_token_count",
+    "non_ascii_count",
+    "parse_issue_count",
+    "has_scheme",
+    "uses_https",
+    "has_explicit_port",
+    "has_nonstandard_port",
+    "has_ip_host",
+    "has_at_symbol",
+    "has_userinfo",
+    "has_suspicious_term",
+    "brand_in_subdomain",
+    "brand_in_userinfo",
+    "brand_in_path_or_query",
+    "has_unicode",
+    "has_confusable_unicode",
+    "has_percent_encoding",
+    "has_encoded_separator",
+    "has_control_character",
+    "host_has_punycode",
+    "has_unknown_tld",
+    "parse_ok"
+  ],
+  "split_counts": {
+    "train": 384832,
+    "validation": 129332,
+    "test": 126949
+  },
+  "fit_split": "train",
+  "comparison_split": "validation",
+  "test_used_for_modelling_or_metrics": false,
+  "models": [
+    "logistic_regression",
+    "decision_tree",
+    "random_forest"
+  ],
+  "model_settings": {
+    "logistic_regression": {
+      "scaler": "StandardScaler fit on train",
+      "solver": "liblinear",
+      "max_iter": 500
+    },
+    "decision_tree": {
+      "max_depth": 12,
+      "min_samples_leaf": 100,
+      "random_state": 42
+    },
+    "random_forest": {
+      "n_estimators": 100,
+      "max_depth": 12,
+      "min_samples_leaf": 100,
+      "max_features": "sqrt",
+      "class_weight": "balanced_subsample",
+      "random_state": 42,
+      "n_jobs": 2
+    }
+  },
+  "class_weight": "balanced for logistic regression/decision tree; balanced_subsample for random forest",
+  "default_threshold": 0.5,
+  "thresholds_reviewed": [
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8
+  ],
+  "final_model_selected": true,
+  "final_threshold_selected": true,
+  "selected_model": "random_forest",
+  "selected_threshold": 0.5,
+  "selected_validation_metrics": {
+    "model": "random_forest",
+    "threshold": 0.5,
+    "accuracy": 0.9217904308291838,
+    "precision": 0.8452168058740611,
+    "recall": 0.935758874499208,
+    "f1": 0.8881863303228944,
+    "true_negative": 79043,
+    "false_positive": 7357,
+    "false_negative": 2758,
+    "true_positive": 40174
+  }
+}

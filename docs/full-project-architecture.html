@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DTDLINK · Toàn bộ Assignment 2 + 3</title>
+<style>
+:root{--ink:#172c44;--muted:#52657b;--border:#cad5e1;--paper:#fff;--bg:#f5f7fb;--ml:#e9f2ff;--ml-line:#4679b5;--web:#f0ebff;--web-line:#8264bd;--api:#e5f4f0;--api-line:#488875;--data:#fff3db;--data-line:#a88437;--test:#f5edf1;--test-line:#9a6880}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}header,main,footer{max-width:1320px;margin:auto;padding:30px 36px}header{padding-top:46px;padding-bottom:10px}h1{font-size:36px;line-height:1.2;letter-spacing:-.035em;margin:12px 0 18px;font-weight:650}h2{font-size:25px;font-weight:600;margin:0 0 10px}h3{font-size:18px;font-weight:600;margin:0 0 10px}p{margin:8px 0 16px}a{color:#245e9f}code,pre{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}code{overflow-wrap:anywhere}pre{padding:14px;background:var(--bg);border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-size:12px}.intro,.caption{color:var(--muted);max-width:1130px}.caption{font-size:15px}.purpose,.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}.purpose{margin:22px 0}.purpose>div{border-left:3px solid var(--ml-line);padding:12px 18px;background:var(--paper)}.purpose>div:last-child{border-color:var(--web-line)}.purpose strong{display:block;margin-bottom:6px}.purpose p{margin:0}.menu{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.menu a,button{font:inherit;text-decoration:none;border:1px solid var(--border);background:var(--paper);border-radius:6px;padding:8px 12px;color:var(--ink);cursor:pointer}.menu a:hover,button:hover{background:var(--ml)}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.legend i{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid}.legend .ml{background:var(--ml);border-color:var(--ml-line)}.legend .web{background:var(--web);border-color:var(--web-line)}.legend .api{background:var(--api);border-color:var(--api-line)}.legend .data{background:var(--data);border-color:var(--data-line)}main{padding-top:10px}section{margin-bottom:44px;scroll-margin-top:24px}.section-head{display:flex;gap:14px;align-items:baseline}.num{font:500 18px ui-monospace,monospace;color:var(--ml-line)}.diagram{background:var(--paper);border:1px solid var(--border);border-radius:10px;overflow:auto;margin:16px 0}.diagram svg{display:block;width:100%;height:auto;min-width:1050px}.node rect{fill:var(--ml);stroke:var(--ml-line);stroke-width:1.2}.node.web rect{fill:var(--web);stroke:var(--web-line)}.node.api rect{fill:var(--api);stroke:var(--api-line)}.node.data rect{fill:var(--data);stroke:var(--data-line)}.node.test rect{fill:var(--test);stroke:var(--test-line)}.node text{fill:var(--ink);font-size:14px}.node .path{font:12px system-ui;fill:var(--muted)}.node .file{font:600 14px ui-monospace,monospace}.edge{fill:none;stroke:#647b91;stroke-width:1.5}.edge-label{font:12px system-ui;fill:#3a536a;paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round}.node-link:hover rect,.node-link:focus rect{stroke-width:2.8}.note{padding:14px 18px;border-left:3px solid var(--border);background:var(--paper);font-size:15px;margin:14px 0}.box{padding:20px;border:1px solid var(--border);background:var(--paper);border-radius:8px;min-width:0}.box ul{padding-left:20px}.box li+li{margin-top:6px}.small{font-size:13px;color:var(--muted)}.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0}.flow span{background:var(--paper);border:1px solid var(--border);border-radius:5px;padding:7px 12px}.catalog-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:20px 0}select{font:inherit;padding:8px;border:1px solid var(--border);background:var(--paper);border-radius:6px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--border)}th{font-weight:500;color:var(--muted)}td:first-child{width:30%;min-width:220px}tr:target{background:#e7effc}details summary{cursor:pointer;color:#245e9f}details li{margin:6px 0;font-size:13px}.source{display:block;font-size:11px;color:var(--muted);margin-top:6px}.tree{columns:2;column-gap:30px}.tree details{break-inside:avoid;margin-bottom:16px}.tree summary{font-weight:600}.tree a{text-decoration:none;font-size:13px}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--border)}.acceptance{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.acceptance>div{border-top:3px solid var(--border);padding-top:12px}.acceptance p{font-size:14px}
+.legend-help{margin:26px 0 18px}.legend-help h2{font-size:20px}.legend-help>p{font-size:14px;color:var(--muted)}.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;font-size:14px;color:var(--ink)}.legend-item{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start}.legend-item i{width:14px;height:14px;margin-top:5px}.legend-item strong{display:block;font-size:15px;margin-bottom:4px}.legend-item p{margin:0 0 5px}.legend-item code{font-size:12px;color:var(--muted)}.legend .test{background:var(--test);border-color:var(--test-line)}.reading-key{font-size:14px;padding:12px 0;border-top:1px solid var(--border);margin:20px 0 0}.diagram-guide{font-size:14px;padding:14px 18px;margin:0;border-bottom:1px solid var(--border);color:var(--muted)}.diagram-guide strong{color:var(--ink)}.node .step-badge{fill:var(--paper);stroke:var(--border);stroke-width:1}.node .step-number{font:600 12px ui-monospace,monospace;fill:var(--ink)}.node .step-title{font:600 12px system-ui;fill:var(--ink)}.node .step-note{font:12px system-ui;fill:#3a536a}.node .note-divider{stroke:var(--border);stroke-width:1}.node-link:hover .step-badge,.node-link:focus .step-badge{stroke-width:1}.diagram svg{min-width:1150px}
+.flow-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:22px 0}.flow-panel{min-width:0;align-self:start;scroll-margin-top:20px}.flow-panel.wide{grid-column:1/-1}.flow-panel h3{font-size:19px;margin:0 0 6px}.flow-panel>.caption{font-size:14px;min-height:44px}.flow-panel .diagram{margin:12px 0 0;border-radius:8px 8px 0 0}.flow-panel .diagram svg{min-width:540px}.flow-panel.wide .diagram svg{min-width:1120px}.flow-panel .step-note{font:13px system-ui;fill:#3a536a}.flow-panel .step-title{font:600 13px system-ui}.flow-panel .lane-title{font:600 17px system-ui;fill:var(--ink)}.flow-panel .lane-subtitle{font:13px system-ui;fill:var(--muted)}.flow-panel .lane-divider{stroke:var(--border);stroke-width:1}.flow-panel .edge-label{font-size:12px}.support-relations{padding:14px 18px;background:var(--paper);border:1px solid var(--border);border-top:0}.support-relations h4{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--muted)}.support-relations ul{padding:0;margin:0;list-style:none}.support-relations li{font-size:13px;padding:7px 0;overflow-wrap:anywhere}.support-relations li+li{border-top:1px solid var(--border)}.support-relations .relation-type{color:var(--muted)}.support-relations .file-role{display:block;margin-top:3px;color:var(--muted)}.handoff{margin:0;padding:12px 18px;background:var(--bg);border:1px solid var(--border);border-top:0;font-size:14px}.handoff strong{font-weight:600}.branch-heading{grid-column:1/-1;padding:14px 0 0;border-top:1px solid var(--border)}.branch-heading h3{margin:0 0 5px}.branch-heading p{font-size:14px;margin:0;color:var(--muted)}.flow-panel .step-badge{fill:var(--paper)!important;stroke:var(--border)!important}.flow-panel .node-link:hover .node-body,.flow-panel .node-link:focus .node-body{stroke-width:2.5}
+.flow-panel:not(.wide) .diagram svg{max-width:600px;margin:0 auto}
+.node .provenance{font:11px ui-monospace,monospace;fill:var(--muted)}.diagram-links{font-size:13px;margin:8px 0;color:var(--muted)}.diagram-links a{display:inline-block;margin:3px 8px 3px 0}
+@media(max-width:1100px){.flow-board{grid-template-columns:1fr}.flow-panel>.caption{min-height:0}}
+@media(max-width:800px){header,main,footer{padding:22px 16px}h1{font-size:29px}.purpose,.columns,.acceptance,.legend{grid-template-columns:1fr}.tree{columns:1}.menu a,button{min-height:44px}}
+@media print{.flow-board{display:block}.flow-panel{break-before:page}.flow-panel .diagram svg{min-width:0!important;max-height:175mm}.flow-panel.wide .diagram svg{max-height:183mm}.flow-panel>.caption{min-height:0}.support-relations,.handoff{font-size:11px}.support-relations li{font-size:11px}.branch-heading{break-after:avoid}}
+@media print{@page{size:A3 landscape;margin:12mm}body{background:white;font-size:12px}header,main,footer{max-width:none;padding:0}.menu,button,.catalog-controls{display:none}section{break-before:page}.diagram{border:0;overflow:visible;break-inside:avoid}.diagram svg{min-width:0;width:100%;max-height:199mm}h1{font-size:26px}h2{font-size:20px}.caption,.note{font-size:12px}tr{break-inside:avoid}.tree{columns:3}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.flow-board{display:block}.flow-panel{margin:18px 0}.flow-panel.wide .diagram svg{min-width:1440px}.support-relations{font-size:14px}.support-relations ul{columns:2;column-gap:32px}.support-relations li{break-inside:avoid}.legend-help{margin-top:18px}.legend-help summary{font-size:18px;font-weight:600}.node .step-title{font-size:12px}.node .provenance{font-size:10px}@media(max-width:700px){.support-relations ul{columns:1}}
+.flow-panel.wide .diagram svg{min-width:1200px;width:100%}.flow-panel .edge-label{font-size:14px}.flow-panel .node .step-note{font-size:14px}.flow-panel .node .path{font-size:13px}#overview-flow .diagram svg{min-width:850px;max-width:1100px;margin:auto}
+.walkthrough{max-width:1000px;margin:20px 0 30px;line-height:1.75}.walkthrough h3{margin-bottom:14px}.walkthrough p{margin:0 0 18px}.walkthrough .step-ref{font-weight:600;text-decoration-thickness:1px;text-underline-offset:3px}.walkthrough code{font-size:14px}.node:target .node-body{stroke:var(--ink);stroke-width:3}.reading-return{font-size:14px;margin:4px 0 12px}
+.walkthrough{max-width:920px}.walkthrough .step-ref{display:inline-block;margin-bottom:5px}.file-follow{display:block;margin-top:8px;color:var(--muted);font-size:14px;line-height:1.6}.file-follow code{font-size:13px}
+.numbered-reading{list-style:none;padding:0;margin:18px 0 28px}.numbered-reading li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;margin-bottom:16px}.numbered-reading li>p{margin:0}.numbered-reading .step-ref{font:600 14px/1.6 ui-monospace,monospace;margin:2px 0 0}.numbered-reading code{font-weight:600}.walkthrough{max-width:1000px}
+</style></head><body>
+<header id="top"><div class="eyebrow">DTDLINK / Kiến trúc đích của toàn sản phẩm / Assignment 2 + 3</div><h1>Tất cả các file phối hợp thành sản phẩm như thế nào?</h1><p class="intro">Bản đồ toàn bộ dự án khi hoàn chỉnh: A2 tạo và kiểm định bộ dự đoán; A3 dùng bộ dự đoán đó để người dùng nhập URL, nhận kết quả và xem các tín hiệu giải thích. Đây là thiết kế tổng thể, không phải bảng tiến độ.</p><div class="purpose"><div><strong>Assignment 2 · Tạo năng lực AI</strong><p>Dữ liệu → features → train + clustering → đánh giá → model, bằng chứng và report.</p></div><div><strong>Assignment 3 · Tạo trải nghiệm sử dụng</strong><p>React → FastAPI → package ML của A2 → score, signals, Insights và kiểm thử.</p></div></div><nav class="menu"><a href="#overview">01 Tổng quan</a><a href="#ml">02 Assignment 2</a><a href="#web">03 Assignment 3</a><a href="#tests">04 Kiểm thử & bàn giao</a><a href="#files">Tra cứu file</a><button type="button" id="print">In / lưu PDF</button></nav>
+<details class="legend-help"><summary>Chú giải: ML · Frontend · Backend · Dữ liệu/model/tài liệu · Tests</summary><p>Màu phân loại <strong>vai trò của file</strong>, không phải tiến độ hay mức độ hoàn thành. Mỗi nhóm dưới đây giữ cùng màu trong tất cả sơ đồ.</p>
+<div class="legend">
+<div class="legend-item"><i class="ml" aria-hidden="true"></i><div><strong>Xanh dương · ML dùng chung — bộ xử lý AI</strong><p>ML là machine learning (học máy). Các module Python chuẩn bị dữ liệu, tạo đặc trưng và dự đoán. “Dùng chung” nghĩa là A2 và A3 dùng lại cùng parser/feature extractor/predictor; không phải mọi file huấn luyện đều chạy trên website.</p><code>src/dtdlink_ml/ · notebooks/</code></div></div>
+<div class="legend-item"><i class="web" aria-hidden="true"></i><div><strong>Tím · Frontend — giao diện trong trình duyệt</strong><p>Phần người dùng nhìn thấy và thao tác: nhập URL, chuyển trang, xem kết quả/biểu đồ. React gửi yêu cầu cho backend rồi hiển thị phản hồi; không tự nạp model Python.</p><code>frontend/src/pages/ · components/ · services/api.js</code></div></div>
+<div class="legend-item"><i class="api" aria-hidden="true"></i><div><strong>Xanh lá · Backend — tiếp nhận và xử lý yêu cầu</strong><p>FastAPI nhận URL từ frontend, kiểm tra dữ liệu, gọi bộ ML và trả kết quả JSON. Nạp model một lần khi khởi động; có thể chạy trên cùng máy demo, không nhất thiết là dịch vụ Internet.</p><code>backend/app/routers/ · services/ · schemas/</code></div></div>
+<div class="legend-item"><i class="data" aria-hidden="true"></i><div><strong>Vàng · Dữ liệu / model / tài liệu — các tệp được sử dụng</strong><p>CSV là dữ liệu; <code>.joblib</code> là model đã học; JSON chứa cấu hình/kết quả; PDF/Markdown là tài liệu. Đây là tệp để module đọc, ghi hoặc tham chiếu, không phải một tầng database. Màu xanh dương là <em>mã xử lý</em>, màu vàng là <em>đầu vào/đầu ra</em>.</p><code>data/ · models/ · reports/ · docs/ · tệp cấu hình gốc</code></div></div>
+<div class="legend-item"><i class="test" aria-hidden="true"></i><div><strong>Hồng · Tests — kiểm tra hệ thống chạy đúng</strong><p>Đưa dữ liệu hoặc thao tác mẫu vào ML, API và giao diện để kiểm tra kết quả, lỗi và luồng hoàn chỉnh. Đây là lớp kiểm chứng, không phải bước phân tích URL cho người dùng.</p><code>tests/ · backend/tests/ · frontend/e2e/</code></div></div>
+</div></details>
+<p class="reading-key"><strong>Chỉ 4 phần để học:</strong> 01 hiểu toàn cảnh → 02 hiểu cách tạo model → 03 hiểu cách website dùng model → 04 kiểm chứng và bàn giao. Mỗi phần có một sơ đồ liên tục. Đọc từ trên xuống theo số; chữ A/B/C là nhánh song song, S là startup, I là Insights. Bấm tên file để tra chức năng, đầu vào/đầu ra và quan hệ; danh mục cuối chỉ để tra cứu.</p>
+<p class="small">Cơ sở: code đã đọc + master plan A2 + scope/prototype A1. Tên file/route/API cho phần mở rộng là đề xuất cụ thể. Trong danh mục, CODE = có bằng chứng code; PLAN = tên trong kế hoạch; DESIGN = đề xuất kiến trúc ở đây. Đây là phân loại nguồn thông tin, không phải trạng thái tiến độ. PLAN chỉ xác nhận tên file trong kế hoạch; interface và quan hệ của phần chưa triển khai vẫn là thiết kế đề xuất. Các node có nhãn nguồn để đối chiếu.</p></header>
+<main><noscript>Bật JavaScript để xem sơ đồ. File chạy cục bộ, không cần Internet hoặc thư viện ngoài.</noscript>
+<section id="overview"><div class="section-head"><span class="num">01</span><h2>Tổng quan toàn dự án</h2></div>
+<div class="walkthrough" id="overview-reading" aria-labelledby="overview-reading-title">
+<h3 id="overview-reading-title">Đọc theo số: file nào làm việc gì?</h3>
+<p>A2 tạo bộ dự đoán (model); A3 dùng bộ đó để kiểm tra link người dùng nhập. Các bước dưới đây khớp với số trên sơ đồ tổng quan. Những bước trung gian được mở đầy đủ ở phần 02 và 03.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#overview-flow-step-1" aria-label="Đến bước 1 trên sơ đồ">1</a><p><code>malicious_phish.csv</code> chứa các link và nhãn gốc đã biết. Đây là dữ liệu để bắt đầu A2, chưa phải model.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-2" aria-label="Đến bước 2 trên sơ đồ">2</a><p><code>feature_extraction.py</code> nhận dữ liệu sau khi làm sạch và đổi đặc điểm của từng link thành các con số. Những con số này là đầu vào để model học.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-3" aria-label="Đến bước 3 trên sơ đồ">3</a><p><code>train_classifier.py</code> học từ tập train và so sánh các model bằng validation. Sau đó model được chọn còn phải qua đánh giá cuối và đóng gói.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-4" aria-label="Đến bước 4 trên sơ đồ">4</a><p><code>final_pipeline.joblib</code> lưu model đã học cùng phần chuẩn bị dữ liệu của nó. A3 sẽ đọc lại file này để dự đoán, không học lại từ đầu.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-5" aria-label="Đến bước 5 trên sơ đồ">5</a><p><code>CheckUrlPage.jsx</code> là trang người dùng nhập link mới và chờ kết quả. Trang này không tự chạy model Python.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-6" aria-label="Đến bước 6 trên sơ đồ">6</a><p><code>api.js</code> gửi link từ giao diện sang backend — phần xử lý phía sau website.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-7" aria-label="Đến bước 7 trên sơ đồ">7</a><p><code>routers/prediction.py</code> nhận yêu cầu và chuyển việc xử lý cho model service. Service là phần điều phối, không phải model đã học.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-8" aria-label="Đến bước 8 trên sơ đồ">8</a><p><code>predict.py</code> dùng cách tạo đặc trưng của A2 và model đã nạp để đánh giá link mới. Kết quả được gửi ngược về giao diện.</p></li>
+<li><a class="step-ref" href="#overview-flow-step-9" aria-label="Đến bước 9 trên sơ đồ">9</a><p><code>ResultPanel.jsx</code> hiển thị kết quả cùng các dấu hiệu cần chú ý. Kết quả hỗ trợ đánh giá, không bảo đảm link chắc chắn an toàn.</p></li>
+</ol>
+</div><div id="g-overview"></div></section>
+<section id="ml"><div class="section-head"><span class="num">02</span><h2>Assignment 2 — từ dữ liệu đến model hoàn chỉnh</h2></div>
+<div class="walkthrough" id="ml-reading" aria-labelledby="ml-reading-title">
+<h3 id="ml-reading-title">A2 — lần lượt đi qua từng file</h3>
+<p>Đọc từ bước 1 xuống. A/B/C là các nhánh, không phải việc phải chạy nối tiếp nhau. Phần này mô tả kiến trúc hoàn chỉnh: CODE là file đã đối chiếu; PLAN/DESIGN là phần theo kế hoạch hoặc đề xuất, chưa khẳng định đã được triển khai.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#a2-flow-step-1" aria-label="Đến bước 1 trên sơ đồ">1</a><p><code>Basic_Datasets.zip</code> là gói dữ liệu môn học cung cấp. Bên trong có bảng link và nhãn để bắt đầu nghiên cứu.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-2" aria-label="Đến bước 2 trên sơ đồ">2</a><p><code>data_audit.py</code> đọc dữ liệu trong gói ZIP, tạo hoặc kiểm tra bản dữ liệu gốc, rồi tìm vấn đề như trùng lặp hay nhãn mâu thuẫn. Mục đích là biết dữ liệu có vấn đề gì trước khi sửa.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-2a" aria-label="Đến bước 2a trên sơ đồ">2a</a><p><code>reports/audit/summary.json</code> lưu bản tóm tắt kết quả kiểm tra của <code>data_audit.py</code>. Đây là bằng chứng để viết báo cáo, không phải dữ liệu dùng để huấn luyện.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-3" aria-label="Đến bước 3 trên sơ đồ">3</a><p><code>malicious_phish.csv</code> giữ bảng dữ liệu gốc để đối chiếu. <code>data_cleaning.py</code> ở bước tiếp theo đọc bảng này nhưng không ghi đè bản gốc.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-4" aria-label="Đến bước 4 trên sơ đồ">4</a><p><code>data_cleaning.py</code> bỏ khoảng trắng thừa, đổi nhãn về dạng dùng cho bài toán, tách những bản ghi mâu thuẫn và loại bản ghi trùng. Nó tạo một bảng sạch để bước sau sử dụng.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-5" aria-label="Đến bước 5 trên sơ đồ">5</a><p><code>malicious_phish_cleaned.csv</code> lưu kết quả đã làm sạch. <code>feature_extraction.py</code> sẽ đọc từng link từ bảng này để tính đặc trưng.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-6" aria-label="Đến bước 6 trên sơ đồ">6</a><p><code>feature_extraction.py</code> biến đặc điểm của link thành 36 con số, gọi là features — đặc trưng. Để làm được việc đó, nó gọi <code>url_parser.py</code> ở bước 6a.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-6a" aria-label="Đến bước 6a trên sơ đồ">6a</a><p><code>url_parser.py</code> tách link thành các phần như tên miền và đường dẫn, rồi trả kết quả cho <code>feature_extraction.py</code>. Nó phân tích chuỗi chữ, không mở website của link đó.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-7" aria-label="Đến bước 7 trên sơ đồ">7</a><p><code>url_features.csv</code> lưu bảng đặc trưng vừa tính, kèm nhãn và thông tin để đối chiếu. Nhãn là “đáp án”; không được trộn vào các đặc trưng mà model nhìn thấy.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-8" aria-label="Đến bước 8 trên sơ đồ">8</a><p><code>04_eda.ipynb</code> giúp xem và hiểu bảng đặc trưng trước khi chia dữ liệu. Notebook gọi <code>data_loading.py</code> ở bước 8a để lấy dữ liệu, thay vì tự thay thế toàn bộ mã xử lý.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-8a" aria-label="Đến bước 8a trên sơ đồ">8a</a><p><code>data_loading.py</code> đọc bảng, kiểm tra các cột cần thiết rồi tách đặc trưng, nhãn và thông tin đối chiếu. Ở lần gọi này, nó phục vụ việc xem dữ liệu trong notebook, chưa huấn luyện model.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-9" aria-label="Đến bước 9 trên sơ đồ">9</a><p><code>data_splitting.py</code> chia dữ liệu thành train, validation và test. Các link cùng tên miền được giữ trong cùng một tập để tránh xuất hiện ở cả lúc học lẫn lúc kiểm tra.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10A" aria-label="Đến bước 10A trên sơ đồ">10A</a><p><code>train.csv</code> chứa bộ ví dụ để model học. File này được đọc qua loader ở bước 11A.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10B" aria-label="Đến bước 10B trên sơ đồ">10B</a><p><code>validation.csv</code> chứa bộ ví dụ để so sánh các model và lựa chọn ngưỡng đánh giá. File này được đọc qua loader ở bước 11B, không gộp vào train.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-10C" aria-label="Đến bước 10C trên sơ đồ">10C</a><p><code>test.csv</code> là bộ dành cho lần đánh giá cuối. File này được giữ riêng; không dùng để lựa chọn model hay ngưỡng.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11A" aria-label="Đến bước 11A trên sơ đồ">11A</a><p><code>data_loading.py</code> đọc <code>train.csv</code>, tách các con số đầu vào khỏi nhãn, rồi cung cấp chúng cho quá trình chuẩn bị dữ liệu và huấn luyện. Loader chỉ đọc và sắp xếp dữ liệu.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11B" aria-label="Đến bước 11B trên sơ đồ">11B</a><p><code>data_loading.py</code> đọc <code>validation.csv</code> theo cùng cách. <code>train_classifier.py</code> dùng dữ liệu này để so sánh và lựa chọn, không để học các quy tắc chuẩn bị dữ liệu.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-11C" aria-label="Đến bước 11C trên sơ đồ">11C</a><p><code>data_loading.py</code> đọc <code>test.csv</code> khi đến lần đánh giá cuối, rồi cấp dữ liệu cho <code>evaluate.py</code>. Ba ô loader là cùng một file được dùng ở ba thời điểm khác nhau.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-12" aria-label="Đến bước 12 trên sơ đồ">12</a><p><code>preprocessing.py</code> chuẩn bị các con số theo cách model cần. Quy tắc biến đổi được học từ train; validation và test chỉ áp dụng lại quy tắc đó. <code>train_classifier.py</code> điều phối việc sử dụng phần này.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-13" aria-label="Đến bước 13 trên sơ đồ">13</a><p><code>train_classifier.py</code> huấn luyện các model trên train, rồi so sánh kết quả bằng validation. Nó chọn model và ngưỡng đánh giá, sau đó lưu kết quả vào hai file ở bước 14 và 14a.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-14" aria-label="Đến bước 14 trên sơ đồ">14</a><p><code>selected_pipeline.joblib</code> lưu model đã chọn cùng phần biến đổi dữ liệu đã học. <code>evaluate.py</code> sẽ dùng nguyên bộ này để dự đoán trên test, không học lại.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-14a" aria-label="Đến bước 14a trên sơ đồ">14a</a><p><code>selection.json</code> ghi quyết định đã chọn: model nào, ngưỡng nào và khi nào nên báo chưa chắc chắn. Các quyết định này được chốt trước khi chấm trên test.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15" aria-label="Đến bước 15 trên sơ đồ">15</a><p><code>evaluate.py</code> nhận test từ loader, dùng model đã chọn để dự đoán rồi so với nhãn thật. Nó ghi kết quả đánh giá; không dùng test để điều chỉnh model.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15a" aria-label="Đến bước 15a trên sơ đồ">15a</a><p><code>test_metrics.json</code> lưu các con số đánh giá model trên test. Báo cáo và trang Insights dùng số liệu này để trình bày kết quả nghiên cứu.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-15b" aria-label="Đến bước 15b trên sơ đồ">15b</a><p><code>error_analysis.csv</code> lưu các trường hợp dự đoán sai để nhóm xem model đang có hạn chế gì. Đây là dữ liệu phân tích lỗi, không phải lịch sử link người dùng nhập.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-16" aria-label="Đến bước 16 trên sơ đồ">16</a><p><code>export_model.py</code> đóng gói model đã chọn và thông tin cần để sử dụng nó sau kiểm định. File này lưu bộ bàn giao cho A3, không huấn luyện lại bằng test.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-17A" aria-label="Đến bước 17A trên sơ đồ">17A</a><p><code>final_pipeline.joblib</code> là bộ model chính thức để A3 nạp và dùng. Nó chứa cả phần biến đổi dữ liệu đã học và phần dự đoán.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-17B" aria-label="Đến bước 17B trên sơ đồ">17B</a><p><code>model_metadata.json</code> ghi thông tin đi kèm model, chẳng hạn thứ tự đặc trưng, phiên bản và cách diễn giải điểm. A3 đọc cả file này để dùng model đúng cách.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C1" aria-label="Đến bước C1 trên sơ đồ">C1</a><p><code>preprocessing.py</code> cũng được dùng riêng cho nhánh gom nhóm. Trước đó, phần điều phối lấy một loại link từ train và bỏ nhãn khỏi đặc trưng; quy tắc biến đổi của nhánh này chỉ học trên dữ liệu đã chọn.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C2" aria-label="Đến bước C2 trên sơ đồ">C2</a><p><code>cluster_urls.py</code> gom các link có đặc trưng tương tự thành nhóm. Mục đích là hiểu các kiểu link trong nghiên cứu, khác với việc dự đoán nhãn ở nhánh chính.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-C3" aria-label="Đến bước C3 trên sơ đồ">C3</a><p><code>cluster_profiles.json</code> mô tả các nhóm vừa tìm được, ví dụ kích thước và đặc điểm của từng nhóm. Nó phục vụ báo cáo và Insights; website không cần gom nhóm lại mỗi lần kiểm tra link.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-18" aria-label="Đến bước 18 trên sơ đồ">18</a><p><code>export_insights.py</code> lấy số liệu audit, đánh giá model và mô tả nhóm để tổng hợp cho website. Đầu ra của nó là file ở bước 19.</p></li>
+<li><a class="step-ref" href="#a2-flow-step-19" aria-label="Đến bước 19 trên sơ đồ">19</a><p><code>reports/insights.json</code> chứa số liệu tổng hợp để trang Insights vẽ biểu đồ. A2 vì vậy bàn giao cả model để dự đoán lẫn số liệu để giải thích nghiên cứu.</p></li>
+</ol>
+</div><div id="g-ml"></div><div class="note">Theo mũi tên có nhãn để phân biệt “ai gọi ai” với “dữ liệu đi đâu”. File CSV không tự thực thi Python. Test không quay ngược lại nhánh lựa chọn model.</div></section>
+<section id="web"><div class="section-head"><span class="num">03</span><h2>Assignment 3 — từ thao tác người dùng đến kết quả</h2></div>
+<div class="walkthrough" id="web-reading" aria-labelledby="web-reading-title">
+<h3 id="web-reading-title">A3 — theo một lần nhập link và nhận kết quả</h3>
+<p>Frontend là giao diện trong trình duyệt; backend nhận và điều phối yêu cầu; ML dùng model để dự đoán. Đọc nhánh S trước để biết model được chuẩn bị thế nào, rồi theo bước 1–18. Nhánh I dành riêng cho trang thống kê.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#a3-flow-step-S1" aria-label="Đến bước S1 trên sơ đồ">S1</a><p><code>backend/app/main.py</code> khởi động backend và đăng ký các địa chỉ nhận yêu cầu. Khi khởi động, nó chuẩn bị model service ở S2.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S2" aria-label="Đến bước S2 trên sơ đồ">S2</a><p><code>model_service.py</code> tạo nơi giữ model trong bộ nhớ và quản lý việc sử dụng model. Nó gọi phần nạp model của <code>predict.py</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S3" aria-label="Đến bước S3 trên sơ đồ">S3</a><p><code>predict.py</code> đọc model A2 cùng thông tin đi kèm, rồi cung cấp bộ đã nạp cho service. Việc nạp này diễn ra lúc khởi động, không phải học lại trong mỗi yêu cầu.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S4" aria-label="Đến bước S4 trên sơ đồ">S4</a><p><code>final_pipeline.joblib</code> cung cấp bộ dự đoán A2 đã học. Đây là tệp được đọc, không phải file mã Python tự thực thi.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-S5" aria-label="Đến bước S5 trên sơ đồ">S5</a><p><code>model_metadata.json</code> cung cấp thứ tự đặc trưng, phiên bản và quy tắc đánh giá để kiểm tra bộ model có dùng được không. Sau khi chuẩn bị xong, service được dùng lại ở bước 11.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-1" aria-label="Đến bước 1 trên sơ đồ">1</a><p><code>index.html</code> là điểm đầu tiên khi mở website. Nó tạo chỗ để ứng dụng hiển thị và nạp <code>main.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-2" aria-label="Đến bước 2 trên sơ đồ">2</a><p><code>main.jsx</code> đưa ứng dụng React lên trang và nạp phần giao diện gốc từ <code>App.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-3" aria-label="Đến bước 3 trên sơ đồ">3</a><p><code>App.jsx</code> dựng phần chung của ứng dụng và dùng <code>router.jsx</code> để chọn màn hình.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-4" aria-label="Đến bước 4 trên sơ đồ">4</a><p><code>router.jsx</code> xác định trang cần hiện dựa trên địa chỉ, chẳng hạn Check URL hoặc Insights. Nó dùng phần khung chung <code>AppShell.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5" aria-label="Đến bước 5 trên sơ đồ">5</a><p><code>AppShell.jsx</code> hiển thị menu và khung trang; nội dung bên trong đổi theo trang đang chọn. Chọn Check URL thì hiện <code>CheckUrlPage.jsx</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5a" aria-label="Đến bước 5a trên sơ đồ">5a</a><p><code>HowItWorksPage.jsx</code> là trang hướng dẫn cách dùng và giải thích giới hạn của hệ thống. Trang này không chạy model khi người dùng chỉ đọc hướng dẫn.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-5b" aria-label="Đến bước 5b trên sơ đồ">5b</a><p><code>InsightsPage.jsx</code> là trang xem thống kê nghiên cứu. Khi mở trang này, luồng lấy số liệu đi theo nhánh I1–I5 bên dưới.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-6" aria-label="Đến bước 6 trên sơ đồ">6</a><p><code>CheckUrlPage.jsx</code> bố trí ô nhập, trạng thái đang chờ, kết quả và thông báo lỗi. Nó hiển thị <code>UrlForm.jsx</code> để nhận link.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-7" aria-label="Đến bước 7 trên sơ đồ">7</a><p><code>UrlForm.jsx</code> nhận link bạn gõ. Khi bấm Analyse, form chuyển nội dung cho phần quản lý thao tác <code>useUrlCheck.js</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8" aria-label="Đến bước 8 trên sơ đồ">8</a><p><code>useUrlCheck.js</code> quản lý lần kiểm tra: gọi kiểm tra input, gửi yêu cầu nếu hợp lệ và theo dõi đang chờ hay đã có kết quả. Nó cũng xử lý reset và tránh kết quả cũ ghi đè lần gửi mới.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8a" aria-label="Đến bước 8a trên sơ đồ">8a</a><p><code>validation.js</code> kiểm tra những lỗi đơn giản như ô trống hoặc chuỗi quá dài. Nó trả kết quả cho hook; hook quyết định gửi API hay hiển thị lỗi.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-8b" aria-label="Đến bước 8b trên sơ đồ">8b</a><p><code>ErrorNotice.jsx</code> hiển thị lỗi do hook và trang Check URL chuyển tới. Nó dùng cho cả lỗi nhập liệu lẫn lỗi khi gọi backend.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-9" aria-label="Đến bước 9 trên sơ đồ">9</a><p><code>api.js</code> nhận link hợp lệ và gửi yêu cầu đến backend qua <code>POST /api/predict</code>. Trong lúc chờ, giao diện báo đang xử lý.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10" aria-label="Đến bước 10 trên sơ đồ">10</a><p><code>routers/prediction.py</code> nhận yêu cầu đó ở backend. Trước khi xử lý, dữ liệu phải được kiểm tra theo schema và lấy service đã sẵn sàng.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10a" aria-label="Đến bước 10a trên sơ đồ">10a</a><p><code>schemas/prediction.py</code> quy định dữ liệu gửi lên và kết quả trả về phải có dạng nào. Backend vẫn kiểm tra, kể cả frontend đã kiểm tra trước đó.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-10b" aria-label="Đến bước 10b trên sơ đồ">10b</a><p><code>dependencies.py</code> lấy <code>model_service.py</code> đã chuẩn bị ở startup. Nếu chưa có service sẵn sàng, yêu cầu phải nhận thông báo lỗi thay vì kết quả giả.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-11" aria-label="Đến bước 11 trên sơ đồ">11</a><p><code>model_service.py</code> nhận link, dùng model đã nạp và điều phối dự đoán cùng phần giải thích. Nó gọi <code>predict.py</code>, không chạy lại quá trình huấn luyện A2.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12" aria-label="Đến bước 12 trên sơ đồ">12</a><p><code>predict.py</code> cần đổi link mới thành cùng kiểu đặc trưng đã dùng lúc học. Nó gọi <code>feature_extraction.py</code>, rồi đưa các con số nhận được qua model để dự đoán.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12a" aria-label="Đến bước 12a trên sơ đồ">12a</a><p><code>feature_extraction.py</code> tính đặc trưng của link mới bằng đúng quy tắc A2. Để lấy cấu trúc link, nó gọi <code>url_parser.py</code>.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12b" aria-label="Đến bước 12b trên sơ đồ">12b</a><p><code>url_parser.py</code> tách link thành các phần và trả về cho bộ tính đặc trưng. Dữ liệu sau đó quay về <code>predict.py</code>; không có việc mở website đích.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-12c" aria-label="Đến bước 12c trên sơ đồ">12c</a><p><code>explain.py</code> được service điều phối để tạo các dấu hiệu dễ đọc và vị trí cần tô nổi bật trên link. Đây là các dấu hiệu quan sát được, không tự chứng minh nguyên nhân model dự đoán như vậy.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-13" aria-label="Đến bước 13 trên sơ đồ">13</a><p><code>model_service.py</code> ghép dự đoán với các dấu hiệu giải thích thành một kết quả chung. Đây vẫn là service ở bước 11, lúc này nó đang chuẩn bị trả kết quả.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-14" aria-label="Đến bước 14 trên sơ đồ">14</a><p><code>routers/prediction.py</code> nhận kết quả từ service và trả dữ liệu về frontend theo dạng đã quy định. Không cần gửi lại nguyên link trong kết quả.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-15" aria-label="Đến bước 15 trên sơ đồ">15</a><p><code>api.js</code> nhận phản hồi từ backend và chuyển kết quả hoặc lỗi về <code>useUrlCheck.js</code>. Đây là chiều trả lời của yêu cầu đã gửi ở bước 9.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-16" aria-label="Đến bước 16 trên sơ đồ">16</a><p><code>useUrlCheck.js</code> kết thúc trạng thái chờ và cập nhật kết quả cho trang. <code>CheckUrlPage.jsx</code> dựa vào đó để chọn hiển thị kết quả hoặc thông báo lỗi.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-17" aria-label="Đến bước 17 trên sơ đồ">17</a><p><code>ResultPanel.jsx</code> nhận dữ liệu từ trang Check URL và bố trí ba phần: điểm đánh giá, danh sách dấu hiệu và link được tô nổi bật.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18A" aria-label="Đến bước 18A trên sơ đồ">18A</a><p><code>ScoreBadge.jsx</code> hiển thị điểm và nhận định thận trọng. Nó không được diễn đạt rằng link chắc chắn an toàn.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18B" aria-label="Đến bước 18B trên sơ đồ">18B</a><p><code>SignalList.jsx</code> hiển thị các dấu hiệu để người dùng hiểu điều gì đáng chú ý trên link.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-18C" aria-label="Đến bước 18C trên sơ đồ">18C</a><p><code>UrlHighlight.jsx</code> tô nổi bật những đoạn liên quan trên link dạng văn bản. Nó không biến link thành nội dung tự chạy hoặc tự mở.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I1" aria-label="Đến bước I1 trên sơ đồ">I1</a><p><code>api.js</code> được <code>InsightsPage.jsx</code> gọi để gửi yêu cầu lấy thống kê qua <code>GET /api/insights</code>. Lần này không gửi link cần kiểm tra.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I2" aria-label="Đến bước I2 trên sơ đồ">I2</a><p><code>routers/insights.py</code> nhận yêu cầu thống kê và gọi <code>insights_service.py</code> để lấy số liệu.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I3" aria-label="Đến bước I3 trên sơ đồ">I3</a><p><code>insights_service.py</code> đọc và kiểm tra file số liệu do A2 tạo. Nó không tính thống kê từ lịch sử người dùng.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I4" aria-label="Đến bước I4 trên sơ đồ">I4</a><p><code>reports/insights.json</code> cung cấp số liệu tổng hợp. Dữ liệu quay về qua service, route và <code>api.js</code> tới <code>InsightsPage.jsx</code>; trình duyệt không đọc thẳng file trên backend.</p></li>
+<li><a class="step-ref" href="#a3-flow-step-I5" aria-label="Đến bước I5 trên sơ đồ">I5</a><p><code>InsightsCharts.jsx</code> nhận số liệu từ trang Insights để vẽ biểu đồ. Nhánh này dùng kết quả nghiên cứu đã có, không huấn luyện lại model.</p></li>
+</ol>
+</div><div id="g-web"></div></section>
+<section id="tests"><div class="section-head"><span class="num">04</span><h2>Kiểm thử và tài liệu bàn giao</h2></div>
+<div class="walkthrough" id="tests-reading" aria-labelledby="tests-reading-title">
+<h3 id="tests-reading-title">Kiểm thử và bàn giao — mỗi file kiểm chứng điều gì?</h3>
+<p>Các hàng 1–8 là những phép kiểm tra riêng, không phải một chuỗi xử lý link. test.csv chấm khả năng dự đoán của model; các file test dưới đây kiểm tra chương trình có chạy đúng không. Sơ đồ không khẳng định mọi test đề xuất đã được triển khai hoặc đã chạy thành công.</p>
+<ol class="numbered-reading">
+<li><a class="step-ref" href="#delivery-flow-step-1" aria-label="Đến bước 1 trên sơ đồ">1</a><p><code>test_data_cleaning.py</code> kiểm tra <code>data_cleaning.py</code>: dữ liệu mẫu có được làm sạch đúng quy tắc, giữ nguyên bản gốc và cho kết quả lặp lại nhất quán không.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-2" aria-label="Đến bước 2 trên sơ đồ">2</a><p><code>test_url_parser.py</code> kiểm tra <code>url_parser.py</code> với nhiều kiểu link, kể cả link lỗi. Mục đích là tách cấu trúc đúng mà không cần truy cập Internet.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-3" aria-label="Đến bước 3 trên sơ đồ">3</a><p><code>test_feature_extraction.py</code> kiểm tra <code>feature_extraction.py</code>: bảng đặc trưng có đúng cột và việc đổi nhãn có làm thay đổi đặc trưng hay không. Nhãn không được trở thành đầu vào dự đoán.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-4" aria-label="Đến bước 4 trên sơ đồ">4</a><p><code>test_data_splitting.py</code> kiểm tra <code>data_splitting.py</code>: các tập không chung tên miền và cách chia có thể tái lập.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-5" aria-label="Đến bước 5 trên sơ đồ">5</a><p><code>test_prediction.py</code> kiểm tra <code>predict.py</code>: model lưu rồi mở lại vẫn dùng đúng, và cách tính từ link gốc nhất quán với đặc trưng đã chuẩn bị.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-6" aria-label="Đến bước 6 trên sơ đồ">6</a><p><code>test_prediction_api.py</code> kiểm tra ứng dụng backend qua <code>main.py</code>: yêu cầu hợp lệ, input lỗi và model chưa sẵn sàng có được xử lý đúng không.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-7" aria-label="Đến bước 7 trên sơ đồ">7</a><p><code>CheckUrlPage.test.jsx</code> kiểm tra <code>CheckUrlPage.jsx</code>: đang chờ, có kết quả, chưa chắc chắn, lỗi và reset có hiển thị đúng không.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-8" aria-label="Đến bước 8 trên sơ đồ">8</a><p><code>url-check.spec.js</code> kiểm tra toàn website bằng thao tác như người dùng. <code>main.jsx</code> là điểm vào ứng dụng được chạy, không có nghĩa bài test chỉ kiểm tra riêng file này.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-9" aria-label="Đến bước 9 trên sơ đồ">9</a><p><code>test_metrics.json</code> cung cấp số liệu đánh giá model trên test để đưa vào báo cáo. Phần phân tích lỗi và hình minh họa bổ sung bằng chứng cho các nhận xét.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-9a" aria-label="Đến bước 9a trên sơ đồ">9a</a><p><code>cluster_profiles.json</code> cung cấp số liệu và đặc điểm các nhóm link để giải thích kết quả gom nhóm trong báo cáo.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-10" aria-label="Đến bước 10 trên sơ đồ">10</a><p><code>assignment2-report.pdf</code> trình bày phương pháp, kết quả và hạn chế dựa trên các bằng chứng trên. Đây là phần giải thích nghiên cứu, không phải hướng dẫn chạy chương trình.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-10a" aria-label="Đến bước 10a trên sơ đồ">10a</a><p><code>test-plan.md</code> ghi cần kiểm tra gì, cách thực hiện và kết quả thực tế. Không ghi “đã đạt” cho những kiểm tra chưa chạy.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-11" aria-label="Đến bước 11 trên sơ đồ">11</a><p><code>README.md</code> hướng dẫn người khác cài đặt và chạy lại A2/A3. Nó giúp người nhận biết cần làm gì để tái lập kết quả và mở demo.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-11a" aria-label="Đến bước 11a trên sơ đồ">11a</a><p><code>deployment.md</code> giải thích cách bật frontend/backend, thiết lập đường dẫn model và kết nối giữa hai phần. README dẫn tới tài liệu này khi cần hướng dẫn demo chi tiết.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-12" aria-label="Đến bước 12 trên sơ đồ">12</a><p><code>meeting_minutes/*.md</code> ghi các quyết định và đóng góp trong quá trình làm việc nhóm. Đây là căn cứ hỗ trợ hồ sơ đóng góp.</p></li>
+<li><a class="step-ref" href="#delivery-flow-step-13" aria-label="Đến bước 13 trên sơ đồ">13</a><p><code>contribution-form.docx</code> tổng hợp đóng góp và được hoàn thiện theo mẫu yêu cầu. Định dạng nộp A3 vẫn cần đối chiếu đề bài đầy đủ.</p></li>
+</ol>
+</div><div id="g-tests"></div><div class="note"><a href="architecture-review.md">Đối chiếu nguồn và phạm vi kiểm tra tài liệu</a>. Danh mục bên dưới dùng để tra cứu thêm, không phải bước thứ 5 của quy trình.</div></section>
+<section id="files"><div class="section-head"><span class="num">↳</span><h2>Tra cứu file — không phải một bước trong luồng</h2></div><p class="caption">Bỏ qua thư viện, cache, build output và tài liệu workshop không thuộc sản phẩm. Các mũi tên trong danh mục là quan hệ thiết kế đích; không khẳng định toàn bộ import/API đã được triển khai.</p><details id="file-lookup"><summary>Mở danh mục 102 file / nhóm file và quan hệ</summary><div id="tree" class="tree"></div><div class="catalog-controls"><label for="group">Nhóm file</label><select id="group"><option value="all">Tất cả</option><option value="ml">ML + notebooks</option><option value="web">Frontend</option><option value="api">Backend</option><option value="data">Dữ liệu / model / tài liệu</option><option value="test">Tests</option></select><span class="small" id="count" aria-live="polite"></span></div><div class="table-wrap"><table><thead><tr><th>File</th><th>Chức năng · đầu vào/đầu ra · ai gọi ai</th></tr></thead><tbody id="catalog"></tbody></table></div></details></section>
+</main><footer><p><strong>Nguồn thiết kế:</strong> source Python và notebooks/tests đã đọc, ASSIGNMENT2_MASTER_PLAN.md, PROJECT_CONTEXT.md, specification A2 và Assignment 1 đã trích xuất. Bản A3 lưu trong workspace chưa có đầy đủ rubric: file/route/API mở rộng ở đây là đề xuất kiến trúc theo scope/prototype và các tuần React–FastAPI–integration, không phải yêu cầu rubric được xác nhận.</p><p><a href="technical-architecture-source-snapshot.html">Đối chiếu sơ đồ của source đã đọc</a> · Cập nhật bố cục: 24/09/2026 · Tài liệu offline, không CDN, không gửi dữ liệu. Chỉ cập nhật tài liệu, không tạo các module ứng dụng đề xuất.</p></footer>
+<script>
+(() => {
+'use strict';
+// id | path | short role | input | output | provenance | layer
+const raw=`audit|src/dtdlink_ml/data_audit.py|Audit và bảo vệ raw|ZIP / raw CSV|raw + audit JSON/JSONL|CODE|ml
+clean|src/dtdlink_ml/data_cleaning.py|Cleaning và target mapping|url,type|cleaned CSV + conflicts/audit|CODE|ml
+parser|src/dtdlink_ml/url_parser.py|Tách cấu trúc URL offline|raw URL|ParsedURL + issues|CODE|ml
+features|src/dtdlink_ml/feature_extraction.py|Raw URL → 36 features|URL hoặc cleaned CSV|numeric dict / feature CSV|CODE|ml
+init|src/dtdlink_ml/__init__.py|Đánh dấu package dùng chung|Python import|Namespace; hiện chỉ có docstring|CODE|ml
+config|src/dtdlink_ml/config.py|Paths, seed và thiết lập ML|Experiment settings|Cấu hình cho các module mới|PLAN|ml
+loading|src/dtdlink_ml/data_loading.py|Đọc bảng, tách X/y/metadata|Feature hoặc split CSV|X, y, metadata theo schema|PLAN|ml
+split|src/dtdlink_ml/data_splitting.py|Group split theo domain|Feature table + domain/target|Train/validation/test + manifest|PLAN|ml
+prep|src/dtdlink_ml/preprocessing.py|Preprocessing dùng chung|X_train + schema|Transform fit train, lưu với model|DESIGN|ml
+train|src/dtdlink_ml/train_classifier.py|Train, so sánh, chọn model|Train/validation + config|Selected pipeline + selection.json|PLAN|ml
+cluster|src/dtdlink_ml/cluster_urls.py|Clustering trong một class|Features một class ở train; bỏ nhãn|Cluster model + profiles|PLAN|ml
+eval|src/dtdlink_ml/evaluate.py|Đánh giá và phân tích lỗi|Selected model + locked test|Metrics, confusion matrix, FP/FN|PLAN|ml
+export|src/dtdlink_ml/export_model.py|Đóng gói model contract|Selected model + schema/policy|Final pipeline + metadata; không fit test|DESIGN|ml
+predict|src/dtdlink_ml/predict.py|Raw URL → assessment|URL + loaded model/metadata|Assessment, danger_score, features|PLAN|ml
+explain|src/dtdlink_ml/explain.py|Tín hiệu và highlight|Raw URL, ParsedURL, features|Heuristic signals + component/spans|DESIGN|ml
+analytics|src/dtdlink_ml/export_insights.py|Tổng hợp dữ liệu cho Insights|Audits + metrics + profiles|Versioned aggregate JSON, không raw URL|DESIGN|ml
+extra|src/dtdlink_ml/integrate_sources.py|Tích hợp nguồn bổ sung tùy chọn|Nguồn offline được duyệt|Dữ liệu đồng bộ schema + provenance|DESIGN|ml
+raw|data/raw/malicious_phish.csv|URL và nhãn gốc|CSV member từ ZIP|url,type không sửa trực tiếp|CODE|data
+archive|Week-08/Assessment/Basic_Datasets.zip|Nguồn dataset môn học|ZIP được cung cấp|CSV member mà data_audit.py đọc|CODE|data
+conflicts|reports/cleaning/conflicting_records.csv|Các bản ghi bị cách ly|data_cleaning.py|source_record_number,url,type,target; không vào cleaned|CODE|data
+auditdetails|reports/audit/{anomaly_records,conflict_records,duplicate_url_groups,examples}.jsonl|Chi tiết bằng chứng audit|data_audit.py|Bốn tệp JSONL để kiểm tra dữ liệu nghiên cứu|CODE|data
+cleaned|data/interim/malicious_phish_cleaned.csv|Dữ liệu đã làm sạch|Cleaning pipeline|url,type,target|CODE|data
+featurecsv|data/processed/url_features.csv|Feature table + metadata|Extractor|36 features + 6 metadata|CODE|data
+traincsv|data/processed/train.csv|Tập học|Domain-group split|X/y train + metadata|DESIGN|data
+valcsv|data/processed/validation.csv|Tập chọn model/ngưỡng|Domain-group split|X/y validation + metadata|DESIGN|data
+testcsv|data/processed/test.csv|Tập thi cuối được khóa|Domain-group split|Final evaluation input|DESIGN|data
+manifest|data/processed/split_manifest.json|Dấu vết split tái lập|Seed, groups, hashes|Bằng chứng domain không overlap|DESIGN|data
+selected|models/selected_pipeline.joblib|Pipeline được chọn|Training/validation|Model đã fit train + preprocessing|DESIGN|data
+selection|reports/tables/selection.json|Quyết định model và ngưỡng|Validation comparisons|Model/threshold/uncertain policy|DESIGN|data
+model|models/final_pipeline.joblib|Pipeline inference chính thức|Model export|Bundle cho predict.py|PLAN|data
+metadata|models/model_metadata.json|Schema, versions, score policy|Export + selection|Feature order, labels, threshold, hashes|PLAN|data
+cmodel|models/clustering_pipeline.joblib|Model clustering của A2|cluster_urls.py|Tái lập nghiên cứu, không per-request|DESIGN|data
+metrics|reports/tables/test_metrics.json|Kết quả đánh giá cuối|evaluate.py|Metrics và subgroup/confusion matrix|DESIGN|data
+errors|reports/tables/error_analysis.csv|Các lỗi dự đoán A2|Held-out predictions|FP/FN của dataset nghiên cứu|DESIGN|data
+profiles|reports/tables/cluster_profiles.json|Diễn giải clusters|cluster_urls.py|Feature differences + sizes/examples|DESIGN|data
+insightsdata|reports/insights.json|Dữ liệu tổng hợp cho website|export_insights.py|Dataset/model/cluster aggregates|DESIGN|data
+auditout|reports/audit/summary.json|Audit raw dataset|data_audit.py|Counts, nguồn, labels, diagnostics|CODE|data
+cleanout|reports/cleaning/cleaning_audit.json|Audit cleaning|data_cleaning.py|Rules, counts và hashes|CODE|data
+featureout|reports/features/feature_extraction_audit.json|Audit feature extraction|feature_extraction.py|Schema, counts, issues và hashes|CODE|data
+main|frontend/src/main.jsx|Mount ứng dụng React|index.html root|App + CSS|DESIGN|web
+app|frontend/src/App.jsx|Root ứng dụng và providers|Router + theme|Application tree|DESIGN|web
+router|frontend/src/router.jsx|Chọn page theo route|Browser location|Check / Insights / HowItWorks|DESIGN|web
+shell|frontend/src/components/AppShell.jsx|Navigation và layout chung|Router outlet|Navigation + page content|DESIGN|web
+check|frontend/src/pages/CheckUrlPage.jsx|Nhập URL và xem kết quả|Input + hook state|Form / loading / result / error|DESIGN|web
+form|frontend/src/components/UrlForm.jsx|Form nhập URL|Text + validation errors|onSubmit(url), onReset()|DESIGN|web
+hook|frontend/src/hooks/useUrlCheck.js|Điều phối trạng thái kiểm tra|Submit/reset|In-memory state + request cancellation|DESIGN|web
+validation|frontend/src/utils/validation.js|Validate nhanh cho UX|Input text|Empty/length feedback|DESIGN|web
+client|frontend/src/services/api.js|Client gọi API|JSON body / API_BASE_URL|Response hoặc sanitized error|DESIGN|web
+result|frontend/src/components/ResultPanel.jsx|Trình bày kết quả|PredictionResponse + in-memory URL|Score, signals, highlights|DESIGN|web
+score|frontend/src/components/ScoreBadge.jsx|Score và nhãn thận trọng|danger_score + assessment|Màu kèm chữ; không cam kết an toàn|DESIGN|web
+signals|frontend/src/components/SignalList.jsx|Giải thích dấu hiệu|signals[]|Message và mức tín hiệu|DESIGN|web
+highlight|frontend/src/components/UrlHighlight.jsx|Highlight URL dạng text|URL + validated spans|Escaped text; không link/innerHTML|DESIGN|web
+errorui|frontend/src/components/ErrorNotice.jsx|Thông báo input/API lỗi|Sanitized error|Accessible message và retry|DESIGN|web
+insightspage|frontend/src/pages/InsightsPage.jsx|Trang thống kê model A2|GET /api/insights|Charts + loading/error state|DESIGN|web
+charts|frontend/src/components/InsightsCharts.jsx|Biểu đồ tương tác A2|Aggregate metrics/cluster JSON|Charts + text alternatives|DESIGN|web
+how|frontend/src/pages/HowItWorksPage.jsx|Giải thích cách hệ thống chạy|Nội dung tĩnh / policy wording|Hướng dẫn, limits và privacy|DESIGN|web
+notfound|frontend/src/pages/NotFoundPage.jsx|Route không tồn tại|Unknown route|Fallback + link về Check|DESIGN|web
+theme|frontend/src/theme.js|Theme và typography|Design tokens từ A1|Theme accessible|DESIGN|web
+css|frontend/src/styles.css|Responsive styles|CSS rules|375px, spacing, focus|DESIGN|web
+index|frontend/index.html|Điểm vào trình duyệt|Browser load|DOM root + main.jsx|DESIGN|web
+package|frontend/package.json|Dependencies và lệnh frontend|Pinned package manifest|Dev/build/test toolchain|DESIGN|web
+vite|frontend/vite.config.js|Build và dev proxy|Frontend config|Bundle; /api proxy loopback|DESIGN|web
+feenv|frontend/.env.example|Ví dụ địa chỉ API|Public environment config|API_BASE_URL; không secret|DESIGN|web
+api-main|backend/app/main.py|FastAPI app và startup|Settings + trusted model|Routers; service nạp một lần|DESIGN|api
+api-config|backend/app/config.py|Paths và giới hạn API|Environment|Model paths, max input, origins|DESIGN|api
+api-schema|backend/app/schemas/prediction.py|Request/response schema|JSON body / result DTO|Validated input, sanitized output|DESIGN|api
+route-predict|backend/app/routers/prediction.py|POST /api/predict|Validated URL|PredictionResponse / errors|DESIGN|api
+service|backend/app/services/model_service.py|Quản lý model và inference|Artifacts + URL|Predict + explain; ready state|DESIGN|api
+dependencies|backend/app/dependencies.py|Cấp service đã được nạp|app.state|Shared service hoặc 503|DESIGN|api
+route-insights|backend/app/routers/insights.py|GET /api/insights|GET request|Aggregate response|DESIGN|api
+insights-service|backend/app/services/insights_service.py|Đọc artifact analytics|reports/insights.json|Validated aggregate DTO|DESIGN|api
+health|backend/app/routers/health.py|GET /api/health|App state|Ready + model_version|DESIGN|api
+be-req|backend/requirements.txt|Dependencies backend|FastAPI/Uvicorn + ML env|Pinned runtime compatible artifacts|DESIGN|api
+beenv|backend/.env.example|Ví dụ cấu hình backend|Environment config|Trusted paths / limits / origins|DESIGN|api
+nb1|notebooks/01_data_audit.ipynb|Notebook audit|run_audit()|Audit evidence và kiểm tra|CODE|ml
+nb2|notebooks/02_cleaning.ipynb|Notebook cleaning|run_cleaning_pipeline()|Row counts / conflicts / hashes|CODE|ml
+nb3|notebooks/03_feature_exploration.ipynb|Khám phá ý nghĩa features|Extractor / feature table|Ví dụ, distributions, limitations|PLAN|ml
+nb4|notebooks/04_eda.ipynb|EDA và kiểm tra split|Feature table / split module|Figures + split review|PLAN|ml
+nb5|notebooks/05_classification.ipynb|Thí nghiệm classification|Training/evaluation modules|Model comparisons và metrics|PLAN|ml
+nb6|notebooks/06_clustering.ipynb|Thí nghiệm clustering|Một class / clustering module|Cluster profiles và diễn giải|PLAN|ml
+tclean|tests/test_data_cleaning.py|Tests cleaning|Fixtures|Contract, hash, repeatability|CODE|test
+tparse|tests/test_url_parser.py|Tests parser offline|URL fixtures|Malformed/IP/Unicode/scheme tests|CODE|test
+tfeature|tests/test_feature_extraction.py|Tests feature contract|URL/CSV fixtures|Schema, labels invariance, 50 inputs|CODE|test
+tenv|tests/test_environment.py|Smoke tests môi trường|Dependencies + toy data|Import và toy classifier check|CODE|test
+tsplit|tests/test_data_splitting.py|Tests không leakage|Synthetic domain groups|Zero overlap, determinism|PLAN|test
+tpredict|tests/test_prediction.py|Tests reload và inference|Fixture bundle + URLs|Raw/feature parity, policy, offline|PLAN|test
+tapi|backend/tests/test_prediction_api.py|Tests API contract|Test client + fixture model|200/422/503, load once, privacy|DESIGN|test
+tinsights|backend/tests/test_insights_api.py|Tests analytics endpoint|Aggregate fixtures|Schema/version; không raw URLs|DESIGN|test
+tui|frontend/src/pages/CheckUrlPage.test.jsx|Tests trạng thái UI|Mock API responses|States/reset/race/non-clickable URL|DESIGN|test
+te2e|frontend/e2e/url-check.spec.js|Tests end-to-end website|App local + fixture model|Navigation, scan flow, offline policy|DESIGN|test
+requirements|requirements.txt|Pin dependencies ML|Manifest|Reproducible Python environment|CODE|data
+pyproject|pyproject.toml|Cài đặt package dùng chung|src-layout metadata|Backend/CLI import cùng dtdlink_ml|DESIGN|data
+environment|environment.yml|Conda setup cho người chấm|Pinned requirements.txt|Conda environment đồng nhất|DESIGN|data
+readme|README.md|Lệnh chạy lại A2 và A3|Quy trình đã xác minh|Setup/preprocess/train/eval/predict/demo|CODE|data
+dictionary|docs/feature_dictionary.md|Định nghĩa features|Feature names/logic|Ý nghĩa, vocabulary, limits|CODE|data
+decisions|docs/decisions.md|Quyết định kỹ thuật|Nhóm và bằng chứng|Rationale scope/split/models/threshold|CODE|data
+contract|docs/api-contract.md|Hợp đồng frontend–backend|Schema / client usage|Endpoints, errors, score và privacy|DESIGN|data
+testplan|docs/test-plan.md|Tiêu chí và evidence kiểm thử|Acceptance criteria A1|Traceability + kết quả tests|DESIGN|data
+deployment|docs/deployment.md|Cách chạy demo local|Environment/artifact paths|Startup/proxy/origin/privacy config|DESIGN|data
+report|reports/assignment2-report.pdf|Report A2 từ bằng chứng|Metrics/profiles/figures/decisions|PDF A2 theo specification|PLAN|data
+minutes|docs/meeting_minutes/*.md|Biên bản nhóm|Meetings / reviews|Quyết định và đóng góp có dấu vết|PLAN|data
+contribution|docs/contribution-form.docx|Contribution form|Đóng góp từng thành viên|Signed form theo mẫu|PLAN|data`;
+const F={};raw.trim().split('\n').forEach(line=>{const[id,path,role,input,output,source,layer]=line.split('|');F[id]={id,path,role,input,output,source,layer};});
+// Caller -> callee or writer -> file. All relations describe the full target design.
+const textRelations=`audit|raw|write/verify file|CSV từ ZIP
+audit|archive|read file|Đọc đúng CSV member trong ZIP
+audit|auditout|write file|Summary aggregate JSON
+audit|auditdetails|write file|Bốn tệp bằng chứng JSONL
+clean|raw|read file|Raw fingerprint/schema
+clean|cleaned|write file|url,type,target
+clean|cleanout|write file|Rules/counts/hashes
+clean|conflicts|write file|Cách ly mọi dòng có nhãn xung đột
+features|cleaned|read file|Stream từng dòng
+features|parser|import / call|parse_url và ParsedURL
+features|featurecsv|write file|36 features + metadata
+features|featureout|write file|Schema/counts/issues
+split|featurecsv|read file|Group theo registrable_domain
+split|traincsv|write file|Train groups
+split|valcsv|write file|Validation groups
+split|testcsv|write file|Held-out test
+split|manifest|write file|Seed/groups/hashes
+split|config|import|Paths/seed
+loading|featurecsv|read file|Feature table
+loading|traincsv|read file|Train X/y
+loading|valcsv|read file|Validation X/y
+loading|testcsv|read file|Test chỉ ở final evaluation
+loading|features|schema dependency|FEATURE_NAMES; labels/metadata không tự vào X
+train|loading|import / call|Đọc train/validation
+train|prep|import / call|Fit preprocessing trên train
+train|config|import|Seed/hyperparameters
+train|eval|import / call|Validation metrics helper
+train|selected|write file|Model đã chọn
+train|selection|write file|Comparisons và policy
+cluster|loading|import / call|Load train; caller lọc một class, bỏ nhãn khỏi X
+cluster|prep|import / call|Scaling phù hợp clustering
+cluster|cmodel|write file|Clustering pipeline
+cluster|profiles|write file|Sizes/features/examples
+eval|selected|read file|Không tune lại theo test
+eval|loading|import / call|Load riêng test khi model/policy đã khóa
+eval|selection|read file|Threshold/uncertain policy từ validation
+eval|metrics|write file|Metrics/confusion matrix
+eval|errors|write file|FP/FN/subgroup
+export|selected|read file|Selected fitted pipeline
+export|selection|read file|Policy đã chốt
+export|features|import|FEATURE_NAMES/schema
+export|model|write file|Deployable bundle
+export|metadata|write file|Schema/labels/versions/thresholds
+predict|features|import / call|extract_features(raw URL)
+predict|model|read file|Bundle loader lúc startup
+predict|metadata|read file|Validate schema + policy
+service|predict|import / call|Load bundle + inference
+service|explain|import / call|Mô tả signals/highlight
+explain|parser|import / call|Cấu trúc và vị trí diễn giải
+api-main|service|startup call|Nạp một lần vào app.state
+api-main|api-config|import|Trusted paths/origins/limits
+api-main|route-predict|include_router|POST /api/predict
+api-main|route-insights|include_router|GET /api/insights
+api-main|health|include_router|GET /api/health
+route-predict|api-schema|validate / serialize|Request/response contract
+route-predict|dependencies|dependency injection|Lấy service đã ready
+dependencies|service|return shared service|Đọc app.state; không load lại
+route-predict|service|call|analyze(url)
+health|dependencies|call|Kiểm tra readiness
+route-insights|insights-service|call|Lấy aggregate data
+insights-service|insightsdata|read file|Không raw samples
+api-config|beenv|read configuration|Mẫu environment
+analytics|auditout|read file|Dataset aggregates
+analytics|featureout|read file|Feature diagnostics
+analytics|metrics|read file|Final metrics
+analytics|profiles|read file|Cluster summaries
+analytics|insightsdata|write file|Aggregate JSON
+main|app|import / render|React root
+main|css|import|Responsive styles
+app|theme|import|UI theme
+app|router|render|Router provider
+router|shell|render|Layout chung
+shell|check|render Outlet|Page /check do router chọn
+shell|insightspage|render Outlet|Page /insights do router chọn
+shell|how|render Outlet|Page /how-it-works do router chọn
+router|check|navigate / render|/check; / redirect
+router|insightspage|navigate / render|/insights
+router|how|navigate / render|/how-it-works
+router|notfound|render|Unknown route
+shell|router|navigate|Nav chọn route; không import ngược
+check|form|render|Input/actions
+check|hook|call hook|State/loading/error/result
+hook|validation|import / call|Empty/length UX checks
+hook|client|import / call|predict(url, AbortSignal)
+client|route-predict|API request / response|POST /api/predict
+client|route-insights|API request / response|GET /api/insights
+client|health|API request / response|GET /api/health
+client|feenv|read configuration|API_BASE_URL public config
+check|result|render|Success/uncertain
+check|errorui|render|Invalid input/API failure
+result|score|render|Score + cautious label
+result|signals|render|Signal descriptions
+result|highlight|render|Escaped non-clickable URL
+insightspage|client|call|getInsights()
+insightspage|charts|render|Aggregate charts
+how|check|navigate|CTA về /check
+notfound|check|navigate|Quay lại /check
+index|main|load module|Browser bootstrap
+vite|index|build / serve|Frontend entry
+package|vite|tooling|Dev/build scripts
+vite|api-main|proxy request|Dev /api → loopback backend
+be-req|requirements|environment dependency|ML runtime tương thích
+pyproject|init|package install|dtdlink_ml src layout
+environment|requirements|environment dependency|Conda tham chiếu pinned pip deps
+nb1|audit|import / call|run_audit()
+nb2|clean|import / call|run_cleaning_pipeline()
+nb3|features|import / call|Ý nghĩa và ví dụ features
+nb4|loading|import / call|EDA inputs
+nb4|split|import / call|Tạo/kiểm tra split
+nb5|train|import / call|Classification experiments
+nb5|eval|import / call|Metrics/evaluation
+nb6|cluster|import / call|Clustering experiments
+tclean|clean|import / test|Contracts/hashes/repeatability
+tparse|parser|import / test|Robustness/offline
+tfeature|features|import / test|Schema/label invariance
+tenv|requirements|verify dependencies|Toy data only
+tsplit|split|import / test|Zero overlap/determinism
+tpredict|predict|import / test|Reload/raw-feature parity
+tapi|api-main|test request|FastAPI test client
+tinsights|route-insights|test request|Aggregate API contract
+tui|check|render / test|UI states/reset/race
+te2e|main|browser test|Navigation/scan flow
+te2e|api-main|integration test|Local API + fixture model
+testplan|tapi|documents|Contract/privacy evidence
+testplan|te2e|documents|Acceptance evidence
+report|metrics|uses evidence|Final results
+report|errors|uses evidence|Failure modes/limitations
+report|profiles|uses evidence|Clustering interpretation
+report|dictionary|references|Feature rationale
+report|decisions|references|Method choices
+report|auditout|uses evidence|Data collection/audit
+report|cleanout|uses evidence|Cleaning/transformation
+readme|deployment|references|A3 startup
+readme|environment|documents setup|A2 reproducibility
+contract|api-schema|specifies|Server-side JSON contract
+contract|client|specifies|Frontend contract
+minutes|decisions|records|Team review/acknowledgement
+contribution|minutes|uses evidence|Member contributions
+extra|raw|optional integration|Offline source branch, provenance required`;
+const R=textRelations.trim().split('\n').map(l=>{const[a,b,type,note]=l.split('|');return{a,b,type,note};});
+// Learning layout: short top-down flows; support dependencies stay next to their flow.
+const ns='http://www.w3.org/2000/svg';
+const make=(tag,attrs={},text)=>{const el=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;};
+function wrap(s,len=46){const lines=[];let cur='';s.split(' ').forEach(word=>{if((cur+' '+word).trim().length>len&&cur){lines.push(cur);cur=word;}else cur=(cur+' '+word).trim();});if(cur)lines.push(cur);return lines;}
+function openFile(id){document.getElementById('file-lookup').open=true;document.getElementById('group').value='all';filter();document.querySelector('#file-'+id+' details').open=true;}
+function fileLink(id){const a=document.createElement('a'),parts=F[id].path.split('/'),name=parts.at(-1),ambiguous=Object.values(F).filter(f=>f.path.split('/').pop()===name).length>1;a.href='#file-'+id;a.textContent=ambiguous?parts.slice(-2).join('/'):name;a.setAttribute('aria-label',F[id].path+' — '+F[id].role);a.addEventListener('click',()=>openFile(id));return a;}
+const S=(id,step,action,note)=>({id,step,action,note});
+const N=(stage,x,y,w=360)=>({...stage,x,y,w,h:140});
+const E=(points,label,x,y,anchor='middle')=>({points,label,x,y,anchor});
+const boards={};['overview','ml','web','tests'].forEach(id=>{const el=document.getElementById('g-'+id);el.className='flow-board';boards[id]=el;});
+const appearances={};
+function heading(target,title,description){const h=document.createElement('div');h.className='branch-heading';const t=document.createElement('h3'),p=document.createElement('p');t.textContent=title;p.textContent=description;h.append(t,p);boards[target].append(h);}
+function panel(target,spec){
+ const p=document.createElement('article');p.className='flow-panel'+(spec.wide?' wide':'');p.id=spec.id;
+ const title=document.createElement('h3'),description=document.createElement('p');title.id=spec.id+'-title';title.textContent=spec.title;description.className='caption';description.textContent=spec.description;p.append(title,description);
+ const reading=document.createElement('p');reading.className='reading-return';const back=document.createElement('a');back.href='#'+target+'-reading';back.textContent='↑ Đọc lại phần giải thích theo số bước';reading.append(back);p.append(reading);
+ const container=document.createElement('div');container.className='diagram';p.append(container);
+ const svg=make('svg',{viewBox:'0 0 '+spec.width+' '+spec.height,role:'img','aria-labelledby':title.id,'aria-describedby':spec.id+'-description'});
+ svg.append(make('title',{},spec.title),make('desc',{id:spec.id+'-description'},spec.description));
+ const defs=make('defs'),marker=make('marker',{id:spec.id+'-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto'});
+ marker.append(make('path',{d:'M0 0 L10 5 L0 10Z',fill:'#647b91'}));defs.append(marker);svg.append(defs);
+ (spec.lanes||[]).forEach(l=>{svg.append(make('text',{x:l.x,y:l.y,class:'lane-title'},l.title));if(l.note)svg.append(make('text',{x:l.x,y:l.y+24,class:'lane-subtitle'},l.note));});
+ (spec.dividers||[]).forEach(d=>svg.append(make('line',{class:'lane-divider',x1:d[0],y1:d[1],x2:d[2],y2:d[3]})));
+ spec.edges.forEach(e=>{const at=point=>spec.nodes.find(n=>point[0]>=n.x-.5&&point[0]<=n.x+n.w+.5&&point[1]>=n.y-.5&&point[1]<=n.y+n.h+.5),from=at(e.points[0]),to=at(e.points.at(-1));svg.append(make('polyline',{class:'edge',points:e.points.map(p=>p.join(',')).join(' '),'data-from':from?.id||'','data-to':to?.id||'','data-from-step':from?.step||'','data-to-step':to?.step||'','data-relation':e.label.replaceAll('|',' '),'marker-end':'url(#'+spec.id+'-arrow)'}));const t=make('text',{class:'edge-label',x:e.x,y:e.y,'text-anchor':e.anchor});e.label.split('|').forEach((line,i)=>t.append(make('tspan',{x:e.x,dy:i?16:0},line)));svg.append(t);});
+ spec.nodes.forEach(n=>{
+  const f=F[n.id];if(!f)throw new Error('Unknown diagram file: '+n.id);
+  if(!appearances[n.id])appearances[n.id]=[];if(!appearances[n.id].some(p=>p.id===spec.id))appearances[n.id].push({id:spec.id,title:spec.title});
+  const parts=f.path.split('/'),filename=parts.pop(),a=make('a',{href:'#file-'+n.id,class:'node-link','aria-label':n.step+' · '+n.action+' · '+f.path+'. '+n.note});
+  a.addEventListener('click',()=>openFile(n.id));
+  const g=make('g',{id:spec.id+'-step-'+n.step,class:'node '+f.layer,'data-step':n.step});
+  g.append(make('rect',{class:'node-body',x:n.x,y:n.y,width:n.w,height:n.h,rx:8}),make('rect',{class:'step-badge',x:n.x+14,y:n.y+11,width:39,height:25,rx:5}),make('text',{class:'step-number',x:n.x+33.5,y:n.y+28,'text-anchor':'middle'},n.step),make('text',{class:'step-title',x:n.x+63,y:n.y+28},n.action),make('text',{class:'path',x:n.x+14,y:n.y+53},parts.join('/')||'project root'),make('text',{class:'file',x:n.x+14,y:n.y+76},filename),make('line',{class:'note-divider',x1:n.x+14,x2:n.x+n.w-14,y1:n.y+88,y2:n.y+88}));
+  const lines=wrap(n.note);if(lines.length>2)throw new Error('Long note: '+spec.id+'/'+n.id);
+  lines.forEach((line,i)=>g.append(make('text',{class:'step-note',x:n.x+14,y:n.y+109+i*18},line)));a.append(g);svg.append(a);
+  g.append(make('text',{class:'provenance',x:n.x+n.w-14,y:n.y+28,'text-anchor':'end'},f.source));
+ });
+ container.append(svg);
+ if(spec.related?.length){
+  const block=document.createElement('div');block.className='support-relations';const h=document.createElement('h4');h.textContent='Liên kết hỗ trợ — không phải bước chạy tiếp theo';block.append(h);
+  const list=document.createElement('ul');spec.related.forEach(([from,to,type,note])=>{const li=document.createElement('li'),relation=document.createElement('span'),role=document.createElement('span');relation.className='relation-type';relation.textContent=' — '+type+' → ';role.className='file-role';role.textContent=note||F[to].role;li.append(fileLink(from),relation,fileLink(to),role);list.append(li);});block.append(list);p.append(block);
+ }
+ if(spec.next?.length){
+  const footer=document.createElement('p');footer.className='handoff';const strong=document.createElement('strong');strong.textContent='Nối sang: ';footer.append(strong);
+  spec.next.forEach(([id,label,via],i)=>{if(i)footer.append(document.createTextNode(' · '));const link=document.createElement('a');link.href='#'+id;link.textContent=label;footer.append(link,document.createTextNode(' — '+via));});p.append(footer);
+ }
+ boards[target].append(p);
+}
+function chain(target,spec){
+ const nodes=spec.steps.map((stage,i)=>N(stage,120,32+i*222));
+ if(spec.arrows.length!==nodes.length-1)throw new Error('Missing chain edge: '+spec.id);
+ const edges=nodes.slice(0,-1).map((n,i)=>E([[300,n.y+140],[300,nodes[i+1].y]],spec.arrows[i],316,n.y+175,'start'));
+ panel(target,{...spec,width:600,height:nodes.at(-1).y+172,nodes,edges});
+}
+function fan(target,spec){
+ const parent=N(spec.parent,440,34),children=spec.children.map((s,i)=>N(s,30+i*410,302));
+ const edges=children.map((n,i)=>E([[620,174],[620,236],[n.x+180,236],[n.x+180,302]],spec.arrows[i],n.x+180,274));
+ panel(target,{...spec,wide:true,width:1240,height:474,nodes:[parent,...children],edges});
+}
+
+// Four connected maps. Numbers are reading order, not project status.
+function map(target,id,title,description){
+ const nodes=[],edges=[],by={};
+ const add=(key,file,col,row,step,action,note)=>{const n=N(S(file,step,action,note),40+(target==='overview'&&col===2?1:col)*500,70+row*230);nodes.push(n);by[key]=n;return key;};
+ const link=(a,b,label,via)=>{const s=by[a],t=by[b];let points,x,y,anchor='middle';
+  if(via){points=via(s,t);const p=points[1],q=points[2]||points[1];x=(p[0]+q[0])/2;y=(p[1]+q[1])/2-12;}
+  else if(s.x===t.x){points=[[s.x+180,s.y+140],[t.x+180,t.y]];x=s.x+196;y=(s.y+140+t.y)/2;anchor='start';}
+  else if(s.y===t.y){const right=t.x>s.x;points=[[s.x+(right?360:0),s.y+70],[t.x+(right?0:360),t.y+70]];x=(points[0][0]+points[1][0])/2;y=s.y+48;}
+  else {const mid=s.y+185;points=[[s.x+180,s.y+140],[s.x+180,mid],[t.x+180,mid],[t.x+180,t.y]];x=(s.x+t.x)/2+180;y=mid-12;}
+  if(via && (x<100 || x>1350)){x=s.x+180;y=s.y+180;anchor='middle';}
+  if(label==='read metadata'){x=t.x+180;y=t.y-35;}
+  if(label==='shared bundle dùng lại'){x=1220;y=1450;}
+  if(label==='read selected model'){x=45;y=s.y+175;anchor='start';}
+  edges.push(E(points,label,x,y,anchor));
+ };
+ return {add,link,by,finish(related=[]){panel(target,{id,title,description,wide:true,width:target==='overview'?940:1440,height:Math.max(...nodes.map(n=>n.y))+180,nodes,edges,related});}};
+}
+
+{
+ const g=map('overview','overview-flow','Từ dữ liệu nghiên cứu đến sản phẩm sử dụng được','Đọc cột trái từ trên xuống, sau đó theo model sang cột phải. A2 tạo tài sản ML; A3 dùng lại chúng, không huấn luyện khi người dùng gửi URL.');
+ g.add('data','raw',0,0,'1','Dữ liệu đầu vào','URL và nhãn gốc của bài toán.');
+ g.add('features','features',0,1,'2','Tạo đặc trưng','Sau cleaning, biến URL thành số.');
+ g.add('train','train',0,2,'3','Học và chọn model','Fit train; chọn bằng validation; test cuối.');
+ g.add('model','model',0,3,'4','Bàn giao cho A3','Pipeline đã học, đi kèm metadata.');
+ g.add('check','check',2,0,'5','Người dùng nhập URL','Frontend thu input, hiển thị trạng thái.');
+ g.add('client','client',2,1,'6','Gửi yêu cầu','JSON gửi tới FastAPI qua HTTP nội bộ.');
+ g.add('route','route-predict',2,2,'7','Backend tiếp nhận','Validate và gọi model service.');
+ g.add('predict','predict',2,3,'8','Chạy model A2','Dùng parser/features và bundle đã nạp.');
+ g.add('result','result',2,4,'9','Hiển thị kết quả','Score, lời giải thích và highlight URL.');
+ g.link('data','features','data flow |qua cleaning');g.link('features','train','data flow |qua split / loader');g.link('train','model','data flow |qua evaluate / export');
+ g.link('check','client','call / URL');g.link('client','route','API request');g.link('route','predict','call qua service');g.link('model','predict','data flow:|loaded model');g.link('predict','result','data flow |JSON qua API + hook');g.finish();
+}
+{
+ const g=map('ml','a2-flow','A2 — một pipeline từ dữ liệu gốc đến bộ model bàn giao','Trục trái là luồng chính. Ở bước 10, theo từng CSV xuống loader tương ứng. Validation chọn model; test chỉ đánh giá cuối. Nhánh clustering độc lập với classifier. Mũi tên data flow chỉ dữ liệu, không có nghĩa file dữ liệu tự gọi hàm.');
+ const rows=[['archive','archive','1','Nguồn dữ liệu','ZIP chứa CSV môn học.'],['audit','audit','2','Audit và bảo vệ raw','Kiểm tra dữ liệu, hash và các bất thường.'],['raw','raw','3','Raw không thay đổi','Giữ nguyên URL và nhãn nguồn.'],['clean','clean','4','Làm sạch','Trim, map target, cách ly conflict, dedup.'],['cleaned','cleaned','5','Dữ liệu sạch','URL, type và target sau cleaning.'],['features','features','6','Trích xuất features','Tạo 36 features; nhãn chỉ là metadata.'],['fcsv','featurecsv','7','Bảng features','36 features + 6 cột metadata.'],['eda','nb4','8','Khám phá và kiểm tra','EDA gọi loader; xem phân bố trước split.'],['split','split','9','Chia theo domain','Tạo 3 tập; domain không giao nhau.'],['trcsv','traincsv','10A','Tập học','Chỉ tập này dùng để fit classifier.'],['trload','loading','11A','Nạp train','Tách X_train, y_train, metadata.'],['prep','prep','12','Fit preprocessing','Fit train; validation chỉ transform.'],['train','train','13','Huấn luyện và lựa chọn','So LR/Decision Tree trên validation.'],['selected','selected','14','Pipeline đã chọn','Chứa preprocessing + classifier đã fit.'],['eval','eval','15','Thi cuối trên test','Transform/predict; không fit hoặc tune.'],['export','export','16','Đóng gói bộ bàn giao','Lưu model và contract; không fit lại test.'],['model','model','17A','Model inference','A3 nạp một lần khi khởi động.']];
+ rows.forEach((r,i)=>g.add(r[0],r[1],0,i,...r.slice(2)));
+ ['read ZIP','write / verify','read CSV','write CSV','read CSV','write CSV','data flow','call split','write CSV','read CSV','data flow: X_train','fitted transform','write pipeline','read / predict','data flow: kiểm định đạt','write joblib'].forEach((l,i)=>g.link(rows[i][0],rows[i+1][0],l));
+ g.add('parser','parser',1,5,'6a','Phân tích URL','Offline; không mở URL hoặc tra Internet.');g.link('features','parser','import / call');
+ g.add('edaload','loading',1,7,'8a','Nạp bảng cho EDA','Kiểm tra schema, tách X/y/metadata.');g.link('eda','edaload','import / call');
+ g.add('auditout','auditout',1,1,'2a','Bằng chứng audit','Counts, nguồn, labels và diagnostics.');g.link('audit','auditout','write JSON');
+ g.add('vcsv','valcsv',1,9,'10B','Tập lựa chọn','Chọn model, threshold, uncertain policy.');g.add('tcsv','testcsv',2,9,'10C','Tập thi cuối','Giữ riêng đến khi khóa lựa chọn.');
+ g.link('split','vcsv','write validation');g.link('split','tcsv','write test');
+ g.add('vload','loading',1,10,'11B','Nạp validation','X_val, y_val; không gộp vào train.');g.link('vcsv','vload','read CSV');
+ g.add('tload','loading',2,10,'11C','Nạp test khi thi cuối','X_test, y_test chỉ cấp cho evaluate.');g.link('tcsv','tload','read CSV');
+ g.link('vload','train','data flow: validation', (s,t)=>[[s.x+180,s.y+140],[s.x+180,t.y+70],[t.x+360,t.y+70]]);
+ g.link('tload','eval','data flow: held-out test',(s,t)=>[[s.x+360,s.y+70],[1420,s.y+70],[1420,t.y-25],[t.x+300,t.y-25],[t.x+300,t.y]]);
+ g.add('selection','selection',1,13,'14a','Khóa quyết định','Model, threshold và uncertain policy.');g.link('train','selection','write policy');g.link('selection','eval','read locked policy');
+ g.add('metadata','metadata',1,16,'17B','Contract của model','Feature order, versions, labels, policy.');g.link('export','metadata','write JSON');
+ g.link('selected','export','read selected model',(s,t)=>[[s.x,s.y+70],[15,s.y+70],[15,t.y+70],[t.x,t.y+70]]);
+ g.link('selection','export','read policy',(s,t)=>[[s.x+360,s.y+70],[960,s.y+70],[960,t.y+70],[t.x+360,t.y+70]]);
+ g.add('errors','errors',1,14,'15b','Phân tích lỗi','Lưu FP/FN để xem model sai ở đâu.');g.link('eval','errors','write CSV');
+ g.add('cprep','prep',2,11,'C1','Nhánh clustering','Caller lấy một class train, bỏ y khỏi X.');
+ g.link('trload','cprep','data flow: một class train');
+ g.add('cluster','cluster',2,12,'C2','Tìm các nhóm URL','Fit preprocessing riêng trên class train.');g.link('cprep','cluster','data flow: transformed X');
+ g.add('profiles','profiles',2,13,'C3','Diễn giải nhóm','So sánh features và kích thước clusters.');g.link('cluster','profiles','write profiles');
+ g.add('metrics','metrics',2,15,'15a','Metrics cuối','Kết quả test cho report và Insights.');g.link('eval','metrics','write metrics');
+ g.add('analytics','analytics',2,17,'18','Tạo dữ liệu Insights','Tổng hợp audit, metrics và profiles.');
+ g.link('metrics','analytics','read metrics');
+ g.link('profiles','analytics','read profiles',(s,t)=>[[s.x+360,s.y+70],[1405,s.y+70],[1405,t.y+70],[t.x+360,t.y+70]]);
+ g.add('insights','insightsdata',2,18,'19','Bàn giao thống kê','JSON tổng hợp; không lịch sử người dùng.');g.link('analytics','insights','write JSON');
+ g.finish([['analytics','auditout','read file','Audit summary là đầu vào tổng hợp.'],['cluster','cmodel','write file','Lưu pipeline clustering để tái lập nghiên cứu.'],['eval','errors','write CSV','Lưu FP/FN cho phân tích lỗi.'],['split','manifest','write file','Seed, hashes và bằng chứng không overlap.'],['clean','conflicts','write CSV','Cách ly nhãn mâu thuẫn.'],['nb1','audit','import / call','Notebook ghi bằng chứng audit.'],['nb2','clean','import / call','Notebook ghi bằng chứng cleaning.'],['nb3','features','import / call','Khám phá feature rationale.'],['nb5','train','import / call','Notebook thí nghiệm classification.'],['nb6','cluster','import / call','Notebook thí nghiệm clustering.']]);
+}
+{
+ const g=map('web','a3-flow','A3 — từ mở website đến nhận kết quả','Đọc trục giữa từ trên xuống. Nhánh trái là các trang khác và Insights. Nhánh phải là startup, kiểm tra input và giải thích. Các node lặp lại cùng tên thể hiện cùng file ở thời điểm khác nhau, không phải module mới.');
+ const rows=[['index','index','1','Mở website','Tạo DOM root và nạp entry React.'],['main','main','2','Mount React','Import App và stylesheet.'],['app','app','3','Dựng ứng dụng','Providers và cấu hình điều hướng.'],['router','router','4','Chọn màn hình','/check, /insights, /how-it-works.'],['shell','shell','5','Layout chung','Navigation và outlet hiển thị page.'],['check','check','6','Trang kiểm tra URL','Giữ bố cục form, trạng thái và kết quả.'],['form','form','7','Nhập và submit','Phát onSubmit(url) hoặc reset.'],['hook','hook','8','Điều phối thao tác','Validate → loading → result / error.'],['client','client','9','Gửi URL hợp lệ','POST /api/predict; xử lý lỗi đã lọc.'],['route','route-predict','10','API tiếp nhận','Schema kiểm tra input; lấy shared service.'],['service','service','11','Xử lý yêu cầu','Dùng bundle đã nạp; không train lại.'],['predict','predict','12','Inference ML','Features → pipeline → score / assessment.'],['merged','service','13','Ghép kết quả','Kết hợp dự đoán với signals giải thích.'],['returnroute','route-predict','14','Trả response','Serialize PredictionResponse, không echo URL.'],['returnclient','client','15','Nhận JSON','Response hoặc lỗi 422 / 503 đã lọc.'],['returnhook','hook','16','Cập nhật state','Bỏ response cũ; kết thúc loading.'],['result','result','17','Hiển thị kết quả','Qua CheckUrlPage: result hoặc uncertain.']];
+ rows.forEach((r,i)=>g.add(r[0],r[1],1,i,...r.slice(2)));
+ ['import / render','import / render','import / render','render outlet','navigate / render','render','event / data flow','call nếu hợp lệ','API request','call','call','data flow: prediction','return DTO','API response','return data','state / render'].forEach((l,i)=>g.link(rows[i][0],rows[i+1][0],l));
+ g.add('how','how',0,4,'5a','Trang hướng dẫn','Giải thích cách dùng, giới hạn, privacy.');g.link('shell','how','navigate');
+ g.add('ipage','insightspage',0,5,'5b','Trang Insights','Yêu cầu thống kê của nghiên cứu A2.');g.link('shell','ipage','navigate');
+ g.add('iclient','client',0,6,'I1','Yêu cầu thống kê','GET /api/insights, không gửi URL.');g.link('ipage','iclient','call');
+ g.add('iroute','route-insights',0,7,'I2','Endpoint Insights','Trả JSON tổng hợp đã kiểm tra.');g.link('iclient','iroute','API request');
+ g.add('iservice','insights-service',0,8,'I3','Đọc thống kê A2','Read artifact; dữ liệu trả về theo API.');g.link('iroute','iservice','call');
+ g.add('idata','insightsdata',0,9,'I4','Artifact từ phần 02','Không chứa lịch sử kiểm tra URL.');g.link('iservice','idata','read JSON');
+ g.add('charts','charts',0,10,'I5','Hiển thị biểu đồ','JSON → API → InsightsPage → charts.');g.link('idata','charts','data flow qua API / page');
+ g.add('startup','api-main',2,0,'S1','Khởi động backend','Đăng ký routes, chạy lifespan một lần.');
+ g.add('loadservice','service',2,1,'S2','Khởi tạo shared service','Nạp bundle, kiểm tra readiness.');g.link('startup','loadservice','startup call');
+ g.add('loadpredict','predict',2,2,'S3','Nạp bundle tin cậy','Chỉ đọc model nhóm tạo và metadata.');g.link('loadservice','loadpredict','call loader');
+ g.add('model','model',2,3,'S4','Model từ phần 02','Preprocessing và classifier đã fit.');g.link('loadpredict','model','read joblib');
+ g.add('metadata','metadata',2,4,'S5','Contract từ phần 02','Schema, version và chính sách score.');g.link('loadpredict','metadata','read metadata',(s,t)=>[[s.x+360,s.y+70],[1405,s.y+70],[1405,t.y+70],[t.x+360,t.y+70]]);
+ g.add('validation','validation',2,7,'8a','Validate ở frontend','Chặn rỗng / quá dài trước khi gọi API.');g.link('hook','validation','import / call');
+ g.add('error','errorui',2,8,'8b','Hiển thị lỗi','Hook/page render khi invalid hoặc API lỗi.');g.link('validation','error','data flow: invalid');g.link('client','error','data flow: API lỗi');
+ g.add('schema','api-schema',2,9,'10a','Validate phía server','Request/response contract, lỗi 422.');g.link('route','schema','import / validate');
+ g.add('deps','dependencies',2,10,'10b','Lấy shared service','Trả service ready hoặc lỗi 503.');g.link('route','deps','call dependency');g.link('deps','service','data flow: service');
+ g.add('features','features',0,11,'12a','Dùng lại feature A2','Raw URL → numeric features đúng schema.');g.link('predict','features','import / call');
+ g.add('parser','parser',0,12,'12b','Parser dùng chung','Tách URL offline, trả ParsedURL.');g.link('features','parser','import / call');
+ g.add('explain','explain',2,11,'12c','Tạo signals','Dùng URL, ParsedURL và features.');g.link('predict','explain','data flow |qua service');g.link('explain','merged','data flow: signals');
+ g.link('loadservice','service','shared bundle dùng lại',(s,t)=>[[s.x+360,s.y+70],[1420,s.y+70],[1420,t.y+185],[t.x+420,t.y+185],[t.x+420,t.y+70],[t.x+360,t.y+70]]);
+ g.add('score','score',0,17,'18A','Score và assessment','Nhãn thận trọng; không cam kết an toàn.');g.add('signals','signals',1,17,'18B','Danh sách tín hiệu','Giải thích dấu hiệu quan sát được.');g.add('highlight','highlight',2,17,'18C','Highlight URL','Text đã escape; không link tự mở.');
+ g.link('result','score','render');g.link('result','signals','render');g.link('result','highlight','render');
+ g.finish([['loadpredict','metadata','read file','Loader kiểm tra metadata cùng model.']].map(([a,b,t,n])=>[a==='loadpredict'?'predict':a,b,t,n]).concat([['route-predict','api-schema','serialize','Response cũng theo schema này.'],['check','result','render','Kết quả từ hook chuyển thành props.'],['hook','errorui','state / render','Qua CheckUrlPage, gồm cả input/API errors.'],['main','css','import','Responsive layout và focus.'],['app','theme','import','Theme chung.'],['router','notfound','navigate','Fallback route.'],['api-main','health','register route','Readiness cho kiểm thử/demo.']]));
+}
+{
+ const g=map('tests','delivery-flow','Kiểm thử và tài liệu bàn giao','Các hàng kiểm thử độc lập, không phải chuỗi chạy bắt buộc. Phần cuối nối bằng chứng nghiên cứu và hướng dẫn tái lập với các tệp bàn giao.');
+ const tests=[['tclean','clean','1','Cleaning'],['tparse','parser','2','Parser offline'],['tfeature','features','3','Feature contract'],['tsplit','split','4','Không leakage'],['tpredict','predict','5','Reload / inference'],['tapi','api-main','6','API integration'],['tui','check','7','Trạng thái UI'],['te2e','main','8','End-to-end']];
+ tests.forEach(([a,b,s,label],i)=>{g.add(a,a,0,i,s,'Kiểm thử '+label,'Dùng fixtures và kiểm tra hành vi tương ứng.');g.add(b,b,1,i,s+'a','Thành phần được kiểm tra',F[b].role);g.link(a,b,'import / test');});
+ g.add('metrics','metrics',0,8,'9','Bằng chứng model','Metrics, kèm error analysis và figures.');g.add('report','report',1,8,'10','Report Assignment 2','Tổng hợp phương pháp, kết quả, giới hạn.');g.link('metrics','report','data flow: evidence');
+ g.add('profiles','profiles',0,9,'9a','Bằng chứng clustering','Cluster profiles và diễn giải nghiên cứu.');g.link('profiles','report','data flow: evidence',(s,t)=>[[s.x+360,s.y+70],[470,s.y+70],[470,t.y+70],[t.x,t.y+70]]);
+ g.add('readme','readme',1,10,'11','Hướng dẫn tái lập','Setup → preprocess → train → eval → demo.');
+ g.add('deployment','deployment',2,10,'11a','Chạy demo A3','Paths, proxy, origins và privacy.');g.link('readme','deployment','references');
+ g.add('testplan','testplan',2,8,'10a','Bằng chứng kiểm thử','Ghi tiêu chí, cách chạy và kết quả thật.');g.link('testplan','report','references');
+ g.add('minutes','minutes',0,11,'12','Biên bản nhóm','Ghi quyết định và đóng góp có dấu vết.');g.add('contribution','contribution',1,11,'13','Contribution form','Tổng hợp đóng góp; ký theo mẫu yêu cầu.');g.link('minutes','contribution','data flow: evidence');
+ g.finish([['report','auditout','uses evidence','Nguồn và chất lượng dữ liệu.'],['report','cleanout','uses evidence','Cleaning và số bản ghi.'],['report','dictionary','references','Định nghĩa features.'],['readme','environment','documents setup','Môi trường tái lập.'],['readme','model','documents usage','ZIP bàn giao gồm code, dữ liệu xử lý và model.'],['tinsights','route-insights','test request','Schema aggregate; không rò URL người dùng.']] );
+}
+
+const notes={loading:'Tên file có trong master plan nhưng module chưa có trong source đã đọc. Vai trò load/schema/X-y-metadata và các caller là thiết kế đích. Không nhầm với load_and_prepare_dataset() hiện nằm trong data_cleaning.py; hàm đó xử lý raw input, không phải loader của các split.',prep:'Module được đề xuất để gom preprocessing. Trainer/cluster điều phối: fit trên train (hoặc một class của train cho clustering); validation/test/inference chỉ transform. Không phải loader tự gọi train.',clean:'Thứ tự code: trim → target mapping → cách ly conflict → bỏ trùng. Raw được hash trước/sau.',parser:'ParsedURL có 18 trường. tldextract được cấu hình suffix_list_urls=(), fallback_to_snapshot=True, cache_dir=None.',features:'Chỉ import nội bộ url_parser.py. Labels được copy vào metadata, không đi vào phép tính feature.',config:'Module mới dùng config tập trung. Không mặc định code cũ đã refactor để import config.py.',train:'Baseline Logistic Regression + Decision Tree; model/threshold được chọn bằng validation, không test.',eval:'Hàm metrics có thể được train module gọi trên validation; CLI final evaluation chỉ đọc selected pipeline và locked test.',model:'Bundle chứa preprocessing đã fit và classifier; chỉ load artifact do nhóm tạo, có metadata đi cùng.',metadata:'Feature order, label mapping, model/policy version, threshold, uncertain band, hashes và dependency versions.',result:'Render cautious wording theo response; không khẳng định URL an toàn. Uncertain là một trạng thái hiển thị dựa trên policy đã đánh giá.',service:'Startup load một lần, fail readiness nếu schema/version không khớp. Không huấn luyện trong HTTP request và không ghi payload URL.',explain:'Signal là bằng chứng quan sát, không mặc định là model attribution. Nếu trả span thì ánh xạ từ analysis copy về raw text và kiểm tra bounds.',insightsdata:'Chỉ dữ liệu tổng hợp đã được chọn; không đưa raw samples hay URL người dùng vào response.',extra:'Nhánh tùy chọn có rationale/provenance, cần thống nhất scope; không làm online enrichment lúc predict.',readme:'Mở rộng README hiện hữu để bao phủ cả A2 và A3; không khẳng định nội dung hướng dẫn đó đã có sẵn.'};
+const tbody=document.getElementById('catalog');Object.values(F).forEach(f=>{const tr=document.createElement('tr');tr.id='file-'+f.id;tr.dataset.layer=f.layer;const a=document.createElement('td'),c=document.createElement('code');c.textContent=f.path;a.append(c);const source=document.createElement('span');source.className='source';source.textContent=f.source+' · '+({CODE:'nguồn code/tệp đã đọc',PLAN:'tên từ master plan',DESIGN:'đề xuất kiến trúc'}[f.source]);a.append(source);const b=document.createElement('td'),strong=document.createElement('strong');strong.textContent=f.role;b.append(strong);const io=document.createElement('p');io.textContent='Nhận: '+f.input+' → Trả/tạo: '+f.output;b.append(io);const views=appearances[f.id];if(views?.length){const map=document.createElement('p');map.className='diagram-links';map.append(document.createTextNode('Có trong sơ đồ: '));views.forEach(view=>{const a=document.createElement('a');a.href='#'+view.id;a.textContent=view.title;map.append(a);});b.append(map);}if(notes[f.id]){const p=document.createElement('p');p.className='small';p.textContent=notes[f.id];b.append(p);}const d=document.createElement('details'),s=document.createElement('summary');s.textContent='Xem các file gọi / được gọi / trao đổi dữ liệu';d.append(s);const ul=document.createElement('ul');R.filter(r=>r.a===f.id||r.b===f.id).forEach(r=>{const incoming=r.b===f.id,other=F[incoming?r.a:r.b];const li=document.createElement('li'),a=document.createElement('a');a.href='#file-'+other.id;a.textContent=other.path;a.addEventListener('click',()=>{document.getElementById('group').value='all';filter();});li.append(document.createTextNode(incoming?'← ':'→ '),a,document.createTextNode(' · '+r.type+' · '+r.note));ul.append(li);});d.append(ul);b.append(d);tr.append(a,b);tbody.append(tr);});
+const prefixes=['src/dtdlink_ml/','frontend/','backend/','data/','models/','notebooks/','tests/','reports/','docs/'];prefixes.forEach(prefix=>{const d=document.createElement('details'),s=document.createElement('summary'),ul=document.createElement('ul');s.textContent=prefix;d.append(s);Object.values(F).filter(f=>f.path.startsWith(prefix)).forEach(f=>{const li=document.createElement('li'),a=document.createElement('a');a.href='#file-'+f.id;a.textContent=f.path.slice(prefix.length);a.addEventListener('click',()=>{document.getElementById('group').value='all';filter();});li.append(a);ul.append(li);});d.append(ul);document.getElementById('tree').append(d);});
+function filter(){const group=document.getElementById('group').value;let n=0;document.querySelectorAll('#catalog tr').forEach(tr=>{tr.hidden=group!=='all'&&tr.dataset.layer!==group;if(!tr.hidden)n++;});document.getElementById('count').textContent=n+' / '+Object.keys(F).length+' file hoặc nhóm file';}
+window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#file-'))document.getElementById('file-lookup').open=true;});
+if(location.hash.startsWith('#file-'))document.getElementById('file-lookup').open=true;
+document.getElementById('group').addEventListener('change',filter);document.getElementById('print').addEventListener('click',()=>{document.getElementById('file-lookup').open=true;document.getElementById('group').value='all';filter();window.print();});filter();
+})();
+</script></body></html>

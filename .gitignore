@@ -1,0 +1,31 @@
+# Local Python environment
+.venv/
+
+# Python caches and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Operating-system and editor files
+.DS_Store
+.vscode/
+
+# Generated intermediate data and reports
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Experimental model files; explicitly allow the agreed final artifacts
+models/*
+!models/.gitkeep
+!models/final_pipeline.joblib
+!models/model_metadata.json
+
+# Too large for GitHub (>100MB)
+Week-08/Assessment/Basic_Datasets.zip

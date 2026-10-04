@@ -1,0 +1,211 @@
+{
+  "audit_time_utc": "2026-09-17T03:49:38.257356+00:00",
+  "source": {
+    "archive": "Week-08/Assessment/Basic_Datasets.zip",
+    "member": "Basic_Datasets/Phishing URL Detection/malicious_phish.csv",
+    "raw": "data/raw/malicious_phish.csv",
+    "archive_sha256": "ed776a8d00acbd33970ed0b425286466786c4b35006d348a621ec64f9b62206e",
+    "csv_sha256": "d83ce942075dd63ed4d11560cfdcd9d512caa3d680e292f22cab484e8f074d01",
+    "csv_bytes": 45664439
+  },
+  "environment": {
+    "python": "3.9.6",
+    "pandas": "2.2.3"
+  },
+  "shape": {
+    "rows": 651191,
+    "columns": 2
+  },
+  "schema": [
+    {
+      "column": "url",
+      "pandas_dtype": "string",
+      "semantic_type": "URL text"
+    },
+    {
+      "column": "type",
+      "pandas_dtype": "string",
+      "semantic_type": "categorical label"
+    }
+  ],
+  "labels": [
+    {
+      "label": "benign",
+      "rows": 428103,
+      "percent": 65.74154126823007
+    },
+    {
+      "label": "defacement",
+      "rows": 96457,
+      "percent": 14.812397591490054
+    },
+    {
+      "label": "malware",
+      "rows": 32520,
+      "percent": 4.993926513112128
+    },
+    {
+      "label": "phishing",
+      "rows": 94111,
+      "percent": 14.452134627167759
+    }
+  ],
+  "missingness": {
+    "url": {
+      "null": 0,
+      "empty_string": 0,
+      "whitespace_only_nonempty": 0,
+      "na_like_token": 0,
+      "leading_or_trailing_whitespace": 7
+    },
+    "type": {
+      "null": 0,
+      "empty_string": 0,
+      "whitespace_only_nonempty": 0,
+      "na_like_token": 0,
+      "leading_or_trailing_whitespace": 0
+    }
+  },
+  "duplicates": {
+    "unique_complete_rows": 641125,
+    "exact_row_excess": 10066,
+    "exact_row_affected": 12267,
+    "exact_row_groups": 2201,
+    "unique_urls": 641119,
+    "url_excess": 10072,
+    "url_affected": 12279,
+    "url_groups": 2207,
+    "additional_url_merges_if_trimmed": 0
+  },
+  "conflicts": {
+    "unique_urls": 6,
+    "affected_rows": 12,
+    "label_combinations": {
+      "benign|phishing": 6
+    }
+  },
+  "by_class": [
+    {
+      "label": "benign",
+      "rows": 428103,
+      "unique_urls": 428080,
+      "exact_duplicate_excess": 23,
+      "conflict_rows": 6,
+      "http_prefix": 33428,
+      "https_prefix": 1950,
+      "no_explicit_scheme": 392725,
+      "any_whitespace": 142,
+      "control_character": 2,
+      "non_ascii": 278,
+      "literal_at_symbol": 614,
+      "length_over_2048": 2,
+      "diagnostic_parse_issue": 0,
+      "length": {
+        "0": 6.0,
+        "0.25": 31.0,
+        "0.5": 46.0,
+        "0.75": 71.0,
+        "0.95": 125.0,
+        "1": 2175.0
+      }
+    },
+    {
+      "label": "defacement",
+      "rows": 96457,
+      "unique_urls": 95308,
+      "exact_duplicate_excess": 1149,
+      "conflict_rows": 0,
+      "http_prefix": 96457,
+      "https_prefix": 0,
+      "no_explicit_scheme": 0,
+      "any_whitespace": 23,
+      "control_character": 0,
+      "non_ascii": 527,
+      "literal_at_symbol": 2,
+      "length_over_2048": 0,
+      "diagnostic_parse_issue": 0,
+      "length": {
+        "0": 17.0,
+        "0.25": 55.0,
+        "0.5": 81.0,
+        "0.75": 105.0,
+        "0.95": 165.0,
+        "1": 327.0
+      }
+    },
+    {
+      "label": "malware",
+      "rows": 32520,
+      "unique_urls": 23645,
+      "exact_duplicate_excess": 8875,
+      "conflict_rows": 0,
+      "http_prefix": 24546,
+      "https_prefix": 6764,
+      "no_explicit_scheme": 1210,
+      "any_whitespace": 0,
+      "control_character": 0,
+      "non_ascii": 0,
+      "literal_at_symbol": 42,
+      "length_over_2048": 0,
+      "diagnostic_parse_issue": 0,
+      "length": {
+        "0": 7.0,
+        "0.25": 33.0,
+        "0.5": 49.0,
+        "0.75": 76.0,
+        "0.95": 99.0,
+        "1": 378.0
+      }
+    },
+    {
+      "label": "phishing",
+      "rows": 94111,
+      "unique_urls": 94092,
+      "exact_duplicate_excess": 19,
+      "conflict_rows": 6,
+      "http_prefix": 17886,
+      "https_prefix": 6966,
+      "no_explicit_scheme": 69257,
+      "any_whitespace": 143,
+      "control_character": 86,
+      "non_ascii": 116,
+      "literal_at_symbol": 688,
+      "length_over_2048": 0,
+      "diagnostic_parse_issue": 14,
+      "length": {
+        "0": 1.0,
+        "0.25": 25.0,
+        "0.5": 35.0,
+        "0.75": 49.0,
+        "0.95": 117.0,
+        "1": 1779.0
+      }
+    }
+  ],
+  "diagnostic_host": {
+    "unique_nonempty_hosts": 196520,
+    "rows_in_repeated_hosts": 499836,
+    "parse_issue_counts": {
+      "": 651177,
+      "urlsplit_value_error": 13,
+      "no_hostname": 1
+    },
+    "largest_host_row_count": 13206
+  },
+  "verification": {
+    "independent_csv_checks_passed": true,
+    "csv_record_widths": {
+      "2": 651191
+    },
+    "raw_hash_unchanged": true,
+    "archive_hash_unchanged": true
+  },
+  "limitations": [
+    "No website visited or label independently verified.",
+    "No collection dates, label provenance or historical snapshots in these two columns.",
+    "Host inspection is diagnostic, not registrable-domain grouping or strict URL validation.",
+    "No canonicalization, cleaning, exclusions, relabeling, split or training performed.",
+    "Missingness preserves literal strings; null-like tokens counted separately.",
+    "Examples illustrate length quartiles, not statistically representative or verified class membership."
+  ]
+}

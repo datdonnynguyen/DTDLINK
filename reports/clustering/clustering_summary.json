@@ -1,0 +1,240 @@
+{
+  "feature_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
+  "manifest_sha256": "fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f",
+  "selected_class": "potentially_dangerous",
+  "selected_target": 1,
+  "fit_split": "train",
+  "selected_rows": 127256,
+  "split_counts": {
+    "train": 384832,
+    "validation": 129332,
+    "test": 126949
+  },
+  "feature_names": [
+    "url_length",
+    "host_length",
+    "path_length",
+    "query_length",
+    "fragment_length",
+    "tld_length",
+    "dot_count",
+    "hyphen_count",
+    "digit_count",
+    "special_character_count",
+    "subdomain_count",
+    "path_segment_count",
+    "query_parameter_count",
+    "suspicious_term_count",
+    "brand_token_count",
+    "non_ascii_count",
+    "parse_issue_count",
+    "has_scheme",
+    "uses_https",
+    "has_explicit_port",
+    "has_nonstandard_port",
+    "has_ip_host",
+    "has_at_symbol",
+    "has_userinfo",
+    "has_suspicious_term",
+    "brand_in_subdomain",
+    "brand_in_path_or_query",
+    "has_unicode",
+    "has_percent_encoding",
+    "has_encoded_separator",
+    "has_control_character",
+    "host_has_punycode",
+    "has_unknown_tld",
+    "parse_ok"
+  ],
+  "removed_constant_features": [
+    "brand_in_userinfo",
+    "has_confusable_unicode"
+  ],
+  "high_correlation_pairs": [
+    {
+      "a": "url_length",
+      "b": "query_length",
+      "correlation": 0.8521007643545091
+    },
+    {
+      "a": "suspicious_term_count",
+      "b": "has_suspicious_term",
+      "correlation": 0.9343247104419968
+    },
+    {
+      "a": "parse_issue_count",
+      "b": "has_scheme",
+      "correlation": -0.9983757381040961
+    },
+    {
+      "a": "has_explicit_port",
+      "b": "has_nonstandard_port",
+      "correlation": 0.997062852085239
+    }
+  ],
+  "scaler": "StandardScaler fit on selected-class train rows only",
+  "scaler_mean": [
+    63.312331049223616,
+    18.484582259382663,
+    20.843441566605897,
+    18.73171402527189,
+    0.04505092097818571,
+    2.899949707675866,
+    2.6928239140001256,
+    0.9794194379832778,
+    4.970555415854655,
+    10.526772804425725,
+    0.7192823914000126,
+    1.8176667504872068,
+    1.0808763437480355,
+    0.04075249889985541,
+    0.017932356824039732,
+    0.04569529138115295,
+    0.3305148676683221,
+    0.670019488275602,
+    0.07353680769472559,
+    0.023315207141510027,
+    0.02318161815552901,
+    0.05769472559250644,
+    0.003716917080530584,
+    4.714905387565223e-05,
+    0.03435594392405859,
+    0.0075202740931665304,
+    0.007976048280631169,
+    0.00289180863770667,
+    0.015087697240208713,
+    0.007150939837807254,
+    0.00042434148488087006,
+    0.000416483309234928,
+    0.0003064688501917395,
+    0.9998899855409568
+  ],
+  "scaler_scale": [
+    45.726262030092215,
+    7.621821220844743,
+    21.031528009514716,
+    39.56709375981409,
+    2.5071042628867373,
+    1.3231731074743696,
+    1.167773912446994,
+    2.0050877864577115,
+    9.857586166120972,
+    7.140568323487449,
+    0.7788222708256557,
+    1.4532171493184125,
+    2.0043440373447594,
+    0.23124055475920874,
+    0.13382599925769598,
+    1.643837258554857,
+    0.4716831022709937,
+    0.47020567160180277,
+    0.2610156041480941,
+    0.15090264496508504,
+    0.15048000111383658,
+    0.23316527235270654,
+    0.0608531150225446,
+    0.006866354989539272,
+    0.18214173887702267,
+    0.08639282129164541,
+    0.08895184615541271,
+    0.053697728820775614,
+    0.12190184015098587,
+    0.08426033406795463,
+    0.020595179513300654,
+    0.02040367248531638,
+    0.0175035689799424,
+    0.010488200792413825
+  ],
+  "random_seed": 42,
+  "n_init": 10,
+  "k_values": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "selected_k": 7,
+  "selection_rule": "maximum fixed-sample silhouette; tie chooses smaller k; no source labels",
+  "selected_silhouette": 0.2922629536421426,
+  "silhouette_sample_size": 2000,
+  "silhouette_sample_index_sha256": "716b5fd662ad5783e9e604dd8ad7b0768088fc6521583d6258550a6727c17009",
+  "silhouette_sample_cluster_sizes": {
+    "0": 639,
+    "1": 425,
+    "2": 1,
+    "3": 102,
+    "4": 53,
+    "5": 736,
+    "6": 44
+  },
+  "independent_inertia_checks_passed": true,
+  "stability_ari": {
+    "43": 0.9774936697767315,
+    "44": 0.6015675091420426
+  },
+  "pca_explained_variance_ratio": [
+    0.14901498316825004,
+    0.0937665175986427
+  ],
+  "cluster_sizes": {
+    "0": 40662,
+    "1": 26369,
+    "2": 53,
+    "3": 5730,
+    "4": 4386,
+    "5": 47106,
+    "6": 2950
+  },
+  "cluster_domain_concentration": {
+    "0": {
+      "unique_groups": 21494,
+      "largest_group": "domain:ietf.org",
+      "largest_group_rows": 3212,
+      "largest_group_share": 0.07899267129014804
+    },
+    "1": {
+      "unique_groups": 1063,
+      "largest_group": "domain:live.com",
+      "largest_group_rows": 313,
+      "largest_group_share": 0.011869998862300429
+    },
+    "2": {
+      "unique_groups": 46,
+      "largest_group": "domain:esxcc.com",
+      "largest_group_rows": 7,
+      "largest_group_share": 0.1320754716981132
+    },
+    "3": {
+      "unique_groups": 2644,
+      "largest_group": "domain:cheaproomsvalencia.com",
+      "largest_group_rows": 110,
+      "largest_group_share": 0.019197207678883072
+    },
+    "4": {
+      "unique_groups": 544,
+      "largest_group": "domain:45.95.168.207",
+      "largest_group_rows": 63,
+      "largest_group_share": 0.014363885088919288
+    },
+    "5": {
+      "unique_groups": 6466,
+      "largest_group": "domain:mixh.jp",
+      "largest_group_rows": 2882,
+      "largest_group_share": 0.06118116588120409
+    },
+    "6": {
+      "unique_groups": 2419,
+      "largest_group": "domain:81.17.16.122",
+      "largest_group_rows": 37,
+      "largest_group_share": 0.012542372881355932
+    }
+  },
+  "labels_used_as_features": false,
+  "validation_used": false,
+  "test_used_for_modelling_or_metrics": false,
+  "dbscan_run": false,
+  "max_iterations_reached": false
+}

@@ -1,0 +1,906 @@
+=== PAGE 1 ===
+ 
+P a g e  1 | 21 
+ 
+ 
+ 
+COS30049 Computing Technology 
+Innovation Project 
+Phishing URL Detection 
+Project Management Plan and Front-End Prototype 
+Assignment 1 
+Group Session 7 – Group 5 
+Team members SOKNA DAVID HEANG, 105962079 
+DUONG DANH DAT NGUYEN, 105928000 
+SOTHEARITH KUY, 105069886 
+Tutor Dr Ricky Dong 
+Submission date 2 September 2026 
+  
+
+
+=== PAGE 2 ===
+ 
+P a g e  2 | 21 
+ 
+ 
+Contents 
+1.  Introduction and Background ................................................................................................. 4 
+1.1  Background ........................................................................................................................ 4 
+1.2  The Problem ....................................................................................................................... 4 
+1.3  Our Solution ....................................................................................................................... 4 
+1.4  Project Objectives .............................................................................................................. 4 
+2.  Team Introduction ................................................................................................................... 5 
+3.  Project Requirements .............................................................................................................. 5 
+3.1  Functional Requirements .................................................................................................. 5 
+3.2  Non-Functional Requirements .......................................................................................... 6 
+3.3  URL Signals We Plan to Use ............................................................................................... 6 
+4.  Scope Management................................................................................................................. 6 
+4.1  Project Scope Statement ................................................................................................... 6 
+Deliverables ........................................................................................................................... 6 
+Assumptions .......................................................................................................................... 7 
+Constraints ............................................................................................................................ 7 
+4.2  In Scope and Out of Scope ................................................................................................. 7 
+4.3  Work Breakdown Structure ............................................................................................... 7 
+4.4  WBS Dictionary .................................................................................................................. 8 
+5.  Time Management .................................................................................................................. 9 
+5.1  Development Schedule .................................................................................................... 10 
+5.2  Gantt Chart ...................................................................................................................... 10 
+5.3  Critical Path Analysis ........................................................................................................ 11 
+6.  Risk Management .................................................................................................................. 12 
+6.1  How We Manage Risk ...................................................................................................... 12 
+6.2  Rating Scales .................................................................................................................... 12 
+6.3  Risk Register ..................................................................................................................... 12 
+7.  Monitoring and Control ......................................................................................................... 13 
+7.1  Tracking Progress ............................................................................................................. 13 
+7.2  Change Control ................................................................................................................ 13 
+7.3  Change Log ....................................................................................................................... 14 
+8.  Closure Plan ........................................................................................................................... 14 
+
+=== PAGE 3 ===
+ 
+P a g e  3 | 21 
+ 
+ 
+8.1  Acceptance Criteria .......................................................................................................... 14 
+8.2  Closure Activities ............................................................................................................. 15 
+9.  Project Design ........................................................................................................................ 15 
+9.1  Screens and User Flow ..................................................................................................... 15 
+9.2  Front-End Prototype ........................................................................................................ 16 
+9.3  Nielsen’s Ten Usability Heuristics .................................................................................... 19 
+9.4  Shneiderman’s Eight Golden Rules .................................................................................. 20 
+9.5  Colours and Accessibility ................................................................................................. 20 
+References .................................................................................................................................. 21 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 4 ===
+ 
+P a g e  4 | 21 
+ 
+ 
+1.  Introduction and Background 
+1.1  Background 
+Phishing is when an attacker pretends to be a company you trust, so that you click a link or give away 
+your details. The Australian Signals Directorate (2023) says that most phishing messages have a link 
+inside that looks real but goes to a copy of a bank or a shopping site. 
+The link is the place where the attack works or fails. But addresses are hard to read. Attackers put a 
+trusted brand name in the wrong part of the address, or make the address very long, or change letters 
+into characters that look the same on the screen. 
+A web address always have the same structure, which is scheme, host, path and query. This is written 
+in RFC 3986 (Berners-Lee, Fielding and Masinter, 2005). Because the structure is fixed, we can 
+measure some things from it, for example how long it is, how many dots it has, or if the host is an IP 
+address. Sahingoz et al. (2018) showed that a model trained on features like this can separate phishing 
+addresses from normal ones, without opening the page. 
+1.2  The Problem 
+Most people cannot tell which part of a link is the real website. Attackers hide the real domain behind 
+extra subdomains, or put it inside a long query string, or use look-alike characters. Checking by hand is 
+slow, and phishing messages are written to make you feel in a hurry. Online checkers already exist, but 
+they send the address to the server of another company. This is a privacy problem, and it also needs 
+internet. 
+1.3  Our Solution 
+We will build DTDLINK (Detect The Deception Links). It is a web app that check a link completely 
+offline. The user pastes an address, the app reads it as text, calculates a set of features, and a trained 
+model predicts how likely it is phishing. The app never opens the link and never sends it anywhere. 
+The result is a trust score from 0 to 100, a label like “Likely phishing”, and the list of signals behind that 
+score. A second page shows the dataset and how good the model is. DTDLINK is only a learning tool. It 
+will never say a link is safe, and every result tells the user to check with the real organisation if the 
+request is important. 
+We chose this instead of the other options. A blacklist needs internet and it shares user data, and 
+downloading the page is not safe. Reading the address offline is private, and three students can finish 
+it in twelve weeks with free tools. 
+1.4  Project Objectives 
+•   Split a web address into its parts without visiting the site. 
+•   Write our own code that turns a raw address into features we can measure. 
+•   Train and compare at least two models on the dataset. 
+•   Show a trust score with an explanation that the user can understand. 
+•   Design a simple interface that works on a phone and on a laptop. 
+•   Keep proper documentation, meeting minutes and test evidence. 
+
+=== PAGE 5 ===
+ 
+P a g e  5 | 21 
+ 
+ 
+2.  Team Introduction 
+Our team have three members. Every part of the project has one person who is responsible for it, but 
+we all read each other work before we mark it as done. Our tutor is Dr Ricky Dong and he is our main 
+external stakeholder. 
+Table 1. Team members and roles 
+Member Student ID Role Responsible for 
+1. SOKNA DAVID HEANG 105962079 Project Manager Schedule, meetings and minutes, risks, change 
+control, the report 
+2. DUONG DANH DAT NGUYEN 105928000 Data and ML Lead Cleaning the data, feature code, training and 
+testing the model 
+3. SOTHEARITH KUY 105069886 Developer and 
+UI/UX 
+Prototype, React front end, FastAPI back end, 
+charts 
+ 
+We agreed four team rules: 
+•   Update your tasks on the board before the weekly meeting starts. 
+•   Tell the group straight away if you are stuck. Waiting one week costs the team one week. 
+•   Push everything to the repository. Work that stays on one laptop does not count as done. 
+•   Decide scope and design changes as a group, and get a second reader before you mark anything 
+as done. 
+3.  Project Requirements 
+We collected the requirements from the brief, from the dataset, and from asking five students what 
+they want. Every requirement is written so that we can test it, and every one has a MoSCoW priority 
+(Schwalbe, 2019). “Must” means the app is not finished if we do not have it. 
+3.1  Functional Requirements 
+Table 2. Functional requirements 
+ID Requirement Description Priority 
+1 Enter an address Paste or type one address into a labelled box. Must 
+2 Check the input Detect empty, broken or over-long input and explain it. Must 
+3 Split the address Separate scheme, host, path and query (RFC 3986). Must 
+4 Work out features Calculate features from the address text only, no internet. Must 
+5 Predict The model returns a phishing probability. Must 
+6 Show a trust score Show the probability out of 100 with a label. Must 
+7 Explain the result List the signals as strong, medium or weak. Must 
+8 Highlight the address Highlight the parts that caused a warning. Must 
+9 Show when unsure Label middle scores “uncertain”, not safe or unsafe. Must 
+10 Never clickable Show the address as plain text only. Must 
+11 Insights page Class balance, signal importance, model results. Should 
+12 Interactive charts Hover and filter; click a signal for examples. Should 
+13 How It Works page Explain the process, the signals and the limits. Should 
+ 
+
+=== PAGE 6 ===
+ 
+P a g e  6 | 21 
+ 
+ 
+3.2  Non-Functional Requirements 
+Table 3. Non-functional requirements 
+ID Area Requirement How we test it 
+1 Offline No network request during 
+analysis. 
+Network tab shows zero requests over ten checks. 
+2 Speed A result appears quickly. 95% of checks finish under 2 seconds. 
+3 Easy to use A first-time user understands the 
+result. 
+4 of 5 testers finish on their own. 
+4 Accessible Main screens meet WCAG 2.2 Level 
+AA. 
+Keyboard works; contrast at least 4.5:1. 
+5 Safe wording The app never says a link is safe. We check every screen before submitting. 
+6 Privacy Addresses are not saved anywhere. Code review confirms nothing is stored. 
+7 No crashes Strange input is handled properly. 30 negative test cases pass. 
+8 Repeatable Anyone can reproduce our results. A documented command gives the same numbers 
+±0.01. 
+9 Works on 
+phone 
+Usable on a small screen. Main task works at 375 px. 
+ 
+3.3  URL Signals We Plan to Use 
+The dataset only gives addresses and labels, so writing the feature code is our own job. Table 4 shows 
+the main signals. The full list will become a feature dictionary in Assignment 2 (package 1.3.2.2). 
+Table 4. Main URL signals planned for Assignment 2 
+Signal How we calculate it Why it might matter 
+Address length Count the characters A long address hides the real domain 
+Host is an IP Try to parse the host as an IP A number gives you nothing familiar to 
+recognise 
+Subdomain count Count labels before the real domain Extra labels put a trusted word in front of the 
+real one 
+Brand in subdomain Compare a brand list against the 
+subdomain 
+A brand name outside the real domain proves 
+nothing 
+Look-alike characters Confusable check, UTS #39 (Unicode 
+Consortium, 2024) 
+Different characters can look identical on 
+screen 
+Unusual top-level 
+domain 
+How often the TLD appears in training 
+data 
+Some endings appear far more often in phishing 
+links 
+“@” in the address Check for “@” before the host Browsers ignore everything written before “@” 
+ 
+4.  Scope Management 
+4.1  Project Scope Statement 
+We will plan, design, build, test and close an offline web app. It gives a score to a web address by using 
+only the text of that address. The work covers all three assignments. 
+Deliverables 
+•   Assignment 1: project management plan, meeting minutes and contribution form. 
+•   Assignment 2: cleaned dataset, feature code, trained model and results report. 
+
+=== PAGE 7 ===
+ 
+P a g e  7 | 21 
+ 
+ 
+•   Assignment 3: React front end, FastAPI service, charts and test evidence. 
+Assumptions 
+•   All three of us stay in the unit for the full twelve weeks. 
+•   The dataset is available from Week 1, and free tools are enough. 
+•   We can find five students to test the prototype. 
+Constraints 
+•   Twelve weeks, with three fixed deadlines that cannot move. 
+•   No internet access during prediction. This is our own design decision, it is not a limitation. 
+•   We have other assignments at the same time, and none of us used React or FastAPI before, so we 
+left some learning time in the schedule. 
+4.2  In Scope and Out of Scope 
+Table 5. Scope boundary 
+In scope Out of scope 
+The unit dataset, plus documented extra datasets 
+Cleaning, de-duplicating and splitting properly 
+Our own feature code for the address text 
+At least two models, compared 
+Accuracy, precision, recall, F1, confusion matrix 
+A web app with input, results and charts 
+Functional, offline, usability and accessibility testing 
+Documentation, minutes and version control 
+Opening or downloading the submitted website 
+Any online lookup while predicting 
+A browser extension or a real security product 
+Promising a high score means a link is safe 
+Saving addresses, or user accounts 
+Email text, attachments or QR codes 
+A database. FastAPI only serves the model 
+ 
+4.3  Work Breakdown Structure 
+We built the WBS from the top down. First five phases, then deliverables, then work packages that are 
+small enough for one person to own. Figure 1 shows Level 0 to Level 2, and Table 6 lists everything 
+down to Level 3. The WBS shows what must be produced, it does not show the order of the work. 
+ 
+Figure 1. Work Breakdown Structure (Levels 0 to 2) 
+
+
+=== PAGE 8 ===
+ 
+P a g e  8 | 21 
+ 
+ 
+4.4  WBS Dictionary 
+Duration is in working days, except the two packages that run for all twelve weeks. Cost is only effort, 
+at AU$40 per hour and six hours in one person-day. Nobody really pays this money. The Level 3 work 
+packages total 172 person-days, resulting in an estimated effort cost of AU$41,280 and Level 1 and 
+Level 2 give the same total. 
+Table 6. WBS Dictionary (Levels 1 to 3) 
+Level WBS code Name Description Predecessors Duration Resources Cost 
+(AU$) 
+1 1.1 Project 
+Management 
+Setting up, planning and 
+keeping control. 
+— 12 wk PM, ML, 
+DEV 
+10,800 
+2 1.1.1 Project initiation Team and tools ready to start. — 4 d PM, ML, 
+DEV 
+1,920 
+3 1.1.1.1 Team setup Agree roles, rules and topic. — 2 d PM, ML, 
+DEV 
+1,440 
+3 1.1.1.2 Tools setup Repository and task board. 1.1.1.1 2 d DEV 480 
+2 1.1.2 Planning Plan documents for Assignment 
+1. 
+1.2.2 9 d PM, ML 3,600 
+3 1.1.2.1 Scope and WBS Scope statement, WBS, 
+dictionary. 
+1.2.2.2 4 d PM, ML 1,920 
+3 1.1.2.2 Schedule Gantt chart and critical path. 1.1.2.1 3 d PM 720 
+3 1.1.2.3 Risk planning Rate risks, assign owners. 1.1.2.2 2 d PM, ML 960 
+2 1.1.3 Monitoring and 
+control 
+Weekly tracking, all twelve 
+weeks. 
+1.1.1 12 wk PM, ML, 
+DEV 
+5,280 
+3 1.1.3.1 Meetings One meeting a week, written 
+up. 
+1.1.1.1 12 wk PM, ML, 
+DEV 
+4,320 
+3 1.1.3.2 Progress control Keep board and change log 
+current. 
+1.1.2.2 12 wk PM 960 
+1 1.2 Requirements and 
+Research 
+Understand the problem, write 
+it down. 
+— 11 d PM, ML, 
+DEV 
+4,800 
+2 1.2.1 Domain research Reading on phishing and web 
+addresses. 
+— 6 d ML, PM, 
+DEV 
+2,880 
+3 1.2.1.1 Phishing research How phishing attacks work. — 3 d ML, PM 1,440 
+3 1.2.1.2 URL research RFC 3986 structure, UTS #39 
+look-alikes. 
+1.2.1.1 3 d ML, DEV 1,440 
+2 1.2.2 Requirements 
+definition 
+Turn research into a testable 
+list. 
+1.2.1 5 d PM, DEV 1,920 
+3 1.2.2.1 Functional 
+requirements 
+FR list with MoSCoW priorities. 1.2.1.2 3 d PM, DEV 1,440 
+3 1.2.2.2 Non-functional 
+requirements 
+NFR list, one test each. 1.2.2.1 2 d PM 480 
+1 1.3 Data and Machine 
+Learning 
+Raw data through to a trained 
+model. 
+1.2.2 24 d ML, DEV, 
+PM 
+7,440 
+2 1.3.1 Data preparation Clean and split the dataset. 1.2.2 5 d ML 1,200 
+3 1.3.1.1 Look at the data Size, class balance, duplicates. 1.2.2.2 2 d ML 480 
+3 1.3.1.2 Clean the data Normalise text, remove 
+duplicates. 
+1.3.1.1 2 d ML 480 
+3 1.3.1.3 Split the data Split grouped by registrable 
+domain. 
+1.3.1.2 1 d ML 240 
+2 1.3.2 Feature engineering Our code turning an address 
+into numbers. 
+1.3.1 10 d ML, DEV 3,600 
+3 1.3.2.1 URL parser Split an address safely, odd 
+ones too. 
+1.3.1.3 3 d ML, DEV 1,440 
+3 1.3.2.2 Feature code Feature functions and 
+dictionary. 
+1.3.2.1 5 d ML 1,200 
+
+=== PAGE 9 ===
+ 
+P a g e  9 | 21 
+ 
+ 
+Level WBS code Name Description Predecessors Duration Resources Cost 
+(AU$) 
+3 1.3.2.3 Feature tests Unit tests, including strange 
+addresses. 
+1.3.2.2 2 d ML, DEV 960 
+2 1.3.3 Model development Train, tune and test. 1.3.2 9 d ML, PM 2,640 
+3 1.3.3.1 Baseline models Logistic regression, decision 
+tree. 
+1.3.2.3 3 d ML 720 
+3 1.3.3.2 Tuning Tune and pick a model. 1.3.3.1 4 d ML 960 
+3 1.3.3.3 Final testing One test on the held-out set. 1.3.3.2 2 d ML, PM 960 
+1 1.4 Design and 
+Development 
+Prototype and the working web 
+app. 
+1.2.2 36 d DEV, ML, 
+PM 
+13,440 
+2 1.4.1 UI/UX design Screens, prototype, user 
+testing. 
+1.2.2 8 d DEV, PM 2,400 
+3 1.4.1.1 Screen plan Decide pages and user flow. 1.2.2.2 2 d DEV 480 
+3 1.4.1.2 Prototype Draw the screens and their 
+states. 
+1.4.1.1 4 d DEV 960 
+3 1.4.1.3 User testing Five-user test, then fix blockers. 1.4.1.2 2 d DEV, PM 960 
+2 1.4.2 Front-end 
+development 
+React interface and charts. 1.4.1 15 d DEV, ML 4,800 
+3 1.4.2.1 React interface Front end built from the 
+prototype. 
+1.4.1.3 10 d DEV 2,400 
+3 1.4.2.2 Charts Dataset and model result 
+charts. 
+1.4.2.1 5 d DEV, ML 2,400 
+2 1.4.3 Back-end 
+development 
+FastAPI service and integration. 1.3.3 13 d DEV, ML 6,240 
+3 1.4.3.1 FastAPI service Local endpoint that runs the 
+model. 
+1.3.3.3 7 d DEV, ML 3,360 
+3 1.4.3.2 Join the app Front and back end working end 
+to end. 
+1.4.2.1, 1.4.3.1 6 d DEV, ML 2,880 
+1 1.5 Verification and 
+Closure 
+Test the app and close the 
+project. 
+1.4.3 8 d PM, ML, 
+DEV 
+4,800 
+2 1.5.1 Testing Functional, offline, usability 
+testing. 
+1.4.3.2, 1.4.2.2 5 d PM, ML, 
+DEV 
+3,120 
+3 1.5.1.1 Main testing Functional tests and offline 
+check. 
+1.4.3.2, 1.4.2.2 3 d PM, ML, 
+DEV 
+2,160 
+3 1.5.1.2 Usability testing User and accessibility testing. 1.5.1.1 2 d DEV, PM 960 
+2 1.5.2 Closure and 
+handover 
+Final documents and 
+acceptance. 
+1.5.1 3 d PM, ML, 
+DEV 
+1,680 
+3 1.5.2.1 Documentation Final report, README, test 
+evidence. 
+1.5.1.2 2 d PM, ML, 
+DEV 
+1,440 
+3 1.5.2.2 Handover Record acceptance, archive the 
+repo. 
+1.5.2.1 1 d PM 240 
+ 
+PM = Project Manager, ML = Data and ML Lead, DEV = Developer and UI/UX. 
+5.  Time Management 
+The schedule is built from the Level 3 packages in Table 6, so the plan and the work breakdown are 
+always the same. The project runs for twelve weeks, from 3 August to 25 October 2026. 
+
+=== PAGE 10 ===
+ 
+P a g e  10 | 21 
+ 
+ 
+5.1  Development Schedule 
+Table 7. Twelve-week development schedule 
+Week Dates (2026) What we do Output 
+1 3–9 Aug Set up team and tools, research phishing and web 
+addresses 
+Team rules, repository 
+2 10–16 Aug Write requirements, start the scope statement Requirement list 
+3 17–23 Aug Finish planning documents, plan screens, draw 
+prototype 
+Draft plan, prototype 
+4 24–30 Aug Test the prototype with users, finish the plan Assignment 1 (extended to 2 
+Sep) 
+5 31 Aug – 6 Sep Clean and split the data, start the parser Clean dataset 
+6 7–13 Sep Write the feature code and dictionary Working feature code 
+7 14–20 Sep Feature tests, train baseline models Baseline results 
+8 21–27 Sep Tune and compare models, start the API Assignment 2 due 27 Sep 
+9 28 Sep – 4 Oct Finish the API, build the interface Endpoint and interface 
+10 5–11 Oct Join front and back end, start charts App working end to end 
+11 12–18 Oct Finish the charts, start testing Feature-complete app 
+12 19–25 Oct Testing, bug fixes, documentation Assignment 3 due 
+ 
+5.2  Gantt Chart 
+The dark bars are on the critical path and they have no spare time. The light bars have spare time, so a 
+small delay there will not push the end date. 
+
+=== PAGE 11 ===
+ 
+P a g e  11 | 21 
+ 
+ 
+ 
+Figure 2. Gantt chart for the twelve weeks 
+5.3  Critical Path Analysis 
+We listed the activities, identified dependencies, estimated durations, and then did a forward pass and 
+a backward pass to determine early start, early finish, late start, late finish, and float (Schwalbe, 2019). 
+The durations come from Table 6, so the two tables agree. 
+Table 8. Forward and backward pass, in working days 
+ID Activity Days After ES / EF LS / LF Float 
+A Research (1.2.1) 6 — 0 / 6 0 / 6 0 
+B Requirements (1.2.2) 5 A 6 / 11 6 / 11 0 
+C Planning documents (1.1.2) 9 B 11 / 20 50 / 59 39 
+D Prototype (1.4.1) 8 B 11 / 19 24 / 32 13 
+E Data preparation (1.3.1) 5 B 11 / 16 11 / 16 0 
+F Feature code (1.3.2) 10 E 16 / 26 16 / 26 0 
+G Model development (1.3.3) 9 F 26 / 35 26 / 35 0 
+H React interface (1.4.2.1) 10 D 19 / 29 32 / 42 13 
+I FastAPI service (1.4.3.1) 7 G 35 / 42 35 / 42 0 
+J Joining the app (1.4.3.2) 6 H, I 42 / 48 42 / 48 0 
+K Charts (1.4.2.2) 5 H 29 / 34 43 / 48 14 
+L Testing (1.5.1) 7 J, K 48 / 55 48 / 55 0 
+M Closure (1.5.2) 4 L 55 / 59 55 / 59 0 
+ 
+
+
+=== PAGE 12 ===
+ 
+P a g e  12 | 21 
+ 
+ 
+The activities with zero float are the critical path. It is A, B, E, F, G, I, J, L, M and it takes 59 working 
+days. If one of them is one day late, then the whole project is one day late. The planning documents 
+(C) have 39 days of float against the end of the project, but zero float against the Assignment 1 
+deadline on day 20. 
+This shows that the data and the model work is what drive the end date, and not the web 
+development. The React interface has 13 days of spare time and the charts have 14 days, because 
+both of them must wait for the model. So if we are late, we protect the feature code and the model 
+training first. Twelve weeks give 60 working days and the path uses 59, so our real spare time is only 
+one day. 
+6.  Risk Management 
+6.1  How We Manage Risk 
+A risk only goes on the register if we can say what causes it, what happens, and what is the result. We 
+follow five steps, based on ISO 31000 (International Organization for Standardization, 2018): 
+•   Find. We bring risks to the weekly meeting and go through the WBS to ask what could stop each 
+package. 
+•   Rate. Likelihood and impact from 1 to 5, multiplied together. 
+•   Plan. Every medium and high risk gets an owner, a way to prevent it, and a backup plan. 
+•   Watch. Owners report every week, and a risk that really happens becomes an issue on the board. 
+•   Record. The register is kept in the repository, with the date when each risk was closed. 
+6.2  Rating Scales 
+Table 9. Likelihood and impact scales 
+Score Likelihood Impact 
+1 Very unlikely in twelve weeks Small; absorbed in spare time 
+2 Could happen once Minor; under two days of rework 
+3 Might happen Moderate; a task slips inside its float 
+4 Probably will happen Major; a deadline is at risk 
+5 Almost certain Severe; we cannot finish something as planned 
+ 
+Likelihood times impact gives the score. 1 to 5 is low and we check it at each milestone, 6 to 12 is 
+medium and we check it every two weeks, 15 to 25 is high and we check it every week. 
+6.3  Risk Register 
+Table 10. Risk register (bold scores are high risk) 
+ID Risk L I Score Owner How we prevent it What we do if it happens 
+1 Similar addresses in both training 
+and test sets, so accuracy flatters 
+us 
+3 5 15 ML De-duplicate before 
+splitting; group by 
+registrable domain 
+Rebuild the splits and rerun 
+everything 
+2 The dataset labels are wrong, or 
+very unbalanced 
+4 4 16 ML Check labels in Week 5; 
+inspect 100 rows by hand 
+Rebalance and bring in a 
+second dataset 
+3 Tuning for accuracy makes the 
+model miss phishing links 
+3 5 15 ML Set the threshold on recall; 
+track missed links 
+Lower the threshold, 
+strengthen the warning 
+
+=== PAGE 13 ===
+ 
+P a g e  13 | 21 
+ 
+ 
+ID Risk L I Score Owner How we prevent it What we do if it happens 
+4 Odd or encoded addresses crash 
+the parser 
+3 4 12 ML 30 odd-address test cases 
+before integration 
+Show a clear message, add it 
+to the tests 
+5 We add an online lookup and 
+break the offline idea 
+3 4 12 PM Offline is fixed in NFR-01 
+and AC-02 
+Reject it and add an offline 
+feature instead 
+6 Someone gets sick or leaves and 
+their work stops 
+2 4 8 PM Second reader on every 
+deliverable; push daily 
+Share the work out, tell the 
+tutor early 
+7 React and FastAPI take longer, 
+squeezing testing 
+4 3 12 DEV Connect interface to API in 
+Week 9 first 
+Drop the Should features, not 
+testing time 
+8 We only test the design 
+ourselves; problems appear late 
+3 3 9 DEV Five-user test in Week 4 Fix only what stops people 
+finishing 
+9 We work on the same files and 
+overwrite each other 
+2 3 6 DEV Branches, small commits, 
+one reviewer before 
+merging 
+Recover from history, update 
+our team rules 
+10 One person ends up doing most 
+of the work 
+4 2 8 PM Ownership is visible and 
+discussed weekly 
+Rebalance; tell the tutor if it 
+continues 
+ 
+7.  Monitoring and Control 
+7.1  Tracking Progress 
+We use a shared board with five columns: To Do, In Progress, Review, Blocked and Done. Every task 
+has an owner, a due date, the WBS code, and a note about what proof shows that it is finished. A task 
+can only move to Done after a second person check that proof. This rule stops us from saying that 
+things are finished when they are not. 
+In the weekly meeting we compare our progress with Table 7, we count how much float is left, we 
+review the risks, and we agree what to do about anything that is late. Every meeting is written as 
+minutes in one day, and we take turns to be the minute taker. A decision made in a chat message does 
+not count until it is in the minutes. 
+7.2  Change Control 
+Any change to the scope, the requirements, the schedule or the design must go through a Change 
+Control Board. The board looks at the effect on scope, effort and timeline, and then it approves, 
+rejects or delays the change. The board is the three of us, and the tutor is the outside stakeholder. 
+Nobody has more than two roles, so one person cannot approve a change alone. 
+Table 11. Change Control Board 
+Role Who What they check 
+Project Manager David Runs the board, keeps the log, updates the plan 
+Project Sponsor Tutor Anything affecting a graded deliverable 
+Technical Lead Dat Whether it is possible; effect on the model 
+Quality Assurance Dat Effect on acceptance criteria and tests 
+Finance David Extra effort against the days we have left 
+Business Analyst Sothearith Effect on the requirement list 
+User Representative Sothearith Checks whether the interface and results are understandable.  
+ 
+The process has four steps: 
+•   Record the change, the reason, who asked for it, the date, and the requirement that it affects. 
+
+=== PAGE 14 ===
+ 
+P a g e  14 | 21 
+ 
+ 
+•   Find the effect on scope, schedule, effort, model, interface, risk and quality, then recommend 
+approve, reject or delay. 
+•   Decide as a board for the major changes. The Project Manager can approve small clarifications 
+alone. 
+•   Update the requirements, WBS, schedule, risks, tests and minutes together, then check the 
+change was really made and close it in the log. 
+7.3  Change Log 
+The log below has the two changes that we raised until now. Every future change will be added in the 
+same way. 
+Table 12. Change log 
+ID Description Raised by Date Impact Decision Status 
+       
+       
+ 
+ 
+ 
+ 
+ 
+8.  Closure Plan 
+8.1  Acceptance Criteria 
+We wrote these as Given / When / Then scenarios. A criterion is only finished when we really see the 
+“Then” part happen.These acceptance criteria apply to the completed DTDLINK application. The 
+prototype demonstrates the planned interface and user flow, while technical criteria will be verified 
+after implementation and testing. 
+Table 13. Acceptance criteria 
+ID Scenario Given When Then 
+1 Normal address a valid address the user presses 
+Analyse 
+ a score, a label and the detected 
+signals are displayed 
+2 Works offline DTDLINK is open The user checks an 
+address 
+The address is analysed without 
+opening the website or sending it 
+online 
+3 Result is explained an address was checked the result is shown a named signal appears with a 
+reason and the matching part is 
+highlighted 
+4 Admits when unsure a score between 40 and 60 the result is shown it says “uncertain” and suggests 
+checking by hand 
+5 Bad input the text is not a valid 
+address 
+the user tries to check 
+it 
+the app explains the problem, 
+keeps their text, does not crash 
+6 Link is never 
+clickable 
+an address was checked the user clicks on it nothing opens or loads 
+
+=== PAGE 15 ===
+ 
+P a g e  15 | 21 
+ 
+ 
+ID Scenario Given When Then 
+7 Honest model testing the data was split by domain the final model is 
+tested 
+precision, recall, F1, confusion 
+matrix and missed count are 
+reported on the held-out set 
+8 Keyboard only the user has no mouse they try the main task every control can be reached and 
+used, and the selected one is 
+visible 
+9 Reproducible someone clones the 
+repository 
+they run the 
+documented command 
+they get our numbers within 
+±0.01 
+10 Team accepts all Must requirements done, 
+no serious bug open 
+the final meeting is 
+held 
+all three record acceptance and 
+the repository is archived 
+ 
+8.2  Closure Activities 
+•   Run all the tests and record the evidence for each acceptance criterion. Fix every serious bug, and 
+write down the small ones that are left as known issues. 
+•   Check that every requirement links to something we built, and every acceptance criterion links to 
+a test. 
+•   Archive the code, the model and the documents as a tagged release, then have a final meeting to 
+record acceptance and what we learned. 
+9.  Project Design 
+We designed the screens before we wrote any code. The difficult part is not how it looks. The difficult 
+part is showing a probability without the user thinking that it is a promise. A user who trusts the tool 
+too much can end up in a worse situation than a user who never used it. 
+Protoype Link: https://www.figma.com/design/LJTZcDytGPsvlYEVvlmW5K/DTDLINK-%E2%80%93-
+Phishing-Link-Detector-Prototype?node-id=0-1&t=RLYJJYybsddFHu59-1 
+9.1  Screens and User Flow 
+The app has three pages. Check URL is the main screen, Insights shows the dataset and the model 
+results, and How It Works explains the method. There is no login, so getting a result only takes one 
+screen. 
+Table 14. User flow on the main task 
+Step Stage What the user does What the app does 
+1 Enter Pastes an address Keeps Analyse disabled until the address is valid 
+2 Check Fixes the address if it was rejected Explains the problem, keeps their text, does not call 
+the model 
+3 Analyse Presses Analyse Splits the address, works out features, scores it locally 
+4 Read Reads the score and the signals Shows score, label, signals and the highlighted 
+address 
+5 Act Checks with the real organisation, or 
+tries another link 
+Suggests the next step and a way back 
+ 
+
+=== PAGE 16 ===
+ 
+P a g e  16 | 21 
+ 
+ 
+9.2  Front-End Prototype 
+We drew the prototype in Figma as five frames. Figure 3 shows all of the frames on the canvas with 
+the arrows between them, and Figure 4 to Figure 8 show each frame bigger. The numbers on the 
+Result frame and the Insights frame are only examples, and we will replace them with real results after 
+Assignment 2. 
+Prototype link: https://www.figma.com/design/LJTZcDytGPsvlYEVvlmW5K/DTDLINK-%E2%80%93-
+Phishing-Link-Detector-Prototype?node-id=0-1&t=RLYJJYybsddFHu59-1 
+ 
+Figure 3. The five Figma frames on the canvas, with the flow between them 
+
+
+=== PAGE 17 ===
+ 
+P a g e  17 | 21 
+ 
+ 
+ 
+Figure 4. Frame 01, Check URL. The main screen with the offline note and the three steps 
+ 
+Figure 5. Frame 02, Result. The score, the label, the highlighted address and the signals 
+
+
+=== PAGE 18 ===
+ 
+P a g e  18 | 21 
+ 
+ 
+ 
+Figure 6. Frame 03, Insights. Dataset information, signal importance and the confusion matrix 
+ 
+Figure 7. Frame 04, the two states we designed on purpose: bad input, and a score we are not sure about 
+
+
+=== PAGE 19 ===
+ 
+P a g e  19 | 21 
+ 
+ 
+ 
+Figure 8. Frame 05, How It Works. The three steps, the signal list, the score bands and the limits 
+9.3  Nielsen’s Ten Usability Heuristics 
+We used Nielsen ten heuristics when we designed the screens, and after that as a checklist before the 
+user testing (Nielsen, 1994). 
+Table 15. Nielsen’s heuristics in our design 
+Heuristic Where you can see it 
+1. Show system status The button changes while working, the offline badge sits in every header, and the 
+result shows score, label and confidence together. 
+2. Everyday language We say “web address”, “trust score” and “signals”, not URI, probability and features. 
+3. Let users undo Clear empties the box; Check another address returns to the start. 
+4. Be consistent Same layout and risk wording everywhere; a colour always means the same thing. 
+5. Stop errors early The address is always only text, and Analyse stays disabled until the address is valid 
+(Figure 7). 
+6. Show, don’t make them 
+remember 
+The part that causes each warning is highlighted inside the address (Figure 5). 
+7. Suit beginners and regulars Example links for a first try; paste and press Enter for regular users. 
+8. Keep it simple One box and one button on the main page; statistics live elsewhere. 
+9. Help people fix mistakes Errors say what is wrong, show an example, and keep the text that the user typed 
+(Figure 7). 
+10. Provide help How It Works explains the signals, the score bands and the limits, and you can open 
+it from every page (Figure 8). 
+ 
+ 
+ 
+
+
+=== PAGE 20 ===
+ 
+P a g e  20 | 21 
+ 
+ 
+9.4  Shneiderman’s Eight Golden Rules 
+We used Shneiderman eight rules together with Nielsen (Shneiderman et al., 2018). 
+Table 16. Shneiderman’s golden rules in our design 
+Rule Where you can see it 
+1. Be consistent One layout everywhere; risk words and colours never change meaning. 
+2. Suit different users Examples for beginners, keyboard for regulars; every colour also has a label. 
+3. Give useful feedback Checking as you type, a working state on the button, a confidence figure. 
+4. Design a clear ending The result closes with a label and a “What to do next” list. 
+5. Prevent errors Opening the link is the dangerous action, so the address is never clickable. 
+6. Let users undo Clear, Check another address and Back all return to a known state. 
+7. Keep the user in control We give the evidence and let the user decide, and say when we are unsure. 
+8. Reduce memory load Address, score, label and signals are all on one screen. 
+ 
+9.5  Colours and Accessibility 
+We only use five colours. Navy #0F2743 for headings, blue #2563C9 for actions, light grey-blue 
+#F4F6FA for backgrounds, red #B3261E for high risk and amber #B26B00 for medium risk. Red and 
+amber mean risk and nothing else, so when red appears it means something. Every risk colour also has 
+a word next to it, so the meaning never depend only on the colour. The score always comes together 
+with a label and a next step, because a number alone makes people invent their own cut-off. 
+We want WCAG 2.2 Level AA on the main screens (World Wide Web Consortium, 2023). That means 
+contrast of at least 4.5:1, keyboard access with a visible focus ring, labelled input boxes, and a layout 
+that still works at 375 px. We will test the prototype with five students in Week 4 and fix anything that 
+stops them from finishing the main task. 
+  
+
+=== PAGE 21 ===
+ 
+P a g e  21 | 21 
+ 
+ 
+References 
+Australian Signals Directorate (2023) Phishing. Canberra: Australian Cyber Security Centre. Available at: 
+https://www.cyber.gov.au/threats/types-threats/phishing (Accessed: 25 August 2026). 
+Berners-Lee, T., Fielding, R. and Masinter, L. (2005) Uniform Resource Identifier (URI): generic syntax. RFC 
+3986. Internet Engineering Task Force. Available at: https://www.rfc-editor.org/rfc/rfc3986 
+(Accessed: 25 August 2026). 
+International Organization for Standardization (2018) ISO 31000:2018 Risk management — guidelines. 
+Geneva: ISO. Available at: https://www.iso.org/standard/65694.html (Accessed: 30 August 2026). 
+Nielsen, J. (1994) 10 usability heuristics for user interface design. Nielsen Norman Group. Available at: 
+https://www.nngroup.com/articles/ten-usability-heuristics/ (Accessed: 1 September 2026). 
+Sahingoz, O.K., Buber, E., Demir, O. and Diri, B. (2018) ‘Machine learning based phishing detection from 
+URLs’, Expert Systems with Applications, 117, pp. 345–357. doi:10.1016/j.eswa.2018.09.029 (30 
+August 2026) 
+Schwalbe, K. (2019) Information technology project management. 9th edn. Boston, MA: Cengage Learning. 
+Shneiderman, B., Plaisant, C., Cohen, M., Jacobs, S., Elmqvist, N. and Diakopoulos, N. (2018) Designing the 
+user interface: strategies for effective human-computer interaction. 6th edn. Boston, MA: Pearson. 
+Unicode Consortium (2024) Unicode Technical Standard #39: Unicode security mechanisms. Available at: 
+https://www.unicode.org/reports/tr39/ (Accessed: 31 August 2026). 
+World Wide Web Consortium (2023) Web Content Accessibility Guidelines (WCAG) 2.2. W3C 
+Recommendation, 5 October. Available at: https://www.w3.org/TR/WCAG22/ (Accessed: 30 August 
+2026). 

@@ -1,0 +1,41 @@
+{
+  "threshold": 0.5,
+  "accuracy": 0.9178882858470725,
+  "precision": 0.852199413489736,
+  "recall": 0.915521224708875,
+  "f1": 0.8827261886011295,
+  "true_negative": 77294,
+  "false_positive": 6804,
+  "false_negative": 3620,
+  "true_positive": 39231,
+  "evaluated_at": "2026-10-03T03:31:35.500830+10:00",
+  "model": "random_forest",
+  "fit_split": "train",
+  "evaluation_split": "test",
+  "split_counts": {
+    "train": 384832,
+    "validation": 129332,
+    "test": 126949
+  },
+  "feature_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
+  "manifest_sha256": "fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f",
+  "validation_refit_matches_selection": true,
+  "test_used_for_tuning": false,
+  "reload_all_test_probabilities_match_tolerance": true,
+  "reload_all_test_labels_equal": true,
+  "reload_probability_atol": 1e-12,
+  "reload_max_probability_difference": 3.3306690738754696e-16,
+  "raw_url_equivalence_checked": 120,
+  "offline_new_urls_checked": 5,
+  "probability_calibrated": false,
+  "artifact_sha256": {
+    "reports/evaluation/test_predictions.csv": "397ca8dd6270813093b02ade8554acbf4d6d6ee01efdf6984b070b9a19944654",
+    "reports/evaluation/test_subgroups.csv": "82734e838104ca6e5cc7a8c1454bdd76d82636b078758c5bea3628a59148d9bf",
+    "reports/evaluation/classification_report.csv": "d7c178b75dbce2fecfc70c8a35f02eb92bdf7a5361564fa55d1f1dd23b457705",
+    "reports/evaluation/error_examples.csv": "3af1a812bbd0b18d804d5ccb26cc82648b13f72d55d6386a8f7edef1488b57a3",
+    "reports/evaluation/stage-7-evaluation-report.md": "394702dcc7a7955ee1df83da9119056220975653b1f40466de3f7437868368b3",
+    "models/final_pipeline.joblib": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+    "models/model_metadata.json": "515a82e0fc6d07422759f1789a51cf7046cf8f0f1eb9f21dc3b02d4b50ff9634",
+    "reports/figures/test_confusion_matrix.png": "d1952bec39d3e07a42f96779f9bfbe04d41f94111608331c62ed9ad381b1ae48"
+  }
+}

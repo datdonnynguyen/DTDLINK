@@ -1,0 +1,13 @@
+source_record_number,url,type,target
+181227,memory.loc.gov/ammem/ccmphtml/colahome.html,benign,0
+208440,routesinternational.com/air.htm,benign,0
+213052,en.wikipedia.org/wiki/E-book,benign,0
+259610,en.wikipedia.org/wiki/Desktop_publishing,benign,0
+275789,groups.yahoo.com/group/Band-in-a-Box/,benign,0
+328666,ebookstore.sony.com/reader/,benign,0
+609890,memory.loc.gov/ammem/ccmphtml/colahome.html,phishing,1
+612942,routesinternational.com/air.htm,phishing,1
+616833,en.wikipedia.org/wiki/Desktop_publishing,phishing,1
+616867,en.wikipedia.org/wiki/E-book,phishing,1
+616943,ebookstore.sony.com/reader/,phishing,1
+625974,groups.yahoo.com/group/Band-in-a-Box/,phishing,1

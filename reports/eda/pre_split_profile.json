@@ -1,0 +1,266 @@
+{
+  "contract": {
+    "checks": {
+      "boolean_features_are_binary": true,
+      "columns_match_stage3_schema": true,
+      "feature_file_hash_matches_audit": true,
+      "feature_names_match_audit": true,
+      "metadata_labels_are_complete": true,
+      "numeric_features_are_complete": true,
+      "numeric_features_are_finite": true,
+      "numeric_features_are_non_negative": true,
+      "row_count_matches_audit": true,
+      "targets_are_binary": true,
+      "types_are_allowed": true,
+      "url_is_complete": true,
+      "url_is_unique": true
+    },
+    "evidence": {
+      "columns": 42,
+      "duplicate_url_rows": 0,
+      "feature_count": 36,
+      "feature_file_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
+      "invalid_boolean_values": {},
+      "missing_cells_by_column": {
+        "parse_issues": 177953,
+        "registrable_domain": 14,
+        "tld": 12215
+      },
+      "negative_numeric_cells": 0,
+      "non_finite_numeric_cells": 0,
+      "rows": 641113,
+      "unexpected_targets": [],
+      "unexpected_types": []
+    },
+    "passed": true
+  },
+  "dataset": {
+    "columns": 42,
+    "feature_count": 36,
+    "rows": 641113,
+    "source_type_counts": {
+      "benign": 428074,
+      "defacement": 95308,
+      "malware": 23645,
+      "phishing": 94086
+    },
+    "target_counts": {
+      "0": 428074,
+      "1": 213039
+    },
+    "unique_urls": 641113
+  },
+  "grouping_feasibility": {
+    "fallback_group_count": 14,
+    "group_count": 155572,
+    "group_rule": "registrable_domain when present; otherwise a unique SHA-256 URL id",
+    "group_size_quantiles": {
+      "0.5": 1.0,
+      "0.9": 3.0,
+      "0.95": 8.0,
+      "0.99": 57.0,
+      "1.0": 13422.0
+    },
+    "largest_group_rows": 13422,
+    "missing_domain_issue_counts": {
+      "control_character": 14,
+      "invalid_structure": 13,
+      "missing_host": 1,
+      "missing_scheme": 14
+    },
+    "missing_domain_target_counts": {
+      "1": 14
+    },
+    "registrable_domain_count": 155558,
+    "repeated_groups": 40609,
+    "rows_without_registrable_domain": 14,
+    "singleton_groups": 114963,
+    "top_20_groups": [
+      {
+        "benign_count": 12874,
+        "dangerous_count": 548,
+        "dangerous_rate": 0.04082849,
+        "group_key": "domain:wikipedia.org",
+        "group_kind": "domain",
+        "row_count": 13422
+      },
+      {
+        "benign_count": 8626,
+        "dangerous_count": 13,
+        "dangerous_rate": 0.0015048,
+        "group_key": "domain:youtube.com",
+        "group_kind": "domain",
+        "row_count": 8639
+      },
+      {
+        "benign_count": 8321,
+        "dangerous_count": 41,
+        "dangerous_rate": 0.00490313,
+        "group_key": "domain:facebook.com",
+        "group_kind": "domain",
+        "row_count": 8362
+      },
+      {
+        "benign_count": 7811,
+        "dangerous_count": 449,
+        "dangerous_rate": 0.05435835,
+        "group_key": "domain:blogspot.com",
+        "group_kind": "domain",
+        "row_count": 8260
+      },
+      {
+        "benign_count": 5120,
+        "dangerous_count": 685,
+        "dangerous_rate": 0.11800172,
+        "group_key": "domain:yahoo.com",
+        "group_kind": "domain",
+        "row_count": 5805
+      },
+      {
+        "benign_count": 5021,
+        "dangerous_count": 3,
+        "dangerous_rate": 0.00059713,
+        "group_key": "domain:linkedin.com",
+        "group_kind": "domain",
+        "row_count": 5024
+      },
+      {
+        "benign_count": 4722,
+        "dangerous_count": 42,
+        "dangerous_rate": 0.00881612,
+        "group_key": "domain:amazon.com",
+        "group_kind": "domain",
+        "row_count": 4764
+      },
+      {
+        "benign_count": 3470,
+        "dangerous_count": 1,
+        "dangerous_rate": 0.0002881,
+        "group_key": "domain:imdb.com",
+        "group_kind": "domain",
+        "row_count": 3471
+      },
+      {
+        "benign_count": 0,
+        "dangerous_count": 3212,
+        "dangerous_rate": 1.0,
+        "group_key": "domain:ietf.org",
+        "group_kind": "domain",
+        "row_count": 3212
+      },
+      {
+        "benign_count": 3014,
+        "dangerous_count": 7,
+        "dangerous_rate": 0.00231711,
+        "group_key": "domain:myspace.com",
+        "group_kind": "domain",
+        "row_count": 3021
+      },
+      {
+        "benign_count": 0,
+        "dangerous_count": 2889,
+        "dangerous_rate": 1.0,
+        "group_key": "domain:mixh.jp",
+        "group_kind": "domain",
+        "row_count": 2889
+      },
+      {
+        "benign_count": 2822,
+        "dangerous_count": 0,
+        "dangerous_rate": 0.0,
+        "group_key": "domain:mylife.com",
+        "group_kind": "domain",
+        "row_count": 2822
+      },
+      {
+        "benign_count": 2476,
+        "dangerous_count": 0,
+        "dangerous_rate": 0.0,
+        "group_key": "domain:answers.com",
+        "group_kind": "domain",
+        "row_count": 2476
+      },
+      {
+        "benign_count": 2430,
+        "dangerous_count": 8,
+        "dangerous_rate": 0.00328138,
+        "group_key": "domain:ancestry.com",
+        "group_kind": "domain",
+        "row_count": 2438
+      },
+      {
+        "benign_count": 2075,
+        "dangerous_count": 0,
+        "dangerous_rate": 0.0,
+        "group_key": "domain:manta.com",
+        "group_kind": "domain",
+        "row_count": 2075
+      },
+      {
+        "benign_count": 2022,
+        "dangerous_count": 0,
+        "dangerous_rate": 0.0,
+        "group_key": "domain:wn.com",
+        "group_kind": "domain",
+        "row_count": 2022
+      },
+      {
+        "benign_count": 1977,
+        "dangerous_count": 13,
+        "dangerous_rate": 0.00653266,
+        "group_key": "domain:go.com",
+        "group_kind": "domain",
+        "row_count": 1990
+      },
+      {
+        "benign_count": 960,
+        "dangerous_count": 944,
+        "dangerous_rate": 0.49579832,
+        "group_key": "domain:pastehtml.com",
+        "group_kind": "domain",
+        "row_count": 1904
+      },
+      {
+        "benign_count": 1867,
+        "dangerous_count": 1,
+        "dangerous_rate": 0.00053533,
+        "group_key": "domain:absoluteastronomy.com",
+        "group_kind": "domain",
+        "row_count": 1868
+      },
+      {
+        "benign_count": 951,
+        "dangerous_count": 915,
+        "dangerous_rate": 0.4903537,
+        "group_key": "domain:google.com",
+        "group_kind": "domain",
+        "row_count": 1866
+      }
+    ]
+  },
+  "leakage_boundary": {
+    "allowed_before_split": [
+      "schema and data-quality checks",
+      "group-size and split-feasibility checks",
+      "label counts used only to balance the partition"
+    ],
+    "deferred_until_after_split": [
+      "feature-target comparison",
+      "correlation-based modelling decisions",
+      "scaler fitting",
+      "TLD-frequency fitting",
+      "model training and threshold selection"
+    ]
+  },
+  "scope": {
+    "intended_grain": "one unique cleaned URL per row",
+    "model_directed_feature_selection_performed": false,
+    "stage": "Stage 4.1 pre-split structural audit",
+    "test_set_created_at_profile_time": false
+  },
+  "source_format_association": {
+    "largest_has_scheme_rate_gap": 0.9173554105131356,
+    "purpose": "data-quality context for split interpretation, not feature selection",
+    "table": "/Users/okok/Documents/innovationproject cos30049/reports/tables/source_quality_profile.csv"
+  }
+}

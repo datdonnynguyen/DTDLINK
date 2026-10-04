@@ -1,0 +1,197 @@
+{
+  "eda": {
+    "figures": {
+      "binary_rates": "/Users/okok/Documents/innovationproject cos30049/reports/figures/binary_feature_rates.png",
+      "class_balance": "/Users/okok/Documents/innovationproject cos30049/reports/figures/class_balance_train.png",
+      "class_boxplots": "/Users/okok/Documents/innovationproject cos30049/reports/figures/feature_class_boxplots.png",
+      "correlation": "/Users/okok/Documents/innovationproject cos30049/reports/figures/train_feature_correlation.png",
+      "domain_concentration": "/Users/okok/Documents/innovationproject cos30049/reports/figures/domain_concentration.png",
+      "numeric_distributions": "/Users/okok/Documents/innovationproject cos30049/reports/figures/numeric_feature_distributions.png"
+    },
+    "model_directed_scope": "training rows only",
+    "tables": {
+      "binary_feature_rates": "/Users/okok/Documents/innovationproject cos30049/reports/tables/binary_feature_rates_by_class.csv",
+      "class_comparison": "/Users/okok/Documents/innovationproject cos30049/reports/tables/train_feature_class_comparison.csv",
+      "feature_summary": "/Users/okok/Documents/innovationproject cos30049/reports/tables/train_feature_summary.csv",
+      "high_correlation_pairs": "/Users/okok/Documents/innovationproject cos30049/reports/tables/high_correlation_pairs.csv"
+    },
+    "training_rows": 384832
+  },
+  "input": {
+    "path": "/Users/okok/Documents/innovationproject cos30049/data/processed/url_features.csv",
+    "rows": 641113,
+    "sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff"
+  },
+  "manifest": {
+    "columns": [
+      "url_id",
+      "group_key",
+      "split"
+    ],
+    "path": "/Users/okok/Documents/innovationproject cos30049/data/processed/split_manifest.csv",
+    "rows": 641113,
+    "sha256": "fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f"
+  },
+  "method": {
+    "algorithm": "StratifiedGroupKFold plus deterministic fold-allocation search",
+    "base_fold_count": 10,
+    "base_fold_details": {
+      "0": {
+        "dangerous_count": 20403,
+        "dangerous_rate": 0.3554405769833804,
+        "row_share": 0.08953491818135025,
+        "rows": 57402
+      },
+      "1": {
+        "dangerous_count": 21315,
+        "dangerous_rate": 0.3183814303638645,
+        "row_share": 0.10442464900883308,
+        "rows": 66948
+      },
+      "2": {
+        "dangerous_count": 21089,
+        "dangerous_rate": 0.3291607485679502,
+        "row_share": 0.09993402099161926,
+        "rows": 64069
+      },
+      "3": {
+        "dangerous_count": 22448,
+        "dangerous_rate": 0.3227745265791479,
+        "row_share": 0.10847853654503964,
+        "rows": 69547
+      },
+      "4": {
+        "dangerous_count": 18012,
+        "dangerous_rate": 0.30230099189366094,
+        "row_share": 0.09293681457091027,
+        "rows": 59583
+      },
+      "5": {
+        "dangerous_count": 22935,
+        "dangerous_rate": 0.3805691529079897,
+        "row_share": 0.09400058959964935,
+        "rows": 60265
+      },
+      "6": {
+        "dangerous_count": 19543,
+        "dangerous_rate": 0.29873127483949863,
+        "row_share": 0.10204129381247924,
+        "rows": 65420
+      },
+      "7": {
+        "dangerous_count": 21746,
+        "dangerous_rate": 0.32118750461561185,
+        "row_share": 0.10560540809498481,
+        "rows": 67705
+      },
+      "8": {
+        "dangerous_count": 23389,
+        "dangerous_rate": 0.36595631493303293,
+        "row_share": 0.09968913436476877,
+        "rows": 63912
+      },
+      "9": {
+        "dangerous_count": 22159,
+        "dangerous_rate": 0.3344148984334913,
+        "row_share": 0.10335463483036532,
+        "rows": 66262
+      }
+    },
+    "group_key": "registrable_domain; SHA-256 URL fallback for missing domains",
+    "seed": 42,
+    "selected_folds": {
+      "test": [
+        0,
+        3
+      ],
+      "train": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        9
+      ],
+      "validation": [
+        6,
+        8
+      ]
+    },
+    "target_ratios": {
+      "test": 0.2,
+      "train": 0.6,
+      "validation": 0.2
+    },
+    "target_used_only_for_partition_balance": true
+  },
+  "test_lock": {
+    "allowed_next_use": "Stage 7 final evaluation",
+    "lock_identity": "split manifest SHA-256",
+    "locked": true
+  },
+  "validation": {
+    "checks": {
+      "all_rows_assigned_once": true,
+      "group_keys_are_complete": true,
+      "only_expected_split_names": true,
+      "url_ids_are_unique": true,
+      "zero_group_overlap": true
+    },
+    "pairwise_group_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "passed": true,
+    "splits": {
+      "test": {
+        "dangerous_rate": 0.3375449983851783,
+        "groups": 31117,
+        "row_share": 0.1980134547263899,
+        "rows": 126949,
+        "source_type_counts": {
+          "benign": 84098,
+          "defacement": 20451,
+          "malware": 3643,
+          "phishing": 18757
+        },
+        "target_counts": {
+          "0": 84098,
+          "1": 42851
+        }
+      },
+      "train": {
+        "dangerous_rate": 0.3306793613836687,
+        "groups": 93405,
+        "row_share": 0.6002561170963621,
+        "rows": 384832,
+        "source_type_counts": {
+          "benign": 257576,
+          "defacement": 55732,
+          "malware": 15188,
+          "phishing": 56336
+        },
+        "target_counts": {
+          "0": 257576,
+          "1": 127256
+        }
+      },
+      "validation": {
+        "dangerous_rate": 0.33195187579253393,
+        "groups": 31050,
+        "row_share": 0.201730428177248,
+        "rows": 129332,
+        "source_type_counts": {
+          "benign": 86400,
+          "defacement": 19125,
+          "malware": 4814,
+          "phishing": 18993
+        },
+        "target_counts": {
+          "0": 86400,
+          "1": 42932
+        }
+      }
+    }
+  }
+}
