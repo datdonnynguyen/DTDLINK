@@ -1306,3 +1306,17 @@ The Insights page, interactive charts, and How It Works page were prioritised as
   execution, benchmark, scan, training or exported video claimed in this task.
 - Updated existing video-plan/checklist pointers. Documentation only; runtime,
   model, datasets and submission ZIPs not modified by this script-writing task.
+
+## All-English video materials — 6 November 2026
+
+- User requests English for every part of the video materials, including all
+  instructions. Translated the three presenter files' screen actions, preparation,
+  explanation notes and pronunciation guidance. Their spoken narration remains
+  unchanged (351/443/483 words; 1,277 total).
+- Canonical English guides are assignment3/docs/video-script/README.md and
+  assignment3/docs/VIDEO_RECORDING_PLAN.md. Earlier *_VI.md links now contain
+  short English pointers so previously shared links still work. Updated the
+  video checklist to reference the canonical English guides.
+- The complete speaking script remains FULL_SCRIPT_EN.md. Presenter names are
+  still for the group to choose. No runtime, model, data, benchmark, scan or
+  submission ZIP changes are part of this translation task.
