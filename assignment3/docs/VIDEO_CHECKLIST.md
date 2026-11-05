@@ -5,6 +5,9 @@ presenters, see [the Vietnamese recording plan](VIDEO_RECORDING_PLAN_VI.md).
 It assigns a 14:15 timeline, screen actions, English speaking cues and rehearsals;
 the group will choose who presents each part.
 
+Complete English narration, Vietnamese screen directions and rehearsal notes are
+in [the three-presenter script bundle](video-script/README_VI.md).
+
 Aim for 13–14 minutes so the final file stays within the limit. Demonstrate the
 real application and explain code in your own words. This is a preparation guide,
 not evidence that a video has been recorded or that everyone understands the code.

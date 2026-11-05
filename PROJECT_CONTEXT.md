@@ -1283,3 +1283,26 @@ The Insights page, interactive charts, and How It Works page were prioritised as
   occurred. Loading/network/render-error demonstrations and security commands
   still need rehearsal on the recording machine. Existing test scripts or saved
   scans are not represented as a newly recorded live demonstration.
+
+## Complete video narration drafted — 6 November 2026
+
+- User explicitly requests the complete speaking script for all three presenters,
+  matched to the existing website. Created assignment3/docs/video-script/ with
+  PRESENTER_A.md (351 English words), PRESENTER_B.md (443), PRESENTER_C.md (483),
+  FULL_SCRIPT_EN.md (combined narration), and README_VI.md (setup/rehearsal/map).
+  Vietnamese scene directions accompany the English narration. Group chooses
+  presenter names; no member contribution or individual authorship is invented.
+- Retained the 14:15 target (A 4:15, B 4:30, C 5:30). 1,277 spoken words give
+  about 11:37 narration at 110 words/minute, leaving about 2:38 for screen actions;
+  timing is estimated and requires rehearsal, not a verified recording length.
+- Browser-checked the actual primary misleading-address demo: Potentially
+  dangerous, 97.3% displayed confidence, actual host account-check.example,
+  Hidden destination and Account-related terms. Matched chart/filter/parts
+  wording and code function references against current frontend/backend source.
+- C narration describes November 5 scan evidence as historical and avoids fixed
+  DoS timing claims for a future run. Controlled loading/network/render failures
+  are labelled as such; existing Playwright test/Inspector commands documented
+  for rehearsal. CLI flags checked locally; no new browser install, error-scene
+  execution, benchmark, scan, training or exported video claimed in this task.
+- Updated existing video-plan/checklist pointers. Documentation only; runtime,
+  model, datasets and submission ZIPs not modified by this script-writing task.

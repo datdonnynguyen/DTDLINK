@@ -1,12 +1,10 @@
 # Presenter A — Introduction and website demonstration
 
-**Mốc bản ghép:** 00:00–04:15. Nhóm tự chọn người nói. Chỉ đọc các đoạn tiếng
-Anh trong blockquote; tiếng Việt là chỉ dẫn quay. Mốc thời gian là mục tiêu,
-cần bấm giờ khi tập. Dùng bản chính tại http://127.0.0.1:5173/.
+**Final-video timeline:** 00:00–04:15. The group will choose the presenter. Read only the English blockquotes aloud; all other text gives recording instructions. Timings are targets and must be checked during rehearsal. Use the primary app at http://127.0.0.1:5173/.
 
 ## A1 · 00:00–00:30 · Introduction
 
-**Màn hình:** trang Check URL, chưa có kết quả. Không cần slide dài.
+**Screen:** Open Check URL with no result displayed. A short project title is enough; no long slide introduction is needed.
 
 > Hello, we are Session Seven, Group Five. Our project is DTDLINK, Detect The
 > Deception Links. It helps people inspect a suspicious link before opening it.
@@ -15,18 +13,15 @@ cần bấm giờ khi tập. Dùng bản chính tại http://127.0.0.1:5173/.
 
 ## A2 · 00:30–01:35 · A real prediction and readable URL evidence
 
-**Thao tác:** bấm **A misleading address** rồi **Analyse link**. Nút mẫu chỉ điền
-input, không tự submit. Chờ kết quả, chỉ label và confidence. Ví dụ hiện tại:
-`https://paypal.com@account-check.example/login`; ngày 6/11 kiểm tra trên UI cho
-97,3% confidence, nhãn Potentially dangerous. Không cần đọc số trong lời nói.
+**Actions, in order:**
+1. Click **A misleading address**, then **Analyse link**. The example button fills the input but does not submit it.
+2. Point to the returned label and confidence. The input is `https://paypal.com@account-check.example/login`. The browser check on 6 November displayed Potentially dangerous and 97.3% confidence. The narration avoids quoting that number.
+3. Scroll to **THIS LINK POINTS TO**. Expand **Understand the parts of this URL**.
+4. Point to **Hidden destination** and **Account-related terms** under **READ THE SIGNS** as you explain them. Do not open the submitted destination.
 
 > I will select “A misleading address” and analyse it. The main result shows the
 > model's prediction and its confidence. This estimate is not a guarantee of
 > real-world harm or safety.
-
-**Thao tác:** cuộn đến **THIS LINK POINTS TO**, mở **Understand the parts of
-this URL**, rồi chỉ hai observation trong **READ THE SIGNS**.
-
 > The actual host is account-check dot example. PayPal dot com appears before
 > the at sign, so it is user information, not the destination hostname.
 >
@@ -38,21 +33,13 @@ this URL**, rồi chỉ hai observation trong **READ THE SIGNS**.
 
 ## A3 · 01:35–02:40 · Loading, validation and error states
 
-**Chuẩn bị riêng clip trạng thái trước khi quay:** dùng input không hợp lệ;
-giữ loading đủ nhìn bằng làm chậm request có kiểm soát; mô phỏng request lỗi
-và response sai cấu trúc bằng các test có sẵn. Có hướng dẫn trong README của
-bộ script. Khôi phục kết nối trước clip kết quả tiếp theo. Không sửa model.
+**Prepare these controlled-state clips before recording:** Delay a request so loading stays visible; interrupt a request to show the service error; use the existing malformed-response test for the rendering fallback. See the bundle README for rehearsal commands. Restore normal connectivity before the next real prediction; do not modify the model.
 
-**Thao tác:** cho thấy **Analysing…** / **Reading the signs in your link…**, rồi
-input `example.com/` nhận **Start the URL with http:// or https://.**
+**Actions, in order:** Show **Analysing…** and **Reading the signs in your link…**. Submit `example.com/` to show **Start the URL with http:// or https://.** Then show the interrupted-request clip, the `/unknown-page` route, and the separate rendering fallback. Match each spoken sentence to its corresponding screen. Controlled error responses are test fixtures, not model predictions.
 
 > During a request, the button shows “Analysing” and prevents repeated submission.
 > We have slowed the response for this demonstration so the loading state is visible.
 > An incomplete address receives a message beside the input.
-
-**Thao tác:** cắt sang clip request bị chặn trong trình duyệt, rồi /unknown-page,
-rồi fallback render. Chữ trên màn hình phải đúng clip tương ứng.
-
 > Here, a deliberately interrupted request shows a service error. An unknown
 > route shows our not-found page. A separate controlled rendering failure reaches
 > the unexpected-error fallback, with a reload option. These are controlled faults
@@ -60,9 +47,7 @@ rồi fallback render. Chữ trên màn hình phải đúng clip tương ứng.
 
 ## A4 · 02:40–03:10 · Phone layout and keyboard access
 
-**Thao tác:** viewport khoảng 375×812, menu mở/đóng, input và một result. Dùng
-Tab để thấy focus và Enter để submit. Đây là giả lập kích thước, không nói thử
-trên thiết bị thật. Trở về desktop trước cảnh biểu đồ.
+**Actions:** Use a phone-sized viewport of approximately 375×812. Open and close the navigation menu, show the input and a result, and use Tab to show focus and Enter to submit. Describe this as a phone-sized viewport, not a physical-device test. Return to desktop size before the chart scene.
 
 > This is the phone-sized layout. The navigation collapses into a menu, and the
 > result remains readable. Labels and visible keyboard focus support accessibility.
@@ -70,14 +55,13 @@ trên thiết bị thật. Trở về desktop trước cảnh biểu đồ.
 
 ## A5 · 03:10–04:15 · Two interactive visualisations
 
-**Chuẩn bị:** ở cùng một phiên, chạy thật misleading example và simple example,
-rồi quay lại misleading example để chart hiện Hidden destination. Không reload
-trước khi quay Session insights. Các input không phải nhãn an toàn đã xác minh.
+**Prepare:** In the same normal browser tab, run the misleading and simple examples, then run the misleading example again so its signals are available. These inputs are not independently verified safety labels. Do not reload before showing Session insights.
 
-**Thao tác:** chart **What deserves a closer look?** → Show signals → High
-attention → chọn Hidden destination. Mở **Session insights** → chọn Check # →
-Filter checks; có thể chọn Likely legitimate và cho thấy empty state nếu không
-có kết quả lớp này; trả về All results. Bấm Clear session sau cùng.
+**Actions, in order:**
+1. In **What deserves a closer look?**, change **Show signals** to **High attention**, then select **Hidden destination**.
+2. Open **Session insights**, select a **Check #** button, and demonstrate **Filter checks**. If there are no legitimate predictions, show the empty state for that filter, then return to **All results**.
+3. Point to the dashed threshold line and anonymous check details.
+4. Click **Clear session** only after finishing the chart demonstration.
 
 > The first chart groups observed signals by attention level. I can filter the
 > categories and select “Hidden destination” for more detail.
@@ -91,14 +75,11 @@ có kết quả lớp này; trả về All results. Bấm Clear session sau cùn
 >
 > Next, we will follow a request through the actual frontend, API and model code.
 
-## Hiểu trước khi quay
+## Understand before recording
 
-- Confidence thuộc nhãn model dự đoán; không phải độ an toàn thực tế.
-- Host sau @ mới là hostname; tên quen thuộc trước @ không xác minh đích.
-- Hai chart đo hai thứ: số pattern theo mức chú ý và điểm model theo lần kiểm tra.
-- Phần loading/network/fallback là lỗi/độ trễ tạo có kiểm soát. Chỉ đọc lời đã
-  quay được màn hình tương ứng. Chưa dựng được thì cần tập trước, không ghép
-  screenshot/test result vào như dự đoán thật.
+- Confidence belongs to the predicted class; it does not measure real-world safety.
+- The hostname after the at sign determines the host. Familiar text before it does not verify the destination.
+- The charts show different things: pattern counts by attention level and model scores across checks.
+- Loading, interrupted requests and rendering failures are controlled demonstrations. Record the matching state before using its narration. Do not present a fixture or test screenshot as a real model prediction.
 
-**Cách đọc:** URL = “you are ell”; API = “A P I”; @ = “at sign”. Không đọc cả
-URL dài thành tiếng, dùng con trỏ chỉ phần đang giải thích.
+**Pronunciation:** URL = “you are ell”; API = “A P I”; @ = “at sign”. Point to long URLs instead of reading every character.

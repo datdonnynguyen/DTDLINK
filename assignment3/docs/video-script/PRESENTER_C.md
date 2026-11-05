@@ -1,13 +1,10 @@
 # Presenter C — Security, reproducibility and limitations
 
-**Mốc bản ghép:** 08:45–14:15. Chỉ đọc blockquote. Dùng bản chính. Chuẩn bị
-terminal ở `assignment3/`, README và các file có tên dưới đây. Đừng đọc số liệu
-cũ như thể đó là kết quả của lệnh vừa chạy. Mốc thời gian cần tập lại bằng đồng hồ.
+**Final-video timeline:** 08:45–14:15. Read only the blockquotes aloud. Use the primary app. Prepare a terminal in `assignment3/`, the README and the files listed below. Never describe old measurements as output from a command you have just run. Rehearse the timing with a stopwatch.
 
 ## C1 · 08:45–09:30 · Threat model and baseline controls
 
-**Mở:** threat model trong README; chỉ `schemas.py`, `middleware.py` và cách
-`URLAnalysis.jsx` render text nếu cần. Không mở mọi file quá lâu.
+**Open:** The README threat model. Briefly point to `schemas.py`, `middleware.py` and the text rendering in `URLAnalysis.jsx` as needed. Keep file changes short.
 
 > An attacker can bypass React, submit hostile input and send concurrent requests
 > to mislead the model or exhaust the service.
@@ -21,15 +18,17 @@ cũ như thể đó là kết quả của lệnh vừa chạy. Mốc thời gian
 
 ## C2 · 09:30–11:35 · Defence one: application-level denial of service
 
-**Mở:** `scripts/dos_demo.py`, chỉ unprotected_app và hai case. Chạy:
+**Open:** `scripts/dos_demo.py`, showing `unprotected_app` and its two cases. Run from `assignment3/`:
 
 ```sh
 backend/.venv/bin/python scripts/dos_demo.py
 ```
 
-Lệnh ghi lại `evidence/dos-demo.json`. Có thể cắt bớt lúc chờ, giữ lệnh và output
-cùng lần chạy. Không sửa số. Phải thấy health 200 và defended prediction_503 > 0
-trước khi dùng lời kết luận. Không có số cố định trong narration này.
+This overwrites `evidence/dos-demo.json`. Keep the command and output from the same execution together. You may cut waiting time, but do not change the measurements. Before using the conclusion, confirm health status is 200 and the defended case has `prediction_503 > 0`.
+
+**While explaining the output:** Point to the `burst` baseline and defended summaries, especially `median_health_completion_ms`, `prediction_200` and `prediction_503`.
+
+**Then open:** `backend/app/main.py`, at `lifespan` and `predict_url`. Point to `ThreadPoolExecutor`, `max_concurrent`, `run_in_executor`, the completion callback and `asyncio.shield`. Explain the controlled slow case separately. The narration deliberately contains no fixed latency values.
 
 > First, application-level denial of service. Our test-only baseline runs synchronous
 > inference inside an asynchronous endpoint. This blocks the event loop, delaying
@@ -38,17 +37,9 @@ trước khi dùng lời kết luận. Không có số cố định trong narrat
 > The script compares that baseline with the production application factory using
 > thirty-two concurrent predictions, repeated ten times, while measuring health
 > request completion.
-
-**Thao tác:** chỉ `burst` summary baseline/defended; các field
-median_health_completion_ms, prediction_200 và prediction_503.
-
 > Compare the baseline and defended health timings in the output. The defended
 > case rejects excess work with status five oh three instead of accepting an
 > unbounded workload. The health endpoint remains available.
-
-**Mở:** `backend/app/main.py`, lifespan/predict_url: ThreadPoolExecutor,
-max_concurrent, run_in_executor, done_callback, asyncio.shield. Chỉ 4 block này.
-
 > In main dot PY, a bounded thread pool moves inference away from the event loop.
 > The default capacity is two jobs. The endpoint checks capacity before scheduling
 > work, and returns five oh three with a retry header when it is full.
@@ -64,10 +55,15 @@ max_concurrent, run_in_executor, done_callback, asyncio.shield. Chỉ 4 block n�
 
 ## C3 · 11:35–12:55 · Defence two: configuration and dependencies
 
-**Mở sẵn:** `docs/SECURITY_FINDINGS.md`, `evidence/zap-scan-before.json`,
-`evidence/zap-scan.json`, `evidence/pip-audit-before.json`, `evidence/pip-audit.json`,
-`evidence/npm-audit.json` và `frontend/vite.config.js`. Chỉ vài field liên quan;
-đừng cuộn toàn bộ JSON. Scan đang nói là bằng chứng đã lưu ngày 5/11/2026.
+**Prepare these tabs:** `docs/SECURITY_FINDINGS.md`, `evidence/zap-scan-before.json`, `evidence/zap-scan.json`, `evidence/pip-audit-before.json`, `evidence/pip-audit.json`, `evidence/npm-audit.json` and `frontend/vite.config.js`. Point only to relevant findings and configuration. These are saved scans from 5 November 2026.
+
+**Live demonstration:** Run the command below. It connects only to the local API; `evil.example` is an Origin header value, not a destination:
+
+```sh
+curl -i -H 'Origin: http://evil.example' http://127.0.0.1:8000/health
+```
+
+Point to status 403 and `origin_not_allowed`. You can show the current CSP in the browser Network headers or with `curl -I http://127.0.0.1:5173/`. This demonstrates current headers and origin handling; it does not establish that every CSP exploit was tested before and after, or that ZAP was rerun during the clip.
 
 > Our second defence addresses misconfiguration and vulnerable dependencies.
 > These saved audit results are from November fifth.
@@ -80,24 +76,12 @@ max_concurrent, run_in_executor, done_callback, asyncio.shield. Chỉ 4 block n�
 > The dependency audit also identified issues in the environment's pip version.
 > We upgraded it in the isolated Assignment Three environment. The saved pip and
 > npm audits then reported no known findings. A clean scan is not proof of complete security.
-
-**Demo trực tiếp:** lệnh này chỉ kết nối API localhost; evil.example là header.
-
-```sh
-curl -i -H 'Origin: http://evil.example' http://127.0.0.1:8000/health
-```
-
-**Chỉ:** 403 và JSON origin_not_allowed. Có thể chỉ CSP bằng Network headers
-hoặc `curl -I http://127.0.0.1:5173/`. Header demo là minh họa hiện tại, không phải
-khẳng định đã dựng exploit CSP trước/sau hay quét ZAP lại trong clip.
-
 > This request rejects an unapproved Origin. We test only our own local application.
 > These controls require dependency reviews and a policy permitting only necessary resources.
 
 ## C4 · 12:55–13:25 · Running the application and acknowledging assistance
 
-**Mở:** README setup, backend/requirements.txt, frontend/package-lock.json,
-README AI statement. Chỉ lệnh launcher, không cần chờ cài dependencies trong video.
+**Open:** README setup instructions, `backend/requirements.txt`, `frontend/package-lock.json` and the README AI statement. Point to the launcher command; there is no need to record the full dependency installation.
 
 > The README covers installation, pinned dependencies, startup, architecture and
 > references. The included model needs no retraining. Our AI statement discloses
@@ -105,9 +89,7 @@ README AI statement. Chỉ lệnh launcher, không cần chờ cài dependencies
 
 ## C5 · 13:25–14:15 · Honest limitations and next steps
 
-**Màn hình:** How it works → Built on Assignment 2 / A prediction has limits.
-Không chuyển sang preview hay mở các URL bên ngoài. Có thể chỉ Google diagnostic
-đã lưu, nhưng không cần chạy thêm model thử nghiệm trong video.
+**Screen:** Open **How it works**, showing **Built on Assignment 2.** and **A prediction has limits.** Do not switch to the preview or visit submitted destinations. You may point to a saved diagnostic example, but do not run additional model experiments for this scene.
 
 > Finally, the model still produces false positives and is sensitive to URL
 > formatting. Its confidence is uncalibrated, and it cannot distinguish the three
@@ -121,16 +103,12 @@ Không chuyển sang preview hay mở các URL bên ngoài. Có thể chỉ Goog
 > deployment testing. DTDLINK provides evidence to support cautious decisions,
 > rather than a guarantee of safety. Thank you.
 
-## Hiểu trước khi quay
+## Understand before recording
 
-- DoS: công việc model chiếm tài nguyên; thread giữ event loop phản hồi, capacity
-  giới hạn việc đang chạy và trả 503. Không phải per-user rate limiter.
-- CORS chỉ là một lớp kiểm soát origin; client không phải browser có thể bỏ header.
-- Scan before/after cho thấy các finding/fix trong phạm vi đã quét, không phải
-  bằng chứng mọi exploit đều thất bại. Không gọi 53 informational là 53 lỗi nặng.
-- Không khôi phục CSP yếu/pip cũ của app chính để quay trước/sau; dùng saved
-  evidence đúng ngày. DoS baseline đã là lab riêng trong script.
-- Hai defence thuộc mục 2.7; benchmark DoS không biến thành nghiên cứu mục 2.8.
+- Inference consumes resources. Threads keep the event loop available; the capacity budget bounds running work and rejects excess requests with 503. It is not a per-user rate limiter.
+- CORS is an origin control; non-browser clients can omit Origin.
+- Before/after scans show findings and fixes within their coverage. They do not prove every exploit fails. Informational observations are not high-severity vulnerabilities.
+- Do not restore weak CSP settings or old pip versions in the main app to stage an attack. Use dated saved evidence. The DoS script already contains a separate lab baseline.
+- Both selected defences belong to section 2.7. The DoS benchmark does not complete section 2.8.
 
-**Cách đọc:** DoS = “denial of service”; CORS có thể đọc “cors”; CSP = “C S P”;
-503 = “five oh three”; 403 = “four oh three”; nonce = “nons”.
+**Pronunciation:** DoS = “denial of service”; CORS = “cors”; CSP = “C S P”; 503 = “five oh three”; 403 = “four oh three”; nonce = “nons”.

@@ -4,6 +4,10 @@ Ngày chuẩn bị: 6/11/2026. Nhóm chọn nói tiếng Anh, mỗi người qua
 Người A/B/C dưới đây là phân đoạn đề xuất; nhóm tự chọn người, không phải xác
 nhận về đóng góp thực tế. Mục tiêu bản cuối: **14 phút 15 giây**, tối đa 15 phút.
 
+**Đã có script lời nói hoàn chỉnh:** xem `video-script/README_VI.md`, ba tệp
+`PRESENTER_A.md`, `PRESENTER_B.md`, `PRESENTER_C.md` và bản tập đọc tiếng Anh
+`video-script/FULL_SCRIPT_EN.md`. Kế hoạch bên dưới giữ vai trò bảng phân cảnh.
+
 ## 1. Căn cứ và bản ứng dụng dùng quay
 
 Đọc `Week-12/Assessment/Assignment-3-Specification.md`, mục 3.1 và rubric Video
