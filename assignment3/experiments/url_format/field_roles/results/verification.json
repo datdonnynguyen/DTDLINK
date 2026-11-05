@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "candidates": [
+    {
+      "name": "fields_balanced",
+      "sha256": "afd960f79e5e1f9ee49f0fe717ef7f4a66d2108b1302116a449ab6e969f1f207",
+      "full_validation_predictions_reproduced": 128373,
+      "fresh_raw_url_predictions_reproduced": 1000,
+      "passes": false
+    },
+    {
+      "name": "fields_recall3",
+      "sha256": "eec937e5f1fb418ba5507449c2ef45747f6e3ce66fd1be3f06380ea51b378a52",
+      "full_validation_predictions_reproduced": 128373,
+      "fresh_raw_url_predictions_reproduced": 1000,
+      "passes": false
+    },
+    {
+      "name": "fields_recall5",
+      "sha256": "6347a4fd86117918b09b6c41277c21331cc2af799a7558088b9d2ceebdcf4be0",
+      "full_validation_predictions_reproduced": 128373,
+      "fresh_raw_url_predictions_reproduced": 1000,
+      "passes": false
+    },
+    {
+      "name": "fields_context5",
+      "sha256": "c22d3d8ec38b089482c81803eb4623b0d7e2e2aa4d28da6af4b30bef9d94db94",
+      "full_validation_predictions_reproduced": 128373,
+      "fresh_raw_url_predictions_reproduced": 1000,
+      "passes": false
+    }
+  ],
+  "threshold": 0.5,
+  "primary_model_sha256": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+  "preview_model_sha256": "f5a7b6fb18fa3c041ccac167436ddc9d3ea44f496842314c59070a7e36303290",
+  "decision": "No promotion; retain both existing applications."
+}

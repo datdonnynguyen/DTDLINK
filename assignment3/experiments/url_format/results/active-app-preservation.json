@@ -1,0 +1,6 @@
+{
+  "active_application_files_checked": 38,
+  "changed": [],
+  "passed": true,
+  "note": "Active UI, API, model, metadata, API example, security middleware/static assets and locked dependencies remain byte-identical. New unused A3 research modules are separate."
+}

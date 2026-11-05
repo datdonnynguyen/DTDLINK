@@ -1,0 +1,32 @@
+{
+  "selected": null,
+  "kind": "authority text only",
+  "threshold": 0.5,
+  "basis": "Unchanged aggregate and homepage validation gates; no A2 test or demo-based choice.",
+  "candidates": [
+    {
+      "name": "authority_text_balanced",
+      "passes": false,
+      "fpr": 0.09386382740263378,
+      "recall": 0.8453308987054334,
+      "homepage_fpr": 0.23773096386960105,
+      "homepage_recall": 0.7517623363544814
+    },
+    {
+      "name": "authority_text_recall3",
+      "passes": false,
+      "fpr": 0.10878397310170916,
+      "recall": 0.858487253318351,
+      "homepage_fpr": 0.29469224432152524,
+      "homepage_recall": 0.7940584088620343
+    },
+    {
+      "name": "authority_text_recall5",
+      "passes": false,
+      "fpr": 0.12643597646399551,
+      "recall": 0.8732588899033171,
+      "homepage_fpr": 0.3654230905025303,
+      "homepage_recall": 0.8358509566968781
+    }
+  ]
+}

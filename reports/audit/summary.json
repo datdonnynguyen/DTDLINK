@@ -1,33 +1,16 @@
 {
-  "audit_time_utc": "2026-09-17T03:49:38.257356+00:00",
+  "audit_time_utc": "2026-10-06T16:09:20.420131+00:00",
   "source": {
     "archive": "Week-08/Assessment/Basic_Datasets.zip",
     "member": "Basic_Datasets/Phishing URL Detection/malicious_phish.csv",
     "raw": "data/raw/malicious_phish.csv",
-    "archive_sha256": "ed776a8d00acbd33970ed0b425286466786c4b35006d348a621ec64f9b62206e",
     "csv_sha256": "d83ce942075dd63ed4d11560cfdcd9d512caa3d680e292f22cab484e8f074d01",
     "csv_bytes": 45664439
-  },
-  "environment": {
-    "python": "3.9.6",
-    "pandas": "2.2.3"
   },
   "shape": {
     "rows": 651191,
     "columns": 2
   },
-  "schema": [
-    {
-      "column": "url",
-      "pandas_dtype": "string",
-      "semantic_type": "URL text"
-    },
-    {
-      "column": "type",
-      "pandas_dtype": "string",
-      "semantic_type": "categorical label"
-    }
-  ],
   "labels": [
     {
       "label": "benign",
@@ -52,14 +35,12 @@
   ],
   "missingness": {
     "url": {
-      "null": 0,
       "empty_string": 0,
       "whitespace_only_nonempty": 0,
       "na_like_token": 0,
       "leading_or_trailing_whitespace": 7
     },
     "type": {
-      "null": 0,
       "empty_string": 0,
       "whitespace_only_nonempty": 0,
       "na_like_token": 0,
@@ -191,21 +172,5 @@
       "no_hostname": 1
     },
     "largest_host_row_count": 13206
-  },
-  "verification": {
-    "independent_csv_checks_passed": true,
-    "csv_record_widths": {
-      "2": 651191
-    },
-    "raw_hash_unchanged": true,
-    "archive_hash_unchanged": true
-  },
-  "limitations": [
-    "No website visited or label independently verified.",
-    "No collection dates, label provenance or historical snapshots in these two columns.",
-    "Host inspection is diagnostic, not registrable-domain grouping or strict URL validation.",
-    "No canonicalization, cleaning, exclusions, relabeling, split or training performed.",
-    "Missingness preserves literal strings; null-like tokens counted separately.",
-    "Examples illustrate length quartiles, not statistically representative or verified class membership."
-  ]
+  }
 }

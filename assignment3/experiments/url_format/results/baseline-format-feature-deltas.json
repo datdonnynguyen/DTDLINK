@@ -1,0 +1,68 @@
+[
+  {
+    "bare": "www.google.com/",
+    "feature_changes": {
+      "url_length": {
+        "no_scheme": 15,
+        "https": 23
+      },
+      "special_character_count": {
+        "no_scheme": 3,
+        "https": 6
+      },
+      "parse_issue_count": {
+        "no_scheme": 1,
+        "https": 0
+      },
+      "has_scheme": {
+        "no_scheme": 0,
+        "https": 1
+      },
+      "uses_https": {
+        "no_scheme": 0,
+        "https": 1
+      }
+    },
+    "one_feature_reset_probabilities": {
+      "url_length": 0.9690347855065246,
+      "special_character_count": 0.9060179813637879,
+      "parse_issue_count": 0.6528977258692379,
+      "has_scheme": 0.7172032866547147,
+      "uses_https": 0.9634302201038362
+    },
+    "note": "Controlled feature interventions can be off-manifold; diagnostic, not a causal explanation or production fix."
+  },
+  {
+    "bare": "github.com/",
+    "feature_changes": {
+      "url_length": {
+        "no_scheme": 11,
+        "https": 19
+      },
+      "special_character_count": {
+        "no_scheme": 2,
+        "https": 5
+      },
+      "parse_issue_count": {
+        "no_scheme": 1,
+        "https": 0
+      },
+      "has_scheme": {
+        "no_scheme": 0,
+        "https": 1
+      },
+      "uses_https": {
+        "no_scheme": 0,
+        "https": 1
+      }
+    },
+    "one_feature_reset_probabilities": {
+      "url_length": 0.9443263549005231,
+      "special_character_count": 0.876603980087052,
+      "parse_issue_count": 0.5695844007606676,
+      "has_scheme": 0.6142582963459821,
+      "uses_https": 0.942814949765535
+    },
+    "note": "Controlled feature interventions can be off-manifold; diagnostic, not a causal explanation or production fix."
+  }
+]

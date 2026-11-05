@@ -1,6 +1,4 @@
 {
-  "feature_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
-  "manifest_sha256": "fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f",
   "feature_names": [
     "url_length",
     "host_length",
@@ -44,37 +42,20 @@
     "validation": 129332,
     "test": 126949
   },
-  "fit_split": "train",
-  "comparison_split": "validation",
-  "test_used_for_modelling_or_metrics": false,
   "models": [
     "logistic_regression",
     "decision_tree",
     "random_forest"
   ],
-  "model_settings": {
-    "logistic_regression": {
-      "scaler": "StandardScaler fit on train",
-      "solver": "liblinear",
-      "max_iter": 500
-    },
-    "decision_tree": {
-      "max_depth": 12,
-      "min_samples_leaf": 100,
-      "random_state": 42
-    },
-    "random_forest": {
-      "n_estimators": 100,
-      "max_depth": 12,
-      "min_samples_leaf": 100,
-      "max_features": "sqrt",
-      "class_weight": "balanced_subsample",
-      "random_state": 42,
-      "n_jobs": 2
-    }
+  "random_forest_settings": {
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_leaf": 100,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": 2
   },
-  "class_weight": "balanced for logistic regression/decision tree; balanced_subsample for random forest",
-  "default_threshold": 0.5,
   "thresholds_reviewed": [
     0.2,
     0.3,
@@ -84,8 +65,6 @@
     0.7,
     0.8
   ],
-  "final_model_selected": true,
-  "final_threshold_selected": true,
   "selected_model": "random_forest",
   "selected_threshold": 0.5,
   "selected_validation_metrics": {

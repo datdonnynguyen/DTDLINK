@@ -1,0 +1,60 @@
+{
+  "wire_domain_overlaps": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "test": "Only split group metadata inspected; no test URLs, labels or features retained/scored.",
+  "train": {
+    "source_rows": 384832,
+    "eligible_rows": 381494,
+    "excluded_rows": 3338,
+    "exclusion_reasons": {
+      "Backslashes are not allowed; use forward slashes.": 2850,
+      "Enter a valid URL with a valid hostname and port.": 195,
+      "Encoded control characters are not allowed.": 29,
+      "Percent encoding must contain two hexadecimal digits.": 65,
+      "Spaces and control characters are not allowed.": 195,
+      "Unsupported scheme.": 2,
+      "overlength": 1,
+      "The numeric host is not a valid IP address.": 1
+    },
+    "excluded_labels": {
+      "defacement": 355,
+      "malware": 5,
+      "benign": 2663,
+      "phishing": 315
+    },
+    "eligible_labels": {
+      "benign": 254913,
+      "phishing": 56021,
+      "defacement": 55377,
+      "malware": 15183
+    },
+    "elapsed_s": 28.75
+  },
+  "validation": {
+    "source_rows": 129332,
+    "eligible_rows": 128373,
+    "excluded_rows": 959,
+    "exclusion_reasons": {
+      "Percent encoding must contain two hexadecimal digits.": 190,
+      "Backslashes are not allowed; use forward slashes.": 552,
+      "Encoded control characters are not allowed.": 17,
+      "Spaces and control characters are not allowed.": 79,
+      "Enter a valid URL with a valid hostname and port.": 121
+    },
+    "excluded_labels": {
+      "benign": 744,
+      "defacement": 123,
+      "phishing": 92
+    },
+    "eligible_labels": {
+      "benign": 85656,
+      "defacement": 19002,
+      "phishing": 18901,
+      "malware": 4814
+    },
+    "elapsed_s": 8.84
+  }
+}

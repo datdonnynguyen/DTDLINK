@@ -1,0 +1,39 @@
+{
+  "selected": null,
+  "basis": "Fixed gates on full validation and homepages, no demo output or A2 test use.",
+  "threshold": 0.5,
+  "candidates": [
+    {
+      "name": "fields_balanced",
+      "passes": false,
+      "fpr": 0.06587979826281871,
+      "recall": 0.8604302736615399,
+      "home_fpr": 0.20007061315758504,
+      "home_recall": 0.7712319570325613
+    },
+    {
+      "name": "fields_recall3",
+      "passes": false,
+      "fpr": 0.09064163631269263,
+      "recall": 0.888100756139242,
+      "home_fpr": 0.2999882311404025,
+      "home_recall": 0.8449144008056395
+    },
+    {
+      "name": "fields_recall5",
+      "passes": false,
+      "fpr": 0.12354067432520781,
+      "recall": 0.911932017697872,
+      "home_fpr": 0.4378015770271861,
+      "home_recall": 0.9034911043974488
+    },
+    {
+      "name": "fields_context5",
+      "passes": false,
+      "fpr": 0.10765153637807041,
+      "recall": 0.9041131165578107,
+      "home_fpr": 0.3357655643168177,
+      "home_recall": 0.8843571668345083
+    }
+  ]
+}

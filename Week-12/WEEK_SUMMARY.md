@@ -75,4 +75,8 @@ Every visible Week 12 item was checked. Both PDFs and the workshop ZIP were down
 
 ## Assessment link
 
-`Assessment/Assignment-3-Status.md` records the limited Assignment 3 information currently visible in the syllabus. Its specification, rubric, exact calendar date, and submission page are not yet visible to the student.
+On 5 November 2026, the student supplied the complete Assignment 3 brief and
+rubric. The text is preserved in `Assessment/Assignment-3-Specification.md`;
+`Assessment/Assignment-3-Status.md` summarises the requirements and current
+status. This supersedes the previous syllabus-only availability note. It is
+a saved user-supplied source, not a new live Canvas check.

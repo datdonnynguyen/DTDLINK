@@ -1,0 +1,284 @@
+{
+  "scope": "Own in-process ASGI application only; no external target, no production defence switch.",
+  "burst": {
+    "concurrent_requests": 32,
+    "repetitions": 10,
+    "baseline": [
+      {
+        "health_status": 200,
+        "health_completion_ms": 574.7,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 574.76
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 523.62,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 523.66
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 529.98,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 530.02
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 533.9,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 533.94
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 540.61,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 540.65
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 547.28,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 547.31
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 553.64,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 553.68
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 530.14,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 530.18
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 530.68,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 530.71
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 529.79,
+        "prediction_200": 32,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 529.83
+      }
+    ],
+    "defended": [
+      {
+        "health_status": 200,
+        "health_completion_ms": 33.92,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 42.58
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 32.33,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 41.43
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 31.2,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 45.1
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 30.65,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 38.01
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 30.68,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 40.94
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 30.77,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 35.9
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 32.0,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 44.96
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 30.72,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 45.67
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 30.39,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 35.51
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 29.75,
+        "prediction_200": 2,
+        "prediction_503": 30,
+        "other_statuses": [],
+        "total_ms": 33.76
+      }
+    ],
+    "baseline_summary": {
+      "median_health_completion_ms": 532.29,
+      "maximum_health_completion_ms": 574.7,
+      "prediction_200": 320,
+      "prediction_503": 0
+    },
+    "defended_summary": {
+      "median_health_completion_ms": 30.74,
+      "maximum_health_completion_ms": 33.92,
+      "prediction_200": 20,
+      "prediction_503": 300
+    }
+  },
+  "controlled_slow_request": {
+    "inference_repeats": 30,
+    "repetitions": 5,
+    "baseline": [
+      {
+        "health_status": 200,
+        "health_completion_ms": 471.6,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 471.62
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 484.08,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 484.1
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 490.38,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 490.41
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 471.13,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 471.14
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 488.49,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 488.51
+      }
+    ],
+    "defended": [
+      {
+        "health_status": 200,
+        "health_completion_ms": 3.3,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 483.72
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 2.45,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 490.8
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 2.74,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 481.58
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 2.67,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 482.87
+      },
+      {
+        "health_status": 200,
+        "health_completion_ms": 2.45,
+        "prediction_200": 1,
+        "prediction_503": 0,
+        "other_statuses": [],
+        "total_ms": 493.94
+      }
+    ],
+    "qualification": "Test-only predictor repeats real inference 30 times; not a discovered expensive-URL exploit.",
+    "baseline_summary": {
+      "median_health_completion_ms": 484.08,
+      "maximum_health_completion_ms": 490.38,
+      "prediction_200": 5,
+      "prediction_503": 0
+    },
+    "defended_summary": {
+      "median_health_completion_ms": 2.67,
+      "maximum_health_completion_ms": 3.3,
+      "prediction_200": 5,
+      "prediction_503": 0
+    }
+  }
+}

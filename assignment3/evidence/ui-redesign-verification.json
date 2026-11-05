@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-05",
+  "scope": "UI UX Pro Max-guided dark workspace redesign; local React styling/markup and chart presentation only.",
+  "design_source": {
+    "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "revision": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb",
+    "approach": "Read skill and web UX rules; ran design-system, React and style searches; adapted to existing plain CSS stack."
+  },
+  "frontend_build": "passed",
+  "frontend_unit_tests_passed": 13,
+  "backend_tests_passed": 34,
+  "protected_backend_source_model_files_unchanged": 13,
+  "model_sha256": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+  "new_runtime_dependencies": false,
+  "new_remote_runtime_assets": false,
+  "browser_qa": {
+    "css_widths_checked": [
+      375,
+      768,
+      1024,
+      1440
+    ],
+    "horizontal_overflow": "None observed at checked widths; document scroll width <= viewport width.",
+    "executed": [
+      "Home, Session insights and How it works rendering",
+      "Empty URL validation with input focus",
+      "Real dangerous prediction via Enter: 97.3% label confidence for supplied misleading example",
+      "Signal filter and Hidden destination detail",
+      "Session check selection and Clear session",
+      "Phone navigation drawer and close on route change",
+      "Input clearing and example buttons",
+      "Loading and disabled controls observed during real inference"
+    ],
+    "phone_note": "375 CSS px checked via measured innerWidth; retained narrow-screen screenshot is 450 CSS px.",
+    "screenshots": [
+      "ui-ai-desktop.jpg",
+      "ui-ai-phone.jpg"
+    ],
+    "limitations": [
+      "Bounded manual browser checks; not a full WCAG audit or usability study.",
+      "Existing optional Playwright browser suite was not executed.",
+      "Earlier security/clean-install evidence in verification.json predates this UI-only update; those scans/install were not rerun.",
+      "No new model evaluation, retraining or claim of improved detection."
+    ]
+  },
+  "sampled_token_contrast_ratios": {
+    "foreground/surface": 15.62,
+    "muted/surface-raised": 6.6,
+    "subtle/surface-raised": 5.44,
+    "accent/accent-soft": 8.44,
+    "on-primary/primary": 4.62,
+    "on-primary/primary-hover": 5.43,
+    "success/success-soft": 8.76,
+    "danger/danger-soft": 7.74,
+    "warning/warning-soft": 9.04
+  },
+  "previous_source_zip_backup": "/private/tmp/dtdlink-before-ai-ui/session-07-group-5-assignment-3-source.zip",
+  "packaging_note": "A pre-existing zero-byte backend/app/insights.py placeholder was present before this UI task and preserved. It is not imported; no dataset endpoint or feature was restored.",
+  "user_requested_simplification": {
+    "removed": [
+      "Sidebar privacy card",
+      "Sidebar course/group/student footer",
+      "Topbar service-status badge",
+      "Home Local analysis badge"
+    ],
+    "checks": "Build and 13 frontend tests passed; browser reload verified requested removals.",
+    "screenshot": "ui-ai-clean.jpg",
+    "note": "Earlier ui-ai-desktop.jpg and ui-ai-phone.jpg are historical captures before this simplification."
+  }
+}

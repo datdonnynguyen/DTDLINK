@@ -2,6 +2,12 @@
 
 > Bộ prompt ngắn để học và thực hiện từng Stage. Chi tiết kỹ thuật, thứ tự công việc và điều kiện hoàn thành nằm trong `ASSIGNMENT2_MASTER_PLAN.md`.
 
+> Cập nhật Assignment 3 ngày 5/11/2026: trước khi dùng prompt Stage 9, đọc
+> `PROJECT_CONTEXT.md`, `Week-12/Assessment/Assignment-3-Specification.md` và
+> `Week-12/Assessment/Assignment-3-Status.md`. Đề A3 đầy đủ thay thế các giả định
+> cũ về yêu cầu nộp, bảo mật và cách dùng AI; các prompt cũ không phải toàn bộ
+> kế hoạch A3 và không tự cho phép thay đổi model hay phạm vi sản phẩm.
+
 ## Cách sử dụng
 
 Mỗi Stage dùng một task riêng và đi theo thứ tự:

@@ -1,0 +1,4 @@
+{
+  "feature_vectors_with_both_labels": 6570,
+  "note": "Different URLs can share the 36 coarse features; original labels retained."
+}

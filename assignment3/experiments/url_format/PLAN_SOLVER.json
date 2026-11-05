@@ -1,0 +1,7 @@
+{
+  "reason":"The first sparse liblinear fit reached 300 iterations with a ConvergenceWarning. No unconverged artifact will be integrated.",
+  "scope":"Refine all three text candidates, not selected demo examples. Reuse their train-only fitted vocabulary/scaler and coefficients as an optimiser starting point.",
+  "solver":"LogisticRegression solver=newton-cg, warm_start=True, C=1 unchanged, class weights unchanged, tol=0.0001, max_iter=100, random_state=42. Train labels only.",
+  "selection":"Re-evaluate all converged candidates on the same validation cohort with the unchanged PLAN.json FPR/recall/stability gates. Integration additionally requires no convergence warning and iterations below the cap. No threshold search, no test metrics, no demo-score-based choice.",
+  "disclosure":"This is additional exploratory validation reuse after an optimizer failure, not a preregistered final test. Keep the failed/unconverged results as evidence."
+}

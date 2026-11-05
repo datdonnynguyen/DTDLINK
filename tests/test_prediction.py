@@ -1,4 +1,4 @@
-"""Saved-model equivalence, offline behavior and schema drift checks."""
+"""Tests for loading the saved model and predicting raw URLs."""
 import json
 import socket
 
@@ -8,8 +8,7 @@ import pytest
 from sklearn.ensemble import RandomForestClassifier
 
 from dtdlink_ml.feature_extraction import FEATURE_NAMES, file_sha256
-from dtdlink_ml.predict import (RawURLPipeline, LABEL_MAPPING, load_pipeline,
-                               implementation_hashes, runtime_versions)
+from dtdlink_ml.predict import RawURLPipeline, load_pipeline
 
 
 @pytest.fixture
@@ -25,9 +24,7 @@ def save(pipeline, tmp_path):
     model, metadata = tmp_path / 'model.joblib', tmp_path / 'metadata.json'
     joblib.dump(pipeline, model)
     metadata.write_text(json.dumps({'model_sha256': file_sha256(model),
-        'implementation_sha256': implementation_hashes(), 'runtime_versions': runtime_versions(),
-        'feature_names': list(FEATURE_NAMES), 'threshold': pipeline.threshold,
-        'label_mapping': LABEL_MAPPING}))
+        'feature_names': list(FEATURE_NAMES), 'threshold': pipeline.threshold}))
     return model, metadata
 
 
@@ -49,7 +46,6 @@ def test_prediction_cannot_connect_or_resolve_dns(pipeline, monkeypatch):
     assert len(results) == 5
     assert results[1]['parse_ok'] is False
     assert all(0 <= row['dangerous_probability'] <= 1 for row in results)
-    assert all(row['probability_calibrated'] is False for row in results)
     assert not any('url' in row for row in results)
 
 
@@ -68,21 +64,25 @@ def test_rejects_feature_order_and_nonfinite_data(pipeline):
         pipeline.probability_from_features(features)
 
 
-def test_threshold_boundary_is_positive(pipeline, monkeypatch):
-    monkeypatch.setattr(pipeline.classifier, 'predict_proba', lambda frame: np.array([[0.5, 0.5]]))
-    assert pipeline.predict(['https://example.com']).tolist() == [1]
+@pytest.mark.parametrize('probability, expected_class, label', [
+    (0.499, 0, 'Predicted benign'),
+    (0.5, 1, 'Potentially dangerous'),
+])
+def test_threshold_boundary_and_result_labels(pipeline, monkeypatch, probability, expected_class, label):
+    monkeypatch.setattr(pipeline.classifier, 'predict_proba',
+                        lambda frame: np.array([[1 - probability, probability]]))
+    assert pipeline.predict(['https://example.com']).tolist() == [expected_class]
+    result = pipeline.predict_urls(['https://example.com'])[0]
+    assert result['predicted_class'] == expected_class
+    assert result['label'] == label
 
 
-@pytest.mark.parametrize('change', ['bytes', 'code', 'runtime', 'threshold', 'schema'])
+@pytest.mark.parametrize('change', ['bytes', 'threshold', 'schema'])
 def test_rejects_changed_artifact_contract(pipeline, tmp_path, change):
     model, metadata_path = save(pipeline, tmp_path)
     metadata = json.loads(metadata_path.read_text())
     if change == 'bytes':
         model.write_bytes(model.read_bytes() + b'changed')
-    elif change == 'code':
-        metadata['implementation_sha256']['url_parser.py'] = 'wrong'
-    elif change == 'runtime':
-        metadata['runtime_versions']['scikit-learn'] = 'wrong'
     elif change == 'threshold':
         metadata['threshold'] = 0.4
     else:

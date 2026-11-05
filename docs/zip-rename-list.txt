@@ -1,0 +1,61 @@
+Danh sách đổi tên file trong ZIP DTDLINK
+
+Gốc trong ZIP: dtdlink-assignment2/
+Điền tên mới sau dấu ->; dòng để trống nghĩa là giữ nguyên.
+Dùng đường dẫn từ gốc ZIP nếu muốn đổi cả thư mục.
+Giữ phần mở rộng và giữ nguyên __init__.py.
+Chưa có file nào được đổi tên. Danh sách này nằm ngoài ZIP nộp.
+
+01. README.md -> 
+02. data/interim/malicious_phish_cleaned.csv -> 
+03. data/processed/split_manifest.csv -> 
+04. data/processed/url_features.csv -> 
+05. docs/feature_dictionary.md -> 
+06. environment.yml -> 
+07. models/final_pipeline.joblib -> 
+08. models/model_metadata.json -> 
+09. reports/audit/sources-receipt.json -> 
+10. reports/audit/summary.json -> 
+11. reports/classification/threshold_tradeoffs.csv -> 
+12. reports/classification/train_metrics.csv -> 
+13. reports/classification/validation_metrics.csv -> 
+14. reports/classification/validation_subgroups.csv -> 
+15. reports/classification/validation_summary.json -> 
+16. reports/cleaning/cleaning_audit.json -> 
+17. reports/cleaning/conflicting_records.csv -> 
+18. reports/clustering/cluster_profiles.csv -> 
+19. reports/clustering/clustering_summary.json -> 
+20. reports/clustering/k_comparison.csv -> 
+21. reports/clustering/representative_urls.csv -> 
+22. reports/clustering/source_type_composition.csv -> 
+23. reports/eda/pre_split_profile.json -> 
+24. reports/eda/preprocessing_plan.json -> 
+25. reports/evaluation/classification_report.csv -> 
+26. reports/evaluation/error_examples.csv -> 
+27. reports/evaluation/test_metrics.json -> 
+28. reports/evaluation/test_subgroups.csv -> 
+29. reports/features/feature_extraction_audit.json -> 
+30. reports/figures/binary_feature_rates.png -> 
+31. reports/figures/class_balance_train.png -> 
+32. reports/figures/clustering_k_selection.png -> 
+33. reports/figures/clustering_profiles.png -> 
+34. reports/figures/feature_class_boxplots.png -> 
+35. reports/figures/test_confusion_matrix.png -> 
+36. reports/splitting/split_audit.json -> 
+37. reports/tables/binary_feature_rates_by_class.csv -> 
+38. reports/tables/domain_group_profile.csv -> 
+39. reports/tables/high_correlation_pairs.csv -> 
+40. reports/tables/source_quality_profile.csv -> 
+41. reports/tables/train_feature_class_comparison.csv -> 
+42. reports/tables/train_feature_summary.csv -> 
+43. requirements.txt -> 
+44. src/dtdlink_ml/__init__.py -> 
+45. src/dtdlink_ml/cluster_urls.py -> 
+46. src/dtdlink_ml/data_audit.py -> 
+47. src/dtdlink_ml/data_cleaning.py -> 
+48. src/dtdlink_ml/data_splitting.py -> 
+49. src/dtdlink_ml/evaluate.py -> 
+50. src/dtdlink_ml/feature_extraction.py -> 
+51. src/dtdlink_ml/predict.py -> 
+52. src/dtdlink_ml/train_classifier.py -> 
+53. src/dtdlink_ml/url_parser.py -> 

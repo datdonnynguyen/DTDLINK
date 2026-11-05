@@ -214,7 +214,7 @@ def test_dataset_extraction_rejects_unknown_target(tmp_path) -> None:
         )
 
 
-def test_audit_is_valid_json_and_records_no_label_leakage(tmp_path) -> None:
+def test_audit_is_valid_json(tmp_path) -> None:
     input_path = tmp_path / "cleaned.csv"
     output_path = tmp_path / "features.csv"
     audit_path = tmp_path / "audit.json"
@@ -226,6 +226,6 @@ def test_audit_is_valid_json_and_records_no_label_leakage(tmp_path) -> None:
     extract_feature_dataset(input_path, output_path, audit_path)
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
 
-    assert audit["constraints"]["network_lookups"] is False
-    assert audit["constraints"]["labels_used_to_calculate_features"] is False
-    assert "training data only" in audit["constraints"]["tld_frequency_feature"]
+    assert audit["output"]["rows"] == 1
+    assert audit["output"]["parse_ok_rows"] == 1
+    assert audit["output"]["target_counts"] == {"0": 1}

@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "url": "https://www.google.com/",
+      "validation": "",
+      "submittedVerbatim": "https://www.google.com/"
+    },
+    {
+      "url": "www.google.com/",
+      "validation": "Start the URL with http:// or https://.",
+      "submittedVerbatim": null
+    },
+    {
+      "url": "https://github.com/",
+      "validation": "",
+      "submittedVerbatim": "https://github.com/"
+    },
+    {
+      "url": "github.com/",
+      "validation": "Start the URL with http:// or https://.",
+      "submittedVerbatim": null
+    }
+  ],
+  "presentation": [
+    {
+      "api": {
+        "predicted_class": 1,
+        "dangerous_probability": 0.972174377884553,
+        "confidence": 0.972174377884553,
+        "label": "Potentially dangerous",
+        "signals": []
+      },
+      "session": {
+        "number": 1,
+        "label": "Potentially dangerous",
+        "predictedClass": 1,
+        "score": 97,
+        "confidence": 97,
+        "signals": 0,
+        "time": "10:42 PM"
+      }
+    },
+    {
+      "api": {
+        "predicted_class": 0,
+        "dangerous_probability": 0.18655881540261557,
+        "confidence": 0.8134411845973845,
+        "label": "Likely legitimate",
+        "signals": []
+      },
+      "session": {
+        "number": 1,
+        "label": "Likely legitimate",
+        "predictedClass": 0,
+        "score": 19,
+        "confidence": 81,
+        "signals": 0,
+        "time": "10:42 PM"
+      }
+    }
+  ],
+  "notes": "App.jsx serialises submittedURL = draft, sends JSON {url:submittedURL}; Result.jsx renders the API label and confidence. The validation URL() is not assigned back to the input."
+}

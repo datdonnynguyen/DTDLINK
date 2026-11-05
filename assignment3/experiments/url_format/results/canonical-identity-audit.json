@@ -1,0 +1,18 @@
+{
+  "train": {
+    "rows": 381494,
+    "canonical_urls": 377904,
+    "canonical_duplicate_excess": 3590,
+    "canonical_urls_with_both_labels": 2793,
+    "rows_in_conflicting_identities": 5587,
+    "note": "HTTP/HTTPS are neutralised as a modelling assumption, not established resource equivalence. No labels removed or rewritten based on this audit."
+  },
+  "validation": {
+    "rows": 128373,
+    "canonical_urls": 127499,
+    "canonical_duplicate_excess": 874,
+    "canonical_urls_with_both_labels": 662,
+    "rows_in_conflicting_identities": 1325,
+    "note": "HTTP/HTTPS are neutralised as a modelling assumption, not established resource equivalence. No labels removed or rewritten based on this audit."
+  }
+}

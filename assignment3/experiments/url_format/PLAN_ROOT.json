@@ -1,0 +1,15 @@
+{
+  "reason":"Post-selection population audit: the text candidate still has 38.13% FPR on 8,497 labelled-benign validation homepages. It is not being promoted on aggregate metrics alone. Root-path inputs have a different feature distribution; evaluate a structure-routed expert, not a domain whitelist.",
+  "route":"Root path: urlsplit(canonical_model_view(url)).path is '/' (empty paths canonicalised to '/'). Same rule during train and inference. Query, userinfo, port and other fields are preserved. No domain-specific routing.",
+  "page_expert":"Previously chosen converged text model, fixed without further tuning. Used for non-root paths.",
+  "root_experts":[
+    {"name":"root_rf_balanced","n_estimators":100,"max_depth":12,"min_samples_leaf":20,"class_weight":"balanced_subsample"},
+    {"name":"root_rf_richer","n_estimators":100,"max_depth":20,"min_samples_leaf":5,"class_weight":"balanced_subsample"},
+    {"name":"root_rf_recall3","n_estimators":100,"max_depth":16,"min_samples_leaf":10,"class_weight":{"0":1,"1":3}}
+  ],
+  "fit":"Only the existing eligible train rows whose path is root. No new URLs, no label rewriting, no scheme-only inference trick, no A2 test use. Full validation and root strata used only for evaluation/selection.",
+  "threshold":0.5,
+  "gate":"All earlier integration gates still apply, plus FPR <=20% and dangerous recall >=80% on validation homepages without query. Report the resulting recall loss versus both original A2 format and API format. These are experimental acceptance criteria, not safety standards.",
+  "selection":"Among passing routed candidates choose lowest whole-validation FPR, tie by higher recall. Demo scores not consulted for choosing the root expert.",
+  "limitations":"This is exploratory model development informed by validation subgroup diagnostics. Validation is reused and not an unbiased final performance estimate. Root URLs are not assumed benign."
+}

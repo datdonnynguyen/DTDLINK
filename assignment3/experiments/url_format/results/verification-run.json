@@ -1,0 +1,19 @@
+{
+  "completed_date": "2026-11-06",
+  "model_promoted": false,
+  "workspace_backend_tests": 61,
+  "frontend_tests": 17,
+  "frontend_production_build": "passed",
+  "extracted_source_backend_tests": {
+    "passed": 60,
+    "skipped": 1,
+    "skip": "A2 original source intentionally absent from standalone ZIP",
+    "runtime": "Used the existing installed A3 Python runtime; no fresh dependency install claimed."
+  },
+  "a2_protected_files_unchanged": 91,
+  "active_application_files_unchanged": 38,
+  "actual_localhost_api": "Frozen model probability and label matched for complete Google/GitHub examples; bare forms rejected with 422.",
+  "new_model_hash_metadata_api_example": "Not changed: no experimental model promoted.",
+  "zip_contents": "Active A2 artifact plus A3 research source/plans/aggregate results; excludes training caches and candidate artifacts.",
+  "limits": "No A2 test outcomes, no external destination visits/DNS/analysis APIs, no whitelist or threshold changes, no independent final-test estimate or new security scan."
+}

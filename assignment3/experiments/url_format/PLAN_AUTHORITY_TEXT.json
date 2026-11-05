@@ -1,0 +1,9 @@
+{
+  "reason":"The combined text+numeric candidate meets aggregate criteria but remains weak on homepages. Numeric-only root experts lose too much recall. Test character-only scoring without L2 normalisation: constant protocol tokens and numeric path-length signals can otherwise proxy URL length/source format.",
+  "representation":"Same canonical host/root/default-port policy. Character input uses the canonical authority+path+query+fragment, excluding the deliberately constant protocol prefix during BOTH fitting and inference. This is a separately trained A3 model, not scheme removal in front of the old A2 model. Raw scheme, original URL and 36 explanatory measurements remain intact outside scoring.",
+  "vectorizer":"Train-only character 3–5-gram TF-IDF, min_df=3, max_features=30000, sublinear_tf=True, lowercase=False, norm=None, float32. Smaller vocabulary is a fixed resource/regularisation choice. No numeric features fed to this classifier.",
+  "classifier":"LogisticRegression C=0.1, solver=newton-cg, max_iter=100, tol=0.0001, random_state=42. Candidates class_weight balanced, {0:1,1:3}, {0:1,1:5}.",
+  "gate":"Unchanged aggregate gates in PLAN.json plus the homepage FPR<=20% and dangerous recall>=80% gates in PLAN_ROOT.json; optimiser must converge. No threshold search, domain whitelist, added demo rows or A2 test use.",
+  "selection":"Minimum overall validation FPR among passing candidates, tie by higher recall. User-demo outputs inspected only after this choice.",
+  "status":"Final scoped representation experiment; if no candidate meets both aggregate and homepage gates, retain the active A2 model and document the unresolved limitations. Validation is exploratory/reused, not an unbiased final test."
+}

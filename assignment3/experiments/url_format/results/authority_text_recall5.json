@@ -1,0 +1,174 @@
+{
+  "name": "authority_text_recall5",
+  "feature_count": 30000,
+  "use_numeric": false,
+  "classifier_settings": {
+    "C": 0.1,
+    "class_weight": {
+      "0": 1,
+      "1": 5
+    },
+    "solver": "newton-cg",
+    "max_iter": 100,
+    "tol": 0.0001
+  },
+  "api_formatted": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 74826,
+    "fp": 10830,
+    "fn": 5414,
+    "tp": 37303,
+    "fpr": 0.12643597646399551,
+    "recall": 0.8732588899033171,
+    "precision": 0.7749984418174641,
+    "accuracy": 0.8734624882179275,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.8208560393629967
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9272953884503531
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9116935059467425
+      }
+    },
+    "domain_macro_fpr": 0.23556368775840794,
+    "domain_macro_recall": 0.83707311500956
+  },
+  "homepage_no_query": {
+    "rows": 14455,
+    "benign": 8497,
+    "dangerous": 5958,
+    "tn": 5392,
+    "fp": 3105,
+    "fn": 978,
+    "tp": 4980,
+    "fpr": 0.3654230905025303,
+    "recall": 0.8358509566968781,
+    "precision": 0.6159554730983302,
+    "accuracy": 0.7175371843652716,
+    "subtypes": {
+      "phishing": {
+        "rows": 5761,
+        "recall": 0.8364867210553724
+      },
+      "malware": {
+        "rows": 197,
+        "recall": 0.817258883248731
+      },
+      "defacement": {
+        "rows": 0,
+        "recall": null
+      }
+    },
+    "domain_macro_fpr": 0.36464966797974546,
+    "domain_macro_recall": 0.8004068037863413
+  },
+  "native_explicit": {
+    "rows": 38432,
+    "benign": 9545,
+    "dangerous": 28887,
+    "tn": 8407,
+    "fp": 1138,
+    "fn": 3291,
+    "tp": 25596,
+    "fpr": 0.11922472498690413,
+    "recall": 0.886073320178627,
+    "precision": 0.9574324829804743,
+    "accuracy": 0.884757493755204,
+    "subtypes": {
+      "phishing": {
+        "rows": 5311,
+        "recall": 0.7544718508755414
+      },
+      "malware": {
+        "rows": 4574,
+        "recall": 0.9324442501093135
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9116935059467425
+      }
+    },
+    "domain_macro_fpr": 0.19497461737643684,
+    "domain_macro_recall": 0.8225242570349048
+  },
+  "stability": {
+    "dataset_missing_scheme": {
+      "pairs": 3366,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "default_port": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "empty_root_slash": {
+      "pairs": 1432,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "host_scheme_case": {
+      "pairs": 4000,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "http_https_transport": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "percent_hex_case": {
+      "pairs": 1,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 2.540758944381827e-13,
+      "p95_score_change": 2.540758944381827e-13,
+      "max_score_change": 2.540758944381827e-13
+    },
+    "valid_format_pool": {
+      "pairs": 9277,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "max_score_change": 2.540758944381827e-13
+    }
+  },
+  "gates": {
+    "fpr_at_most_20pct": true,
+    "dangerous_recall_at_least_90pct": false,
+    "phishing_recall_at_least_80pct": true,
+    "fpr_halved_vs_api_baseline": true,
+    "format_flips_reduced_by_75pct": true,
+    "domain_overlap_zero": true,
+    "homepage_fpr_at_most_20pct": false,
+    "homepage_dangerous_recall_at_least_80pct": true,
+    "optimizer_converged": true
+  },
+  "passes": false,
+  "solver_iterations": [
+    15
+  ],
+  "fit_and_eval_s": 32.85
+}

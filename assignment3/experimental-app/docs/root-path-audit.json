@@ -1,0 +1,139 @@
+{
+  "reason": "Overall selected model still scored the requested homepage examples very high. Audit all root paths, not just those domains; no demo-derived training records.",
+  "train": [
+    {
+      "type": "benign",
+      "rows": 254913,
+      "root_paths": 33404,
+      "homepages": 30615
+    },
+    {
+      "type": "defacement",
+      "rows": 55377,
+      "root_paths": 0,
+      "homepages": 0
+    },
+    {
+      "type": "malware",
+      "rows": 15183,
+      "root_paths": 630,
+      "homepages": 614
+    },
+    {
+      "type": "phishing",
+      "rows": 56021,
+      "root_paths": 13634,
+      "homepages": 13471
+    }
+  ],
+  "validation": [
+    {
+      "type": "benign",
+      "rows": 85656,
+      "root_paths": 9394,
+      "homepages": 8497
+    },
+    {
+      "type": "defacement",
+      "rows": 19002,
+      "root_paths": 0,
+      "homepages": 0
+    },
+    {
+      "type": "malware",
+      "rows": 4814,
+      "root_paths": 199,
+      "homepages": 197
+    },
+    {
+      "type": "phishing",
+      "rows": 18901,
+      "root_paths": 5815,
+      "homepages": 5761
+    }
+  ],
+  "root_path": {
+    "a2_api": {
+      "rows": 15408,
+      "benign": 9394,
+      "dangerous": 6014,
+      "tn": 5,
+      "fp": 9389,
+      "fn": 0,
+      "tp": 6014,
+      "fpr": 0.9994677453693848,
+      "recall": 1.0,
+      "precision": 0.390443420112965,
+      "accuracy": 0.390641225337487
+    },
+    "selected_text": {
+      "rows": 15408,
+      "benign": 9394,
+      "dangerous": 6014,
+      "tn": 6099,
+      "fp": 3295,
+      "fn": 559,
+      "tp": 5455,
+      "fpr": 0.3507558015754737,
+      "recall": 0.907050216162288,
+      "precision": 0.6234285714285714,
+      "accuracy": 0.7498701973001038
+    }
+  },
+  "homepage_no_query": {
+    "a2_api": {
+      "rows": 14455,
+      "benign": 8497,
+      "dangerous": 5958,
+      "tn": 0,
+      "fp": 8497,
+      "fn": 0,
+      "tp": 5958,
+      "fpr": 1.0,
+      "recall": 1.0,
+      "precision": 0.412175717744725,
+      "accuracy": 0.412175717744725
+    },
+    "selected_text": {
+      "rows": 14455,
+      "benign": 8497,
+      "dangerous": 5958,
+      "tn": 5257,
+      "fp": 3240,
+      "fn": 548,
+      "tp": 5410,
+      "fpr": 0.38131105095916207,
+      "recall": 0.9080228264518295,
+      "precision": 0.6254335260115607,
+      "accuracy": 0.7379453476305776
+    }
+  },
+  "non_root": {
+    "a2_api": {
+      "rows": 112965,
+      "benign": 76262,
+      "dangerous": 36703,
+      "tn": 10278,
+      "fp": 65984,
+      "fn": 338,
+      "tp": 36365,
+      "fpr": 0.865227767433322,
+      "recall": 0.9907909435196033,
+      "precision": 0.3553039111276124,
+      "accuracy": 0.4128978002036029
+    },
+    "selected_text": {
+      "rows": 112965,
+      "benign": 76262,
+      "dangerous": 36703,
+      "tn": 69829,
+      "fp": 6433,
+      "fn": 2803,
+      "tp": 33900,
+      "fpr": 0.08435393774094568,
+      "recall": 0.9236302209628641,
+      "precision": 0.8405028140728436,
+      "accuracy": 0.9182401628823087
+    }
+  }
+}

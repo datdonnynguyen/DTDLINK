@@ -1,10 +1,4 @@
 {
-  "constraints": {
-    "labels_used_to_calculate_features": false,
-    "network_lookups": false,
-    "tld_frequency_feature": "deferred until Stage 4; fit on training data only",
-    "unicode_confusable_check": "bounded documented heuristic, not complete Unicode UTS #39"
-  },
   "input": {
     "columns": [
       "url",

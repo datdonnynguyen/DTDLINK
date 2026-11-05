@@ -1,4 +1,4 @@
-"""Tests for the Stage 2 raw-data contract and target mapping."""
+"""Tests for Stage 2 cleaning."""
 
 import hashlib
 
@@ -7,12 +7,12 @@ import pytest
 
 from dtdlink_ml.data_cleaning import (
     add_binary_target,
-    load_and_prepare_dataset,
+    check_raw_data,
+    read_raw,
     remove_exact_duplicates,
     run_cleaning_pipeline,
     separate_label_conflicts,
     trim_url_edges,
-    validate_raw_contract,
 )
 
 
@@ -50,24 +50,24 @@ def test_add_binary_target_keeps_rows_and_original_columns() -> None:
         ),
     ],
 )
-def test_validate_raw_contract_rejects_wrong_schema(
+def test_check_raw_data_rejects_wrong_schema(
     dataframe: pd.DataFrame,
 ) -> None:
     with pytest.raises(ValueError, match="Expected columns"):
-        validate_raw_contract(dataframe)
+        check_raw_data(dataframe)
 
 
-def test_validate_raw_contract_rejects_unknown_label() -> None:
+def test_check_raw_data_rejects_unknown_label() -> None:
     dataframe = pd.DataFrame(
         {"url": ["example.test"], "type": ["unknown"]}, dtype="string"
     )
 
     with pytest.raises(ValueError, match="Unexpected type labels"):
-        validate_raw_contract(dataframe)
+        check_raw_data(dataframe)
 
 
 @pytest.mark.parametrize("invalid_url", ["", "   ", pd.NA])
-def test_validate_raw_contract_rejects_missing_or_blank_url(
+def test_check_raw_data_rejects_missing_or_blank_url(
     invalid_url: object,
 ) -> None:
     dataframe = pd.DataFrame(
@@ -75,7 +75,7 @@ def test_validate_raw_contract_rejects_missing_or_blank_url(
     )
 
     with pytest.raises(ValueError, match="missing or blank"):
-        validate_raw_contract(dataframe)
+        check_raw_data(dataframe)
 
 
 def test_loader_rejects_a_changed_source_fingerprint(tmp_path) -> None:
@@ -84,14 +84,11 @@ def test_loader_rejects_a_changed_source_fingerprint(tmp_path) -> None:
     actual_hash = hashlib.sha256(csv_path.read_bytes()).hexdigest()
 
     with pytest.raises(ValueError, match="SHA-256"):
-        load_and_prepare_dataset(csv_path, expected_sha256="0" * 64)
+        read_raw(csv_path, expected_sha256="0" * 64)
 
-    _, summary = load_and_prepare_dataset(
-        csv_path,
-        expected_sha256=actual_hash,
-    )
-    assert summary["rows_before"] == summary["rows_after"] == 1
-    assert summary["target_counts"] == {"0": 1}
+    df, sha = read_raw(csv_path, expected_sha256=actual_hash)
+    assert sha == actual_hash
+    assert len(df) == 1
 
 
 def test_trim_url_edges_changes_only_the_edges() -> None:

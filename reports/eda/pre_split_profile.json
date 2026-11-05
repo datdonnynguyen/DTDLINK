@@ -1,41 +1,5 @@
 {
-  "contract": {
-    "checks": {
-      "boolean_features_are_binary": true,
-      "columns_match_stage3_schema": true,
-      "feature_file_hash_matches_audit": true,
-      "feature_names_match_audit": true,
-      "metadata_labels_are_complete": true,
-      "numeric_features_are_complete": true,
-      "numeric_features_are_finite": true,
-      "numeric_features_are_non_negative": true,
-      "row_count_matches_audit": true,
-      "targets_are_binary": true,
-      "types_are_allowed": true,
-      "url_is_complete": true,
-      "url_is_unique": true
-    },
-    "evidence": {
-      "columns": 42,
-      "duplicate_url_rows": 0,
-      "feature_count": 36,
-      "feature_file_sha256": "fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff",
-      "invalid_boolean_values": {},
-      "missing_cells_by_column": {
-        "parse_issues": 177953,
-        "registrable_domain": 14,
-        "tld": 12215
-      },
-      "negative_numeric_cells": 0,
-      "non_finite_numeric_cells": 0,
-      "rows": 641113,
-      "unexpected_targets": [],
-      "unexpected_types": []
-    },
-    "passed": true
-  },
   "dataset": {
-    "columns": 42,
     "feature_count": 36,
     "rows": 641113,
     "source_type_counts": {
@@ -51,9 +15,7 @@
     "unique_urls": 641113
   },
   "grouping_feasibility": {
-    "fallback_group_count": 14,
     "group_count": 155572,
-    "group_rule": "registrable_domain when present; otherwise a unique SHA-256 URL id",
     "group_size_quantiles": {
       "0.5": 1.0,
       "0.9": 3.0,
@@ -237,30 +199,5 @@
         "row_count": 1866
       }
     ]
-  },
-  "leakage_boundary": {
-    "allowed_before_split": [
-      "schema and data-quality checks",
-      "group-size and split-feasibility checks",
-      "label counts used only to balance the partition"
-    ],
-    "deferred_until_after_split": [
-      "feature-target comparison",
-      "correlation-based modelling decisions",
-      "scaler fitting",
-      "TLD-frequency fitting",
-      "model training and threshold selection"
-    ]
-  },
-  "scope": {
-    "intended_grain": "one unique cleaned URL per row",
-    "model_directed_feature_selection_performed": false,
-    "stage": "Stage 4.1 pre-split structural audit",
-    "test_set_created_at_profile_time": false
-  },
-  "source_format_association": {
-    "largest_has_scheme_rate_gap": 0.9173554105131356,
-    "purpose": "data-quality context for split interpretation, not feature selection",
-    "table": "/Users/okok/Documents/innovationproject cos30049/reports/tables/source_quality_profile.csv"
   }
 }

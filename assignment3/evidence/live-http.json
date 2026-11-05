@@ -1,0 +1,53 @@
+{
+  "scope": "Live HTTP checks of own loopback application; no destination websites contacted.",
+  "bursts": [
+    {
+      "requests": 32,
+      "health_completion_ms": 4.95,
+      "accepted": 2,
+      "busy_503": 30
+    },
+    {
+      "requests": 32,
+      "health_completion_ms": 13.19,
+      "accepted": 6,
+      "busy_503": 26
+    },
+    {
+      "requests": 32,
+      "health_completion_ms": 12.77,
+      "accepted": 8,
+      "busy_503": 24
+    },
+    {
+      "requests": 32,
+      "health_completion_ms": 12.17,
+      "accepted": 7,
+      "busy_503": 25
+    },
+    {
+      "requests": 32,
+      "health_completion_ms": 11.57,
+      "accepted": 8,
+      "busy_503": 24
+    }
+  ],
+  "health": {
+    "status": "ready",
+    "model_loaded": true,
+    "model_version": "a2-rf-d4aa8ff3",
+    "feature_count": 36,
+    "max_concurrent": 2,
+    "active_predictions": 0
+  },
+  "prediction": {
+    "label": "Potentially dangerous",
+    "model_version": "a2-rf-d4aa8ff3",
+    "dangerous_probability": 0.9550674316265026
+  },
+  "busy_503_total": 129,
+  "frontend": {
+    "http_status": 200,
+    "csp_has_no_unsafe_inline": true
+  }
+}

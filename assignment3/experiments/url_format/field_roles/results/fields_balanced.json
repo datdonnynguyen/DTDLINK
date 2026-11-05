@@ -1,0 +1,168 @@
+{
+  "name": "fields_balanced",
+  "candidate": {
+    "name": "fields_balanced",
+    "class_weight": "balanced",
+    "root_context": false
+  },
+  "representation": "a3-url-fields-v1",
+  "feature_count": 91045,
+  "api_formatted": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 80013,
+    "fp": 5643,
+    "fn": 5962,
+    "tp": 36755,
+    "fpr": 0.06587979826281871,
+    "recall": 0.8604302736615399,
+    "precision": 0.8669040992499646,
+    "accuracy": 0.9095993705841571,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.7776308131844876
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9351890319900291
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9238501210398905
+      }
+    },
+    "domain_macro_fpr": 0.13373430293315916,
+    "domain_macro_recall": 0.7923074199905372
+  },
+  "native_explicit": {
+    "rows": 38432,
+    "benign": 9545,
+    "dangerous": 28887,
+    "tn": 9287,
+    "fp": 258,
+    "fn": 3375,
+    "tp": 25512,
+    "fpr": 0.027029858564693556,
+    "recall": 0.88316543774016,
+    "precision": 0.9899883585564611,
+    "accuracy": 0.9054694004995837,
+    "subtypes": {
+      "phishing": {
+        "rows": 5311,
+        "recall": 0.6832988137827151
+      },
+      "malware": {
+        "rows": 4574,
+        "recall": 0.9462177525142108
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9238501210398905
+      }
+    },
+    "domain_macro_fpr": 0.0880639367061075,
+    "domain_macro_recall": 0.8012627734086728
+  },
+  "homepage_no_query": {
+    "rows": 14455,
+    "benign": 8497,
+    "dangerous": 5958,
+    "tn": 6797,
+    "fp": 1700,
+    "fn": 1363,
+    "tp": 4595,
+    "fpr": 0.20007061315758504,
+    "recall": 0.7712319570325613,
+    "precision": 0.7299444003177125,
+    "accuracy": 0.7881010031131096,
+    "subtypes": {
+      "phishing": {
+        "rows": 5761,
+        "recall": 0.7734768269397674
+      },
+      "malware": {
+        "rows": 197,
+        "recall": 0.7055837563451777
+      },
+      "defacement": {
+        "rows": 0,
+        "recall": null
+      }
+    },
+    "domain_macro_fpr": 0.19071691854146405,
+    "domain_macro_recall": 0.7026850890247617
+  },
+  "stability": {
+    "dataset_missing_scheme": {
+      "pairs": 3366,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "default_port": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "empty_root_slash": {
+      "pairs": 1432,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "host_scheme_case": {
+      "pairs": 4000,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "http_https_transport": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "percent_hex_case": {
+      "pairs": 1,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.00011219218140468001,
+      "p95_score_change": 0.00011219218140468001,
+      "max_score_change": 0.00011219218140468001
+    },
+    "valid_format_pool": {
+      "pairs": 9277,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "max_score_change": 0.00011219218140468001
+    }
+  },
+  "gates": {
+    "whole_fpr": true,
+    "dangerous_recall": false,
+    "phishing_recall": false,
+    "homepage_fpr": false,
+    "homepage_recall": false,
+    "format_stability": true,
+    "domain_disjoint": true,
+    "converged": true
+  },
+  "passes": false,
+  "solver_iterations": [
+    7
+  ],
+  "elapsed_s": 6.46
+}

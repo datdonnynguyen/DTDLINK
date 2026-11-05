@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://www.google.com/",
+    "a2_probability": 0.972174377884553,
+    "a3_probability": 0.9970863461494446,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "www.google.com/",
+    "a2_probability": 0.18655881540261557,
+    "a3_probability": 0.9970863461494446,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "https://github.com/",
+    "a2_probability": 0.9543263549005231,
+    "a3_probability": 0.9870534539222717,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "github.com/",
+    "a2_probability": 0.05823079257896131,
+    "a3_probability": 0.9870534539222717,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "http://www.google.com/",
+    "a2_probability": 0.9634302201038362,
+    "a3_probability": 0.9970863461494446,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "https://www.google.com",
+    "a2_probability": 0.9807555174482999,
+    "a3_probability": 0.9970863461494446,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "HTTPS://WWW.GOOGLE.COM/",
+    "a2_probability": 0.972174377884553,
+    "a3_probability": 0.9970863461494446,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  },
+  {
+    "url": "https://paypal.com@account-check.example/login",
+    "a2_probability": 0.9726848188056869,
+    "a3_probability": 0.9999974966049194,
+    "note": "Diagnostic only; not a safety label. GitHub naturally occurred in A2 train, Google in validation; not an independent holdout."
+  }
+]

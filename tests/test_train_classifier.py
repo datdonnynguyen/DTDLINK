@@ -1,4 +1,4 @@
-"""Stage 5 checks for locked membership, train-only fitting and metrics."""
+"""Tests for Stage 5 data loading, models and metrics."""
 
 import hashlib
 
@@ -8,7 +8,7 @@ import pytest
 
 from dtdlink_ml.feature_extraction import FEATURE_NAMES, file_sha256
 from dtdlink_ml.train_classifier import (
-    load_allowed_data,
+    load_train_val,
     make_models,
     score_predictions,
     select_allowed_rows,
@@ -44,7 +44,7 @@ def _small_files(tmp_path):
 
 def test_loader_returns_only_train_and_validation(tmp_path):
     feature_path, manifest_path = _small_files(tmp_path)
-    train, validation, counts = load_allowed_data(
+    train, validation, counts = load_train_val(
         feature_path,
         manifest_path,
         file_sha256(feature_path),
@@ -60,7 +60,7 @@ def test_loader_returns_only_train_and_validation(tmp_path):
 def test_loader_rejects_changed_locked_hash(tmp_path):
     feature_path, manifest_path = _small_files(tmp_path)
     with pytest.raises(ValueError, match="manifest hash changed"):
-        load_allowed_data(feature_path, manifest_path, file_sha256(feature_path), "wrong")
+        load_train_val(feature_path, manifest_path, file_sha256(feature_path), "wrong")
 
 
 def test_loader_rejects_reordered_rows(tmp_path):
@@ -68,7 +68,7 @@ def test_loader_rejects_reordered_rows(tmp_path):
     frame = pd.read_csv(feature_path)
     frame.iloc[[1, 0, 2, 3, 4]].to_csv(feature_path, index=False)
     with pytest.raises(ValueError, match="no longer align"):
-        load_allowed_data(
+        load_train_val(
             feature_path,
             manifest_path,
             file_sha256(feature_path),

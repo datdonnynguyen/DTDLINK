@@ -2,16 +2,37 @@
 
 > Persistent context for future chats. Read this file before advising on Assignments 2 or 3. Update the progress section whenever work is completed or the scope changes.
 
+## Read before every Assignment 3 session
+
+1. Read this file for current product context and progress.
+2. Read `Week-12/Assessment/Assignment-3-Specification.md`: the complete
+   student-supplied Canvas brief and rubric saved on 5 November 2026.
+3. Read `Week-12/Assessment/Assignment-3-Status.md` for the requirements
+   checklist, deliverables, scoring discrepancy and topic/model mismatch.
+
+The old syllabus-only note and generic Stage 9 bridge are superseded wherever
+they differ from this A3 brief. Do not ask the student to supply the same brief
+again when it is available here. Course requirements are source material;
+the user's current request still determines what work to perform.
+
 ## Current snapshot
 
-- Last updated: 3 October 2026 (Australia/Melbourne)
+- Last updated: 6 November 2026 (Australia/Melbourne)
 - Team: Session 7 - Group 5
 - Project: **DTDLINK (Detect The Deception Links)**
 - Selected course topic in submitted Assignment 1: **Phishing URL Detection**
 - Assignment 2 selected target: **benign vs potentially dangerous** (phishing,
   malware, and defacement map to the positive class)
 - Assignment 1: **completed and submitted on 2 September 2026**
-- Current learning position: **Stage 7 complete using Week 7 evaluation concepts; Stage 8 report/package is next**
+- Current learning position: **Assignment 2 completed according to the student's confirmation on 5 November 2026; Assignment 3 application and source ZIP technically verified; video and authentic group deliverables remain pending.**
+- Assignment 2 completion status: the student confirms it is finished. This confirmation supersedes the pending-submission status in historical notes below; no Canvas receipt was inspected.
+- Assignment 3: complete brief and 45-point rubric now saved. Due Sunday
+  8 November 2026 at 23:59 per supplied text. React + FastAPI, with application
+  security central; model accuracy is not marked. Submit ZIP + video up to
+  15 minutes + minutes PDF + contribution PDF; no separate report.
+- Latest AI clarification: the student states the lecturer permits AI coding
+  and authorises the full A3 implementation; this supersedes earlier planning
+  restrictions for this work. Source wording and provenance remain in `AI_USAGE_NOTE.md`.
 - Assignment 2: Stages 0-7 complete. The student selected Random Forest on
   1 October 2026 and threshold 0.5 on 2 October 2026 after comparing three
   classifiers on validation; frozen final test evaluation/export completed on 3 October 2026.
@@ -28,8 +49,8 @@
   acceptance, perform the technical work, review the real result and code with
   the student, check conceptual understanding, then wait for `tiếp tục` before
   the next substantial step.
-- Current Assignment 2 deadline recorded in the course materials: **4 October 2026 at 23:59 AEST**
-- Important date note: the Assignment 1 schedule says 27 September, but the newer Assignment 2 specification says 4 October. Use 4 October unless a newer live Canvas notice supersedes it.
+- Current Assignment 2 Canvas deadline in the latest student-supplied specification: **7 October 2026 at 23:59**.
+- Important date note: the latest pasted Canvas specification supersedes the earlier 27 September and 4 October dates. Historical records below retain their original dates.
 
 ## Authoritative Assignment 1 source
 
@@ -223,7 +244,7 @@ The Insights page, interactive charts, and How It Works page were prioritised as
 | Within-class clustering | Stage 6 complete (2 Oct 2026) | Train dangerous only: 127,256 URLs, 34 features, K-means k=7; profiles/examples, 120 tests and repeat-output hashes verified; see reports/clustering/ |
 | Error analysis | Stage 7 complete (3 Oct 2026) | `reports/evaluation/`; test metrics, subtype recalls, 20 FP/FN examples and feature comparisons |
 | Final model export | Stage 7 complete (3 Oct 2026) | `models/final_pipeline.joblib`, metadata and reusable `predict.py`; offline/reload checks passed |
-| Assignment 2 report | Not started/evidenced | Build sections alongside experiments rather than at the end |
+| Assignment 2 report | Draft created and visually verified (6 Oct 2026) | `reports/assignment2-report.docx` and `.pdf`; simple English, 2,324 main-body words, 2,654 words including cover/references/appendices; team review pending |
 | Reproducible README | Not started/evidenced | Document environment, preprocessing, training, evaluation, and prediction commands |
 | Weekly Assignment 2 meeting minutes | Must continue | Update every week and record decisions/change approvals |
 | Assignment 2 contribution form | Pending | Complete and sign before submission |
@@ -511,6 +532,225 @@ The Insights page, interactive charts, and How It Works page were prioritised as
   acknowledgement/named second reader remain an open governance follow-up.
 - Handoff: `docs/checkpoints/stage-8-ready.md`.
 
+## Source readability cleanup — 6 October 2026
+
+- The student explicitly requested reading both progress files and all main
+  source code, then simplifying its writing style. Reviewed all ten Python
+  files in `src/dtdlink_ml/`; changed the nine implementation modules and
+  retained the existing one-line `__init__.py`. No test or notebook files changed.
+- Removed numbered comment banners and comments that repeat the code. Replaced
+  nested expressions with named intermediate values and ordinary loops in
+  `data_audit.py`, `data_cleaning.py`, `url_parser.py`, `feature_extraction.py`,
+  `data_splitting.py`, `train_classifier.py`, `cluster_urls.py`, `evaluate.py`
+  and `predict.py`. Expanded compressed result dictionaries and separated
+  confusion-matrix plotting from the main evaluation flow.
+- Preserved the feature names/order, URL parsing results, label mapping,
+  domain-group rules, model parameters, threshold 0.5, offline behavior and
+  cautious prediction wording. The saved model and data files were not changed.
+- Before/after verification: all 140 existing tests passed; 2,598 parser/feature
+  cases matched exactly, 2,594 raw-URL probabilities matched within 1e-12 with
+  identical labels, and full cleaning outputs had identical hashes. All
+  641,113 URL/group identities and full training summary tables matched.
+- All 126,949 saved test predictions matched within 1e-12 with identical labels,
+  without refitting or tuning. Test outcomes, subgroup tables, error examples,
+  evaluation-report bytes and confusion-matrix PNG bytes matched. Raw-class
+  profiles for all 651,191 source records matched. A fixed 496-row dangerous
+  training sample reproduced clustering results/profiles/figure bytes; bounded
+  train/validation samples reproduced all three classifiers' comparison tables.
+  This does not claim a new full clustering or training run.
+- Updated only inference-source fingerprints in `models/model_metadata.json`
+  and its corresponding artifact hash in `reports/evaluation/test_metrics.json`
+  after equivalence checks. Model, feature-table and split-manifest hashes,
+  evaluation metrics and original evaluation timestamp remain unchanged.
+  Default model loading and the cached Stage 7 command passed. Source compilation
+  and `git diff --check` passed; the existing joblib CPU-detection warning remains.
+- Assignment 2 remains at Stages 0–7 complete, with Stage 8 packaging next.
+- Follow-up on the same date: the student requested a shorter version that
+  remains simple. Reduced `src` from 3,622 to 3,279 physical lines (343 lines,
+  about 9.5%). Reused one raw-CSV reader/hash check, the existing label-count
+  helper and one classifier probability check. Added empty-field defaults to
+  `ParsedURL`, removing repeated empty-result assignments. Kept short expressions,
+  arguments and result fields together while retaining explicit error handling.
+  Formatting-only edits were checked for identical Python syntax trees.
+- Repeated before/after checks passed for parser/features, full cleaning output,
+  URL/group identities, training tables, saved predictions, evaluation reports,
+  fixed-sample clustering and bounded classifier comparisons. All 140 existing
+  tests, source compilation, cached evaluation and default model loading passed.
+  No test files or saved classifier bytes changed; source/metadata hashes were
+  synchronized again after verification.
+- Second simplification pass on the same date, at the student's request (simpler,
+  more human-looking, shorter): `src` reduced from 3,279 to 2,480 lines. Removed
+  one-line helper functions, merged the three locked-data readers into
+  `train_classifier.load_locked_data`, reused `data_cleaning.read_raw` in the audit
+  and the single `file_sha256`, and wrote feature/brand checks as plain set
+  operations. Public names used by tests/notebooks are unchanged.
+- Fixed a pre-existing bug: `python -m dtdlink_ml.predict URL` (README command)
+  always raised "Unsupported pipeline artifact" because the class in `__main__`
+  differed from the pickled class. The library call `load_pipeline()` was not affected.
+- Verification: 140 tests passed; parser/features identical for all 641,113
+  cleaned URLs plus edge cases; a full Stages 1-6 rerun in a scratch copy of the
+  project reproduced all 47 compared files byte-for-byte (feature table
+  `fe049dd9...`, manifest `fbcbcf2f...`, EDA tables/figures, classifier
+  comparison, k=7 clustering), JSON compared after path substitution and audit
+  timestamp removal. Stage 7 reports/figure were rebuilt byte-identically from the
+  saved test probabilities, and the recovery check reloaded the model on all test
+  rows (max difference 3.33e-16, identical labels) without refitting or new test
+  scoring. Only the inference-source hashes in `models/model_metadata.json` and
+  the matching artifact hash in `reports/evaluation/test_metrics.json` changed.
+- Third pass on the same date (student request, readability for a second-year
+  level; AI use is permitted per `AI_USAGE_NOTE.md`): rewrote `src` with short
+  everyday variable names, explicit `for`/`if` instead of comprehensions,
+  lambda and `np.select`, small private helpers folded into the main functions,
+  and very few comments. `src` is now 2,720 lines (explicit loops are longer).
+  Public names used by tests/notebooks unchanged. Verification repeated: 140
+  tests passed; parser/features identical to the original git commit for
+  641,180 inputs; a full Stages 1-6 rerun in a scratch copy reproduced all 47
+  compared files; Stage 7 reports/figure rebuilt byte-identically from saved
+  probabilities and the recovery reload check passed (max difference 3.33e-16)
+  without refitting or new test scoring. Inference-source hashes re-synced.
+- Fourth pass on the same date (student request): translated every Vietnamese
+  string in `src` to English (cluster descriptions, Stage 6 and Stage 7 report
+  text) and added a one-line docstring to every function/class. Regenerated
+  `reports/clustering/stage-6-clustering-report.md` (from a scratch rerun whose
+  other 46 compared outputs were byte-identical) and
+  `reports/evaluation/stage-7-evaluation-report.md` (from the saved test
+  probabilities; no refit or new test scoring); both reports are now in English
+  with the same numbers. Updated the Stage 7 report hash and inference-source
+  hashes in `reports/evaluation/test_metrics.json` / `models/model_metadata.json`.
+  140 tests and the cached Stage 7 verification passed. Saved notebook outputs
+  still show the old Vietnamese cluster descriptions until re-run.
+- Figure reduction on the same date (student decision): removed four figures and
+  their code: `train_feature_correlation.png`, `numeric_feature_distributions.png`,
+  `domain_concentration.png` (Stage 4) and `clustering_pca.png` (Stage 6, including
+  the PCA import/constant and the `pca_explained_variance_ratio` summary key).
+  Six figures remain: class balance, feature box plots, binary feature rates,
+  k selection, cluster profiles and test confusion matrix. A scratch rerun
+  reproduced all other outputs byte-for-byte; only `split_audit.json` (figure
+  list), `clustering_summary.json` (PCA key) and the Stage 6 report (PCA
+  sentences) changed and were copied into `reports/`. Notebooks 03/05 and README
+  updated. The report draft initially retained one sentence about the 24.28%
+  PCA variance; the later report revision below removed it.
+- `docs/technical-architecture*.html` still mention a few old private helper
+  names (`_extract_features_from_parsed`, `_domain_parts`, `_split_for_analysis`,
+  `build_summary`).
+
+## Compact source style — 7 October 2026
+
+- After reverting the longer readability rewrite, the student requested small,
+  role-specific style changes without adding length. Updated the nine `src`
+  implementation modules, keeping function signatures and ordinary Python.
+  Features return a direct dictionary, cleaning retains pandas operations,
+  audit uses a compact tuple of checks, parser retains explicit branches and
+  model definitions sit together. Renamed only ambiguous local variables and
+  removed redundant comments. No new helper functions or source files.
+- Source length: 2,740 -> 2,716 lines. All 140 tests pass; compilation and
+  `git diff --check` pass. Before/after checks match for 2,514 parser/feature
+  inputs, sampled split/EDA/classifier/clustering/error results, and the full
+  651,191-row audit/cleaning outputs written to temporary directories.
+- Saved model bytes, tests and notebooks are unchanged. Reloading all 126,949
+  saved test rows gives identical labels and probability differences at most
+  3.33e-16 (tolerance 1e-12); no fitting or tuning. Source fingerprints and the
+  metadata artifact hash were synchronized; CLI/cached evaluation pass.
+  This pass changes readability, makes no authorship claim and does not change
+  the Stage 8 report/package status. The existing joblib CPU warning remains.
+
+- Follow-up: the student requested a less polished, casual presentation.
+  Shortened the repeated module headers and a few docstrings, used short module
+  comments in audit/training/features, and placed related length/count entries
+  together in the feature dictionary. Source now has 2,690 lines. Executable
+  syntax trees match the previous version after excluding documentation;
+  140 tests, source compilation, default model loading, cached evaluation and
+  `git diff --check` pass. Only required source/metadata fingerprints changed;
+  saved model, metrics, tests and notebooks remain unchanged.
+
+## Stage 8 report draft — 6 October 2026
+
+- The student requested an Assignment 2 report, then specified simple English,
+  a student writing style, less detail and fewer than 3,000 words.
+- Created `reports/assignment2-report.docx` and `reports/assignment2-report.pdf`.
+  Initial draft: 2,324 main-body words / 2,654 whole-document words, nine pages
+  and two saved figures. Revised at the student's request after figure reduction:
+  2,570 main-body words including tables and captions; whole document: 2,899
+  words including cover, references and appendices. Twelve pages, of which nine
+  contain the main report; all six remaining figures and compact evidence tables.
+- Covers problem/users/scope, dataset and cleaning, reusable features, grouped
+  split, training-only EDA, three-classifier comparison and threshold trade-off,
+  final test metrics and subgroup/error analysis, within-class clustering,
+  implementation/verification, limitations, future work and conclusion.
+- Includes six Harvard-style references checked against research papers,
+  official scikit-learn documentation and the course-linked dataset listing.
+  Appendix gives one real representative example per cluster and evidence paths.
+- Rechecked 13 current data/export/source fingerprints before authoring. Used
+  saved metrics and charts; no training, test retuning, source/model/data changes
+  or claims of a clean-environment run. Rendered the initial DOCX with the bundled
+  compiler, inspected all nine page images, and checked PDF text/metrics.
+- The six-figure revision rechecked the progress records, specification, source,
+  notebooks and saved analysis outputs. Added feature class boxplots and binary
+  rates to data analysis, and k selection and the cluster profile heatmap to
+  clustering; kept class balance and test confusion matrix, renumbered Figures
+  1–6, and removed the obsolete PCA sentence. Short captions explain the training
+  sample/display clipping, rates versus feature importance, fixed silhouette
+  sample and saturated heatmap colours. English remains simple and brief.
+- Verified all six embedded image hashes against the remaining project PNGs,
+  sequential figure captions, ten tables, current metrics, no PCA claim, and
+  whole-document word count below 3,000. Inspected all twelve final page images
+  and repaired pagination before exporting the PDF. No source, model, dataset,
+  notebook, training or test-selection changes were made by this report revision.
+- Report remains subject to student/team review. Stage 8 is NOT complete:
+  README/Conda and preprocessing instructions, clean-environment verification,
+  final ZIP, real weekly minutes, signed contribution form and scope-change
+  acknowledgement/named second reader remain outstanding.
+
+## Stage 8 technical package — 7 October 2026
+
+- The student confirmed real weekly minutes and the contribution form are
+  already available, and requested fixes to the remaining deliverables and an
+  upload list. Those two administrative documents were not altered or inspected.
+- Final report: simple English, 2,649 main-body words / 2,978 whole-document
+  words, 13 pages, six current figures. Corrected the current test count to 137,
+  clarified model metadata and implementation challenges, and added original
+  label composition for every cluster alongside feature-based descriptions.
+  Every page was visually checked and all embedded figures match current PNGs.
+- Completed portable README instructions for Conda, prepared-data processing,
+  training, prediction, fixed evaluation and optional raw cleaning. Added
+  `environment.yml`, `VERIFICATION.md` and `reports/submission-checklist.md`.
+- Installed pinned requirements in a fresh Python 3.9.6 virtual environment;
+  `pip check` passed and all 137 tests passed. Conda YAML was parsed and checked;
+  Conda is unavailable here, so no actual Conda run is claimed.
+- Reproduced full Stages 3-7 in a separate copy using frozen settings. Feature
+  table and split manifest were byte-identical; ten output CSVs, clustering
+  selection/stability and final metrics matched within the recorded tolerances.
+  Original project source, processed data and selected model were preserved.
+- Deliverables are `submission/session-07-group-5-assignment-2-report.pdf` and
+  `submission/session-07-group-5-assignment-2-code-data-models.zip`. The ZIP
+  contains only relevant code, prepared data, model, evidence, documentation,
+  notebooks and tests, plus a SHA-256 manifest. Unnecessary course files,
+  environments, caches and duplicate report files are excluded.
+- Initial verified ZIP: 80 files, 97,206,444 bytes. CRC and every manifest hash passed;
+  extracted files match the workspace originals. All 137 tests, prediction
+  and cached evaluation passed directly from the final extracted ZIP.
+  `reports/submission-audit.json` records the release fingerprints and checks.
+- The student later explicitly requested a smaller submission ZIP. Current
+  release: 53 files, 80,569,494 bytes (76.84 MiB). Removed tests/notebooks,
+  verification/manifest files, decision/cleaning notes, Stage Markdown reports,
+  supplementary JSONL records, full test predictions and cluster assignments.
+  Retained all runtime modules, three prepared CSVs, final model/metadata,
+  feature dictionary, compact audits, result tables/examples and six figures.
+  Edited README and requirements only inside the ZIP, removing notebook/test
+  commands and their three dependency pins. The working project is preserved.
+- Trimmed ZIP CRC passed; all retained files except README/requirements match
+  the previous verified ZIP byte-for-byte. Every runtime module imports with
+  pytest/JupyterLab/ipykernel blocked. Loaded every split and the clustering
+  population; all 126,949 test probabilities and labels match the earlier
+  export (max difference 4.44e-16), 120 raw URL checks and five unusual/new
+  inputs work with network/DNS blocked, and cached/recomputed test metrics match.
+  Report, model, data and runtime source were not changed by this trimming.
+- Stage 8 technical work is complete; final team review and Canvas submission
+  remain. One member uploads these two files plus the team's existing minutes
+  PDF and signed contribution-form PDF. The latest supplied Canvas specification
+  shows 7 October at 23:59. No Canvas upload or unprovided scope-change approval
+  has been claimed.
+
 ## How future chats should use this file
 
 - Read `ASSIGNMENT2_MASTER_PLAN.md` after this file and follow its current incomplete stage.
@@ -575,3 +815,471 @@ The Insights page, interactive charts, and How It Works page were prioritised as
 - Do not claim an Assignment 2 task is complete without new evidence in the workspace or explicit confirmation from the user.
 - When work is completed, update the tracker with the date, result, and relevant file path.
 - If course instructions conflict, prioritise the newest dated Canvas/course instruction and record the change here.
+
+## Approved source cleanup — 7 October 2026
+
+- User approved the readability plan before implementation. Updated the nine
+  implementation modules in `src/dtdlink_ml/`: shorter consistent module
+  docstrings, clearer variable names, `any()`/`sum()` for simple URL checks,
+  one combined empty-URL check and the result label `Predicted benign`.
+- Removed the redundant post-cleaning duplicate assertion; kept manifest row
+  counts, alignment, hashes, feature-order checks and the model reload check.
+  Source decreased from 2,072 to 2,040 lines (32 fewer).
+- Updated the existing threshold test in `tests/test_prediction.py` to check
+  both result labels and the 0.5 boundary. All 137 tests pass; the existing
+  joblib CPU-detection warning remains. Source compilation and diff checks pass.
+- Before/after checks: 1,316 parser/feature cases match exactly; 1,312 URL
+  predictions retain classes and probabilities within 1e-12; fixed 1,000-row
+  EDA tables and domain assignments match. Eight temporary report/chart files
+  match byte-for-byte. Model, processed features and manifest hashes match.
+- A verification script accidentally regenerated two clustering PNGs in
+  `reports/figures/`; they were replaced with verified default-style renders
+  from the saved CSVs. No project model refit or full-data clustering run occurred.
+
+## Latest submission review — 7 October 2026
+
+- The student requested a final readiness check after assembling all files.
+  Review details: `reports/submission-readiness-review.md`. Deliverables were
+  inspected without modifying the submission PDFs/ZIP or administrative records.
+- Four types are present, but current `submission/assignment2-report.pdf` is a
+  12-page version with outdated verification claims and no cluster-composition
+  table. The corrected verified 13-page PDF remains in `reports/`.
+- Minutes currently supplied are a five-meeting reconstructed draft with
+  assumed/unconfirmed details and no dated record for 28 Sep–4 Oct. Real team
+  confirmation and complete weekly coverage remain necessary. Contribution
+  form has typed names on signature lines; authorisation/consensus is unverified.
+- ZIP is unchanged and passes hash/CRC checks. Group-prefixed PDF filenames,
+  correct final report, confirmed minutes/form and final submission remain.
+
+## Submission recheck after student edits — 7 October 2026
+
+- Minutes now contains only meeting 1 (2 September), plus a blank page;
+  remaining meetings from the previous export are absent. Header was cleaned,
+  but assumed/verify/suggested details remain.
+- Previously linked Google Doc has corrected 137 tests, clean-environment
+  verification and cluster label-composition Table 9. Local submission PDF is
+  still the outdated 12-page export. Google Doc retains an omitted tests/
+  appendix reference and has lost the dataset author-date citation.
+- ZIP remains unchanged/valid. Local contribution form remains unchanged.
+  See updated reports/submission-readiness-review.md for remaining actions.
+
+## Latest final recheck — 7 October 2026
+
+- New minutes export `submission/DTDLINK_Meeting_Minutes.pdf` restores all five
+  meetings in seven readable pages. Week 28 Sep–4 Oct is still unrepresented;
+  some confirm/reconstructed-draft text remains.
+- Local report and contribution PDF remain unchanged. The linked Google Doc
+  contains technical report corrections, but final local PDF export and two
+  small citation/omitted-test-reference corrections remain.
+- ZIP hash/CRC passes unchanged. Group-prefixed PDF names and member
+  signature/consensus confirmation remain. Latest details are in
+  `reports/submission-readiness-review.md`; no submission file was edited.
+
+
+## Uploaded report corrected — 7 October 2026
+
+- Repaired the student's newly supplied Word report and exported the final
+  group-prefixed report PDF into submission/. The old submission PDF was
+  backed up and replaced. Editable source is reports/assignment2-report.docx.
+- Final report: 2,682 main / 2,992 whole-document words, 13 visually verified
+  pages, six figures, stronger cluster profiles and original-label Table 9.
+  Test count, metadata, fresh-environment and appendix claims match evidence.
+- ZIP/source/model/data remain unchanged. Stage 8 report and technical package
+  are ready. Genuine weekly minutes coverage, confirmation of draft details,
+  all-member signatures/consensus and final Canvas submission remain.
+  See reports/submission-readiness-review.md for current administrative issues.
+
+- Final filename cleanup: minutes and contribution form now have the Session 7
+  Group 5 prefix. Their PDF contents are byte-identical; no administrative facts
+  or signatures were changed. Four upload filenames now match the checklist.
+
+
+## All-deliverable recheck — 7 October 2026
+
+- Report and ZIP remain byte-identical to the verified final outputs; CRC passes.
+- Latest minutes export DTDLINK_Meeting_Minutes (1) (1).pdf removed the
+  reconstructed-draft sentence but retains confirm/draft-planning wording,
+  the weekly gap 28 Sep–4 Oct, and a filename without the group prefix.
+- Form content is unchanged; contribution total is 100%, typed signatures
+  require actual member agreement/authorisation. Its final page is blank.
+- No deliverable was edited. Stage 8 technical outputs are ready; minutes
+  finalisation, group confirmation and actual Canvas submission remain.
+
+
+## Final ZIP execution check requested by student — 7 October 2026
+
+- Extracted the exact submission ZIP to a new temporary folder and created a
+  fresh Python 3.9 venv. Installed all pinned requirements from cached wheels;
+  pip check passed. Executed every Python pipeline command in the README,
+  including optional raw audit/cleaning using the original course archive,
+  prepared feature/split processing, classifier training, clustering, cached
+  evaluation, explicit frozen refit evaluation and prediction before/after fit.
+- Prepared CSV hashes match, 11 result tables match, all 126,949 test
+  predictions match within 1e-12 (max probability difference 3.33e-16),
+  120 raw URL feature checks and five offline new/malformed inputs pass.
+  All six regenerated PNG files are valid. Submission ZIP bytes are unchanged.
+- Conda is unavailable; its YAML was checked and the README venv alternative
+  was executed. Direct Conda execution is not asserted. Complete run evidence
+  is reports/zip-final-readme-test.json. No Canvas upload was performed.
+
+## Assignment 3 transition — 5 November 2026
+
+- Student confirms Assignment 2 is finished and wants to move to Assignment 3.
+- Re-read the saved Assignment 3 status and Stage 9 plan. Known product plan:
+  React interface -> local FastAPI -> existing Assignment 2 feature pipeline
+  and saved model, with cautious results, URL signals, real-data insights and
+  end-to-end tests. Preserve offline analysis and no URL storage/clickable links.
+- The saved course snapshot contains only a syllabus-level Assignment 3 summary;
+  no official detailed specification or rubric is present in the project.
+  Its old statement about publication availability is not a live Canvas check.
+  Obtain the current official brief before fixing submission formats, deadline,
+  marking requirements or a final Assignment 3 execution plan.
+- This turn reviewed context and recorded the transition only; no frontend,
+  backend or model code was created or modified.
+
+
+## Full Assignment 3 brief saved — 5 November 2026
+
+- Saved the student's complete Canvas paste byte-for-byte as
+  Week-12/Assessment/Assignment-3-Specification.md, including sections 1–5,
+  the video requirements, Important notes and the full 45-point rubric.
+- Source: /Users/okok/.codex/attachments/1f785667-71eb-441c-a562-e4364c9ad039/Pasted text.txt
+- SHA256 of both attachment and archived source:
+  b31761fc83c206c007eb84f950bbd2902deede81a2447f6aac58aaa02243b8fc
+- Replaced the old syllabus-only Assignment-3-Status.md with a requirements
+  summary, deliverable list, video evidence checklist, marking totals and
+  unresolved planning issues. Added a read-first pointer at this file's top,
+  the Stage 9 bridge, prompt playbook and Week 12 summary.
+- Recorded the A3-specific AI wording separately from historical September
+  guidance. Preserved the source's security-mark cap discrepancy and the
+  A2 combined-dangerous versus A3 phishing-topic output issue without silently
+  changing the assessment rules or model. Deadline: 8 November 2026 at 23:59.
+- Current task is complete: archival and context documentation only. No
+  application implementation, experiment selection or model change occurred.
+
+## Assignment 3 implementation — 5 November 2026
+
+- User approved the proposed model, labels, full HTTP(S) input, privacy scope,
+  availability defence and dependency/configuration defence, then explicitly
+  requested the entire application be coded. That current instruction supersedes
+  earlier per-step implementation gates for this authorised scope.
+- User reports lecturer permission for AI coding; source provenance is recorded
+  in AI_USAGE_NOTE.md and the A3 README. No written tutor approval is fabricated.
+- Isolated application: `assignment3/backend` and `assignment3/frontend`. Frozen
+  A2 model and four inference modules copied byte-for-byte, not modified/refitted.
+- UI labels: Potentially dangerous / Likely legitimate, with combined-class and
+  no-safety-guarantee wording. Confidence corresponds to the predicted class.
+- React pages: Check URL, Session insights, How it works; validation, states,
+  404, error boundary, safe token highlighting, responsive layout and interactive
+  current-signal/session-score charts. At most 20 anonymous entries in memory;
+  no URL history, storage, external fonts or destination requests.
+- FastAPI: Pydantic contracts, GET health/model-info and POST predict, uniform
+  JSON errors, model lifespan loading, trusted pre-load hash, local Swagger UI.
+- Security: 2,048-character URL limit, 16 KiB streamed body limit, 5-second body
+  deadline, exact frontend CORS, same-origin Swagger support, hardened headers,
+  bounded off-event-loop inference, cancellation-safe slot accounting and 503.
+- New A3 Python 3.12 environment; A2 environment/source/data/model untouched.
+  Pinned versions and independent npm lock. Pip vulnerabilities corrected by
+  isolated upgrade to 26.3; npm/pip audit now have no known findings.
+- OWASP ZAP 2.17.0 passive + bounded active local scan: CSP style-src tightened;
+  final scan has 0 High/Medium/Low and 53 informational observations, interpreted
+  in `assignment3/docs/SECURITY_FINDINGS.md`. No complete-security claim.
+- DoS evidence uses repeated real inference bursts and a separately disclosed
+  controlled slow-inference harness; no unprotected production switch.
+- README, Vietnamese learning guide, video checklist, real team-deliverable
+  checklist, tests, local launcher and source packaging script provided.
+- Section 2.8 is NOT claimed complete. Video, authentic weekly minutes, member
+  contribution/signatures and acceptance of the combined-class model by tutor
+  remain group follow-ups. Final verification evidence and ZIP paths are recorded
+  by the packaging completion entry below.
+
+## Assignment 3 technical package verified — 5 November 2026
+
+- Standalone source: `assignment3/`. Final group-prefixed source ZIP:
+  `submission/session-07-group-5-assignment-3-source.zip`. No Canvas upload.
+- Executed: 34 A3 backend tests in the working project; standalone fresh ZIP has
+  33 passed and one expected skip (original-A2-source comparison unavailable).
+  Frontend: 13 tests passed and production build passed. Dependency install and
+  npm ci were performed in a fresh extracted copy; the documented launcher
+  started both TCP services and live HTTP checks passed.
+- Model unchanged: SHA-256 d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586.
+  All four copied inference modules equal A2 bytes. Across 1,600 raw test URLs,
+  labels match and maximum probability difference is 3.33e-16, without refitting.
+- Browser QA: desktop 1280 px and phone 375 px; real predictions for both labels,
+  Enter submission, validation, chart filters/detail controls, clear session,
+  phone menu, no horizontal overflow in checked views, 404, service outage and
+  recovery, and real Swagger Try it out POST. Screenshots and verification JSON
+  are in `assignment3/evidence/`. A 10-case optional Playwright suite was authored
+  and discovered, but not executed; no complete accessibility/user study claimed.
+- npm and pip audits: 0 known current findings. ZAP 2.17.0 passive + bounded
+  active scan: 0 High/Medium/Low, 53 informational; all interpreted in security
+  notes. Actual live HTTP bursts returned 503 for excess work while health stayed
+  available. Controlled slow-model harness is explicitly described as instrumentation.
+- Final code formatting and secondary text contrast improvements applied;
+  final source rebuilt in the clean extraction. Local QA servers were stopped
+  after verification. Start the installed workspace with:
+  `cd assignment3 && backend/.venv/bin/python scripts/run.py`.
+- `assignment3/docs/LEARNING_GUIDE_VI.md` explains actual code flow in Vietnamese.
+  README documents setup, architecture, threat model, selected two defences,
+  AI disclosure, Harvard references and limits. No section 2.8 claim is made.
+- Remaining student/group work: record <=15-minute video, complete authentic
+  weekly minutes and contribution/signatures, and confirm topic/model acceptance
+  with tutor. These have not been invented or marked complete.
+
+## Dataset/model Insights addition undone — 5 November 2026
+
+- The student first requested extra A2 dataset/model statistics, then explicitly
+  requested undo after deciding that the detail was unnecessary. This cancels
+  that addition. Do not re-add it without a new request.
+- Restored the 12 affected existing files byte-for-byte from the verified
+  pre-addition source ZIP and removed the six addition-only implementation/data
+  files. Insights is again the original session-comparison/current-signal page;
+  labels, score wording, model and all earlier application features are unchanged.
+- Every packaged source file matches the existing source ZIP manifest. The ZIP
+  itself was already the pre-addition version and remains byte-identical.
+- Verification after rollback: production frontend build, 13 frontend tests and
+  34 backend tests passed. Reloaded the running backend to remove /insights data
+  endpoint; the browser page /insights remains the original React page.
+
+## UI UX Pro Max interface redesign — 5 November 2026
+
+- The student explicitly requested a new AI-inspired interface using the public
+  nextlevelbuilder/ui-ux-pro-max-skill repository. Read its SKILL.md and UX rules,
+  ran local design-system/style/React searches at revision
+  b7d5353e0130feb8c5574ef1251f8a1db1873ccb, and implemented a dark graphite/violet
+  workspace with a centred URL composer and consistent chart/result surfaces.
+- Changed frontend App branding, CheckPage markup, styles and chart colours only;
+  no new runtime dependency or remote font/script. All 13 protected backend,
+  inference and model files match pre-redesign SHA-256 values. The model, API,
+  class labels, confidence interpretation and existing app behaviour are unchanged.
+- Session Insights remains anonymous current-session charts; the previously
+  cancelled historical dataset/model-statistics feature was not restored.
+- Saved design decisions, attribution and MIT notice under
+  assignment3/design-system/dtdlink/. README acknowledges the design source
+  and actual AI assistance. Verification: production build, 13 frontend tests,
+  34 backend tests; browser checks at measured 375/768/1024/1440 CSS px, real
+  prediction, validation, signal detail/filter, session selection/clearing,
+  phone menu and all three routes. No overflow observed at checked widths.
+- Evidence: assignment3/evidence/ui-redesign-verification.json and ui-ai-*.jpg.
+  Updated source ZIP generated and manifest/CRC verified. Previous ZIP and source
+  are backed up under /private/tmp/dtdlink-before-ai-ui/. No Canvas submission.
+
+## Interface simplification — 5 November 2026
+
+- At the student's explicit screenshot-based request, removed the sidebar privacy
+  card, course/group/student-project footer, topbar model-status badge, and home
+  input card's Local analysis badge. Removed the now-unused frontend health state
+  and startup health request. Prediction errors still appear beside the form.
+- No backend/model changes. Production build and 13 frontend tests passed. Browser
+  reload verified all requested elements absent; evidence/ui-ai-clean.jpg records
+  the new appearance. Source ZIP regenerated with manifest/CRC verification.
+
+## Readable URL analysis — 5 November 2026
+
+- User requested more specific analysis that ordinary users can understand. Added
+  backend/app/analysis.py as an offline presentation layer: exact ordered URL
+  parts and 11 rule observations with evidence, plain-language meaning and action.
+  Existing nine patterns enriched; added nonstandard port and brand words in
+  path/query. service.py and response schemas now return url_parts plus per-signal
+  evidence/action; regenerated the real Swagger response example.
+- Frontend URLAnalysis.jsx emphasises the actual host, highlights exact userinfo
+  and hostname boundaries, offers a native details breakdown and evidence/action
+  cards. Three observations show first with remaining ones expandable. Handles
+  model-dangerous/no-rule and model-benign/with-rule honestly. No causal model
+  attribution, certificate checks, redirect following or website visits claimed.
+- Model artifact, metadata and four A2 inference modules remain byte-identical to
+  the pre-update ZIP. No training, threshold, confidence calculation, validation
+  policy or dependency change. Session history still excludes URL evidence/parts.
+- Verification: production build, 48 backend tests and 17 frontend tests passed.
+  Real browser QA at 1728 and 375 CSS px; exact misleading destination, parts
+  disclosure click/Enter, seven-observation expansion and no-pattern mismatch
+  reviewed. No overflow observed. Evidence: url-analysis-verification.json and
+  url-analysis-*.jpg. Optional browser test suite not executed; no new scan/clean
+  install claimed. Source ZIP regenerated with CRC/manifest check.
+- Backend restarted on 127.0.0.1:8000 with no access logging; frontend preview
+  remains on 127.0.0.1:5173. Earlier removed sidebar/course/status badges remain
+  removed. Previously cancelled dataset/model statistics feature stays cancelled.
+
+## URL-format false-positive investigation — 5–6 November 2026
+
+- User explicitly authorised isolated A3 code/experiments/training while freezing
+  completed A2. Traced frontend -> API -> copied extractor -> artifact -> label:
+  exact probabilities agree; missing-scheme input is rejected by API (422), not
+  silently rewritten. Reproduced Google/GitHub formatting scores.
+- Scheme audit: train benign 92.34% scheme-less vs defacement 100% HTTP; strongest
+  RF impurity importance is parse_issue_count then has_scheme, not uses_https.
+  Adding a scheme changes five coupled features. Source/format association is
+  strong; actual collection causality/current site safety is not verified.
+- A3 research at assignment3/experiments/url_format/: fixed shared neutral model
+  view, four numeric RF trials, character TF-IDF+numeric logistic trials and
+  convergence checks, root-specific RF routing, and character-only no-L2 view.
+  No threshold changes (0.5), relabelling, whitelist, hand-added demos or test
+  outcomes used. Train-only fit/scaler/vocabulary; validation-only development.
+- 381,494 eligible train and 128,373 eligible validation records; exclusions
+  match unchanged A3 validation. Original and IDNA wire-group split overlaps 0.
+  Test group metadata and preservation checksums only; no test scoring/tuning.
+- Text+numeric candidate: API-formatted validation FPR 88.00% -> 11.36%, dangerous
+  recall 99.21% -> 92.13%. On native explicit URLs, FPR 35.67% -> 6.74%, recall
+  98.84% -> 92.61%. However benign-homepage FPR remains 38.13%, including high
+  scores for the user's diagnostic examples. Root specialists reduce homepage
+  FPR to ~19% but recall falls to ~58%; final character-only trials also fail.
+- Decision: NO experimental model promoted. Active A3 artifact/hash d4aa8ff3...,
+  metadata/API example/frontend/threshold/security remain unchanged. Do not say
+  the false-positive issue is fixed. No section 2.8 claim added.
+- Preserved A2: 91 protected data/model/source/test/notebook/report/ZIP files
+  checked unchanged. Research candidates/cache remain local A3 and excluded from
+  source ZIP. Source scripts/plans/aggregates included. Findings in
+  assignment3/docs/URL_FORMAT_FINDINGS_VI.md, promotion-decision.json and all
+  per-candidate metrics; validation reused, not independent final-test accuracy.
+- Verification: 61 backend tests, 17 frontend tests, production build; no new
+  dependencies, external URL visits/DNS or analysis services. Only RFC syntax
+  documentation was read online. No demo domain treated as proof of safety.
+
+- Completed 6 November: retained active model after all scoped candidate families
+  failed joint criteria. Actual localhost API still agrees with frozen model.
+  Final source ZIP CRC/SHA manifest verified; fresh source extraction using the
+  installed runtime passed 60 tests with one expected A2-source-comparison skip.
+  This was not a fresh dependency installation.
+
+## Separate experimental preview — 6 November 2026
+
+- User asked whether to try a separate version with a new model after discussing
+  further improvement. Created optional assignment3/experimental-app/ using the
+  already trained A3 text+numeric candidate neutral_text_recall5_converged. This
+  is a runnable research preview, NOT promotion to the primary submission app.
+- Primary app 5173/API 8000 retains frozen A2 hash d4aa8ff3...; preview uses ports
+  5174/API 8001, exact separate CORS/CSP, independent copied source/model/config,
+  preview-labelled header/title/sidebar, accurate model info and response example.
+  Local .venv/node_modules links share installed dependencies only.
+- Preview model SHA256 f5a7b6fb18fa3c041ccac167436ddc9d3ea44f496842314c59070a7e36303290.
+  Model is character TF-IDF + 36 numeric measurements, logistic regression,
+  threshold .5; combined labels unchanged. Same train/inference view, raw URL
+  evidence and all application security boundaries preserved.
+- Known Google/GitHub examples still score high (99.71%/98.71%); no claim the
+  homepage problem is fixed. Prior validation FPR 11.36%, recall 92.13%, homepage
+  FPR 38.13%; no new accuracy evaluation. Separate preview allows comparison only.
+- Verification: 65 backend tests passed, one expected original-source skip; 17
+  frontend tests and build passed. Live checks confirmed primary a2-rf-d4aa8ff3
+  vs preview a3-preview-text-f5a7b6fb. Browser real prediction and narrow layout
+  checked, description matches actual classifier, no new scan/clean install.
+- New separate ZIP: submission/session-07-group-5-assignment-3-experimental-preview.zip.
+  Primary packaging explicitly excludes experimental-app/ to avoid mixing two
+  apps/submission versions. Preview has its own README and package script.
+
+## Component-role model trial — 6 November 2026
+
+- User authorised trying field-aware URL modelling. New isolated experiment at
+  assignment3/experiments/url_format/field_roles/ with pre-fit hashed PLAN.json,
+  four train-only fitted character TF-IDF/logistic models, separate component
+  vocabularies and optional learned homepage interactions. Shared inference code
+  in backend/src/dtdlink_a3/fields.py is unused by either running app.
+- Same 381,494 train / 128,373 validation, domain grouping unchanged, threshold
+  0.5. No test outcomes, whitelist, injected demos, relabelling or external scans.
+- Balanced model: FPR 6.59%, recall 86.04%, homepage FPR 20.01% / recall 77.12%.
+  Context model: FPR 10.77%, recall 90.41%, homepage FPR 33.58% / recall 88.44%.
+  Both other weight variants also failed unchanged joint gates. All converged,
+  zero label flips on 9,277 valid-format pairs (encoding coverage remains sparse).
+- Decision: NONE promoted; primary keeps d4aa8ff3..., preview keeps f5a7b6fb....
+  Context model still gives Google 60.21% / GitHub 95.06% dangerous score after
+  validation-based selection; do not claim false-positive issue fixed.
+- Data limit: only two train userinfo rows, no usable userinfo vocabulary at
+  min_df=3; flags still represent presence. Unknown suffix parser fallback uses
+  entire hostname; empty query/fragment delimiters have no separate field feature.
+  Do not infer model impossibility or label error merely from this failed trial.
+- Saved-model verification recomputes every validation prediction and independent
+  confusion counts, plus 1,000 fresh raw-URL inference rows per model. Evidence
+  in field_roles/results/verification.json. Validation reused for development,
+  not an independent final assessment. A2 preservation manifest still unchanged.
+- Verification completed: 68 backend tests pass; all 91 protected A2 files and
+  39 primary runtime files unchanged. Live localhost /model-info confirmed both
+  existing versions; preview ZIP checksum unchanged. Primary source ZIP refreshed
+  with experiment scripts, plans, aggregate evidence and contract tests only.
+
+## GitHub source snapshot — 6 November 2026
+
+- User requested uploading the complete project source to datdonnynguyen.
+  Existing target: https://github.com/datdonnynguyen/DTDLINK, branch main.
+- Snapshot includes current A2 source/notebooks/reports, primary A3 React/FastAPI
+  application and pinned model, isolated preview, experiment scripts and evidence.
+  Both running models and A2 artifacts are retained without retraining.
+- Git excludes installed environments/packages (including preview symlinks),
+  generated builds, local credentials, research caches/candidate artifacts and
+  duplicate submission ZIPs/extracted submissions. These remain on the local
+  machine; existing raw-data ignore rules and history are preserved.
+- Automated approval review rejected publishing the updated per-URL test
+  predictions to the public repo because the user requested source upload, not
+  publication of potentially sensitive evaluation data. Updated per-URL
+  predictions, error examples and the domain-level stability sample remain local
+  and are excluded from this source snapshot. Source and aggregate evidence still
+  upload; no A2 data file contents are edited or deleted locally.
+
+## Continuation state audit — 6 November 2026
+
+- Re-read the requested context, full A3 specification, status, AI note, model
+  findings and both application/research READMEs. The student's current request
+  reconfirms lecturer permission for AI coding; recorded in AI_USAGE_NOTE.md as
+  student-reported guidance, without changing the supplied course wording.
+- Process/socket checks and actual loopback HTTP requests confirm primary
+  frontend/API 5173/8000 and preview 5174/8001 respond. API versions remain
+  a2-rf-d4aa8ff3 and a3-preview-text-f5a7b6fb respectively. Both artifact hashes
+  match metadata and threshold stays 0.5. No training process matching the
+  project's experiment scripts was found at the process-check snapshot.
+- Live primary Google/GitHub dangerous scores: 97.22%/95.43%; preview:
+  99.71%/98.71%. Both APIs reject a missing-scheme Google input with 422.
+  Requests went only to 127.0.0.1; destination sites were not opened.
+- Newest modelling family is completed, not pending: field_roles/PLAN.json
+  matches its execution receipt; all four artifacts, validation predictions
+  and candidate results exist. Recomputed FPR/recall from saved confusion counts
+  match the JSON. All four optimisers report convergence and all four fail at
+  least one preregistered gate; decision.json selected remains null.
+  Whole FPR/recall and homepage FPR/recall respectively:
+  fields_balanced 6.59/86.04 and 20.01/77.12%; fields_recall3 9.06/88.81 and
+  30.00/84.49%; fields_recall5 12.35/91.19 and 43.78/90.35%; fields_context5
+  10.77/90.41 and 33.58/88.44%. No model promotion is justified.
+- A newer field_roles/results/verification.json was found during inspection.
+  It records reloaded-model reproduction of 128,373 validation predictions
+  and 1,000 raw-URL predictions per candidate, with no promotion. Its script
+  was inspected; this audit did not rerun training or that full verification.
+  Userinfo vocabulary has zero features (only two nonempty train rows);
+  structural flags remain. This limits the learned userinfo-text coverage.
+- Rehashed all 91 protected A2 files against a2-protected-before.json:
+  unchanged. No A2 test outcomes were used. Validation results remain reused
+  development evidence, not an independent final test.
+- Both A3 ZIPs pass CRC and every packaged manifest hash. At this snapshot the
+  primary ZIP SHA-256 is ff7cf4a73e961e982670d7a53d782896d37dddfa3a767d71f6740591595075a2;
+  its packaged files match the workspace but 14 newer field_roles source/test/
+  plan/result files are absent. It is runnable but not the latest research
+  snapshot. Preview ZIP matches its packaged source completely. Neither ZIP
+  was overwritten by this audit.
+- Local file inventory found no A3 presentation video or video-link file,
+  A3 minutes PDF, or A3 contribution PDF. The submission PDFs are A2 files;
+  docs/animation/dtdlink-data-flow.mp4 is not evidence of an A3 presentation.
+  Group artifacts may exist elsewhere, but were not verified here. Section
+  2.8 and tutor acceptance of the broader combined-dangerous target remain
+  unconfirmed; no Canvas submission or authentic administrative facts invented.
+- Recommended next work: retain primary/preview models, reconcile newest
+  research documentation and package, then prioritise the <=15-minute video,
+  genuine weekly minutes and agreed contribution form before the supplied
+  8 November 2026 23:59 deadline (Canvas timezone still needs confirmation).
+  Do not repeat completed RF/text/root/authority/field-role fits. Further model
+  work needs a distinct data-quality hypothesis and independently sourced,
+  domain-disjoint evaluation data rather than tuning familiar demo URLs.
+- This continuation audit changed only context/AI guidance notes. No runtime
+  code, UI, model, threshold, dataset, experiment output or ZIP was modified;
+  no new clean install, security scan or full test-suite run is claimed.
+
+## Three-presenter video preparation — 6 November 2026
+
+- User requests A3 video guidance grounded in the actual submission. Confirmed
+  preferences: English narration, three separate recordings edited together;
+  divide by subject first and let the group choose presenters later.
+- Created assignment3/docs/VIDEO_RECORDING_PLAN_VI.md and linked it from the
+  existing VIDEO_CHECKLIST.md. Proposed final 14:15 timeline: presenter A 4:15
+  product/live UI/states/charts, B 4:30 real request/code/API/model, C 5:30 threat
+  model/two selected defences/setup/limits. Vietnamese directions, English
+  speaking cues, exact project paths/commands and practical editing checklist.
+- Use the primary A2-model application consistently. No model promotion,
+  runtime change, new attack execution, recording, video export or submission
+  occurred. Loading/network/render-error demonstrations and security commands
+  still need rehearsal on the recording machine. Existing test scripts or saved
+  scans are not represented as a newly recorded live demonstration.

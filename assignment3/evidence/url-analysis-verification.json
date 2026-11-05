@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-05",
+  "scope": "User-requested plain-language URL evidence, structure breakdown and actionable next steps; offline presentation layer only.",
+  "backend_tests_passed": 48,
+  "frontend_tests_passed": 17,
+  "frontend_build": "passed",
+  "response_extensions": [
+    "url_parts: ordered kind/text records preserving the input",
+    "signals[].evidence: bounded labelled snippets",
+    "signals[].action: practical next step"
+  ],
+  "rule_count": 11,
+  "rules": "Previous nine rules enriched; custom port and brand words in path/query added. No model retraining or threshold change.",
+  "model_sha256": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+  "model_metadata_four_a2_modules": "Byte-identical to ZIP saved before explanation update.",
+  "browser_checks": {
+    "desktop_css_width": 1728,
+    "phone_css_width": 375,
+    "horizontal_overflow": "None observed in checked result views, including expanded parts/more observations.",
+    "executed": [
+      "Real prediction for misleading userinfo URL; actual host and evidence confirmed",
+      "Native URL-part details opens by click and closes with Enter",
+      "Complex URL returns seven observations; three visible first, four expandable",
+      "Encoded %6c shown as l and decoded login detected in path",
+      "Custom port, brand-in-subdomain and path/query brand context displayed",
+      "No-pattern dangerous prediction explicitly explains limits instead of inventing a model cause",
+      "Raw URL breakdown contains no destination anchors",
+      "Return to misleading example and reset viewport after QA"
+    ],
+    "screenshots": [
+      "url-analysis-desktop.jpg",
+      "url-analysis-phone.jpg"
+    ]
+  },
+  "tests_focus": [
+    "Authority boundary versus @ in path/query",
+    "IPv6, explicit ports, original case, empty ?/# and exact reconstruction",
+    "Word-boundary brand/term detection and encoded terms",
+    "Unicode and internationalised domains",
+    "UTF-8 percent-byte runs and visible encoded spaces",
+    "No outbound sockets in explanation logic",
+    "Dangerous/no-pattern and benign/with-pattern presentation",
+    "User URL, evidence and action text escaped as React text",
+    "Session history still excludes raw URL parts/evidence"
+  ],
+  "limits": [
+    "Rules do not attribute the model decision or verify the destination site.",
+    "No fresh ZAP scan, dependency audit or clean environment install for this change. Existing evidence is historical.",
+    "Optional Playwright suite updated for longer chart detail; browser suite not executed.",
+    "No full WCAG certification or user study."
+  ],
+  "previous_source_zip": "/private/tmp/dtdlink-before-explanations/session-07-group-5-assignment-3-source.zip",
+  "local_backend": "Restarted same localhost service to load new presentation fields, with access log disabled."
+}

@@ -1,0 +1,5 @@
+{
+  "plan_sha256": "9699c8808402ec6870c84884227e8f33d5975af360df12581c68dbf8273f12e6",
+  "started_utc": "2026-11-05T11:32:28Z",
+  "fit_scope": "train only; no demo injection or test data use"
+}

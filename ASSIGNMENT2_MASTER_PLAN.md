@@ -462,6 +462,14 @@ Any dataset-derived lookup such as TLD frequency must be fitted on training data
 
 ### Stage 9 - Reuse the pipeline in Assignment 3
 
+**Updated source, 5 November 2026:** Read
+`Week-12/Assessment/Assignment-3-Specification.md` and
+`Week-12/Assessment/Assignment-3-Status.md` before applying this older bridge.
+The full A3 brief requires security hygiene, a threat model, a video and
+interactive visualisations; there is no written report and model accuracy is
+not marked. Resolve the phishing-topic versus combined-dangerous A2 target
+and consult the A3-specific AI wording. This section is not the full A3 plan.
+
 **Purpose:** Turn Assignment 2's model into the DTDLINK product promised in Assignment 1.
 
 **Course knowledge:**
@@ -547,7 +555,7 @@ Parallel work is allowed only when inputs are stable:
 
 ## 9. Target calendar from 14 September 2026
 
-Current recorded deadline: **4 October 2026 at 23:59 AEST**.
+Current Canvas deadline in the latest student-supplied specification: **7 October 2026 at 23:59**. The original target calendar below is historical; the latest Canvas date supersedes it.
 
 | Dates | Target stages |
 |---|---|
@@ -586,22 +594,38 @@ Current recorded deadline: **4 October 2026 at 23:59 AEST**.
   0.5 selected and verified 2 Oct 2026; test set remains locked.
 - [x] Stage 6 within-class clustering and interpretation — verified 2 Oct 2026; train dangerous only, K-means k=7, profiles/examples and reproducible outputs.
 - [x] Stage 7 final evaluation, error analysis, and export — verified 3 Oct 2026; frozen Random Forest/0.5, held-out test metrics, error analysis and offline/reload checks.
-- [ ] Stage 8 final Assignment 2 package.
+- [ ] Stage 8 final Assignment 2 submission — technical deliverables prepared
+  and verified 7 Oct 2026. Final report has 2,682 main-body words / 2,992
+  whole-document words, 13 pages and all six remaining figures. README,
+  Conda configuration, fresh-environment reproduction and the final ZIP are
+  complete. The ZIP was trimmed at the student's request to 53 files / 76.84
+  MiB: development notebooks/tests and optional outputs are excluded; runtime
+  modules, processed data, model and compact evidence remain. Extracted
+  prediction and cached evaluation were reverified after trimming.
+  The student confirms real minutes and the contribution form are
+  already available separately. Final team review and Canvas upload remain;
+  submission has not been performed by Codex.
 - [ ] Stage 9 Assignment 3 integration.
 
-Current handoff: Stages 0-7 complete; Stage 8 is next. Stage 7 fit only the
+Current handoff: Stages 0-7 complete; Stage 8 technical package is available
+in `submission/` as of 7 October 2026. Stage 7 fit only the
 selected Random Forest on train with the frozen Stage 5 settings, reproduced
 validation, then evaluated locked test. Accuracy 0.917888, precision 0.852199,
 recall 0.915521, F1 0.882726; FN 3,620 / FP 6,804. Phishing recall 0.833555
 must be discussed separately. Saved pipeline/metadata and error evidence are
-available; 140 tests pass, reload probabilities match within 1e-12 with exact
+available; the current 137 tests pass, reload probabilities match within 1e-12 with exact
 labels, 120 raw test URL checks and 5 offline new-URL checks pass. The initial
 bitwise reload assertion was repaired by resuming verification from saved
 predictions/model; no test-based retuning or refit. Notebook cells were executed
 sequentially and figure inspected. See `docs/checkpoints/stage-8-ready.md`.
-Test is now used for final evaluation. Stage 8 needs report/package, a clean
-rerun, meeting minutes and contribution form. Scope-change acknowledgement and
-a named second reader remain a governance follow-up.
+Test is now used for final evaluation. A fresh Python 3.9.6 environment reproduced
+Stages 3-7 using fixed settings in a separate copy: prepared features/splits
+were byte-identical and ten result tables matched within numeric tolerances.
+Conda YAML was checked, but Conda itself is unavailable on this machine.
+Stage 8 now needs final team review and upload of the four files listed in
+`reports/submission-checklist.md`. Scope-change acknowledgement and a named
+second reader remain a separate governance follow-up; unprovided approvals
+have not been asserted as inspected.
 
 ## 11. Standard prompt for future Codex sessions
 

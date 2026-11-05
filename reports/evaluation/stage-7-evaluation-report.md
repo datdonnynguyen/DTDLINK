@@ -1,13 +1,13 @@
-# Stage 7 — Đánh giá cuối và phân tích lỗi
+# Stage 7 - Final evaluation
 
-Random Forest 100 cây, threshold 0.5; fit chỉ trên train. Không điều chỉnh theo test.
-Positive = phishing/malware/defacement; negative = benign theo nhãn dataset.
+Random Forest (100 trees), threshold 0.5, trained on the train split only.
+Positive = phishing/malware/defacement, negative = benign.
 
-## Kết quả held-out test
+## Test results
 
-Số URL test: 126,949.
+Test URLs: 126,949.
 
-| Metric | Giá trị |
+| Metric | Value |
 |---|---:|
 | accuracy | 0.917888 |
 | precision | 0.852199 |
@@ -18,31 +18,27 @@ Số URL test: 126,949.
 | false_negative | 3,620 |
 | true_positive | 39,231 |
 
-## Theo nhãn gốc
+## By original label
 
-| Loại | Số URL | Đúng | FN | FP | Tỷ lệ đúng |
+| Type | URLs | Correct | FN | FP | Correct rate |
 |---|---:|---:|---:|---:|---:|
 | benign | 84098 | 77294 | 0 | 6804 | 0.9191 |
 | phishing | 18757 | 15635 | 3122 | 0 | 0.8336 |
 | malware | 3643 | 3274 | 369 | 0 | 0.8987 |
 | defacement | 20451 | 20322 | 129 | 0 | 0.9937 |
 
-## Mẫu lỗi quan sát được
+## Errors compared with correct predictions
 
-So sánh trong cùng nhãn thật: FP với TN; FN với TP. Các tỷ lệ sau chỉ là liên hệ mô tả, không chứng minh nguyên nhân hoặc đóng góp của từng feature.
-
-| Nhóm | n | Median URL length | Có scheme | HTTPS | Host IP | Từ nghi vấn |
+| Group | n | Median URL length | Has scheme | HTTPS | IP host | Suspicious term |
 |---|---:|---:|---:|---:|---:|---:|
 | TN | 77294 | 47.0 | 0.0666 | 0.0065 | 0.0000 | 0.0431 |
 | FP | 6804 | 38.0 | 0.1096 | 0.0078 | 0.0000 | 0.0025 |
 | TP | 39231 | 52.0 | 0.7084 | 0.0319 | 0.0592 | 0.0357 |
 | FN | 3620 | 45.0 | 0.1387 | 0.0041 | 0.0000 | 0.0077 |
 
-FP: median độ dài URL 38.0 so với TN 47.0; tỷ lệ có scheme 10.96% so với 6.66%; tỷ lệ từ nghi vấn 0.25% so với 4.31%. Đây là dấu hiệu cần thảo luận về cấu trúc URL/định dạng nguồn, không đủ để quy kết lỗi cho một feature.
+## Example errors
 
-FN: median độ dài URL 45.0 so với TP 52.0; tỷ lệ có scheme 13.87% so với 70.84%; tỷ lệ từ nghi vấn 0.77% so với 3.57%. Đây là dấu hiệu cần thảo luận về cấu trúc URL/định dạng nguồn, không đủ để quy kết lỗi cho một feature.
-
-Ví dụ chọn theo URL ID tăng dần, tối đa 5 ví dụ cho mỗi cặp loại lỗi/nhãn gốc; không chọn chỉ các ví dụ gây ấn tượng. URL được escape trong khối văn bản và không truy cập.
+Up to 5 per error type and label, taken in URL-id order.
 
 - FP, type=benign, p=0.5779, length=30, scheme=0, suspicious_term=0
 
@@ -164,14 +160,8 @@ Ví dụ chọn theo URL ID tăng dần, tối đa 5 ví dụ cho mỗi cặp lo
 "http://copremon.com.br/fique-por-dentro/487-cooperativas-de-credito-movimentam-r-4275-mi-em-2012.html"
 ```
 
-## Hạn chế và sử dụng
+## Limitations
 
-- FN bỏ sót URL mang nhãn nguy hiểm; FP cảnh báo nhầm URL mang nhãn benign.
-- Nhãn gốc và thời điểm thu thập không được xác minh độc lập. Không mở URL để kiểm tra nhãn.
-- Domain-aware split giảm trùng miền; không phải temporal holdout hoặc bằng chứng hiệu quả trên mọi URL ngoài thực tế.
-- Định dạng scheme, nguồn dữ liệu, class imbalance và lexical-only features có thể ảnh hưởng kết quả.
-- Xác suất Random Forest chưa calibrated; không gọi là trust score hoặc bảo đảm an toàn.
-- Test đã được sử dụng cho đánh giá cuối. Mọi cải tiến sau đây cần validation và một holdout mới để đánh giá độc lập.
-- final_pipeline.joblib cần đi cùng source parser/features/predict.py và đúng environment. Không có scaler trong classifier này.
-- reload kiểm tra toàn bộ test probabilities khớp trong sai số tuyệt đối 1e-12 và nhãn giống hệt trước export và kiểm tra URL thô so với bảng features; không refit.
-- test_predictions.csv chứa URL dataset phục vụ kiểm toán; predict.py không lưu URL người dùng.
+- Labels come from the dataset and were not checked by visiting the URLs.
+- The split keeps domains apart but is not a split by time.
+- The probabilities are not calibrated.

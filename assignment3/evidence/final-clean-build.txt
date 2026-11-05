@@ -1,0 +1,18 @@
+
+> dtdlink-assignment3@1.0.0 build
+> vite build
+
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2432 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                         1.11 kB │ gzip:   0.63 kB
+dist/assets/index-BMoibDB0.css         24.65 kB │ gzip:   6.06 kB
+dist/assets/InsightsPage-BpGwTIx5.js    2.80 kB │ gzip:   1.16 kB
+dist/assets/HowPage-Z1l3vtKH.js         4.87 kB │ gzip:   1.84 kB
+dist/assets/Result-CH1yDdWy.js          5.19 kB │ gzip:   1.88 kB
+dist/assets/index-BiNb83Zy.js         241.40 kB │ gzip:  76.48 kB
+dist/assets/Charts-CAUe4ek4.js        379.99 kB │ gzip: 109.18 kB
+
+✓ built in 202ms

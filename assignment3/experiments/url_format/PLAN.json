@@ -1,0 +1,27 @@
+{
+  "status": "Predeclared before fitting any A3 candidate",
+  "seed": 42,
+  "threshold": 0.5,
+  "test_use": "No A2 test labels, URLs or features used for fitting, scoring, tuning or selection. Split group metadata may be checked for disjointness only.",
+  "demos": "No demo URLs are injected. Existing naturally occurring domains remain. Candidate demo outputs are withheld until after metric-based selection.",
+  "scope": "Original train/validation rows eligible for the unchanged A3 HTTP(S) validation policy; scheme-less dataset rows completed with https solely for training/paired evaluation, not relabelled.",
+  "policy": "a3-scheme-neutral-v1: common HTTPS feature view, hostname lowercase/trailing-dot consistency, empty root path '/', remove default port for original protocol. Preserve www, userinfo, custom ports, path/query case, percent encoding, fragments and parameter order. Raw URL remains used for explanation and HTTP warnings.",
+  "candidates": [
+    {"name":"neutral_rf_original_complexity", "n_estimators":100,"max_depth":12,"min_samples_leaf":100,"class_weight":"balanced_subsample"},
+    {"name":"neutral_rf_richer", "n_estimators":100,"max_depth":20,"min_samples_leaf":20,"class_weight":"balanced_subsample"},
+    {"name":"neutral_rf_recall3", "n_estimators":100,"max_depth":20,"min_samples_leaf":20,"class_weight":{"0":1,"1":3}},
+    {"name":"neutral_rf_recall5", "n_estimators":100,"max_depth":20,"min_samples_leaf":20,"class_weight":{"0":1,"1":5}}
+  ],
+  "integration_gate": {
+    "validation_false_positive_rate_max":0.20,
+    "validation_dangerous_recall_min":0.90,
+    "validation_phishing_recall_min":0.80,
+    "relative_false_positive_reduction_vs_api_formatted_a2_min":0.50,
+    "paired_format_label_flip_reduction_min":0.75,
+    "domain_overlap_max":0,
+    "notes":"Chosen before candidate fitting. Recall trade-offs versus both native-A2 and API-formatted baselines must be reported, even if the gate passes. This is a research acceptance rule, not a product safety standard."
+  },
+  "selection":"Among candidates passing all gates, minimise deployment-like validation FPR; tie-break by higher dangerous recall, then smaller candidate complexity. No threshold search. No test-based selection.",
+  "metrics":"TN FP FN TP, FPR=FP/benign, dangerous recall=TP/dangerous, subtype recalls; same deployment-like cohort for before/after. Also report native/raw A2 validation separately and deterministic domain-sampled format stability.",
+  "uncertainty":"Validation is reused for model development; no unbiased final-test estimate or live safety/ownership claim. HTTP versus HTTPS is a transport stress test, not guaranteed same resource. Familiar domains are only diagnostic examples."
+}

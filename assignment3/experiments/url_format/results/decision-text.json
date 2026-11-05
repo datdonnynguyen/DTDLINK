@@ -1,0 +1,29 @@
+{
+  "selected": "neutral_text_recall5",
+  "policy": "a3-scheme-neutral-v1-char3to5-numeric36-v1",
+  "threshold": 0.5,
+  "decision_basis": "Unchanged validation gates/ranking; demo scores withheld until selection. No A2 test data used.",
+  "candidates": [
+    {
+      "name": "neutral_text_balanced",
+      "passes": false,
+      "fpr": 0.06003082095825161,
+      "recall": 0.861951916098977,
+      "phishing_recall": 0.7774720914237342
+    },
+    {
+      "name": "neutral_text_recall3",
+      "passes": false,
+      "fpr": 0.080589801064724,
+      "recall": 0.8918463375237025,
+      "phishing_recall": 0.8340299455055288
+    },
+    {
+      "name": "neutral_text_recall5",
+      "passes": true,
+      "fpr": 0.11357056131502755,
+      "recall": 0.9212959711590233,
+      "phishing_recall": 0.8857203322575525
+    }
+  ]
+}

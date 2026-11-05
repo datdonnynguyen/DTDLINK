@@ -1,5 +1,5 @@
 # Local Python environment
-.venv/
+.venv
 
 # Python caches and test output
 __pycache__/
@@ -14,6 +14,26 @@ htmlcov/
 # Operating-system and editor files
 .DS_Store
 .vscode/
+
+# Installed frontend packages and generated builds
+node_modules
+dist/
+
+# Local credentials; keep non-secret setup examples
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated submission archives and extracted duplicate submissions
+/submission/
+/submission.zip
+
+# URL-level evaluation/research outputs stay local; source and aggregates are versioned
+/reports/evaluation/test_predictions.csv
+/reports/evaluation/error_examples.csv
+/assignment3/experiments/url_format/results/stability-sample.csv
 
 # Generated intermediate data and reports
 data/interim/*

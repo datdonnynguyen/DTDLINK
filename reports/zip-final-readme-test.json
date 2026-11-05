@@ -1,0 +1,129 @@
+{
+  "zip": "/Users/okok/Documents/innovationproject cos30049/submission/session-07-group-5-assignment-2-code-data-models.zip",
+  "zip_sha256": "dab35eeaae40b01badb09f735f00493b2cf9fbcf66d169ef078e8af8bf50a346",
+  "zip_unchanged": true,
+  "run_directory": "/private/tmp/dtdlink-last-readme-_b3pqa3k",
+  "all_commands_passed": true,
+  "steps": [
+    {
+      "name": "create_fresh_python39_venv",
+      "returncode": 0,
+      "seconds": 1.3,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/create_fresh_python39_venv.log"
+    },
+    {
+      "name": "install_requirements",
+      "returncode": 0,
+      "seconds": 6.5,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/install_requirements.log"
+    },
+    {
+      "name": "pip_check",
+      "returncode": 0,
+      "seconds": 0.4,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/pip_check.log"
+    },
+    {
+      "name": "predict",
+      "returncode": 0,
+      "seconds": 31.5,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/predict.log"
+    },
+    {
+      "name": "evaluate",
+      "returncode": 0,
+      "seconds": 12.0,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/evaluate.log"
+    },
+    {
+      "name": "capture_original_predictions",
+      "returncode": 0,
+      "seconds": 3.6,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/capture_original_predictions.log"
+    },
+    {
+      "name": "data_audit",
+      "returncode": 0,
+      "seconds": 6.3,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/data_audit.log"
+    },
+    {
+      "name": "data_cleaning",
+      "returncode": 0,
+      "seconds": 2.5,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/data_cleaning.log"
+    },
+    {
+      "name": "feature_extraction",
+      "returncode": 0,
+      "seconds": 19.9,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/feature_extraction.log"
+    },
+    {
+      "name": "data_splitting",
+      "returncode": 0,
+      "seconds": 32.6,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/data_splitting.log"
+    },
+    {
+      "name": "train_classifier",
+      "returncode": 0,
+      "seconds": 38.2,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/train_classifier.log"
+    },
+    {
+      "name": "cluster_urls",
+      "returncode": 0,
+      "seconds": 14.7,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/cluster_urls.log"
+    },
+    {
+      "name": "rename_cached_metrics",
+      "returncode": 0,
+      "seconds": 0.0,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/rename_cached_metrics.log"
+    },
+    {
+      "name": "evaluate",
+      "returncode": 0,
+      "seconds": 12.7,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/evaluate.log"
+    },
+    {
+      "name": "predict_reproduced_model",
+      "returncode": 0,
+      "seconds": 1.9,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/predict_reproduced_model.log"
+    },
+    {
+      "name": "verify_all_reproduced_outputs",
+      "returncode": 0,
+      "seconds": 4.7,
+      "log": "/private/tmp/dtdlink-last-readme-_b3pqa3k/verify_all_reproduced_outputs.log"
+    }
+  ],
+  "conda_status": "Not installed; README Python 3.9 venv alternative executed, exact pinned requirements installed from cached wheels",
+  "verification": {
+    "prepared_data_hashes_match": true,
+    "result_tables_match": 11,
+    "test_probabilities_match": 126949,
+    "max_probability_difference": 3.3306690738754696e-16,
+    "offline_raw_urls_verified": 120,
+    "offline_new_inputs_verified": 5,
+    "metrics": {
+      "accuracy": 0.9178882858470725,
+      "precision": 0.852199413489736,
+      "recall": 0.915521224708875,
+      "f1": 0.8827261886011295,
+      "false_positive": 6804,
+      "false_negative": 3620
+    },
+    "split_counts": {
+      "train": 384832,
+      "validation": 129332,
+      "test": 126949
+    },
+    "runtime_requirements_exact": true,
+    "tests_notebooks_not_needed": true
+  }
+}

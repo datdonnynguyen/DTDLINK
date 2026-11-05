@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-05",
+  "scope": "New local React + FastAPI Assignment 3 application; no deployment or submission.",
+  "backend_tests": {
+    "workspace_passed": 34,
+    "fresh_extracted_passed": 33,
+    "fresh_extracted_skipped": 1,
+    "skip_reason": "Comparison against the original A2 source is unavailable by design in standalone ZIP.",
+    "warning": "Starlette deprecates the httpx adapter used by TestClient; test-only warning, no failed tests."
+  },
+  "frontend_unit_tests": {
+    "passed": 13
+  },
+  "frontend_build": "passed",
+  "optional_playwright_suite": {
+    "defined": 10,
+    "test_discovery": "passed",
+    "browser_execution": "not run; browser QA used the supported CUA browser surface instead"
+  },
+  "browser_qa": {
+    "desktop_css_width": 1280,
+    "phone_css_width": 375,
+    "horizontal_overflow": "none observed at tested widths",
+    "checks": [
+      "frontend empty validation",
+      "real dangerous label",
+      "real benign label",
+      "Enter-key submission",
+      "signals filter and detail selection",
+      "session filter and selected check details",
+      "clear session",
+      "How it works",
+      "phone menu navigation",
+      "phone result/chart layout",
+      "client 404",
+      "backend outage message",
+      "recovery after clean-package startup",
+      "Swagger Try it out real POST"
+    ],
+    "limitations": [
+      "No full WCAG certification or five-person usability study",
+      "React unexpected-render boundary exists and an automated fault scenario is supplied, but that scenario was not run in CUA."
+    ]
+  },
+  "model": {
+    "sha256": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+    "original_model_unchanged": true,
+    "four_original_inference_modules_unchanged": true,
+    "runtime_equivalence": {
+      "n": 1600,
+      "max_probability_difference": 3.3306690738754696e-16,
+      "same_classes": true,
+      "scope": "1,600 raw held-out URLs; runtime compatibility check, no training or tuning"
+    }
+  },
+  "clean_install": {
+    "zip_crc_and_manifest": "passed",
+    "new_python_environment": true,
+    "pip_check": "passed",
+    "npm_ci": "passed",
+    "launcher_started_both_services": true,
+    "live_http": "passed; see live-http.json",
+    "platform": "macOS arm64, Python 3.12.14, Node 22.14.0",
+    "other_platforms": "Instructions supplied; not executed on Windows or Linux."
+  },
+  "security": {
+    "npm_audit_known_vulnerabilities": 0,
+    "pip_audit_known_vulnerabilities_after_fix": 0,
+    "zap": {
+      "version": "2.17.0",
+      "phases": [
+        "passive",
+        "bounded active backend"
+      ],
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "informational": 53
+    },
+    "source_secret_pattern_scan": "No matches for selected key/private-key patterns in new A3 authored files; not an exhaustive secret audit.",
+    "existing_repository_history": "Not comprehensively audited.",
+    "dos_evidence": "Repeated actual-inference bursts plus clearly disclosed controlled slow-inference harness; live HTTP bursts also returned 503 without freezing health."
+  },
+  "pending": [
+    "Group video recording and playback check",
+    "Authentic complete weekly meeting minutes PDF",
+    "Agreed and signed contribution-form PDF",
+    "Tutor acceptance of combined-dangerous model scope"
+  ],
+  "advanced_section_2_8": "Not implemented or claimed; existing model evasion limitations remain.",
+  "url_format_investigation": {
+    "backend_tests_passed": 61,
+    "frontend_tests_passed": 17,
+    "production_build": "passed",
+    "active_model_changed": false,
+    "a2_files_protected_unchanged": 91,
+    "active_application_files_byte_preserved": 38,
+    "research_evidence": "experiments/url_format/results/",
+    "findings": "docs/URL_FORMAT_FINDINGS_VI.md",
+    "decision": "No candidate promoted; aggregate improvements insufficient for homepage-specific quality.",
+    "scope_note": "Initial clean-install/security-scan evidence above is historical; no new install, security scan or independent final-test estimate is claimed."
+  }
+}

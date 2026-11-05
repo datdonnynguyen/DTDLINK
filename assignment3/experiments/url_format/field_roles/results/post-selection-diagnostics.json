@@ -1,0 +1,122 @@
+{
+  "fields_balanced": [
+    {
+      "url": "https://www.google.com/",
+      "probability": 0.9515278935432434
+    },
+    {
+      "url": "https://github.com/",
+      "probability": 0.8764186501502991
+    },
+    {
+      "url": "https://www.python.org/doc/",
+      "probability": 0.9983242154121399
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "probability": 0.2021595686674118
+    },
+    {
+      "url": "https://example.com/about.html",
+      "probability": 0.05205339565873146
+    },
+    {
+      "url": "https://google.com@account-check.example/login",
+      "probability": 0.908341646194458
+    },
+    {
+      "url": "https://google.com.account-check.example/login",
+      "probability": 0.9446271061897278
+    }
+  ],
+  "fields_recall3": [
+    {
+      "url": "https://www.google.com/",
+      "probability": 0.9700626730918884
+    },
+    {
+      "url": "https://github.com/",
+      "probability": 0.9285100102424622
+    },
+    {
+      "url": "https://www.python.org/doc/",
+      "probability": 0.999167799949646
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "probability": 0.28956010937690735
+    },
+    {
+      "url": "https://example.com/about.html",
+      "probability": 0.05642245337367058
+    },
+    {
+      "url": "https://google.com@account-check.example/login",
+      "probability": 0.9663328528404236
+    },
+    {
+      "url": "https://google.com.account-check.example/login",
+      "probability": 0.9773025512695312
+    }
+  ],
+  "fields_recall5": [
+    {
+      "url": "https://www.google.com/",
+      "probability": 0.9836002588272095
+    },
+    {
+      "url": "https://github.com/",
+      "probability": 0.9540642499923706
+    },
+    {
+      "url": "https://www.python.org/doc/",
+      "probability": 0.9996378421783447
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "probability": 0.39469262957572937
+    },
+    {
+      "url": "https://example.com/about.html",
+      "probability": 0.06808896362781525
+    },
+    {
+      "url": "https://google.com@account-check.example/login",
+      "probability": 0.9837021827697754
+    },
+    {
+      "url": "https://google.com.account-check.example/login",
+      "probability": 0.9876634478569031
+    }
+  ],
+  "fields_context5": [
+    {
+      "url": "https://www.google.com/",
+      "probability": 0.6021038889884949
+    },
+    {
+      "url": "https://github.com/",
+      "probability": 0.9506340622901917
+    },
+    {
+      "url": "https://www.python.org/doc/",
+      "probability": 0.9998001456260681
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "probability": 0.37205588817596436
+    },
+    {
+      "url": "https://example.com/about.html",
+      "probability": 0.045587874948978424
+    },
+    {
+      "url": "https://google.com@account-check.example/login",
+      "probability": 0.947724461555481
+    },
+    {
+      "url": "https://google.com.account-check.example/login",
+      "probability": 0.9139877557754517
+    }
+  ]
+}

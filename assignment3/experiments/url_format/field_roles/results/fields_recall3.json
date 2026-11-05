@@ -1,0 +1,171 @@
+{
+  "name": "fields_recall3",
+  "candidate": {
+    "name": "fields_recall3",
+    "class_weight": {
+      "0": 1,
+      "1": 3
+    },
+    "root_context": false
+  },
+  "representation": "a3-url-fields-v1",
+  "feature_count": 91045,
+  "api_formatted": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 77892,
+    "fp": 7764,
+    "fn": 4780,
+    "tp": 37937,
+    "fpr": 0.09064163631269263,
+    "recall": 0.888100756139242,
+    "precision": 0.8301131266274261,
+    "accuracy": 0.9022847483505099,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.8306967885297074
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9416285832987121
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9316387748658036
+      }
+    },
+    "domain_macro_fpr": 0.18470304154957312,
+    "domain_macro_recall": 0.8428254831424087
+  },
+  "native_explicit": {
+    "rows": 38432,
+    "benign": 9545,
+    "dangerous": 28887,
+    "tn": 9039,
+    "fp": 506,
+    "fn": 2811,
+    "tp": 26076,
+    "fpr": 0.05301204819277108,
+    "recall": 0.9026897912555821,
+    "precision": 0.9809645624858927,
+    "accuracy": 0.9136917152373022,
+    "subtypes": {
+      "phishing": {
+        "rows": 5311,
+        "recall": 0.7588024854076445
+      },
+      "malware": {
+        "rows": 4574,
+        "recall": 0.9494971578487101
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9316387748658036
+      }
+    },
+    "domain_macro_fpr": 0.11852540611245468,
+    "domain_macro_recall": 0.8322891680897482
+  },
+  "homepage_no_query": {
+    "rows": 14455,
+    "benign": 8497,
+    "dangerous": 5958,
+    "tn": 5948,
+    "fp": 2549,
+    "fn": 924,
+    "tp": 5034,
+    "fpr": 0.2999882311404025,
+    "recall": 0.8449144008056395,
+    "precision": 0.6638533561914809,
+    "accuracy": 0.759737115185057,
+    "subtypes": {
+      "phishing": {
+        "rows": 5761,
+        "recall": 0.8475959034889776
+      },
+      "malware": {
+        "rows": 197,
+        "recall": 0.766497461928934
+      },
+      "defacement": {
+        "rows": 0,
+        "recall": null
+      }
+    },
+    "domain_macro_fpr": 0.29424187182414346,
+    "domain_macro_recall": 0.7999850684896147
+  },
+  "stability": {
+    "dataset_missing_scheme": {
+      "pairs": 3366,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "default_port": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "empty_root_slash": {
+      "pairs": 1432,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "host_scheme_case": {
+      "pairs": 4000,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "http_https_transport": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "percent_hex_case": {
+      "pairs": 1,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 7.799104787409306e-05,
+      "p95_score_change": 7.799104787409306e-05,
+      "max_score_change": 7.799104787409306e-05
+    },
+    "valid_format_pool": {
+      "pairs": 9277,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "max_score_change": 7.799104787409306e-05
+    }
+  },
+  "gates": {
+    "whole_fpr": true,
+    "dangerous_recall": false,
+    "phishing_recall": true,
+    "homepage_fpr": false,
+    "homepage_recall": true,
+    "format_stability": true,
+    "domain_disjoint": true,
+    "converged": true
+  },
+  "passes": false,
+  "solver_iterations": [
+    7
+  ],
+  "elapsed_s": 6.35
+}

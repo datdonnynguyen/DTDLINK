@@ -1,0 +1,13 @@
+
+> dtdlink-assignment3@1.0.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /private/tmp/dtdlink-a3-clean-2zf12flb/dtdlink-assignment3/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  17:40:21
+   Duration  80ms (transform 51%, tests 29%, import 15%, worker 5%)
+

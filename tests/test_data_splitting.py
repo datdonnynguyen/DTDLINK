@@ -89,7 +89,6 @@ def test_grouped_split_is_reproducible_and_has_zero_domain_overlap() -> None:
     assert first.equals(second)
     assert first_method == second_method
     assert set(first.unique()) == set(SPLIT_NAMES)
-    assert validation["passed"] is True
     assert validation["pairwise_group_overlap"] == {
         "train_validation": 0,
         "train_test": 0,

@@ -1,0 +1,136 @@
+{
+  "request_id": "example-preview-request",
+  "predicted_class": 1,
+  "label": "Potentially dangerous",
+  "explanation": "The model predicts the combined risk class: phishing, malware or defacement. It cannot identify the subtype.",
+  "dangerous_probability": 0.7989258766174316,
+  "confidence": 0.7989258766174316,
+  "threshold": 0.5,
+  "uncertain": false,
+  "signals": [
+    {
+      "id": "userinfo",
+      "title": "Hidden destination",
+      "severity": "high",
+      "present": false,
+      "detail": "Text before @ is not the real destination host. It is the URL's sign-in information; a familiar name here does not mean you are visiting that site.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "ip",
+      "title": "IP address as host",
+      "severity": "medium",
+      "present": false,
+      "detail": "This link uses a numeric IP address instead of a named website. That makes the organisation behind it harder to recognise; legitimate services can also use IP addresses.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "brand",
+      "title": "Brand in a subdomain",
+      "severity": "high",
+      "present": false,
+      "detail": "A familiar brand appears in the prefix of the hostname. That prefix does not establish ownership by the brand; check the base domain and the complete host.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "unicode",
+      "title": "Look-alike characters",
+      "severity": "high",
+      "present": false,
+      "detail": "Some characters resemble Latin letters but have different Unicode values. They can be legitimate language characters, yet make an unfamiliar address look familiar. This check covers only a limited character list.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "encoding",
+      "title": "Encoded URL characters",
+      "severity": "medium",
+      "present": false,
+      "detail": "Percent codes represent characters, while xn-- marks an internationalised domain. Both are normal URL formats, but can make the address harder to read. Decoding shown here is for reading only; it does not change the destination or model input.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "terms",
+      "title": "Account-related terms",
+      "severity": "low",
+      "present": false,
+      "detail": "Words about signing in, accounts or verification appear in the address. Real login pages use these words too; their presence does not prove that the site is malicious.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "subdomains",
+      "title": "Many subdomains",
+      "severity": "medium",
+      "present": false,
+      "detail": "Several labels precede the base domain. They can make a long hostname harder to recognise, though legitimate sites also use subdomains.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "length",
+      "title": "Long URL",
+      "severity": "low",
+      "present": false,
+      "detail": "This address is longer than the 120-character display rule. Long links can hide important parts, but search, sharing and tracking links are often long too.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "transport",
+      "title": "HTTP without TLS",
+      "severity": "low",
+      "present": false,
+      "detail": "The address starts with HTTP rather than HTTPS, so it does not request an encrypted HTTPS connection. We have not connected to the site or checked its certificate.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "port",
+      "title": "Unusual connection port",
+      "severity": "medium",
+      "present": false,
+      "detail": "This URL names a port other than the usual HTTP port 80 or HTTPS port 443. Development tools and legitimate services can also use custom ports.",
+      "evidence": [],
+      "action": ""
+    },
+    {
+      "id": "brand_path",
+      "title": "Brand words outside the host",
+      "severity": "low",
+      "present": false,
+      "detail": "A familiar brand appears in the path or parameters. Those words do not determine which website receives the request; they can also occur in legitimate articles, search results and links.",
+      "evidence": [],
+      "action": ""
+    }
+  ],
+  "url_parts": [
+    {
+      "kind": "protocol",
+      "text": "https://"
+    },
+    {
+      "kind": "host",
+      "text": "example.com"
+    },
+    {
+      "kind": "path",
+      "text": "/"
+    }
+  ],
+  "components": {
+    "scheme": "https",
+    "host": "example.com",
+    "registrable_domain": "example.com",
+    "port": null,
+    "path_length": 1,
+    "query_parameter_count": 0
+  },
+  "analysis_ms": 14.0,
+  "model_version": "a3-preview-text-f5a7b6fb",
+  "disclaimer": "Experimental A3 preview. DTDLINK analyses URL text only. It does not visit the website. A benign prediction does not guarantee safety."
+}

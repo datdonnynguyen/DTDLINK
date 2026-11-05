@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://www.google.com/",
+    "a2_probability": 0.972174377884553,
+    "a3_probability": 0.9970863575735041,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "www.google.com/",
+    "a2_probability": 0.18655881540261554,
+    "a3_probability": 0.9970863575735041,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "https://github.com/",
+    "a2_probability": 0.9543263549005231,
+    "a3_probability": 0.9870533933440294,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "github.com/",
+    "a2_probability": 0.05823079257896131,
+    "a3_probability": 0.9870533933440294,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "http://www.google.com/",
+    "a2_probability": 0.9634302201038362,
+    "a3_probability": 0.9970863575735041,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "https://www.google.com",
+    "a2_probability": 0.9807555174482999,
+    "a3_probability": 0.9970863575735041,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "HTTPS://WWW.GOOGLE.COM/",
+    "a2_probability": 0.972174377884553,
+    "a3_probability": 0.9970863575735041,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  },
+  {
+    "url": "https://paypal.com@account-check.example/login",
+    "a2_probability": 0.9726848188056869,
+    "a3_probability": 0.9999975200004747,
+    "note": "Diagnostic only; familiar name is not a safety label. GitHub domain was already in A2 train, Google in validation; these are not fresh-test results."
+  }
+]

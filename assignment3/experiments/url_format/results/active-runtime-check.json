@@ -1,0 +1,35 @@
+{
+  "health": {
+    "status": "ready",
+    "model_loaded": true,
+    "model_version": "a2-rf-d4aa8ff3",
+    "feature_count": 36,
+    "max_concurrent": 2,
+    "active_predictions": 0
+  },
+  "checks": [
+    {
+      "url": "https://www.google.com/",
+      "status": 200,
+      "probability": 0.9721743778845529,
+      "label": "Potentially dangerous",
+      "model_version": "a2-rf-d4aa8ff3"
+    },
+    {
+      "url": "https://github.com/",
+      "status": 200,
+      "probability": 0.9543263549005231,
+      "label": "Potentially dangerous",
+      "model_version": "a2-rf-d4aa8ff3"
+    },
+    {
+      "url": "www.google.com/",
+      "status": 422
+    },
+    {
+      "url": "github.com/",
+      "status": 422
+    }
+  ],
+  "scope": "Actual localhost HTTP runtime; no destination requests. Active model retained."
+}

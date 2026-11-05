@@ -1,0 +1,145 @@
+{
+  "api_formatted": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 10283,
+    "fp": 75373,
+    "fn": 338,
+    "tp": 42379,
+    "fpr": 0.8799500326888952,
+    "recall": 0.9920874593253272,
+    "precision": 0.3599004687818466,
+    "accuracy": 0.4102264494870417,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.9980953388709592
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9661404237640216
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9926849805283654
+      }
+    },
+    "domain_macro_fpr": 0.9567324885032787,
+    "domain_macro_recall": 0.9980362921992277
+  },
+  "raw_eligible": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 78491,
+    "fp": 7165,
+    "fn": 2624,
+    "tp": 40093,
+    "fpr": 0.08364854767908844,
+    "recall": 0.9385724652948475,
+    "precision": 0.8483854585467011,
+    "accuracy": 0.9237456474492299,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.8789482037987408
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9590776900706274
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9926849805283654
+      }
+    },
+    "domain_macro_fpr": 0.037895680244032566,
+    "domain_macro_recall": 0.9130635635339089
+  },
+  "native_explicit": {
+    "rows": 38432,
+    "benign": 9545,
+    "dangerous": 28887,
+    "tn": 6140,
+    "fp": 3405,
+    "fn": 334,
+    "tp": 28553,
+    "fpr": 0.35673127291775797,
+    "recall": 0.9884377055422855,
+    "precision": 0.8934539082545842,
+    "accuracy": 0.9027112822647794,
+    "subtypes": {
+      "phishing": {
+        "rows": 5311,
+        "recall": 0.9939747693466391
+      },
+      "malware": {
+        "rows": 4574,
+        "recall": 0.9643637953651071
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9926849805283654
+      }
+    },
+    "domain_macro_fpr": 0.32477949477431867,
+    "domain_macro_recall": 0.9941688438611095
+  },
+  "stability": {
+    "dataset_missing_scheme": {
+      "pairs": 3366,
+      "label_flips": 2015,
+      "label_flip_rate": 0.5986333927510398,
+      "mean_score_change": 0.5859913182610064,
+      "p95_score_change": 0.9267756099230718,
+      "max_score_change": 0.9659104859888415
+    },
+    "default_port": {
+      "pairs": 3844,
+      "label_flips": 12,
+      "label_flip_rate": 0.003121748178980229,
+      "mean_score_change": 0.009319902841790014,
+      "p95_score_change": 0.027089058943624744,
+      "max_score_change": 0.28992490380964375
+    },
+    "empty_root_slash": {
+      "pairs": 1432,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.016256120684116283,
+      "p95_score_change": 0.029024895168993647,
+      "max_score_change": 0.05368173316823732
+    },
+    "host_scheme_case": {
+      "pairs": 4000,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "http_https_transport": {
+      "pairs": 3844,
+      "label_flips": 7,
+      "label_flip_rate": 0.0018210197710718003,
+      "mean_score_change": 0.010058325539034942,
+      "p95_score_change": 0.030106606938405722,
+      "max_score_change": 0.2267396147106121
+    },
+    "percent_hex_case": {
+      "pairs": 1,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "valid_format_pool": {
+      "pairs": 9277,
+      "label_flips": 12,
+      "label_flip_rate": 0.001293521612590277,
+      "max_score_change": 0.28992490380964375
+    }
+  }
+}

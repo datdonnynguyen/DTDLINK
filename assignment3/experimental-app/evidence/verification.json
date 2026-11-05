@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-06",
+  "scope": "Separate optional prototype; no primary-model promotion.",
+  "backend_tests": {
+    "passed": 65,
+    "skipped": 1,
+    "reason": "Copied A2 source comparison is unavailable at the preview path."
+  },
+  "frontend_tests_passed": 17,
+  "production_build": "passed",
+  "live_runtime": {
+    "primary": {
+      "model_version": "a2-rf-d4aa8ff3",
+      "feature_count": 36,
+      "google_probability": 0.972174377884553,
+      "label": "Potentially dangerous",
+      "frontend_status": 200
+    },
+    "preview": {
+      "model_version": "a3-preview-text-f5a7b6fb",
+      "feature_count": 100036,
+      "google_probability": 0.9970863461494446,
+      "label": "Potentially dangerous",
+      "frontend_status": 200
+    }
+  },
+  "browser_qa": [
+    "Real preview Google response shown as 99.7% dangerous, matching model, not overridden",
+    "Preview route and model-description content",
+    "Narrow 312 CSS px view: no overflow observed",
+    "Preview-labelled header/title and separate API traffic"
+  ],
+  "model_sha256": "f5a7b6fb18fa3c041ccac167436ddc9d3ea44f496842314c59070a7e36303290",
+  "primary_model_sha256": "d4aa8ff332ab82c36e3befce1a0e74c336b25a07a19ee9012e489c56239cb586",
+  "limits": [
+    "Known homepage problem remains.",
+    "Shared installed dependencies; not a new clean install.",
+    "No new security scan or new accuracy evaluation; research metrics predate app copy."
+  ]
+}

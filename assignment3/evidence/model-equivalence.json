@@ -1,0 +1,6 @@
+{
+  "n": 1600,
+  "max_probability_difference": 3.3306690738754696e-16,
+  "same_classes": true,
+  "scope": "1,600 raw held-out URLs; runtime compatibility check, no training or tuning"
+}

@@ -1,0 +1,13 @@
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/test-results/
+**/playwright-report/
+frontend/dist/
+.env
+*.log
+
+# Local A3 research caches and candidate artifacts; not source deliverables.
+experiments/**/cache/
+experiments/**/artifacts/

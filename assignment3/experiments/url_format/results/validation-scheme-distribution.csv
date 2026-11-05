@@ -1,0 +1,11 @@
+type,target,scheme_format,rows,within_label_pct
+benign,0,http,9476,10.967592592592593
+benign,0,https,271,0.3136574074074074
+benign,0,none,76653,88.71875
+defacement,1,http,19125,100.0
+malware,1,http,3162,65.68342334856668
+malware,1,https,1412,29.33111757374325
+malware,1,none,240,4.985459077690071
+phishing,1,http,3673,19.338703732954247
+phishing,1,https,1649,8.682146053809298
+phishing,1,none,13671,71.97915021323645

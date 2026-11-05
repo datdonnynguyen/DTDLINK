@@ -88,7 +88,7 @@ malware ít phổ biến trên Internet.
 
 Code chính nằm trong `src/dtdlink_ml/data_cleaning.py`:
 
-- `validate_raw_contract()` kiểm tra dữ liệu đầu vào.
+- `check_raw_data()` kiểm tra dữ liệu đầu vào.
 - `trim_url_edges()` thực hiện một sửa đổi có giới hạn.
 - `separate_label_conflicts()` tách các hàng không có đáp án rõ ràng.
 - `remove_exact_duplicates()` giữ lần xuất hiện đầu tiên.

@@ -1,0 +1,114 @@
+[
+  {
+    "name": "authority_text_balanced",
+    "sha256": "a70b2b5ec80e35e4a70bdd39166d1a22dad4e6e66a5fb9b5720807cb6adc5729",
+    "bytes": 394916,
+    "local_path": "experiments/url_format/artifacts/authority_text_balanced.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "authority_text_recall3",
+    "sha256": "750125c0b57a1b245a506a41521f77c96d814d6602da91ac40e580a2d6223c2e",
+    "bytes": 394896,
+    "local_path": "experiments/url_format/artifacts/authority_text_recall3.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "authority_text_recall5",
+    "sha256": "db8f18017d897ceba042572f12c4eef10692d8bde69e354a57547b1dc37f95a3",
+    "bytes": 394946,
+    "local_path": "experiments/url_format/artifacts/authority_text_recall5.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_rf_original_complexity",
+    "sha256": "02f7235dfa77a885379e7b01fdb49a7ca3fa8b00e09f9f6b0b83b927ca345b94",
+    "bytes": 2388732,
+    "local_path": "experiments/url_format/artifacts/neutral_rf_original_complexity.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_rf_recall3",
+    "sha256": "4f809d88c9ca0d6be7e4154c839476960ae7f8e2a323ed359dcdf1ded1cfc1eb",
+    "bytes": 9697971,
+    "local_path": "experiments/url_format/artifacts/neutral_rf_recall3.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_rf_recall5",
+    "sha256": "eeac47f27e5c1cc77513a1247d81497217f3e67800c75ed18193044369e9bd41",
+    "bytes": 9867451,
+    "local_path": "experiments/url_format/artifacts/neutral_rf_recall5.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_rf_richer",
+    "sha256": "4021b73dfb7b7a5919db4c1bd9cb2025f4f5590e24673068e640a34c3afcff0a",
+    "bytes": 12433934,
+    "local_path": "experiments/url_format/artifacts/neutral_rf_richer.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_balanced",
+    "sha256": "8bf030ddfdcfbfe07ec6ebf4d61eae5255eb672bbdb8c3fe63e94af33bbb4207",
+    "bytes": 1697895,
+    "local_path": "experiments/url_format/artifacts/neutral_text_balanced.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_balanced_converged",
+    "sha256": "7ac7cefd1f1069c4ee6cddd69d94dfe1cfe13dcd08a3e8d1f1fa544ae594e62b",
+    "bytes": 1314920,
+    "local_path": "experiments/url_format/artifacts/neutral_text_balanced_converged.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_recall3",
+    "sha256": "ae9f5364db24859db61218f2954831d5961a05d96aeb64f145e5be77242a12e9",
+    "bytes": 1698510,
+    "local_path": "experiments/url_format/artifacts/neutral_text_recall3.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_recall3_converged",
+    "sha256": "dd60dd7620e15c6568277ef3f244539500d433c717c204bcc9f5fd6964f18803",
+    "bytes": 1314879,
+    "local_path": "experiments/url_format/artifacts/neutral_text_recall3_converged.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_recall5",
+    "sha256": "689e9aa2c239bf61a3764f6668368160bc05888995dfeb85d5fd518dc53560f6",
+    "bytes": 1698687,
+    "local_path": "experiments/url_format/artifacts/neutral_text_recall5.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "neutral_text_recall5_converged",
+    "sha256": "f5a7b6fb18fa3c041ccac167436ddc9d3ea44f496842314c59070a7e36303290",
+    "bytes": 1314926,
+    "local_path": "experiments/url_format/artifacts/neutral_text_recall5_converged.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "root_rf_balanced",
+    "sha256": "4295afc6f25a63a5e12898ab3f8b9afe83d3cf822e42b1dfcfae5ec419674852",
+    "bytes": 2114612,
+    "local_path": "experiments/url_format/artifacts/root_rf_balanced.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "root_rf_recall3",
+    "sha256": "af92c03d934ae4b7f1849b9d5915b4832d3d80856cdc9da0fb33e81f2b51c83a",
+    "bytes": 2525319,
+    "local_path": "experiments/url_format/artifacts/root_rf_recall3.joblib",
+    "bundled_in_zip": false
+  },
+  {
+    "name": "root_rf_richer",
+    "sha256": "6ce3b98aafe4a84b61348278a28f77fa0e033ff452fcbc783bd352af3a912bc3",
+    "bytes": 4046698,
+    "local_path": "experiments/url_format/artifacts/root_rf_richer.joblib",
+    "bundled_in_zip": false
+  }
+]

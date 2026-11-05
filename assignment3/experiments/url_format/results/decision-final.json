@@ -1,0 +1,31 @@
+{
+  "selected": "neutral_text_recall5_converged",
+  "threshold": 0.5,
+  "basis": "Converged train-only fits, unchanged validation gates and FPR ranking. No A2 test scores or demo scores used.",
+  "candidates": [
+    {
+      "name": "neutral_text_balanced_converged",
+      "passes": false,
+      "fpr": 0.05823293172690763,
+      "recall": 0.8629585410960507,
+      "phishing_recall": 0.7816517644569071,
+      "converged": true
+    },
+    {
+      "name": "neutral_text_recall3_converged",
+      "passes": false,
+      "fpr": 0.080589801064724,
+      "recall": 0.8918463375237025,
+      "phishing_recall": 0.8340299455055288,
+      "converged": true
+    },
+    {
+      "name": "neutral_text_recall5_converged",
+      "passes": true,
+      "fpr": 0.11357056131502755,
+      "recall": 0.9212959711590233,
+      "phishing_recall": 0.8857203322575525,
+      "converged": true
+    }
+  ]
+}

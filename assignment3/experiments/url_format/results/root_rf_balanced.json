@@ -1,0 +1,197 @@
+{
+  "name": "root_rf_balanced",
+  "kind": "root-aware RF + text",
+  "settings": {
+    "name": "root_rf_balanced",
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_leaf": 20,
+    "class_weight": "balanced_subsample"
+  },
+  "root_train_rows": 47668,
+  "api_formatted": {
+    "rows": 128373,
+    "benign": 85656,
+    "dangerous": 42717,
+    "tn": 77546,
+    "fp": 8110,
+    "fn": 5579,
+    "tp": 37138,
+    "fpr": 0.09468104978051742,
+    "recall": 0.8693962591005923,
+    "precision": 0.820765558698727,
+    "accuracy": 0.893365427309481,
+    "subtypes": {
+      "phishing": {
+        "rows": 18901,
+        "recall": 0.7719697370509497
+      },
+      "malware": {
+        "rows": 4814,
+        "recall": 0.9289572081429165
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9512156615093148
+      }
+    },
+    "domain_macro_fpr": 0.1837154569386739,
+    "domain_macro_recall": 0.7742811506367709
+  },
+  "native_explicit": {
+    "rows": 38432,
+    "benign": 9545,
+    "dangerous": 28887,
+    "tn": 8902,
+    "fp": 643,
+    "fn": 2303,
+    "tp": 26584,
+    "fpr": 0.06736511262441068,
+    "recall": 0.9202755564786929,
+    "precision": 0.9763837367319205,
+    "accuracy": 0.9233451290591174,
+    "subtypes": {
+      "phishing": {
+        "rows": 5311,
+        "recall": 0.7876106194690266
+      },
+      "malware": {
+        "rows": 4574,
+        "recall": 0.9457804984696109
+      },
+      "defacement": {
+        "rows": 19002,
+        "recall": 0.9512156615093148
+      }
+    },
+    "domain_macro_fpr": 0.1805789231894532,
+    "domain_macro_recall": 0.8679201632602922
+  },
+  "homepage_no_query": {
+    "rows": 14455,
+    "benign": 8497,
+    "dangerous": 5958,
+    "tn": 6832,
+    "fp": 1665,
+    "fn": 2730,
+    "tp": 3228,
+    "fpr": 0.19595151229845828,
+    "recall": 0.5417925478348439,
+    "precision": 0.6597179644389944,
+    "accuracy": 0.6959529574541681,
+    "subtypes": {
+      "phishing": {
+        "rows": 5761,
+        "recall": 0.5415726436382573
+      },
+      "malware": {
+        "rows": 197,
+        "recall": 0.5482233502538071
+      },
+      "defacement": {
+        "rows": 0,
+        "recall": null
+      }
+    },
+    "domain_macro_fpr": 0.20587420991374936,
+    "domain_macro_recall": 0.5457526247898609
+  },
+  "root_path": {
+    "rows": 15408,
+    "benign": 9394,
+    "dangerous": 6014,
+    "tn": 7717,
+    "fp": 1677,
+    "fn": 2776,
+    "tp": 3238,
+    "fpr": 0.17851820310836705,
+    "recall": 0.5384103757898238,
+    "precision": 0.6587995930824008,
+    "accuracy": 0.7109942886812046,
+    "subtypes": {
+      "phishing": {
+        "rows": 5815,
+        "recall": 0.5382631126397248
+      },
+      "malware": {
+        "rows": 199,
+        "recall": 0.542713567839196
+      },
+      "defacement": {
+        "rows": 0,
+        "recall": null
+      }
+    },
+    "domain_macro_fpr": 0.1952344461616217,
+    "domain_macro_recall": 0.5412644986493854
+  },
+  "stability": {
+    "dataset_missing_scheme": {
+      "pairs": 3366,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "default_port": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "empty_root_slash": {
+      "pairs": 1432,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "host_scheme_case": {
+      "pairs": 4000,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "http_https_transport": {
+      "pairs": 3844,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 0.0,
+      "p95_score_change": 0.0,
+      "max_score_change": 0.0
+    },
+    "percent_hex_case": {
+      "pairs": 1,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "mean_score_change": 5.2111397963017225e-05,
+      "p95_score_change": 5.2111397963017225e-05,
+      "max_score_change": 5.2111397963017225e-05
+    },
+    "valid_format_pool": {
+      "pairs": 9277,
+      "label_flips": 0,
+      "label_flip_rate": 0.0,
+      "max_score_change": 5.2111397963017225e-05
+    }
+  },
+  "gates": {
+    "fpr_at_most_20pct": true,
+    "dangerous_recall_at_least_90pct": false,
+    "phishing_recall_at_least_80pct": false,
+    "fpr_halved_vs_api_baseline": true,
+    "format_flips_reduced_by_75pct": true,
+    "domain_overlap_zero": true,
+    "homepage_fpr_at_most_20pct": true,
+    "homepage_dangerous_recall_at_least_80pct": false,
+    "text_optimizer_converged": true
+  },
+  "passes": false,
+  "fit_and_eval_s": 12.55
+}

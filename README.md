@@ -1,193 +1,206 @@
-# DTDLINK — Detect The Deception Links
+# DTDLINK — Assignment 2
 
-DTDLINK is a privacy-first phishing URL detection project. Assignment 2 builds
-the reproducible data and machine-learning pipeline; Assignment 3 will reuse
-that same pipeline through a FastAPI backend and React frontend.
+> Assignment 3 application: see [assignment3/README.md](assignment3/README.md). The instructions below remain the frozen Assignment 2 workflow.
 
-The prediction pipeline must analyse URL text locally. It must not open the
-submitted URL, perform an online lookup during prediction, store submitted
-URLs, or claim that a URL is definitively safe.
+DTDLINK analyses URL text offline and predicts benign (0) or potentially
+dangerous (1). Phishing, malware and defacement form the positive class.
+Prediction never visits URLs, resolves DNS or stores submitted URLs.
+Probabilities are not calibrated; a negative prediction does not guarantee
+safety. The website belongs to Assignment 3.
 
-## Local environment
+## 1. Environment setup
 
-The project uses a local virtual environment so its packages do not modify the
-macOS system Python.
+Extract the ZIP and open a terminal in its `dtdlink-assignment2` directory.
+With Miniconda or Anaconda installed, run:
+
+```bash
+conda env create -f environment.yml
+conda activate dtdlink-a2
+python -m pip check
+```
+
+Equivalent explicit Conda commands:
+
+```bash
+conda create -n dtdlink-a2 python=3.9 pip -y
+conda activate dtdlink-a2
+python -m pip install -r requirements.txt
+```
+
+Set the module search path once in that terminal:
+
+```bash
+# macOS / Linux
+export PYTHONPATH="$PWD/src"
+```
+
+```powershell
+# Windows PowerShell
+$env:PYTHONPATH = Join-Path (Get-Location) "src"
+```
+
+Use the activated environment's `python` for all commands below. A Python
+virtual environment is an alternative:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+export PYTHONPATH="$PWD/src"
 ```
 
-Start JupyterLab with:
+Windows venv activation is `.venv\Scripts\Activate.ps1`. Python 3.9 and the
+pinned packages match the project runtime. The parser uses the public-suffix
+snapshot bundled with tldextract, with online refresh disabled.
+
+## 2. Package and dataset
+
+| Location | Contents |
+|---|---|
+| `src/dtdlink_ml/` | Reusable processing, features, models and prediction |
+| `data/interim/malicious_phish_cleaned.csv` | Prepared URLs, original labels and binary targets |
+| `data/processed/url_features.csv` | Same URLs, six label/analysis columns and 36 numeric features |
+| `data/processed/split_manifest.csv` | Fixed domain-group split for every URL |
+| `models/` | Final pipeline and metadata |
+| `reports/` | Audits, comparisons, clustering, test results and six figures |
+| `notebooks/` | Stage explanations and saved displays |
+| `tests/` | Automated checks |
+| `docs/feature_dictionary.md` | All 36 feature definitions and limitations |
+| `docs/decisions.md` | Modelling decisions |
+
+Only the selected URL dataset is included. It comes from the course
+malicious_phish.csv, linked to Kaggle's Malicious URLs dataset. No extra
+source was joined. Cleaning trimmed seven URL values, quarantined twelve
+conflicting rows and removed 10,066 duplicates. The final 641,113 URLs include
+428,074 benign and 213,039 dangerous records.
+
+Train has 384,832 rows, validation 129,332 and test 126,949, with no domain
+shared across partitions. These partitions were used for training, selection
+or final evaluation. Labels and URL/domain metadata support analysis; the
+classifier takes only the 36 columns in `FEATURE_NAMES`.
+
+## 3. Use the supplied model and run tests
+
+```bash
+python -m dtdlink_ml.predict 'https://example.com/'
+python -m pytest -q
+```
+
+Prediction needs no training. Its JSON includes predicted class, cautious
+label, dangerous probability, threshold and parser issues. This URL is an
+input demonstration, not an expected benign result. Keep source, joblib file
+and metadata together because the saved object uses `dtdlink_ml.predict`.
+
+The current version has 137 tests. They cover unusual URLs, feature order,
+label exclusion, grouped splits, preprocessing, metrics, reload and offline
+prediction. Tests use small temporary fixtures and do not retrain the supplied
+model. A joblib physical-CPU detection warning may appear without failing tests.
+
+## 4. Reprocess the prepared URLs
+
+Use a second copy of the extracted project for reproduction, so the submitted
+outputs remain available for comparison. The supplied cleaned CSV still
+contains raw URL strings; rebuild their features and fixed split with:
+
+```bash
+python -m dtdlink_ml.feature_extraction
+python -m dtdlink_ml.data_splitting
+```
+
+The first command writes the fixed 36-feature table and audit. The second
+groups by registrable domain, assigns the seeded 60/20/20 split and creates
+training-only EDA. Fourteen URLs without a domain use URL-hash groups.
+Expected SHA-256 fingerprints:
+
+```text
+cleaned:  b717c3c8f3c802bbf975973cecabe82a703aeca7069389aacac579ff2aebe464
+features: fe049dd9f6b2c92570354b28b2885312f64c73b03b7053be06bc35cce5a591ff
+manifest: fbcbcf2ff68e26acfa2bb435b53c262645688a54a195ff64e283e7ff753ffc2f
+```
+
+Training and clustering check these locked inputs and row alignment. Test has
+already been evaluated; keep the recorded settings for reproduction and use
+independent data for future tuning.
+
+### Optional raw audit and cleaning
+
+The course archive is excluded because it contains three unrelated datasets.
+To reproduce raw cleaning, obtain Basic_Datasets.zip from Canvas and put it
+at `Week-08/Assessment/Basic_Datasets.zip` in the reproduction copy:
+
+```bash
+python -m dtdlink_ml.data_audit
+python -m dtdlink_ml.data_cleaning
+```
+
+Audit extracts only the URL CSV into `data/raw/`. Cleaning trims whitespace,
+quarantines all conflicting-label URLs, keeps the first exact duplicate and
+adds the binary target. It writes the cleaned CSV and row-change evidence.
+Then follow Sections 4–6. The raw CSV hash must be
+`d83ce942075dd63ed4d11560cfdcd9d512caa3d680e292f22cab484e8f074d01`.
+The supplied prepared data and model work without this optional archive.
+
+## 5. Train classifiers and reproduce clustering
+
+```bash
+python -m dtdlink_ml.train_classifier
+python -m dtdlink_ml.cluster_urls
+```
+
+Classification fits Logistic Regression, Decision Tree and Random Forest on
+train and compares them on validation. Only Logistic Regression uses a
+train-fitted StandardScaler. Random Forest uses 100 trees, depth 12, minimum
+leaf size 100, square-root feature sampling, balanced subsample weights,
+seed 42 and two workers. It was selected at threshold 0.5 for validation F1
+0.888186. Results are saved under `reports/classification/`.
+
+Clustering selects the 127,256 true-label dangerous TRAIN rows. Labels and
+metadata are excluded from inputs. Two constant features are removed and
+34 features are scaled on this population. K-means compares k=2–8 with ten
+initialisations, seed 42 and a fixed 2,000-row silhouette sample. Selected
+k=7 has sampled silhouette 0.292263. Cluster means, representative URLs,
+original-label composition and two figures are saved under
+`reports/clustering/` and `reports/figures/`. Cluster IDs are not danger levels.
+
+## 6. Final evaluation and frozen reproduction
+
+```bash
+python -m dtdlink_ml.evaluate
+```
+
+In the supplied ZIP this reads the saved test_metrics.json without fitting.
+Test accuracy is 0.917888, precision 0.852199, recall 0.915521 and F1 0.882726;
+FP=6,804 and FN=3,620. Phishing recall is 0.833555, distinct from the combined
+positive-class recall.
+
+To reproduce the final fit in a separate project copy, rename the saved metrics:
+
+```bash
+python -c "from pathlib import Path; p=Path('reports/evaluation/test_metrics.json'); p.rename(p.with_name('test_metrics.original.json'))"
+python -m dtdlink_ml.evaluate
+```
+
+Without the saved metrics, evaluation checks the selected model and threshold,
+fits the fixed Random Forest on train only, evaluates locked test, exports the
+model and checks reload probabilities. It overwrites the reproduction copy's
+model and evaluation files. This repeats fixed settings; do not use it to tune
+against the already-used test set.
+
+## 7. Notebooks and verification
 
 ```bash
 jupyter lab
 ```
 
-Run the Stage 0 environment check with:
+Notebook 01 requires the optional course ZIP for its raw audit; notebook 02
+requires the extracted raw CSV for cleaning. Other notebooks use the prepared
+data or saved outputs. Some cells regenerate results, so Run All in a copy.
+Notebook 05 reads saved outputs unless RUN_CLUSTERING=True.
 
-```bash
-python -m pytest tests/test_environment.py
-```
+Source-format bias, unverified labels, phishing misses, no temporal/external
+holdout and uncalibrated probabilities limit the results. The ML core is ready
+for later FastAPI/React integration; the website is not an Assignment 2 output.
 
-Dataset inspection begins in Stage 1 and is intentionally not part of the
-Stage 0 environment check.
-
-## Stage 1 raw-data audit
-
-Report: [Vietnamese audit](reports/audit/stage-1-data-audit.md).
-Notebook: [01_data_audit.ipynb](notebooks/01_data_audit.ipynb).
-
-Run with the existing project environment:
-
-```bash
-.venv/bin/python src/dtdlink_ml/data_audit.py
-```
-
-The audit reads only the course phishing CSV member, preserves source bytes,
-and writes evidence to `reports/audit/`. It does not clean, relabel, split or
-train. Option B is selected for Assignment 2: `benign` versus
-`potentially_dangerous`; see `docs/decisions.md`. The mapping will be created by
-the reproducible Stage 2 pipeline, not by editing the raw CSV.
-The notebook's cells were verified by sequential execution with project Python;
-a Jupyter kernel could not bind local sockets inside the execution sandbox.
-
-## Stage 3 URL parser and feature extraction
-
-Feature definitions: [Stage 3 feature dictionary](docs/feature_dictionary.md).
-
-Run the offline parser/feature tests and create the processed feature table:
-
-```bash
-PYTHONPATH=src .venv/bin/python -m pytest -q
-PYTHONPATH=src .venv/bin/python src/dtdlink_ml/feature_extraction.py
-```
-
-The extractor reads `data/interim/malicious_phish_cleaned.csv` and writes
-`data/processed/url_features.csv` plus
-`reports/features/feature_extraction_audit.json`. It streams rows to avoid
-holding the full processed table in memory. Labels are copied for later
-modelling but are never used to calculate URL features. Parsing uses the
-bundled public-suffix snapshot and performs no online lookup.
-
-## Stage 4 EDA and leakage-safe split
-
-Notebook: [03_eda_and_splitting.ipynb](notebooks/03_eda_and_splitting.ipynb).
-
-Run the complete grouped split and training-only EDA with:
-
-```bash
-PYTHONPATH=src .venv/bin/python src/dtdlink_ml/data_splitting.py
-```
-
-The pipeline validates the immutable Stage 3 feature table, groups URLs by
-registrable domain, and uses a SHA-256 URL fallback for the 14 rows without a
-domain. It writes `data/processed/split_manifest.csv` and audit evidence under
-`reports/eda/`, `reports/splitting/`, `reports/tables/`, and
-`reports/figures/`. The split is approximately 60/20/20, has zero group
-overlap, and is reproducible with seed 42. Model-directed EDA reads training
-rows only. The test assignment is locked by the split-manifest SHA-256 and must
-not be used until the one-time Stage 7 final evaluation.
-
-## Stage 5 classification and validation
-
-Notebook: [04_classification.ipynb](notebooks/04_classification.ipynb).
-
-Run the three-model comparison with:
-
-```bash
-PYTHONPATH=src .venv/bin/python src/dtdlink_ml/train_classifier.py
-```
-
-The command verifies the feature-table and split-manifest hashes, fits Logistic
-Regression, Decision Tree and Random Forest on training rows, and writes
-validation comparisons to `reports/classification/`. The student selected
-Random Forest with alert threshold 0.5. These settings are recorded in
-`src/dtdlink_ml/train_classifier.py` and
-`reports/classification/validation_summary.json`. Stage 5 did not evaluate test. Stage 7 has now completed the frozen held-out
-evaluation and exported the final model; see the next section.
-
-Run all automated tests with:
-
-```bash
-PYTHONPATH=src .venv/bin/python -m pytest -q
-```
-
-## Stage 6 within-class clustering
-
-Notebook: [05_clustering.ipynb](notebooks/05_clustering.ipynb).
-Interpretation: [Vietnamese cluster report](reports/clustering/stage-6-clustering-report.md).
-
-```bash
-PYTHONPATH=src .venv/bin/python src/dtdlink_ml/cluster_urls.py
-PYTHONPATH=src .venv/bin/python -m pytest -q
-```
-
-The command verifies locked input hashes, selects only true-label dangerous
-TRAIN URLs, excludes metadata/labels from model inputs, removes class-constant
-features and fits StandardScaler. It compares K-means k=2–8 using the same
-2,000-row silhouette sample, then creates profiles, three representative URLs
-per cluster, source-composition checks and PCA figures. CPU parallelism is
-limited to two threads. Existing dependencies suffice; no downloads/lookups.
-
-Outputs: five CSVs, a JSON settings/audit summary and a Vietnamese report in
-`reports/clustering/`; three `clustering_*.png` images in `reports/figures/`.
-The notebook reads these saved outputs by default; set `RUN_CLUSTERING=True`
-to regenerate them. URL examples are escaped text, not clickable links.
-
-Verified baseline: 127,256 rows, 34 features, k=7, sampled silhouette 0.292263.
-Clustering is exploratory: a 53-row abnormal-text group, modest silhouette,
-seed sensitivity and source-format effects limit interpretation. Cluster IDs
-are not danger levels. See decision D-006; no validation/test modelling or
-metrics, DBSCAN or classifier export occurs in this command.
-
-
-## Stage 7 final evaluation and offline prediction
-
-Notebook: [06_final_evaluation.ipynb](notebooks/06_final_evaluation.ipynb).
-Results and limitations: [Vietnamese final evaluation report](reports/evaluation/stage-7-evaluation-report.md).
-
-```bash
-MPLCONFIGDIR=/private/tmp/dtdlink-stage7-mpl PYTHONPATH=src .venv/bin/python -m dtdlink_ml.evaluate
-PYTHONPATH=src .venv/bin/python -m dtdlink_ml.predict 'https://example.com/'
-PYTHONPATH=src .venv/bin/python -m pytest -q
-```
-
-The evaluation command first verifies input hashes and the Stage 5 selection,
-refits ONLY the selected 100-tree Random Forest on train, and confirms its
-validation results reproduce Stage 5 before unlocking test. It keeps threshold
-0.5. No scaler, clustering step, calibration or test-informed tuning is added.
-On a clean output directory it creates test predictions, class/subgroup tables,
-20 error examples, a confusion-matrix figure and `models/final_pipeline.joblib`
-plus `models/model_metadata.json`. Existing completed results are checked and
-read back without another fit or test experiment. Partial export checks can
-resume from saved predictions/model; incomplete earlier outputs stop the run.
-Do not delete saved evidence to try other thresholds/models against test.
-
-Verified test (126,949 URLs): accuracy 0.917888, precision 0.852199,
-recall 0.915521, F1 0.882726; TN 77,294 / FP 6,804 / FN 3,620 / TP 39,231.
-Phishing recall is 0.833555, malware 0.898710, defacement 0.993692.
-The binary aggregate must not be described as phishing-only performance.
-
-The saved pipeline combines the classifier, feature order and threshold with
-the existing offline parser/extractor. Keep `src/dtdlink_ml/`, dependencies,
-model and metadata together; a joblib file alone is not a standalone program.
-Only load this project's trusted joblib artifact. Loading verifies artifact
-hash, inference source hashes, exact recorded runtime versions and schema.
-Metadata changes or source edits require a deliberate compatibility review.
-
-Reload checks cover all test probabilities with absolute tolerance 1e-12 and
-exact class equality (observed maximum difference 3.33e-16 from parallel tree
-summation). 120 raw test URLs reproduce the stored features/probabilities;
-5 new URLs pass while socket connections/DNS are blocked. Unit tests also
-cover malformed, Unicode, IP/port and long inputs. Prediction returns parser
-issues and cautious labels, does not visit URLs and does not save user inputs.
-Probabilities are uncalibrated, and a negative prediction never guarantees safety.
-
-The notebook reads saved outputs and demonstrates inference; its four code
-cells were executed sequentially and saved using project Python, rather than
-claiming a Jupyter kernel session. The test figure was visually inspected.
-Stage 8 packaging, clean-environment reproduction, minutes/contribution form
-and group scope-change acknowledgement remain outstanding.
+See `VERIFICATION.md` for the actual environment/package checks. Submit the
+PDF report, weekly meeting minutes and signed contribution form separately
+alongside this ZIP.

@@ -1,0 +1,57 @@
+{
+  "extracted_root": "/private/tmp/dtdlink-a3-clean-2zf12flb/dtdlink-assignment3",
+  "archive_crc_and_manifest": "passed",
+  "fresh_environment": true,
+  "package_zip_sha256": "44bdd069d3435569b10d646b2e062617f20f50c4fd32e0eafc56d10789e717d7",
+  "steps": [
+    {
+      "name": "create_env",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/create_env.log"
+    },
+    {
+      "name": "bootstrap_pip",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/bootstrap_pip.log"
+    },
+    {
+      "name": "install_requirements",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/install_requirements.log"
+    },
+    {
+      "name": "pip_check",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/pip_check.log"
+    },
+    {
+      "name": "backend_tests",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/backend_tests.log"
+    },
+    {
+      "name": "npm_ci",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/npm_ci.log"
+    },
+    {
+      "name": "frontend_tests",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/frontend_tests.log"
+    },
+    {
+      "name": "frontend_build",
+      "returncode": 0,
+      "log": "/private/tmp/dtdlink-a3-clean-2zf12flb/frontend_build.log"
+    }
+  ],
+  "scope": "Pinned requirements installed into a new Python 3.12 environment from downloaded wheels; npm ci from pinned lock and registry cache. No A2 datasets or original environment needed.",
+  "retained_logs": {
+    "pip_check": "evidence/clean-pip_check.txt",
+    "backend_tests": "evidence/clean-backend_tests.txt",
+    "npm_ci": "evidence/clean-npm_ci.txt",
+    "frontend_tests": "evidence/clean-frontend_tests.txt",
+    "frontend_build": "evidence/clean-frontend_build.txt"
+  },
+  "subsequent_source_changes": "Contrast improvements, import cleanup, source formatting and support documentation; no dependency/model changes. Final source rebuilt and launcher smoke-tested in the same fresh extraction."
+}

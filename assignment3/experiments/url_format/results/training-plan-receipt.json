@@ -1,0 +1,6 @@
+{
+  "plan_sha256": "786b4b585581eb84c7f6eecb2487515113b8026f1f7925ba184869b8a833856b",
+  "training_started_utc": "2026-11-05T11:28:48Z",
+  "threshold": 0.5,
+  "no_test_use": true
+}

@@ -1,0 +1,12 @@
+{
+  "status":"Phase 2 predeclared after RF-only candidates failed unchanged integration gates",
+  "reason":"The 36 numeric measurements collapse many differently labelled training URLs to the same vectors. Character patterns add information instead of relaxing the recall/FPR gate or raising threshold.",
+  "threshold":0.5,
+  "representation":"Same a3-scheme-neutral-v1 model view; original raw input is still used for explanations. Character n-grams of length 3–5 plus 36 numeric features. No domain whitelist, demo injection, test scoring or threshold tuning.",
+  "vectorizer":{"analyzer":"char","ngram_range":[3,5],"min_df":3,"max_features":100000,"sublinear_tf":true,"lowercase":false,"dtype":"float32"},
+  "numeric":"StandardScaler(with_mean=False) fitted to train only; numeric columns remain in A2 order after A3 canonical representation.",
+  "classifier":"LogisticRegression(C=1, solver=liblinear, max_iter=300, random_state=42)",
+  "candidates":[{"name":"neutral_text_balanced","class_weight":"balanced"},{"name":"neutral_text_recall3","class_weight":{"0":1,"1":3}},{"name":"neutral_text_recall5","class_weight":{"0":1,"1":5}}],
+  "gate":"Unchanged criteria and ranking in PLAN.json; 90% dangerous recall, 80% phishing recall, <=20% FPR and >=50% relative reduction versus API-formatted A2, >=75% valid-format flip reduction, zero domain overlap. Demo outputs inspected only after selection.",
+  "limits":"Additional exploratory development reuses validation; no unbiased final-test or live safety estimate is claimed. Existing source/collection bias may remain."
+}

@@ -1,0 +1,16 @@
+{
+  "date":"2026-11-06",
+  "request":"User authorised trying position-aware URL modelling.",
+  "data":"Reuse unchanged original domain-grouped A2 train/validation eligibility cohorts: 381494 train, 128373 validation. No A2 test outcomes, no demo injection, no relabelling or whitelist.",
+  "representation":"Shared canonical_model_view at train/inference, followed by separate base-domain, subdomain, path, query, userinfo, fragment and port character TF-IDF blocks. Protocol/prefix text is absent from these blocks; raw original scheme remains used by API explanations. Character terms in different fields have separate coefficients.",
+  "vectorizers":{"base_domain":{"ngrams":[2,5],"max_features":30000},"subdomain":{"ngrams":[2,5],"max_features":10000},"path":{"ngrams":[3,5],"max_features":35000},"query":{"ngrams":[3,5],"max_features":15000},"userinfo":{"ngrams":[2,4],"max_features":3000},"fragment":{"ngrams":[3,5],"max_features":3000},"port":{"ngrams":[1,3],"max_features":256},"shared":{"min_df":3,"sublinear_tf":true,"lowercase":false,"norm":"l2","dtype":"float32","fit_scope":"train only"}},
+  "structural_flags":["has_userinfo","has_ip_host","has_confusable_unicode","brand_in_subdomain","brand_in_userinfo","brand_in_path_or_query","has_nonstandard_port","has_encoded_separator","host_has_punycode"],
+  "numeric_note":"Use bounded structural booleans without rare-feature standardisation; omit global URL/path length counts that can dominate short homepage scores. This is a newly trained model, not a modified input to the old model.",
+  "candidates":[{"name":"fields_balanced","class_weight":"balanced","root_context":false},{"name":"fields_recall3","class_weight":{"0":1,"1":3},"root_context":false},{"name":"fields_recall5","class_weight":{"0":1,"1":5},"root_context":false},{"name":"fields_context5","class_weight":{"0":1,"1":5},"root_context":true}],
+  "root_context":"Optional learned interaction: append the base-domain and subdomain blocks masked to root-path rows. No domain-specific branch or fixed safety label; same representation at train/inference.",
+  "classifier":{"type":"LogisticRegression","C":1,"solver":"newton-cg","tol":0.0001,"max_iter":100,"random_state":42,"threshold":0.5},
+  "acceptance":{"whole_fpr_max":0.20,"dangerous_recall_min":0.90,"phishing_recall_min":0.80,"homepage_fpr_max":0.20,"homepage_dangerous_recall_min":0.80,"valid_format_flip_reduction_vs_A2_min":0.75,"domain_overlap_max":0,"optimizer_converged":true},
+  "selection":"Among candidates passing all gates, lowest whole-validation FPR, tie by higher dangerous recall. Original and preview remain running unchanged until checks pass; at most update the optional preview, not primary A3.",
+  "demo_policy":"Do not inspect candidate Google/GitHub outputs until all fits and validation-based selection complete. Naturally occurring original domain membership stays; no demo records are added. Familiarity is not a safety label.",
+  "limits":"Further reuse of validation for exploratory development, not independent final-test accuracy. Source labels and URL-only coverage remain limitations. Infrequent/empty fields may yield no fitted vocabulary; disclose this. No external URL visits, DNS or analysis services."
+}

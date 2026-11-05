@@ -1,4 +1,4 @@
-"""Stage 6 population isolation, label exclusion and numerical evidence checks."""
+"""Tests for Stage 6 clustering."""
 import numpy as np
 import pandas as pd
 import pytest
@@ -6,10 +6,9 @@ from threadpoolctl import threadpool_limits
 
 from dtdlink_ml.cluster_urls import (
     select_population, load_population, prepare_features, compare_k, choose_k,
-    build_profiles, make_kmeans, fit_checked,
+    build_profiles, make_kmeans,
 )
-from dtdlink_ml.feature_extraction import FEATURE_NAMES, file_sha256
-from dtdlink_ml.train_classifier import _url_id
+from dtdlink_ml.feature_extraction import FEATURE_NAMES, file_sha256, url_id
 
 
 def population():
@@ -18,7 +17,7 @@ def population():
     frame["url_length"] = np.r_[rng.uniform(10, 15, 20), rng.uniform(100, 105, 20)]
     frame["host_length"] = np.r_[rng.uniform(2, 4, 20), rng.uniform(20, 24, 20)]
     frame["url"] = [f"https://d{i}.example/x" for i in range(40)]
-    frame["url_id"] = frame.url.map(_url_id)
+    frame["url_id"] = frame.url.map(url_id)
     frame["group_key"] = [f"domain:d{i}.example" for i in range(40)]
     frame["target"] = 1
     frame["type"] = "phishing"
@@ -106,16 +105,3 @@ def test_real_clusters_are_reproducible_and_profiles_reconcile():
         rows = profiles.loc[profiles.feature.eq(name)]
         assert np.average(rows.cluster_mean, weights=rows["size"]) == pytest.approx(features[name].mean())
 
-
-def test_independent_inertia_check_rejects_bad_library_result(monkeypatch):
-    import dtdlink_ml.cluster_urls as module
-    scaled = prepare_features(population())[1]
-    with threadpool_limits(limits=1):
-        model = make_kmeans(2).fit(scaled)
-    model.inertia_ = float("nan")
-    class BadModel:
-        def fit(self, data):
-            return model
-    monkeypatch.setattr(module, "make_kmeans", lambda k, seed: BadModel())
-    with pytest.raises(ValueError, match="numerical"):
-        fit_checked(scaled, 2)

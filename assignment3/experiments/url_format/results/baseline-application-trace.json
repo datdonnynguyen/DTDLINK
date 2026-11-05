@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://www.google.com/",
+    "model_probability": 0.972174377884553,
+    "api_status": 200,
+    "group_membership": [
+      "validation"
+    ]
+  },
+  {
+    "url": "www.google.com/",
+    "model_probability": 0.18655881540261557,
+    "api_status": 422,
+    "group_membership": [
+      "validation"
+    ]
+  },
+  {
+    "url": "https://github.com/",
+    "model_probability": 0.9543263549005231,
+    "api_status": 200,
+    "group_membership": [
+      "train"
+    ]
+  },
+  {
+    "url": "github.com/",
+    "model_probability": 0.05823079257896131,
+    "api_status": 422,
+    "group_membership": [
+      "train"
+    ]
+  },
+  {
+    "url": "http://www.google.com/",
+    "model_probability": 0.9634302201038362,
+    "api_status": 200,
+    "group_membership": [
+      "validation"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "model_probability": 0.9807555174482999,
+    "api_status": 200,
+    "group_membership": [
+      "validation"
+    ]
+  },
+  {
+    "url": "https://google.com/",
+    "model_probability": 0.9385498345530491,
+    "api_status": 200,
+    "group_membership": [
+      "validation"
+    ]
+  },
+  {
+    "url": "HTTPS://WWW.GOOGLE.COM/",
+    "model_probability": 0.972174377884553,
+    "api_status": 200,
+    "group_membership": [
+      "validation"
+    ]
+  }
+]
